@@ -1,0 +1,126 @@
+{
+  "ftp://192.168.1.210@pi": {
+    ".bash_history": {
+      "type": "-",
+      "size": 2491,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".bash_logout": {
+      "type": "-",
+      "size": 220,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".bashrc": {
+      "type": "-",
+      "size": 3523,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".config": {},
+    ".gnupg": {},
+    ".npm": {},
+    ".profile": {
+      "type": "-",
+      "size": 807,
+      "lmtime": 0,
+      "modified": false
+    },
+    "nodeMidi": {
+      "Fire.code-workspace": {
+        "type": "-",
+        "size": 98,
+        "lmtime": 1592186778357,
+        "modified": false
+      },
+      "FireSequencer.js": {
+        "type": "-",
+        "size": 71417,
+        "lmtime": 1592187108033,
+        "modified": false
+      },
+      "binding.gyp": {
+        "type": "-",
+        "size": 1605,
+        "lmtime": 0,
+        "modified": false
+      },
+      "bitmaps.js": {
+        "type": "-",
+        "size": 126268,
+        "lmtime": 0,
+        "modified": false
+      },
+      "bitmaps.json": {
+        "type": "-",
+        "size": 0,
+        "lmtime": 0,
+        "modified": false
+      },
+      "build": {},
+      "constants.js": {
+        "type": "-",
+        "size": 1432,
+        "lmtime": 0,
+        "modified": false
+      },
+      "dataObjFile": {
+        "type": "-",
+        "size": 29705,
+        "lmtime": 0,
+        "modified": false
+      },
+      "dataObjFile.json": {
+        "type": "-",
+        "size": 29705,
+        "lmtime": 0,
+        "modified": false
+      },
+      "main.js": {
+        "type": "-",
+        "size": 2509,
+        "lmtime": 1592187391023,
+        "modified": false
+      },
+      "midi.js": {
+        "type": "-",
+        "size": 54362,
+        "lmtime": 0,
+        "modified": false
+      },
+      "midi1.js": {
+        "type": "-",
+        "size": 18571,
+        "lmtime": 0,
+        "modified": false
+      },
+      "node_modules": {},
+      "package-lock.json": {
+        "type": "-",
+        "size": 22354,
+        "lmtime": 0,
+        "modified": false
+      },
+      "polyrythm.js": {
+        "type": "-",
+        "size": 2338,
+        "lmtime": 0,
+        "modified": false
+      },
+      "seq_loop.js": {
+        "type": "-",
+        "size": 9945,
+        "lmtime": 0,
+        "modified": false
+      },
+      "test.json": {
+        "type": "-",
+        "size": 491,
+        "lmtime": 0,
+        "modified": false
+      }
+    }
+  },
+  "$version": 1
+}
