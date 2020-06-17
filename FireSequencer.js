@@ -1288,7 +1288,7 @@ function settings(selEnc) {
   // If the timeout is still active, use btnEnc parameter to to figure out what should
   // be done to the settings.
 
-  //
+  //////////////////////////////////////////
 }
 
 function enableSequencer() {
