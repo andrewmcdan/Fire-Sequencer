@@ -312,7 +312,7 @@ function defaultTrack(stepMode = true) { // if called with first argument as fal
   this.solo = false;
   this.defaultColor = 127;
   this.outputType = "midi"; /////////////////////////////////////////////////////////////////////////////////////  false for debugging. change to "midi" for normal
-  this.outputName = "CAT MIDI";
+  this.outputName = "MIDI Translator MIDI 1";
   this.outputIndex = "0";
   this.trackName = "Track" + (this.num < 10 ? "0" + (this.num + 1) : (this.num + 1));
   this.channel = 0;
@@ -1634,10 +1634,16 @@ process.on('uncaughtException', exitHandler.bind(null, {
 
 // (60/bpm)*(patternLength/stepPerBeat)
 
-/*var settings = {};
-settings.globalSettings = {};
-settings.globalSettings.text = "Global";
-settings.    "entry": {
+seq.settings.menu = {};
+seq.settings.menu.state = 0;
+
+
+
+seq.settings.menu.globalSettings = {};
+seq.settings.menu.globalSettings.text = "Global";
+console.log(seq.settings.menu);
+
+/*seq.settings.menu.    "entry": {
       "id_0": {
         "text": "Encoder Bank",
         "entry": {

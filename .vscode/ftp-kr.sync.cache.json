@@ -28,6 +28,12 @@
       "modified": false
     },
     "nodeMidi": {
+      ".gitignore": {
+        "type": "-",
+        "size": 375,
+        "lmtime": 1592360416621,
+        "modified": false
+      },
       "Fire.code-workspace": {
         "type": "-",
         "size": 98,
@@ -36,8 +42,8 @@
       },
       "FireSequencer.js": {
         "type": "-",
-        "size": 71417,
-        "lmtime": 1592187108033,
+        "size": 71423,
+        "lmtime": 1592360786051,
         "modified": false
       },
       "binding.gyp": {
