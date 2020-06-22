@@ -1002,11 +1002,11 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             if (seq.state.shiftPressed) {
               // enter the menu
               seq.state.menu.entered = true;;
-              seq.state.menu.timeOut = setTimeout(()=>{
+              seq.state.menu.timeOut = setTimeout(() => {
                 clearOLEDmemMap();
                 FireOLED_SendMemMap();
                 seq.state.menu.entered = false;
-              },5000);
+              }, 5000);
               // console.log(seq.state.menu.entered);
 
               // draw the menu items
@@ -1017,6 +1017,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             } else if (seq.state.menu.entered) {
               // draw the menu items
               seq.state.menu.timeOut.refresh();
+              settingsMenu(3);
             } else {
 
             }
@@ -1206,15 +1207,26 @@ fireMidiIn.on('message', async function (deltaTime, message) {
         // }
         switch (message[1]) {
           case 118: // select encoder
-            if(message[2]==127){
+            if (message[2] == 127) {
               // select encoder down
-              seq.state.menu.timeOut.refresh();
-              console.log("down");
-            }else if(message[2]==1){
+              // console.log("down");
+              if (seq.state.menu.entered) {
+                // draw the menu items
+                seq.state.menu.timeOut.refresh();
+                settingsMenu(1);
+              } else {
+
+              }
+            } else if (message[2] == 1) {
               // select encoder up
-              seq.state.menu.timeOut.refresh();
-              console.log("up");
-            }else{
+              // console.log("up");
+              if (seq.state.menu.entered) {
+                seq.state.menu.timeOut.refresh();
+                settingsMenu(2);
+              } else {
+
+              }
+            } else {
               // non useful
             }
             break;
@@ -1616,8 +1628,8 @@ function exit() {
   fireMidiIn.closePort();
   fireMidiOut.closePort();
   if (settings.osType != "Windows_NT") {
-  virInput.closePort();
-  virOutput.closePort();
+    virInput.closePort();
+    virOutput.closePort();
   }
 }
 
@@ -1670,133 +1682,144 @@ seq.settings.menu = {};
 seq.settings.menu.currentState = 0;
 seq.settings.menu.prevState = 0;
 seq.settings.menu.nextState = 0;
+seq.settings.menu.items = 0;
 
 
 function settingsMenu(action) {
   switch (action) {
     case 0: // begin menu
-      clearOLEDmemMap();
-      PlotStringToPixelMemMap("menu",0,0,32,1,false);
-      FireOLED_SendMemMap();
+      console.log("menu start");
+      seq.settings.menu.currentState = seq.settings.menu.items;
+
       break;
     case 1: // selection down
+      console.log("menu selction down");
+
       break;
     case 2: // selection up
+      console.log("menu selection up");
+
       break;
     case 3: // select
+      console.log("menu select");
+
       break;
     default:
   }
 
+  // clear the memMap
+  clearOLEDmemMap();
   // and then render the menu to the oled mem map
-
+  PlotStringToPixelMemMap("menu", 0, 0, 32, 1, false);
   // and send mem map
+  FireOLED_SendMemMap();
+
+
 }
 
 
-function menuItem(textOfItem, isItemAction, dataOfItem, contentOfItem) {
+function menuItem(textOfItem, isItemAction, contentOfItem) {
   this.displayText = textOfItem;
   this.typeIsAction = isItemAction;
   this.content = contentOfItem;
-  this.data = dataOfItem;
+  // this.data = dataOfItem;
 }
 
-var encoderBankGlobalControlEnabledMenuItem = new menuItem("Enabled", true, true, function () {
-  seq.settings.encoders.global = this.data;
+var encoderBankGlobalControlEnabledMenuItem = new menuItem("Enabled", true, function () {
+  seq.settings.encoders.global = true;
 });
-var encoderBankPerProjectMenuItem = new menuItem("Per Project", true, false, function () {
-  seq.settings.encoders.global = this.data;
+var encoderBankPerProjectMenuItem = new menuItem("Per Project", true, function () {
+  seq.settings.encoders.global = false;
 })
 var encoderBankGlobalControlSelectMenuItem = new menuItem(
   "Global Control",
   false,
-  [encoderBankGlobalControlEnabledMenuItem, encoderBankPerProjectMenuItem],
-  null
+  [encoderBankGlobalControlEnabledMenuItem, encoderBankPerProjectMenuItem]
 );
 
-var bankMode4 = new menuItem("4 Banks", true, "4BankMode", function () {
-  seq.settings.encoders.banks = this.data;
-})
+var bankMode4 = new menuItem(
+  "4 Banks",
+  true,
+  function () {
+    seq.settings.encoders.banks = "4BankMode";
+  }
+);
 
-var bankMode16 = new menuItem("16 Banks", true, "16BankMode", function () {
-  seq.settings.encoders.banks = this.data;
-});
+var bankMode16 = new menuItem(
+  "16 Banks",
+  true,
+  function () {
+    seq.settings.encoders.banks = "16BankMode";
+  }
+);
 
 var encoderBankModeSetMenuItem = new menuItem(
   "# of encoder banks",
   false,
-  [bankMode4, bankMode16],
-  null
+  [bankMode4, bankMode16]
 );
 
 var encoderBankMenuItem = new menuItem(
   "Encoder Bank",
   false,
-  [encoderBankGlobalControlSelectMenuItem, encoderBankModeSetMenuItem],
-  null
+  [encoderBankGlobalControlSelectMenuItem, encoderBankModeSetMenuItem]
 );
 
 
 var midiClockInEnableDisabledMenuItem_Enable = new menuItem(
   "Enabled",
   true,
-  true,
-  function(){
-    seq.settings.midi.clockInEnabled = this.data;
+  function () {
+    seq.settings.midi.clockInEnabled = true;
   }
 );
 
 var midiClockInEnableDisabledMenuItem_Disable = new menuItem(
   "Disabled",
   true,
-  false,
-  function(){
-    seq.settings.midi.clockInEnabled = this.data;
+  function () {
+    seq.settings.midi.clockInEnabled = false;
   }
 );
 
 var midiClockInEnableDisabledMenuItem = new menuItem(
   "Enable/Disable",
   false,
-  [midiClockInEnableDisabledMenuItem_Enable,midiClockInEnableDisabledMenuItem_Disable],
-  null
+  [midiClockInEnableDisabledMenuItem_Enable, midiClockInEnableDisabledMenuItem_Disable]
 );
 
 var midiClockInDeviceSelectMenuItem = new menuItem(
   "Select clkIn Device",
-  true,
-  midiInputDevices,
-  function(){
-    console.log({midiInputDevices});
-    
+  false,
+  function () {
+    console.log({
+      midiInputDevices
+    });
   }
 );
 
 var midiClockInMenuItem = new menuItem(
   "Midi ClkIn En/Disable",
   false,
-  [midiClockInEnableDisabledMenuItem,midiClockInDeviceSelectMenuItem],
-  null
+  [midiClockInEnableDisabledMenuItem, midiClockInDeviceSelectMenuItem],
 );
 
 var midiMenuItem = new menuItem(
   "Midi",
   false,
-  [midiClockInMenuItem],
-  null
+  [midiClockInMenuItem]
 );
 
 
 var globalMenuItem = new menuItem(
   "Global Settings",
   false,
-  [encoderBankMenuItem,midiMenuItem],
-  null
+  [encoderBankMenuItem, midiMenuItem]
 );
 
 
 seq.settings.menu.items = [globalMenuItem];
-console.log(seq.settings.menu.items[0].data[0].data[0].data[0].displayText);
+console.log(typeof seq.settings.menu.items[0].data[0].data[0].data[0].content);
 
 
 
