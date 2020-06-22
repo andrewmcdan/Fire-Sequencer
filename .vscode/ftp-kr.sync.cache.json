@@ -42,8 +42,14 @@
       },
       "FireSequencer.js": {
         "type": "-",
-        "size": 71423,
-        "lmtime": 1592360786051,
+        "size": 73842,
+        "lmtime": 1592711040273,
+        "modified": false
+      },
+      "FireSequencer.ts": {
+        "type": "-",
+        "size": 83147,
+        "lmtime": 1592708431749,
         "modified": false
       },
       "binding.gyp": {
@@ -79,9 +85,9 @@
       },
       "dataObjFile.json": {
         "type": "-",
-        "size": 29705,
+        "size": 29757,
         "lmtime": 0,
-        "modified": false
+        "modified": true
       },
       "main.js": {
         "type": "-",
@@ -116,8 +122,8 @@
       },
       "seq_loop.js": {
         "type": "-",
-        "size": 9945,
-        "lmtime": 0,
+        "size": 10240,
+        "lmtime": 1592440588851,
         "modified": false
       },
       "test.json": {

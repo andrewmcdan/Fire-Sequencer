@@ -22,6 +22,7 @@ seq.state.loopTimeMillis = new Date().getTime();
 seq.state.currentBPM = 120;
 seq.state.newTrackDataWaiting = false;
 seq.state.stepNumberCounted = 0;
+seq.state.immediateTrackUpdate = false;
 seq.track = [];
 var newTrackData = [];
 
@@ -56,17 +57,17 @@ ipc.config.silent = true;
 
 ipc.connectTo(
   'nodeMidi',
-  function() {
+  function () {
     ipc.of.nodeMidi.on(
       'connect',
-      function() {
+      function () {
         // ipc.log('## connected to nodeMidi ##'.rainbow, ipc.config.delay);
         ipc.of.nodeMidi.emit('get-seq.track-Var');
       }
     );
     ipc.of.nodeMidi.on(
       'disconnect',
-      function() {
+      function () {
         // ipc.log('disconnected from nodeMidi'.notice);
         // console.log("Disconnected from main processs.");
         seqStop();
@@ -74,17 +75,24 @@ ipc.connectTo(
     );
     ipc.of.nodeMidi.on(
       'seq.trackVar', //any event or message type your server listens for
-      function(data) {
+      function (data) {
         // ipc.log('got a message from nodeMidi : '.debug, data);
         // console.log(data);
-        seq.state.newTrackDataWaiting = true;
-        newTrackData = data;
+        if (seq.state.immediateTrackUpdate) {
+          seq.track = data;
+        } else {
+          seq.state.newTrackDataWaiting = true;
+          newTrackData = data;
+        }
       }
     );
     ipc.of.nodeMidi.on('seqPlay', seqPlay);
     ipc.of.nodeMidi.on('seqStop', seqStop);
-    ipc.of.nodeMidi.on('tempoChange', function(data) {
+    ipc.of.nodeMidi.on('tempoChange', function (data) {
       seq.state.currentBPM = data
+    });
+    ipc.of.nodeMidi.on('setITU', function(data){ // ITC = Immediate Track Updates
+      seq.state.immediateTrackUpdate=data;
     });
   }
 );
@@ -115,7 +123,7 @@ Things to track during the loop:
 
 function theLoopFn(stepsPerBeat = 4) {
 
-  if (seq.state.newTrackDataWaiting &&(seq.state.stepNumberCounted%16==0)) {
+  if (seq.state.newTrackDataWaiting && (seq.state.stepNumberCounted % 16 == 0)) {
     seq.track = newTrackData;
     seq.state.newTrackDataWaiting = false;
   }
@@ -131,7 +139,7 @@ function theLoopFn(stepsPerBeat = 4) {
     // Next step started
     // console.log(seq.state.stepNumberCounted);
     //go through each track
-    seq.track.forEach(function(track, index) {
+    seq.track.forEach(function (track, index) {
       if (!track.mute && seq.track[index].patterns["id_" + track.currentPattern].patIsStepBased) { // if track is not muted and is step based
 
         let origPatLength = seq.track[index].patterns["id_" + track.currentPattern].patLength; // 16

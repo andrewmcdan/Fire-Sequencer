@@ -486,7 +486,7 @@ seq.state.OLEDclearTimeout = setTimeout(function () {
 }, 3000);
 seq.state.firstLoopIteration = true;
 seq.state.loopTimeMillis = Date.now();
-seq.state.currentBPM = 120;
+seq.state.currentBPM = 480;
 seq.state.gridBtnsPressedUpper = 0;
 seq.state.gridBtnsPressedLower = 0;
 seq.state.gridBtnsPressedLast = 0;
@@ -494,12 +494,20 @@ seq.state.gridBtnsPressedLast = 0;
 seq.state.menu = {};
 seq.state.menu.entered = false;
 seq.state.menu.currentLevel = 0;
+seq.state.menu.timeOut = setTimeout(() => {
+  console.log("999");
+}, 50);
+
+console.log(seq.state.menu.timeOut);
+
 
 // console.log(seq["state"]["menu"]["entered"]);
 
 seq.settings = {};
 seq.settings.general = {};
 seq.settings.general.OLEDtimeout = 10; // number of seconds to wait before clearing the OLED
+seq.settings.midi = {};
+seq.settings.midi.clockInEnabled = false;
 seq.settings.encoders = {};
 seq.settings.encoders.banks = "4BankMode";
 seq.settings.encoders.global = true;
@@ -756,7 +764,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           case 53: // rec button
             clearOLEDmemMap();
             PlotStringToPixelMemMap("REC", 0, 0, 32, 2, 0);
-            PlotStringToPixelMemMap("Not working.",0,35,16,1,0);
+            PlotStringToPixelMemMap("Not working.", 0, 35, 16, 1, 0);
             seq.state.OLEDmemMapContents = "REC";
             FireOLED_SendMemMap();
             ipc.server.emit(seqLoop_ipcSocket, 'seqRec');
@@ -953,6 +961,8 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           case 33: // browser button
             break;
           case 32: // pattern down button
+            // seq.state.immediateTrackUpdates = !seq.state.immediateTrackUpdates;
+            // ipc.server.emit(seqLoop_ipcSocket,'setITU', seq.state.immediateTrackUpdates);
             break;
           case 31: // pattern up button
             break;
@@ -991,16 +1001,22 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           case 25: // Select button
             if (seq.state.shiftPressed) {
               // enter the menu
-              seq.state.menu.entered = !seq.state.menu.entered;
+              seq.state.menu.entered = true;;
+              seq.state.menu.timeOut = setTimeout(()=>{
+                clearOLEDmemMap();
+                FireOLED_SendMemMap();
+                seq.state.menu.entered = false;
+              },5000);
               // console.log(seq.state.menu.entered);
 
               // draw the menu items
               seq.state.menu.currentLevel = [0];
-
+              settingsMenu(0);
 
 
             } else if (seq.state.menu.entered) {
               // draw the menu items
+              seq.state.menu.timeOut.refresh();
             } else {
 
             }
@@ -1166,30 +1182,41 @@ fireMidiIn.on('message', async function (deltaTime, message) {
         }
         break;
       case 176: // CC event
-        if (message[1] == 118 && message[2] == 127) {
-          // FireOLED_DrawBitmap_partial(xOffset, ++yOffset, bitmaps.bitmap_thermom32x32, 32, 32);
-          PlotStringToPixelMemMap("~ABCDEFGH", 0, 0, 32, 0, 1);
-          PlotStringToPixelMemMap("ancdefghij", 0, 32, 32, 1, 0);
-          // PlotStringToPixelMemMap("klmnopqrstuvwxyz", 0, 48, 32, 2, 1);
-          // PlotStringToPixelMemMap("RSTUVYZ", 0, 48, 24, 3, 0);
-          FireOLED_SendMemMap(0);
-          xOffset = 0;
-        } else if (message[1] == 118 && message[2] == 1) {
-          if (yOffset == 0) {
-            yOffset++;
-            xOffset++;
-          }
-          yOffset--;
-          // PlotStringToPixelMemMap("ABCDEFGHIJKLMN", 0, 0, 24, 0, 0);
-          // PlotStringToPixelMemMap("OPQRSTUVY", 0, 16, 24, 1, 1);
-          // PlotStringToPixelMemMap("abcdefghklm", 0, 32, 24, 2, 0);
-          // PlotStringToPixelMemMap("nopqrstu", 0, 48, 24, 3, 1);
-          // function PlotBitmapToPixelMemmap(inBitmap, xOrigin, yOrigin, bmp_width, bmp_height, invert) {
-          PlotBitmapToPixelMemmap(bitmaps.bitmap_X_64x64, 0, 0, 64, 64, 2);
-          FireOLED_SendMemMap(0);
-        }
+        // if (message[1] == 118 && message[2] == 127) {
+        //   // FireOLED_DrawBitmap_partial(xOffset, ++yOffset, bitmaps.bitmap_thermom32x32, 32, 32);
+        //   PlotStringToPixelMemMap("~ABCDEFGH", 0, 0, 32, 0, 1);
+        //   PlotStringToPixelMemMap("ancdefghij", 0, 32, 32, 1, 0);
+        //   // PlotStringToPixelMemMap("klmnopqrstuvwxyz", 0, 48, 32, 2, 1);
+        //   // PlotStringToPixelMemMap("RSTUVYZ", 0, 48, 24, 3, 0);
+        //   FireOLED_SendMemMap(0);
+        //   xOffset = 0;
+        // } else if (message[1] == 118 && message[2] == 1) {
+        //   if (yOffset == 0) {
+        //     yOffset++;
+        //     xOffset++;
+        //   }
+        //   yOffset--;
+        //   // PlotStringToPixelMemMap("ABCDEFGHIJKLMN", 0, 0, 24, 0, 0);
+        //   // PlotStringToPixelMemMap("OPQRSTUVY", 0, 16, 24, 1, 1);
+        //   // PlotStringToPixelMemMap("abcdefghklm", 0, 32, 24, 2, 0);
+        //   // PlotStringToPixelMemMap("nopqrstu", 0, 48, 24, 3, 1);
+        //   // function PlotBitmapToPixelMemmap(inBitmap, xOrigin, yOrigin, bmp_width, bmp_height, invert) {
+        //   PlotBitmapToPixelMemmap(bitmaps.bitmap_X_64x64, 0, 0, 64, 64, 2);
+        //   FireOLED_SendMemMap(0);
+        // }
         switch (message[1]) {
           case 118: // select encoder
+            if(message[2]==127){
+              // select encoder down
+              seq.state.menu.timeOut.refresh();
+              console.log("down");
+            }else if(message[2]==1){
+              // select encoder up
+              seq.state.menu.timeOut.refresh();
+              console.log("up");
+            }else{
+              // non useful
+            }
             break;
           case 19:
             if (seq.settings.encoders.global) {
@@ -1588,8 +1615,10 @@ async function debug(s, lvl, comment) {
 function exit() {
   fireMidiIn.closePort();
   fireMidiOut.closePort();
+  if (settings.osType != "Windows_NT") {
   virInput.closePort();
   virOutput.closePort();
+  }
 }
 
 
@@ -1634,16 +1663,147 @@ process.on('uncaughtException', exitHandler.bind(null, {
 
 // (60/bpm)*(patternLength/stepPerBeat)
 
+
+
+
 seq.settings.menu = {};
-seq.settings.menu.state = 0;
+seq.settings.menu.currentState = 0;
+seq.settings.menu.prevState = 0;
+seq.settings.menu.nextState = 0;
+
+
+function settingsMenu(action) {
+  switch (action) {
+    case 0: // begin menu
+      clearOLEDmemMap();
+      PlotStringToPixelMemMap("menu",0,0,32,1,false);
+      FireOLED_SendMemMap();
+      break;
+    case 1: // selection down
+      break;
+    case 2: // selection up
+      break;
+    case 3: // select
+      break;
+    default:
+  }
+
+  // and then render the menu to the oled mem map
+
+  // and send mem map
+}
+
+
+function menuItem(textOfItem, isItemAction, dataOfItem, contentOfItem) {
+  this.displayText = textOfItem;
+  this.typeIsAction = isItemAction;
+  this.content = contentOfItem;
+  this.data = dataOfItem;
+}
+
+var encoderBankGlobalControlEnabledMenuItem = new menuItem("Enabled", true, true, function () {
+  seq.settings.encoders.global = this.data;
+});
+var encoderBankPerProjectMenuItem = new menuItem("Per Project", true, false, function () {
+  seq.settings.encoders.global = this.data;
+})
+var encoderBankGlobalControlSelectMenuItem = new menuItem(
+  "Global Control",
+  false,
+  [encoderBankGlobalControlEnabledMenuItem, encoderBankPerProjectMenuItem],
+  null
+);
+
+var bankMode4 = new menuItem("4 Banks", true, "4BankMode", function () {
+  seq.settings.encoders.banks = this.data;
+})
+
+var bankMode16 = new menuItem("16 Banks", true, "16BankMode", function () {
+  seq.settings.encoders.banks = this.data;
+});
+
+var encoderBankModeSetMenuItem = new menuItem(
+  "# of encoder banks",
+  false,
+  [bankMode4, bankMode16],
+  null
+);
+
+var encoderBankMenuItem = new menuItem(
+  "Encoder Bank",
+  false,
+  [encoderBankGlobalControlSelectMenuItem, encoderBankModeSetMenuItem],
+  null
+);
+
+
+var midiClockInEnableDisabledMenuItem_Enable = new menuItem(
+  "Enabled",
+  true,
+  true,
+  function(){
+    seq.settings.midi.clockInEnabled = this.data;
+  }
+);
+
+var midiClockInEnableDisabledMenuItem_Disable = new menuItem(
+  "Disabled",
+  true,
+  false,
+  function(){
+    seq.settings.midi.clockInEnabled = this.data;
+  }
+);
+
+var midiClockInEnableDisabledMenuItem = new menuItem(
+  "Enable/Disable",
+  false,
+  [midiClockInEnableDisabledMenuItem_Enable,midiClockInEnableDisabledMenuItem_Disable],
+  null
+);
+
+var midiClockInDeviceSelectMenuItem = new menuItem(
+  "Select clkIn Device",
+  true,
+  midiInputDevices,
+  function(){
+    console.log({midiInputDevices});
+    
+  }
+);
+
+var midiClockInMenuItem = new menuItem(
+  "Midi ClkIn En/Disable",
+  false,
+  [midiClockInEnableDisabledMenuItem,midiClockInDeviceSelectMenuItem],
+  null
+);
+
+var midiMenuItem = new menuItem(
+  "Midi",
+  false,
+  [midiClockInMenuItem],
+  null
+);
+
+
+var globalMenuItem = new menuItem(
+  "Global Settings",
+  false,
+  [encoderBankMenuItem,midiMenuItem],
+  null
+);
+
+
+seq.settings.menu.items = [globalMenuItem];
+console.log(seq.settings.menu.items[0].data[0].data[0].data[0].displayText);
 
 
 
-seq.settings.menu.globalSettings = {};
-seq.settings.menu.globalSettings.text = "Global";
-console.log(seq.settings.menu);
-
-/*seq.settings.menu.    "entry": {
+/*{
+  "global": {
+    "text": "Global",
+    "entry": {
       "id_0": {
         "text": "Encoder Bank",
         "entry": {
