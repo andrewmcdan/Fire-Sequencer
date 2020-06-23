@@ -1,5 +1,5 @@
 {
-    "host": "192.168.1.210",
+    "host": "192.168.1.209",
     "username": "pi",
     "password": "2145rising87",
     "remotePath": "/nodeMidi/",

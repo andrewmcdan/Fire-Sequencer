@@ -1,55 +1,28 @@
 {
-  "ftp://192.168.1.210@pi": {
-    ".bash_history": {
-      "type": "-",
-      "size": 2491,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".bash_logout": {
-      "type": "-",
-      "size": 220,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".bashrc": {
-      "type": "-",
-      "size": 3523,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".config": {},
-    ".gnupg": {},
-    ".npm": {},
-    ".profile": {
-      "type": "-",
-      "size": 807,
-      "lmtime": 0,
-      "modified": false
-    },
+  "ftp://192.168.1.209@pi": {
     "nodeMidi": {
       ".gitignore": {
         "type": "-",
         "size": 375,
-        "lmtime": 1592360416621,
+        "lmtime": 0,
         "modified": false
       },
       "Fire.code-workspace": {
         "type": "-",
         "size": 98,
-        "lmtime": 1592186778357,
+        "lmtime": 0,
         "modified": false
       },
       "FireSequencer.js": {
         "type": "-",
-        "size": 73842,
-        "lmtime": 1592711040273,
+        "size": 73422,
+        "lmtime": 1592882361322,
         "modified": false
       },
       "FireSequencer.ts": {
         "type": "-",
         "size": 83147,
-        "lmtime": 1592708431749,
+        "lmtime": 0,
         "modified": false
       },
       "binding.gyp": {
@@ -87,12 +60,12 @@
         "type": "-",
         "size": 29757,
         "lmtime": 0,
-        "modified": true
+        "modified": false
       },
       "main.js": {
         "type": "-",
         "size": 2509,
-        "lmtime": 1592187391023,
+        "lmtime": 0,
         "modified": false
       },
       "midi.js": {
@@ -107,12 +80,148 @@
         "lmtime": 0,
         "modified": false
       },
-      "node_modules": {},
+      "node_modules": {
+        ".bin": {},
+        "ansi-regex": {},
+        "aproba": {},
+        "are-we-there-yet": {},
+        "base64-js": {},
+        "bindings": {},
+        "bl": {},
+        "buffer": {},
+        "buffer-shims": {},
+        "chownr": {},
+        "code-point-at": {},
+        "console-control-strings": {},
+        "core-util-is": {},
+        "decompress-response": {},
+        "deep-extend": {},
+        "delegates": {},
+        "detect-libc": {},
+        "easy-stack": {},
+        "end-of-stream": {},
+        "event-pubsub": {},
+        "eventemitter2": {},
+        "expand-template": {},
+        "file-uri-to-path": {},
+        "from2": {},
+        "fs-constants": {},
+        "gauge": {},
+        "github-from-package": {},
+        "has-unicode": {},
+        "ieee754": {},
+        "inherits": {},
+        "ini": {},
+        "into-stream": {},
+        "is-fullwidth-code-point": {},
+        "isarray": {},
+        "javascript-state-machine": {
+          "LICENSE": {
+            "type": "-",
+            "size": 1110,
+            "lmtime": 0,
+            "modified": false
+          },
+          "README.md": {
+            "type": "-",
+            "size": 4226,
+            "lmtime": 0,
+            "modified": false
+          },
+          "dist": {
+            "state-machine-history.js": {
+              "type": "-",
+              "size": 6336,
+              "lmtime": 0,
+              "modified": false
+            },
+            "state-machine-history.min.js": {
+              "type": "-",
+              "size": 2137,
+              "lmtime": 0,
+              "modified": false
+            },
+            "state-machine-visualize.js": {
+              "type": "-",
+              "size": 8340,
+              "lmtime": 0,
+              "modified": false
+            },
+            "state-machine-visualize.min.js": {
+              "type": "-",
+              "size": 2809,
+              "lmtime": 0,
+              "modified": false
+            },
+            "state-machine.js": {
+              "type": "-",
+              "size": 20517,
+              "lmtime": 0,
+              "modified": false
+            },
+            "state-machine.min.js": {
+              "type": "-",
+              "size": 8741,
+              "lmtime": 0,
+              "modified": false
+            }
+          },
+          "lib": {},
+          "package.json": {
+            "type": "-",
+            "size": 2238,
+            "lmtime": 0,
+            "modified": false
+          }
+        },
+        "js-message": {},
+        "js-queue": {},
+        "midi": {},
+        "mimic-response": {},
+        "minimist": {},
+        "mkdirp": {},
+        "mkdirp-classic": {},
+        "nan": {},
+        "napi-build-utils": {},
+        "node-abi": {},
+        "node-ipc": {},
+        "noop-logger": {},
+        "npmlog": {},
+        "number-is-nan": {},
+        "object-assign": {},
+        "once": {},
+        "p-is-promise": {},
+        "prebuild-install": {},
+        "process-nextick-args": {},
+        "pump": {},
+        "rc": {},
+        "readable-stream": {},
+        "safe-buffer": {},
+        "semver": {},
+        "set-blocking": {},
+        "signal-exit": {},
+        "simple-concat": {},
+        "simple-get": {},
+        "stream-array": {},
+        "string-width": {},
+        "string_decoder": {},
+        "strip-ansi": {},
+        "strip-json-comments": {},
+        "tar-fs": {},
+        "tar-stream": {},
+        "tree-kill": {},
+        "tunnel-agent": {},
+        "usb-detection": {},
+        "util-deprecate": {},
+        "which-pm-runs": {},
+        "wide-align": {},
+        "wrappy": {}
+      },
       "package-lock.json": {
         "type": "-",
-        "size": 22354,
+        "size": 22667,
         "lmtime": 0,
-        "modified": false
+        "modified": true
       },
       "polyrythm.js": {
         "type": "-",
@@ -122,8 +231,8 @@
       },
       "seq_loop.js": {
         "type": "-",
-        "size": 10240,
-        "lmtime": 1592440588851,
+        "size": 10414,
+        "lmtime": 0,
         "modified": false
       },
       "test.json": {

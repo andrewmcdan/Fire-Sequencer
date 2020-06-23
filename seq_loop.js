@@ -38,11 +38,11 @@ function seqPlay() {
   }
 }
 
-function seqStop() {
+function seqStop(log=true) {
   clearInterval(theLoopInterval);
   seq.state.playing = false;
   seq.state.firstLoopIteration = true;
-  console.log("stop");
+  if(log){console.log("stop")}
 }
 
 function updateMaxPatternLength() {
@@ -63,6 +63,7 @@ ipc.connectTo(
       function () {
         // ipc.log('## connected to nodeMidi ##'.rainbow, ipc.config.delay);
         ipc.of.nodeMidi.emit('get-seq.track-Var');
+        console.log("Connected to Fire Sequencer main process.");        
       }
     );
     ipc.of.nodeMidi.on(
@@ -70,8 +71,9 @@ ipc.connectTo(
       function () {
         // ipc.log('disconnected from nodeMidi'.notice);
         // console.log("Disconnected from main processs.");
-        seqStop();
-      }
+        seqStop(false);
+        console.log("Disconnected form Fire Sequencer main process.");
+      }      
     );
     ipc.of.nodeMidi.on(
       'seq.trackVar', //any event or message type your server listens for
