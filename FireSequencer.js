@@ -1,9 +1,8 @@
 // process.env.UV_THREADPOOL_SIZE = 30;
 
-//test
-
 const os = require('os');
 const ipc = require('node-ipc');
+
 // This code spawns the seq_loop node process. In testing, we manually spawn
 // sequence looper so that we can bedug it.
 
@@ -16,12 +15,13 @@ const ipc = require('node-ipc');
 // });
 const bitmaps = require('./bitmaps.js');
 // const consts = require('./constants');
-// var StateMachine = require('javascript-state-machine');
 var fs = require('fs');
 const midi = require('midi');
 const {
   log
 } = require('node-ipc');
+const {v4: uuidv4} = require('uuid');
+// console.log(uuidv4());
 var settings = {};
 var fireOLED_pixelMemMap = new Array(128);
 for (let i = 0; i < 128; i++) {
@@ -42,7 +42,8 @@ setTimeout(function () {
   debug("MIDI input buffer flush complete.");
 }, 500);
 
-if (settings.osType != "Windows_NT") {
+/*
+if (settings.osType != "Windows_NT") { // virtual midi port not supported on Windows
   console.log("Creating virtual MIDI interface...");
   // setup virtual interface to software midi
   var virInput = new midi.Input();
@@ -60,14 +61,15 @@ if (settings.osType != "Windows_NT") {
     }
   });
 }
+*/
 
 // Set up a new input.
 const fireMidiIn = new midi.Input(),
   fireMidiOut = new midi.Output();
 var midiInputDevices = [],
   midiInputDevicesNames = [],
-  midiInputDevicesEnabled = [];
-midiOutputDevices = [],
+  midiInputDevicesEnabled = [],
+  midiOutputDevices = [],
   midiOutputDevicesNames = [],
   midiOutputDevicesEnabled = [],
   midiInputDevicesHidden = [],
@@ -75,23 +77,22 @@ midiOutputDevices = [],
 
 // find out open Akai Fire MIDI input port
 // Also create array of all ports and open them.
-console.log("");
-console.log("Midi Inputs:");
+// console.log("");
+// console.log("Midi Inputs:");
 for (let step = 0; step < fireMidiIn.getPortCount(); step++) {
-  if (settings.osType != "Windows_NT") {
+  if (fireMidiIn.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
+    fireMidiIn.openPort(step);
+  }else if (settings.osType != "Windows_NT") {
     midiInputDevices[step] = new midi.Input();
     midiInputDevices[step].openPort(step);
     midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
     midiInputDevicesEnabled[step] = true;
-    console.log(midiInputDevicesNames[step]);
+    // console.log(midiInputDevicesNames[step]);
     if (midiInputDevicesNames[step].includes("RtMidi Output Client:RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
       midiInputDevicesHidden[step] = true;
     } else {
       midiInputDevicesHidden[step] = false;
     }
-  }
-  if (fireMidiIn.getPortName(step).search("FL STUDIO FIRE") != -1) {
-    fireMidiIn.openPort(step);
   }
 }
 
@@ -99,23 +100,22 @@ fireMidiIn.ignoreTypes(false, false, false);
 
 // find out open Akai Fire MIDI output port and open it under "fireMidiOut"
 // Also create array of all ports and open them.
-console.log("");
-console.log("Midi Outputs:");
+// console.log("");
+// console.log("Midi Outputs:");
 for (let step = 0; step < fireMidiOut.getPortCount(); step++) {
-  if (settings.osType != "Windows_NT") {
+  if (fireMidiOut.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
+    fireMidiOut.openPort(step);
+  }else if (settings.osType != "Windows_NT") {
     midiOutputDevices[step] = new midi.Output();
     midiOutputDevices[step].openPort(step);
     midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
     midiOutputDevicesEnabled[step] = true;
-    console.log(midiOutputDevicesNames[step]);
+    // console.log(midiOutputDevicesNames[step]);
     if (midiOutputDevicesNames[step].includes("RtMidi Input Client:RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
       midiOutputDevicesHidden[step] = true;
     } else {
       midiOutputDevicesHidden[step] = false;
     }
-  }
-  if (fireMidiOut.getPortName(step).search("FL STUDIO FIRE") != -1) {
-    fireMidiOut.openPort(step);
   }
 }
 
@@ -172,10 +172,10 @@ const BTN_LED_OFF = 0,
   CHANNEL_MIXER_USER_USER_BTN_LED = 23;
 
 var notGridBtnLEDS = [
-  PATTERN_BROWSER_GRID_DIMRED, // pattern up btn LED      0
+  PATTERN_BROWSER_GRID_RED, // pattern up btn LED      0
   PATTERN_BROWSER_GRID_DIMRED, // pattern dwn btn LED     1
   PATTERN_BROWSER_GRID_DIMRED, // browser btn LED         2
-  PATTERN_BROWSER_GRID_DIMRED, // grid left btn LED       3
+  PATTERN_BROWSER_GRID_RED, // grid left btn LED       3
   PATTERN_BROWSER_GRID_DIMRED, // grid right btn LED      4
 
   SOLO_GREEN, // track 1 btn LED         5
@@ -245,6 +245,8 @@ const LED_COLORS = [
   LED_COLOR_ORANGE
 ];
 
+const LED_COLORS_NAMES = ["Off", "White", "White (dim)", "Red", "Red (dim)", "Green", "Green (dim)", "Blue", "Blue (dim)", "Aqua", "Aqua (dim)", "Yellow", "Yellow (dim)", "Magenta", "Magenta (dim)", "Orange"];
+
 var noteColors = {};
 noteColors.C = LED_COLOR_WHITE;
 noteColors.Csharp = LED_COLOR_ORANGE;
@@ -303,11 +305,8 @@ scales.locrian = [1, 2, 2, 1, 2, 2];
 /// Build the "track" object
 var trackNumIndex = 0;
 
-function patternEvent(data, eventIdIndex, time = false) {
-  if (!time) {
-    this.startTimePatternOffset = time;
-  }
-  this.startTimeStepOffset = 0;
+function patternEvent(data, eventIdIndex, time = 0) {
+  this.startTimePatternOffset = time;
   this.data = data;
   this.length = 50; // 0-100, percent of the time between this notes start time and the next note start time
   this.velocity = 100; // 0-127
@@ -330,7 +329,14 @@ function trackPattern(patLength = 16, bpm = 120, beats = 4) {
   this.color.red = 127;
   this.color.grn = 0;
   this.color.blu = 127;
-  this.addEventByTime = function (data, timeOffset) {
+  this.color.mode = "preset"; // other option is "preset"
+  this.color.preset = 5;
+  this.defaults = {};
+  this.defaults.noteData = 60;
+  this.defaults.noteLength = 50;
+  this.defaults.noteOffset = 0;
+  this.defaults.noteVelocity = 100;
+  this.addEventByTime = function (data = this.defaults.noteData, timeOffset = this.defaults.noteOffset) {
     this.events["id_" + this.eventIdIndex] = new patternEvent(data, this.eventIdIndex, timeOffset);
     this.eventIdIndex++;
   }
@@ -354,9 +360,10 @@ function defaultTrack(stepMode = true) { // if called with first argument as fal
   this.mute = false;
   this.solo = false;
   this.defaultColor = 127;
-  this.outputType = "midi"; /////////////////////////////////////////////////////////////////////////////////////  false for debugging. change to "midi" for normal
-  this.outputName = "MIDI Translator MIDI 1";
+  this.outputType = "cv"; // "midi" for MIDI device output. "cv" for control voltage output
+  this.outputName = "MIDI Translator MIDI 1 ";
   this.outputIndex = "0";
+  this.midiChannel = 0;
   this.trackName = "Track" + (this.num < 10 ? "0" + (this.num + 1) : (this.num + 1));
   this.channel = 0;
   this.CVportNum = 0;
@@ -370,15 +377,22 @@ function defaultTrack(stepMode = true) { // if called with first argument as fal
     return "id_" + this.patternIdIndex++;
   }
   this.updateOutputIndex = function () {
-    let midiDevice = false;
-    let found = false;
-    for (let i = 0; i < midiOutputDevices.length; i++) {
-      if (midiOutputDevicesNames[i].includes(this.outputName)) {
-        this.outputIndex = i;
-        found = true;
+    if (this.outputType == "midi") {
+      let midiDevice = false;
+      let found = false;
+      for (let i = 0; i < midiOutputDevices.length; i++) {
+        if (midiOutputDevicesNames[i].includes(this.outputName)) {
+          this.outputIndex = i;
+          found = true;
+        }
       }
+      if (!found) {
+        this.outputIndex = null;
+      }
+      return found;
+    } else {
+      return true;
     }
-    return found;
   }
 }
 
@@ -387,15 +401,17 @@ var seq = {}; // object to hold state of things
 seq.track = [new defaultTrack(), new defaultTrack(), new defaultTrack(), new defaultTrack()];
 seq.track.forEach(function (track, index) {
   track.addPattern(16, 110, 4);
-  track.addPattern(32, 110, 8);
-  track.patterns["id_1"].viewArea = 1;
+  track.addPattern(14, 110, 8);
+  track.addPattern(9, 110, 8);
+  track.addPattern(4, 110, 8);
+  track.patterns["id_1"].viewArea = 0;
   track.updateOutputIndex();
 })
 
 seq.track[0].currentPattern = 0;
-seq.track[1].currentPattern = 0;
-seq.track[2].currentPattern = 0;
-seq.track[3].currentPattern = 1;
+seq.track[1].currentPattern = 1;
+seq.track[2].currentPattern = 2;
+seq.track[3].currentPattern = 3;
 
 
 seq.mode = {};
@@ -471,6 +487,8 @@ seq.mode.Note = function () {
   PlotStringToPixelMemMap("MODE", 0, 36, 16);
   FireOLED_SendMemMap(0);
   seq.state.OLEDmemMapContents = "noteMode";
+
+  /**TODO**/
   // load piano roll btn colors
 };
 
@@ -494,12 +512,15 @@ seq.mode.Drum = function () {
   seq.state.OLEDmemMapContents = "drumMode";
 };
 
-// Perform Mode
-// When placed into perform mode, the grid buttons can be assisgned to any pattern
-// in the track on which they appear. Each pattern can then be set to loop or to
-// play the next pattern that is enabled. Grid buttons enable/disable the associated
-// patterns. This allows the creation on songs on the fly. By default, every pattern
-// shall be set to loop unless changed.
+/**************************************************************************************
+Perform Mode
+When placed into perform mode, the grid buttons can be assisgned to any pattern
+in the track on which they appear. Each pattern can then be set to loop or to
+play the next pattern that is enabled. Grid buttons enable/disable the associated
+patterns. This allows the creation on songs on the fly. By default, every pattern
+shall be set to loop unless changed. 
+**************************************************************************************/
+
 seq.mode.Perform = function () {
   console.log("Perform Mode");
   seq.mode.current = 3;
@@ -609,8 +630,6 @@ seq.mode.Step();
 fs.writeFileSync('dataObjFile.json', JSON.stringify(seq.track));
 
 
-// settings();
-
 /**************************************************************************************
           Inter-Process Communications
 **************************************************************************************/
@@ -652,10 +671,15 @@ function playNote(eventData, socket = NULL) {
   if (settings.osType != "Windows_NT") {
     // console.log("playnote");
     let midiDevice = false;
-    if (seq.track[eventData.track].outputType == "midi") {
-      midiDevice = midiOutputDevices[seq.track[eventData.track].outputIndex];
+    if (seq.track[eventData.track].outputIndex != null) {
+      if (seq.track[eventData.track].outputType == "midi") {
+        midiDevice = midiOutputDevices[seq.track[eventData.track].outputIndex];
+      } else {
+        // do thing for CV GATE output
+      }
     } else {
-      // do thing for CV GATE output
+      // do not output anything since outputIndex is null. This would mean that a device has not been selected.
+      return;
     }
     // parse eventData and generate midi data
     let newMidiMessage = [0, 0, 0];
@@ -784,18 +808,24 @@ fireMidiIn.on('message', async function (deltaTime, message) {
               let track = seq.track[seq.state.selectedTrackRange + ((btnIndex / 16) & 0xff)]; // determine which track is associated with row the button is on.
               if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
                 step = (btnIndex % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
-                track.patterns["id_" + track.currentPattern].events["id_" + step].enabled = !track.patterns["id_" + track.currentPattern].events["id_" + step].enabled;
+                if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                  track.patterns["id_" + track.currentPattern].events["id_" + step].enabled = !track.patterns["id_" + track.currentPattern].events["id_" + step].enabled;
+                }
                 ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
               }
               updateAllGridBtnLEDs();
               break;
             case 1: // note mode
+              /**TODO**/
               break;
             case 2: // drum mode
+              /**TODO**/
               break;
             case 3: // perform mode
+              /**TODO**/
               break;
             case 4: // alt-step mode
+              /**TODO**/
               break;
           }
         }
@@ -804,6 +834,10 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           case 53: // rec button
             clearOLEDmemMap();
             PlotStringToPixelMemMap("REC", 0, 0, 32, 2);
+
+            /**TODO**/
+            // make rec mode work
+
             PlotStringToPixelMemMap("Not working.", 0, 35, 16, 1);
             seq.state.OLEDmemMapContents = "REC";
             FireOLED_SendMemMap();
@@ -835,11 +869,15 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           case 49: // alt button
             // when rpeseed, set alt flag
             seq.state.altPressed = true;
+
+            /**TODO**/
             // Need to light up only the buttons that have alt function
             break;
           case 48: // shift button
             // when pressed, set shift flag
             seq.state.shiftPressed = true;
+
+            /**TODO**/
             // Need to light up only the buttons that have shift function
             break;
           case 47: // Perform button
@@ -865,6 +903,10 @@ fireMidiIn.on('message', async function (deltaTime, message) {
               notGridBtnLEDS[10] = 0;
               notGridBtnLEDS[11] = 0;
               notGridBtnLEDS[12] = 4;
+
+              /**TODO**/
+              // Need to display the Track Name when selected track changes
+              
             } else if (seq.state.shiftPressed) {
               if (!seq.track[seq.state.selectedTrackRange + 3].solo) {
                 seq.track.forEach(function (track, i) {
@@ -899,6 +941,10 @@ fireMidiIn.on('message', async function (deltaTime, message) {
               notGridBtnLEDS[10] = 0;
               notGridBtnLEDS[11] = 4;
               notGridBtnLEDS[12] = 0;
+
+              /**TODO**/
+              // Need to display the Track Name when selected track changes
+              
             } else if (seq.state.shiftPressed) {
               if (!seq.track[seq.state.selectedTrackRange + 2].solo) {
                 seq.track.forEach(function (track, i) {
@@ -933,6 +979,10 @@ fireMidiIn.on('message', async function (deltaTime, message) {
               notGridBtnLEDS[10] = 4;
               notGridBtnLEDS[11] = 0;
               notGridBtnLEDS[12] = 0;
+
+              /**TODO**/
+              // Need to display the Track Name when selected track changes
+
             } else if (seq.state.shiftPressed) {
               if (!seq.track[seq.state.selectedTrackRange + 1].solo) {
                 seq.track.forEach(function (track, i) {
@@ -967,6 +1017,10 @@ fireMidiIn.on('message', async function (deltaTime, message) {
               notGridBtnLEDS[10] = 0;
               notGridBtnLEDS[11] = 0;
               notGridBtnLEDS[12] = 0;
+
+              /**TODO**/
+              // Need to display the Track Name when selected track changes
+
             } else if (seq.state.shiftPressed) {
               if (!seq.track[seq.state.selectedTrackRange + 0].solo) {
                 seq.track.forEach(function (track, i) {
@@ -994,17 +1048,57 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
             updateAllNotGridBtnLEDS();
             break;
-          case 35: // grid right
+          case 35: // grid right /**TODO**/
+            // non-shift, non-alt  
+            // shift grid right by 16 steps for current selected track and pattern, unless it is at the end of the pattern.
+
+            // +shift
+            // add one step to the selected pattern for the selected track
+
+            // +alt
+            // add 4 steps (one beat) to the sel pat and sel track
             break;
-          case 34: // grid left
+          case 34: // grid left /**TODO**/
+            // non-shift, non-alt  
+            // shift grid left by 16 steps for current selected track and pattern, unless it is at the end of the pattern.
+
+            // +shift
+            // remove one step from the selected pattern for the selected track
+
+            // +alt
+            // remove 4 steps (one beat) from the sel pat and sel track
             break;
-          case 33: // browser button
-            break;
-          case 32: // pattern down button
+          case 33: // browser button 
             // seq.state.immediateTrackUpdates = !seq.state.immediateTrackUpdates;
             // ipc.server.emit(seqLoop_ipcSocket,'setITU', seq.state.immediateTrackUpdates);
+
+            /**TODO**/
+            // figure out somethig to use this button for
+
             break;
-          case 31: // pattern up button
+          case 32: // pattern down button /**TODO**/
+            // non-shift, non-alt
+            // change selected pattern for selected track to -1
+
+            // +shift
+            // change selected pat for all track to -1
+            
+
+            /**TODO**/
+            // Need to display the selected pattern number when it changes
+            
+            break;
+          case 31: // pattern up button /**TODO**/
+            // non-shift, non-alt
+            // change selected pattern for selected track to +1
+
+            // +shift
+            // change selected pat for all track to +1
+            
+
+            /**TODO**/
+            // Need to display the selected pattern number when it changes
+            
             break;
           case 26: // encoder bank button
             // timout to reset back to bank 0 or 1
@@ -1012,6 +1106,19 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             setEncoderBankLEDs();
             break;
           case 25: // Select button
+
+            /**TODO**/
+            /** 
+             * 
+             * needs logic to determine if grid btn is pressed, or encoder is touched and to activate the appropriate menu
+             * should only do grid btn logic when in step mode
+             * 
+             * when pressed with no other buttons pressed, should do menu for changing things like
+             * tempo, viewable track range, etc when in step mode
+             * note layout, steps viewable, etc when in note mode
+             * 
+             */
+
             if (seq.state.shiftPressed && !seq.state.menu.entered) {
               // enter the menu
               seq.state.menu.entered = true;;
@@ -1022,7 +1129,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
               }, 5000);
               // console.log(seq.state.menu.entered);
               // draw the menu items
-              settingsMenu(0);
+              settingsMenu(0, settingsMainMenu);
             } else if (seq.state.shiftPressed && seq.state.menu.entered) {
               seq.state.menu.timeOut.refresh();
               settingsMenu(4);
@@ -1124,6 +1231,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           fireMidiOut.sendMessage(btnLEDSysEx);
         }
         switch (message[1]) {
+          /**TODO**/
+          // add necessary logic for tracking currently pressed buttons
+
           case 53: // rec button
             break;
           case 52: // stop button
@@ -1219,6 +1329,10 @@ fireMidiIn.on('message', async function (deltaTime, message) {
         // }
         switch (message[1]) {
           case 118: // select encoder
+
+          /**TODO**/
+          // Need to display the Track Name when selected track changes
+
             if (message[2] == 127) {
               // select encoder down
               // console.log("down");
@@ -1261,6 +1375,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                 PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][3].value.toString() + "    ", 0, 40, 16);
                 FireOLED_SendMemMap(8);
               }
+            } else {
+              /**TODO**/
+              // need to create a per project version of the above code
             }
             break;
           case 18:
@@ -1282,6 +1399,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                 PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][2].value.toString() + "    ", 0, 40, 16);
                 FireOLED_SendMemMap(8);
               }
+            } else {
+              /**TODO**/
+              // need to create a per project version of the above code
             }
             break;
           case 17:
@@ -1303,6 +1423,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                 PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][1].value.toString() + "    ", 0, 40, 16);
                 FireOLED_SendMemMap(8);
               }
+            } else {
+              /**TODO**/
+              // need to create a per project version of the above code
             }
             break;
           case 16:
@@ -1324,6 +1447,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                 PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][0].value.toString() + "    ", 0, 40, 16);
                 FireOLED_SendMemMap(8);
               }
+            } else {
+              /**TODO**/
+              // need to create a per project version of the above code
             }
             break;
         }
@@ -1363,18 +1489,6 @@ function setEncoderBankLEDs() {
     }
   }
   updateAllNotGridBtnLEDS();
-}
-
-function settings(selEnc) {
-  // draw setings to OLED and settimeout so that settings disappear after a few seconds
-  // If the timeout is still active, use btnEnc parameter to to figure out what should
-  // be done to the settings.
-
-  ////////
-}
-
-function enableSequencer() {
-
 }
 
 /**************************************************************************************************
@@ -1441,28 +1555,32 @@ function updateAllGridBtnLEDs() {
     for (let i = seq.state.selectedTrackRange; i < seq.state.selectedTrackRange + 4; i++) {
       for (let y = 0; y < 16; y++) {
         if ((seq.track[i].patterns["id_" + seq.track[i].currentPattern].patLength < 16) && (y < seq.track[i].patterns["id_" + seq.track[i].currentPattern].patLength)) {
-          if (seq.track[i].patterns["id_" + seq.track[i].currentPattern].events["id_" + y].enabled) {
-            gridBtnLEDcolor.btn[i * 16 + y].red = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.red;
-            gridBtnLEDcolor.btn[i * 16 + y].grn = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.grn;
-            gridBtnLEDcolor.btn[i * 16 + y].blu = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.blu;
-          } else {
-            gridBtnLEDcolor.btn[i * 16 + y].red = 0;
-            gridBtnLEDcolor.btn[i * 16 + y].grn = 0;
-            gridBtnLEDcolor.btn[i * 16 + y].blu = 0;
+          if (seq.track[i].patterns["id_" + seq.track[i].currentPattern].events["id_" + y] != undefined) {
+            if (seq.track[i].patterns["id_" + seq.track[i].currentPattern].events["id_" + y].enabled) {
+              gridBtnLEDcolor.btn[i * 16 + y].red = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.red;
+              gridBtnLEDcolor.btn[i * 16 + y].grn = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.grn;
+              gridBtnLEDcolor.btn[i * 16 + y].blu = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.blu;
+            } else {
+              gridBtnLEDcolor.btn[i * 16 + y].red = 0;
+              gridBtnLEDcolor.btn[i * 16 + y].grn = 0;
+              gridBtnLEDcolor.btn[i * 16 + y].blu = 0;
+            }
           }
         } else if (seq.track[i].patterns["id_" + seq.track[i].currentPattern].patLength < 16) {
           gridBtnLEDcolor.btn[i * 16 + y].red = 0;
           gridBtnLEDcolor.btn[i * 16 + y].grn = 0;
           gridBtnLEDcolor.btn[i * 16 + y].blu = 0;
         } else {
-          if (seq.track[i].patterns["id_" + seq.track[i].currentPattern].events["id_" + (y + (seq.track[i].patterns["id_" + seq.track[i].currentPattern].viewArea * 16))].enabled) {
-            gridBtnLEDcolor.btn[i * 16 + y].red = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.red;
-            gridBtnLEDcolor.btn[i * 16 + y].grn = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.grn;
-            gridBtnLEDcolor.btn[i * 16 + y].blu = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.blu;
-          } else {
-            gridBtnLEDcolor.btn[i * 16 + y].red = 0;
-            gridBtnLEDcolor.btn[i * 16 + y].grn = 0;
-            gridBtnLEDcolor.btn[i * 16 + y].blu = 0;
+          if (seq.track[i].patterns["id_" + seq.track[i].currentPattern].events["id_" + (y + (seq.track[i].patterns["id_" + seq.track[i].currentPattern].viewArea * 16))] != undefined) {
+            if (seq.track[i].patterns["id_" + seq.track[i].currentPattern].events["id_" + (y + (seq.track[i].patterns["id_" + seq.track[i].currentPattern].viewArea * 16))].enabled) {
+              gridBtnLEDcolor.btn[i * 16 + y].red = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.red;
+              gridBtnLEDcolor.btn[i * 16 + y].grn = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.grn;
+              gridBtnLEDcolor.btn[i * 16 + y].blu = seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.blu;
+            } else {
+              gridBtnLEDcolor.btn[i * 16 + y].red = 0;
+              gridBtnLEDcolor.btn[i * 16 + y].grn = 0;
+              gridBtnLEDcolor.btn[i * 16 + y].blu = 0;
+            }
           }
         }
       }
@@ -1480,7 +1598,7 @@ function updateAllGridBtnLEDs() {
     if (count > 63) {
       clearInterval(updateInterval);
     }
-  }, 1);
+  });
 }
 
 function updateAllNotGridBtnLEDS() {
@@ -1499,7 +1617,7 @@ function updateAllNotGridBtnLEDS() {
       clearInterval(intVal);
     }
     count++;
-  }, 1);
+  });
 }
 
 /*
@@ -1670,7 +1788,7 @@ async function debug(s, lvl, comment) {
 function exit() {
   fireMidiIn.closePort();
   fireMidiOut.closePort();
-  if (settings.osType != "Windows_NT") {
+  if (settings.osType != "Windows_NT" && typeof virInput !== 'undefined') {
     virInput.closePort();
     virOutput.closePort();
   }
@@ -1746,14 +1864,36 @@ seq.settings.menu.currentMenu = 0;
 // seq.settings.menu.itemSelectOffset = 0;
 
 
-function settingsMenu(action) {
+
+
+/*************************************************************************************************
+      This function handles all actions for menus.
+
+      Params: action, menuToEnter
+
+        action - number 0-4 indicating select encoder action
+          0 - menu start
+          1 - Down
+          2 - Up
+          3 - Select
+          4 - Back
+        menuToEnter - refernce to menu object. If no value given, function will default to
+          entering main settings menu on action = 0. Otherwise, param is ignored.
+*************************************************************************************************/
+function settingsMenu(action, menuToEnter = null, textSize = 16) {
   switch (action) {
     case 0: // begin menu
       console.log("menu start");
-      seq.settings.menu.currentMenu = settingsMainMenu;
+      if (menuToEnter != null) {
+        seq.settings.menu.currentMenu = menuToEnter;
+        console.log("referenced menu");
+
+      } else {
+        seq.settings.menu.currentMenu = settingsMainMenu;
+      }
       break;
     case 1: // selection down
-      console.log("menu selction down");
+      console.log("menu selection down");
       if (seq.settings.menu.currentMenu.isSubMenu) {
         if (seq.settings.menu.currentMenu.currentSelectedItem < seq.settings.menu.currentMenu.subMenuItems.length - 1) {
           seq.settings.menu.currentMenu.currentSelectedItem++;
@@ -1782,11 +1922,11 @@ function settingsMenu(action) {
       console.log("menu select");
       if (seq.settings.menu.currentMenu.isSubMenu) {
         seq.settings.menu.currentMenu = seq.settings.menu.currentMenu.subMenuItems[seq.settings.menu.currentMenu.currentSelectedItem];
-      } else if (seq.settings.menu.currentMenu.isMenuItem && seq.settings.menu.currentMenu.goBackOnSel) {
-        seq.settings.menu.currentMenu.selectActionFn(seq.settings.menu.currentMenu.currentSelectedItem);
-        seq.settings.menu.currentMenu = seq.settings.menu.currentMenu.parentMenu;
       } else {
         seq.settings.menu.currentMenu.selectActionFn(seq.settings.menu.currentMenu.currentSelectedItem);
+        if(seq.settings.menu.currentMenu.goBackOnSel){
+          seq.settings.menu.currentMenu = seq.settings.menu.currentMenu.parentMenu;
+        }
       }
       break;
     case 4: // shift select
@@ -1807,44 +1947,33 @@ function settingsMenu(action) {
   if (seq.state.menu.entered) { // prevents re-rendering menu when exiting
     let displayStrings = [];
     if (seq.settings.menu.currentMenu.isSubMenu) {
-      // console.log(seq.settings.menu.currentMenu.subMenuItems[0].parentDisplayText);
       seq.settings.menu.currentMenu.subMenuItems.forEach(function (item, i) {
-        // console.log(item);
         if (typeof item.parentDisplayText == "function") {
-          // console.log("parent dispaly text was function");
           displayStrings.push(item.parentDisplayText());
         } else {
           displayStrings.push(item.parentDisplayText);
         }
       })
-
-
     } else if (seq.settings.menu.currentMenu.isMenuItem) {
-      // console.log("parent menu:");
-      // console.log(seq.settings.menu.currentMenu.parentMenu);
       seq.settings.menu.currentMenu.displayFn(seq.settings.menu.currentMenu.generateFn()).forEach(function (item, i) {
         displayStrings.push(item);
       });
     }
     clearOLEDmemMap();
-    // console.log("displaystrings:");
-    // console.log(displayStrings);
+
+    // This value represents the number of display lines minus 1 for easy math later.
+    let numLines = 1; // defaults to value for size 32 text
+    if (textSize == 16) {
+      numLines = 3;
+    } else if (textSize == 24) {
+      numLines = 2;
+    }
+
     displayStrings.forEach(function (item, i) {
-      // console.log("seq.settings.menu.currentMenu.currentSelectedItem:");
-      // console.log(seq.settings.menu.currentMenu.currentSelectedItem);
-      // console.log("i:");
-      // console.log(i);
-      // console.log("item:");
-      // console.log(item);
       let curSelection = seq.settings.menu.currentMenu.currentSelectedItem;
       let curDispRange = seq.settings.menu.currentMenu.currentDisplayRange;
-
-
-      // (i < (i + seq.settings.menu.currentMenu.currentSelectedItem + 4)) && (i >= (i + seq.settings.menu.currentMenu.currentSelectedItem))
-      if (between(i, curDispRange, curDispRange + 3)) {
-        // console.log("inside 'if' item:");
-        // console.log(item);
-        PlotStringToPixelMemMap(item, 0, (i - curDispRange) * 16, 16, 1, i == curSelection ? 1 : 0);
+      if (between(i, curDispRange, curDispRange + numLines)) {
+        PlotStringToPixelMemMap(item, 0, (i - curDispRange) * textSize, textSize, textSize == 16 ? 1 : 0, i == curSelection ? 1 : 0);
       }
     })
     FireOLED_SendMemMap();
@@ -1865,6 +1994,7 @@ function menuItem(text, upFn, dwnFn, selFn, genFn, dispFn, parent, goBack = fals
   this.currentSelectedItem = 0;
   this.currentDisplayRange = 0;
   this.goBackOnSel = goBack;
+  this.tempVar = 0;
 }
 
 function subMenu(text, items, parent) {
@@ -2104,8 +2234,8 @@ var midiClockInputDeviceSelect = new menuItem(
       seq.settings.midi.clockInEnabled = false;
     }
 
-    console.log(seq.settings.midi.clockInSource);
-    console.log(seq.settings.midi.clockInEnabled);
+    // console.log(seq.settings.midi.clockInSource);
+    // console.log(seq.settings.midi.clockInEnabled);
   },
   function () { // genFn
     // console.log("generator");
@@ -2137,14 +2267,245 @@ var midiClockInputDeviceSelect = new menuItem(
   true
 )
 
-var trackColorPreset = new menuItem(); /////////////////////////////////////////////////////////////////////////////////////////////////
-var trackColorRed = new menuItem();/////////////////////////////////////////////////////////////////////////////////////////////////
-var trackColorGrn = new menuItem();/////////////////////////////////////////////////////////////////////////////////////////////////
-var trackColorBlu = new menuItem();/////////////////////////////////////////////////////////////////////////////////////////////////
+var trackColorPreset = new menuItem(
+  function () {
+    let text = "Preset: ";
+    // seq.track[i].patterns["id_" + seq.track[i].currentPattern].color.red
+    // this.color = {};
+    // this.color.red = 127;
+    // this.color.grn = 0;
+    // this.color.blu = 127;
+    // this.color.mode = "rgb"; // other option is "preset"
+    // this.color.preset = 0;
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    if (selTrack.patterns["id_" + selTrack.currentPattern].color.mode == "preset") {
+      text = text + LED_COLORS_NAMES[selTrack.patterns["id_" + selTrack.currentPattern].color.preset];
+    } else if (selTrack.patterns["id_" + selTrack.currentPattern].color.mode == "rgb") {
+      text = text + "SELECT";
+    } else {
+      console.log("ERROR");
+    }
+    return text;
+  },
+  function () { // upFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+      if (this.currentSelectedItem < this.currentDisplayRange) {
+        this.currentDisplayRange = this.currentSelectedItem;
+      }
+    }
+    let sysEx = btnLEDSysEx;
+    sysEx[7] = seq.state.selectedTrack * 16;
+    sysEx[8] = LED_COLORS[this.currentSelectedItem] >> 17 & 0x7f;
+    sysEx[9] = LED_COLORS[this.currentSelectedItem] >> 9 & 0x7f;
+    sysEx[10] = LED_COLORS[this.currentSelectedItem] >> 1 & 0x7f;
+    fireMidiOut.sendMessage(sysEx);
+  },
+  function () { // dwnFn
+    if (this.currentSelectedItem < LED_COLORS_NAMES.length - 1) {
+      this.currentSelectedItem++;
+      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < LED_COLORS_NAMES.length - 4) {
+        this.currentDisplayRange++;
+      }
+    }
+    let sysEx = btnLEDSysEx;
+    sysEx[7] = seq.state.selectedTrack * 16;
+    sysEx[8] = LED_COLORS[this.currentSelectedItem] >> 17 & 0x7f;
+    sysEx[9] = LED_COLORS[this.currentSelectedItem] >> 9 & 0x7f;
+    sysEx[10] = LED_COLORS[this.currentSelectedItem] >> 1 & 0x7f;
+    fireMidiOut.sendMessage(sysEx);
+  },
+  function (selection) { // selFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    selTrack.patterns["id_" + selTrack.currentPattern].color.mode = "preset";
+    selTrack.patterns["id_" + selTrack.currentPattern].color.preset = selection;
+    selTrack.patterns["id_" + selTrack.currentPattern].color.red = LED_COLORS[selection] >> 17 & 0x7f;
+    selTrack.patterns["id_" + selTrack.currentPattern].color.grn = LED_COLORS[selection] >> 9 & 0x7f;
+    selTrack.patterns["id_" + selTrack.currentPattern].color.blu = LED_COLORS[selection] >> 1 & 0x7f;
+    updateAllGridBtnLEDs();
+  },
+  function () { // genFn
+    return true;
+  },
+  function (genReturn) { // dispFn
+    if (genReturn) {
+      return LED_COLORS_NAMES;
+    }
+  }, null, true
+);
+var trackColorRed = new menuItem(
+  function () {
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    let text = "Red: ";
+    text = text + selTrack.patterns["id_" + selTrack.currentPattern].color.red;
+    return text;
+  },
+  function () { // upFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+      if (this.currentSelectedItem < this.currentDisplayRange) {
+        this.currentDisplayRange = this.currentSelectedItem;
+      }
+    }
+    selTrack.patterns["id_" + selTrack.currentPattern].color.red = this.currentSelectedItem;
+    let sysEx = btnLEDSysEx;
+    sysEx[7] = seq.state.selectedTrack * 16;
+    sysEx[8] = selTrack.patterns["id_" + selTrack.currentPattern].color.red;
+    sysEx[9] = selTrack.patterns["id_" + selTrack.currentPattern].color.grn;
+    sysEx[10] = selTrack.patterns["id_" + selTrack.currentPattern].color.blu;
+    fireMidiOut.sendMessage(sysEx);
+
+  },
+  function () { // dwnFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    if (this.currentSelectedItem < 127) {
+      this.currentSelectedItem++;
+      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < 124) {
+        this.currentDisplayRange++;
+      }
+    }
+    selTrack.patterns["id_" + selTrack.currentPattern].color.red = this.currentSelectedItem;
+    let sysEx = btnLEDSysEx;
+    sysEx[7] = seq.state.selectedTrack * 16;
+    sysEx[8] = selTrack.patterns["id_" + selTrack.currentPattern].color.red;
+    sysEx[9] = selTrack.patterns["id_" + selTrack.currentPattern].color.grn;
+    sysEx[10] = selTrack.patterns["id_" + selTrack.currentPattern].color.blu;
+    fireMidiOut.sendMessage(sysEx);
+  },
+  function () { // selFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    selTrack.patterns["id_" + selTrack.currentPattern].color.mode = "rgb";
+    updateAllGridBtnLEDs();
+  },
+  function () { // genFn
+    return true;
+  },
+  function () { // dispFn
+    let dispText = [];
+    for (let i = 0; i <= 127; i++) {
+      dispText.push(i.toString());
+    }
+    return dispText;
+  }, null, true
+);
+var trackColorGrn = new menuItem(
+  function () {
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    let text = "Green: ";
+    text = text + selTrack.patterns["id_" + selTrack.currentPattern].color.grn;
+    return text;
+  },
+  function () { // upFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+      if (this.currentSelectedItem < this.currentDisplayRange) {
+        this.currentDisplayRange = this.currentSelectedItem;
+      }
+    }
+    selTrack.patterns["id_" + selTrack.currentPattern].color.grn = this.currentSelectedItem;
+    let sysEx = btnLEDSysEx;
+    sysEx[7] = seq.state.selectedTrack * 16;
+    sysEx[8] = selTrack.patterns["id_" + selTrack.currentPattern].color.red;
+    sysEx[9] = selTrack.patterns["id_" + selTrack.currentPattern].color.grn;
+    sysEx[10] = selTrack.patterns["id_" + selTrack.currentPattern].color.blu;
+    fireMidiOut.sendMessage(sysEx);
+
+  },
+  function () { // dwnFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    if (this.currentSelectedItem < 127) {
+      this.currentSelectedItem++;
+      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < 124) {
+        this.currentDisplayRange++;
+      }
+    }
+    selTrack.patterns["id_" + selTrack.currentPattern].color.grn = this.currentSelectedItem;
+    let sysEx = btnLEDSysEx;
+    sysEx[7] = seq.state.selectedTrack * 16;
+    sysEx[8] = selTrack.patterns["id_" + selTrack.currentPattern].color.red;
+    sysEx[9] = selTrack.patterns["id_" + selTrack.currentPattern].color.grn;
+    sysEx[10] = selTrack.patterns["id_" + selTrack.currentPattern].color.blu;
+    fireMidiOut.sendMessage(sysEx);
+  },
+  function () { // selFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    selTrack.patterns["id_" + selTrack.currentPattern].color.mode = "rgb";
+    updateAllGridBtnLEDs();
+  },
+  function () { // genFn
+    return true;
+  },
+  function () { // dispFn
+    let dispText = [];
+    for (let i = 0; i <= 127; i++) {
+      dispText.push(i.toString());
+    }
+    return dispText;
+  }, null, true
+);
+var trackColorBlu = new menuItem(
+  function () {
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    let text = "Blue: ";
+    text = text + selTrack.patterns["id_" + selTrack.currentPattern].color.blu;
+    return text;
+  },
+  function () { // upFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+      if (this.currentSelectedItem < this.currentDisplayRange) {
+        this.currentDisplayRange = this.currentSelectedItem;
+      }
+    }
+    selTrack.patterns["id_" + selTrack.currentPattern].color.blu = this.currentSelectedItem;
+    let sysEx = btnLEDSysEx;
+    sysEx[7] = seq.state.selectedTrack * 16;
+    sysEx[8] = selTrack.patterns["id_" + selTrack.currentPattern].color.red;
+    sysEx[9] = selTrack.patterns["id_" + selTrack.currentPattern].color.grn;
+    sysEx[10] = selTrack.patterns["id_" + selTrack.currentPattern].color.blu;
+    fireMidiOut.sendMessage(sysEx);
+
+  },
+  function () { // dwnFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    if (this.currentSelectedItem < 127) {
+      this.currentSelectedItem++;
+      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < 124) {
+        this.currentDisplayRange++;
+      }
+    }
+    selTrack.patterns["id_" + selTrack.currentPattern].color.blu = this.currentSelectedItem;
+    let sysEx = btnLEDSysEx;
+    sysEx[7] = seq.state.selectedTrack * 16;
+    sysEx[8] = selTrack.patterns["id_" + selTrack.currentPattern].color.red;
+    sysEx[9] = selTrack.patterns["id_" + selTrack.currentPattern].color.grn;
+    sysEx[10] = selTrack.patterns["id_" + selTrack.currentPattern].color.blu;
+    fireMidiOut.sendMessage(sysEx);
+  },
+  function () { // selFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    selTrack.patterns["id_" + selTrack.currentPattern].color.mode = "rgb";
+    updateAllGridBtnLEDs();
+  },
+  function () { // genFn
+    return true;
+  },
+  function () { // dispFn
+    let dispText = [];
+    for (let i = 0; i <= 127; i++) {
+      dispText.push(i.toString());
+    }
+    return dispText;
+  }, null, true
+); /////////////////////////////////////////////////////////////////////////////////////////////////
 
 var trackColorRGB = new subMenu(
   "RGB Color",
-  [trackColorRed,trackColorGrn,trackColorBlu],
+  [trackColorRed, trackColorGrn, trackColorBlu],
   null
 );
 
@@ -2153,17 +2514,231 @@ trackColorGrn.parentMenu = trackColorRGB;
 trackColorBlu.parentMenu = trackColorRGB;
 
 var trackColor = new subMenu(
-  "Track Color",
-  [trackColorRGB,trackColorPreset],
+  "Grid Color",
+  [trackColorRGB, trackColorPreset],
   null
 );
 
 trackColorRGB.parentMenu = trackColor;
 trackColorPreset.parentMenu = trackColor;
 
-var trackOutputDevice = new menuItem(); /////////////////////////////////////////////////////////////////////////////////////////////////
-var trackOutputType = new menuItem(); /////////////////////////////////////////////////////////////////////////////////////////////////
-var trackName = new menuItem(); /////////////////////////////////////////////////////////////////////////////////////////////////
+var trackOutputDevice = new menuItem(
+  function () {
+    this.currentSelectedItem=0;
+    this.currentDisplayRange=0;
+    if (seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputType == "midi") {
+      this.tempVar = 0;
+      for (let i = 0; i < midiOutputDevicesNames.length; i++) {
+        if (midiOutputDevicesEnabled[i] && !midiOutputDevicesHidden[i]) {
+          this.tempVar++;
+        }
+      }
+      return "Midi Out Device";
+    } else {
+      this.tempVar = 16;
+      return "CV Out Port"
+    }
+  },
+  function () { // upFn
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+      if (this.currentSelectedItem < this.currentDisplayRange) {
+        this.currentDisplayRange = this.currentSelectedItem;
+      }
+    }
+  },
+  function () { // dwnFn
+    if (this.currentSelectedItem < this.tempVar - 1) {
+      this.currentSelectedItem++;
+      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < this.tempVar - 4) {
+        this.currentDisplayRange++;
+      }
+    }
+  },
+  function (selection) { // selFn
+    if (seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputType == "midi") {
+      let devCount = 0;
+      for (let i = 0; i < midiOutputDevicesNames.length; i++) {
+        if (midiOutputDevicesEnabled[i] && !midiOutputDevicesHidden[i]) {
+          if (selection == devCount) {
+            let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+            selTrack.outputName = midiOutputDevicesNames[i].substring(0, midiOutputDevicesNames[i].search(/([0-9]{1,3}:[0-9]{1,}$)/g));
+            selTrack.outputIndex = i;
+          }
+          devCount++;
+        }
+      }
+    } else {
+      seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputIndex = selection;
+    }
+  },
+  function () { // genFn
+    return true;
+  },
+  function (genReturn) { // dispFn
+    let displayStrings = [];
+    if (seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputType == "midi") {
+      for (let i = 0; i < midiOutputDevicesNames.length; i++) {
+        if (midiOutputDevicesEnabled[i] && !midiOutputDevicesHidden[i]) {
+          if (midiOutputDevicesNames[i].length > 16) {
+            // console.log(name);
+            let devText = "";
+            if (seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputIndex == i) {
+              devText = String.fromCharCode(0x84);
+            }
+            devText = devText + midiOutputDevicesNames[i].substring(0, 9);
+            devText = devText + "...";
+            devText = devText + midiOutputDevicesNames[i].substring(midiOutputDevicesNames[i].search(/([0-9]{1,3}:[0-9]{1,}$)/g) - 9, midiOutputDevicesNames[i].search(/([0-9]{1,3}:[0-9]{1,}$)/g));
+            displayStrings.push(devText);
+          } else {
+            displayStrings.push(midiOutputDevicesNames[i]);
+          }
+        }
+      }
+    } else {
+      // create array of CV port names
+      displayStrings = ["CV/Gate Port 1", "CV/Gate Port 2", "CV/Gate Port 3", "CV/Gate Port 4", "CV/Gate Port 5", "CV/Gate Port 6", "CV/Gate Port 7", "CV/Gate Port 8", "CV/Gate Port 9", "CV/Gate Port 10", "CV/Gate Port 11", "CV/Gate Port 12", "CV/Gate Port 13", "CV/Gate Port 14", "CV/Gate Port 15", "CV/Gate Port 16"];
+      if (displayStrings[seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputIndex] != undefined) {
+        displayStrings[seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputIndex] = String.fromCharCode(0x84) + displayStrings[seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputIndex];
+      }
+    }
+    // console.log(displayStrings);
+    return displayStrings;
+  },
+  null, true
+);
+
+
+var trackOutputType = new menuItem(
+  function () {
+    return "Type (MIDI/CV)";
+  },
+  function () { // upFn
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+      if (this.currentSelectedItem < this.currentDisplayRange) {
+        this.currentDisplayRange = this.currentSelectedItem;
+      }
+    }
+  },
+  function () { // dwnFn
+    if (this.currentSelectedItem < 2 - 1) {
+      this.currentSelectedItem++;
+      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < 2 - 4) {
+        this.currentDisplayRange++;
+      }
+    }
+  },
+  function (selection) { // selFn
+    if (selection == 0) {
+      seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputType = "midi";
+    } else if (selection == 1) {
+      seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].outputType = "cv";
+    } else {
+      console.log("Something went wrong");
+    }
+  },
+  function () { // genFn
+    return;
+  },
+  function (genReturn) { // dispFn
+    return ["MIDI out", "CV/Gate out"];
+  }, null, true
+);
+
+
+var trackName = new menuItem(
+  function () {
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    selTrack.trackNameTemp = selTrack.trackName;
+    return "Track Name";
+  },
+  function () { // upFn
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+    }
+  },
+  function () { // dwnFn
+    if (this.currentSelectedItem < 107) {
+      this.currentSelectedItem++;
+    }
+  },
+  function (selection) { // selFn
+    let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+    switch (selection) {
+      case 0:
+        selTrack.trackName = selTrack.trackNameTemp;
+        this.goBackOnSel = true;
+        break;
+      case 107:
+        selTrack.trackNameTemp = "";
+        break;
+      default:
+        selTrack.trackNameTemp = selTrack.trackNameTemp + String.fromCharCode(this.currentSelectedItem + 31);
+    }
+
+  },
+  function () { // genFn
+    return true;
+  },
+  function (genReturn) { // dispFn
+    if (genReturn) {
+      let selTrack = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange];
+      if (this.currentSelectedItem == 0) {
+        return [selTrack.trackNameTemp, "Press select", "to save"];
+      } else if (this.currentSelectedItem == 107) {
+        return [selTrack.trackNameTemp, "Press select", "to clear"];
+      } else {
+        return [selTrack.trackNameTemp + String.fromCharCode(this.currentSelectedItem + 31)];
+      }
+    }
+  }, null
+);
+
+var trackMidiChannel = new menuItem(
+  function () {
+    this.currentSelectedItem = seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].midiChannel;
+    return "Midi out Channel";
+  },
+  function () { // upFn
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+      if (this.currentSelectedItem < this.currentDisplayRange) {
+        this.currentDisplayRange = this.currentSelectedItem;
+      }
+    }
+  },
+  function () { // dwnFn
+    if (this.currentSelectedItem < 16) {
+      this.currentSelectedItem++;
+      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < 13) {
+        this.currentDisplayRange++;
+      }
+    }
+  },
+  function (selection) { // selFn
+    seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].midiChannel=selection;
+  },
+  function () { // genFn
+
+  },
+  function () { // dispFn
+    let dispText = [];
+    for(let i = 0; i < 17; i++){
+      if(i==0){
+        dispText.push("Omni");
+      }else{
+      dispText.push(i.toString());
+      }
+      if(seq.track[seq.state.selectedTrack + seq.state.selectedTrackRange].midiChannel==i){
+        dispText[i] = String.fromCharCode(0x84) + dispText[i];
+      }
+    }
+    return dispText;
+  },
+  null,
+  true
+);
 
 var encoderBankGlobalSettings = new subMenu(
   "Encoder Bank",
@@ -2195,25 +2770,150 @@ var settingsGlobalMenu = new subMenu(
 encoderBankGlobalSettings.parentMenu = settingsGlobalMenu;
 settingsMidiMenu.parentMenu = settingsGlobalMenu;
 
-var settingsProjectMenu = new subMenu(
-  "Project Settings",
-  [],
+var projectSave = new menuItem( /**TODO**/
+  function(){
+    return "Save project";
+  },
+  function () { // upFn
+
+  },
+  function () { // dwnFn
+
+  },
+  function () { // selFn
+
+  },
+  function () { // genFn
+
+  },
+  function () { // dispFn
+
+  },
+  null
+)
+
+var projectLoad = new menuItem( /**TODO**/
+  function(){
+    return "Load project";
+  },
+  function () { // upFn
+
+  },
+  function () { // dwnFn
+
+  },
+  function () { // selFn
+
+  },
+  function () { // genFn
+
+  },
+  function () { // dispFn
+
+  },
+  null
+)
+
+var projectNew = new menuItem( /**TODO**/
+  function(){
+    return "New project";
+  },
+  function () { // upFn
+
+  },
+  function () { // dwnFn
+
+  },
+  function () { // selFn
+
+  },
+  function () { // genFn
+
+  },
+  function () { // dispFn
+
+  },
   null
 );
 
-var settingsTrackMenu = new subMenu(
+var projectDeleteLine1 = new menuItem( /**TODO**/
   function(){
-    // console.log("selected track:");
-    
-    // console.log(seq.state.selectedTrack);
-    
-    // console.log(seq.track[seq.state.selectedTrack+2]);
+    return "Be careful.";
+  },
+  function () { // upFn
+
+  },
+  function () { // dwnFn
+
+  },
+  function () { // selFn
+
+  },
+  function () { // genFn
+
+  },
+  function () { // dispFn
+    return ["project 1","project 2"];
+  },
+  null
+);
+
+var projectDeleteLine2 = new menuItem( /**TODO**/
+  function(){
+    return "This is permanent";
+  },
+  function () { // upFn
+
+  },
+  function () { // dwnFn
+
+  },
+  function () { // selFn
+
+  },
+  function () { // genFn
+
+  },
+  function () { // dispFn
+    return ["project 1","project 2"];
+  },
+  null
+);
+
+var projectDeleteConfirm2 = new subMenu(
+  "Really?  ...ok",
+  [projectDeleteLine1,projectDeleteLine2],
+  null
+);
+
+var projectDeleteConfirm1 = new subMenu(
+  "Delete Project",
+  [projectDeleteConfirm2],
+  null
+);
+
+var settingsProjectMenu = new subMenu(
+  "Project Settings",
+  [projectSave,projectLoad,projectNew,projectDeleteConfirm1],
+  null
+);
+
+projectSave.parentMenu = settingsProjectMenu;
+projectLoad.parentMenu = settingsProjectMenu;
+projectNew.parentMenu = settingsProjectMenu;
+projectDeleteConfirm1.parentMenu = settingsProjectMenu;
+projectDeleteConfirm2.parentMenu = projectDeleteConfirm1;
+projectDeleteLine1.parentMenu = projectDeleteConfirm2;
+projectDeleteLine2.parentMenu = projectDeleteConfirm2;
+
+var settingsTrackMenu = new subMenu(
+  function () {
     let text = "Track ";
-    text = text + (seq.track[seq.state.selectedTrack].num+1);
+    text = text + (seq.track[seq.state.selectedTrack].num + 1);
     text = text + " Settings";
     return text;
   },
-  [trackColor, trackName, trackOutputDevice, trackOutputType],
+  [trackColor, trackName, trackOutputType, trackOutputDevice, trackMidiChannel],
   null
 );
 
@@ -2221,6 +2921,7 @@ trackColor.parentMenu = settingsTrackMenu;
 trackName.parentMenu = settingsTrackMenu;
 trackOutputDevice.parentMenu = settingsTrackMenu;
 trackOutputType.parentMenu = settingsTrackMenu;
+trackMidiChannel.parentMenu = settingsTrackMenu;
 
 
 var settingsMainMenu = new subMenu(
@@ -2232,3 +2933,88 @@ var settingsMainMenu = new subMenu(
 settingsGlobalMenu.parentMenu = settingsMainMenu;
 settingsProjectMenu.parentMenu = settingsMainMenu;
 settingsTrackMenu.parentMenu = settingsMainMenu;
+
+
+/**TODO**/
+/* 
+Main settings menu entries to make:
+Wifi
+  - view connected connection
+  - view available networks
+  - connect to wifi
+  - disable wifi
+rtpMidi
+  - enable / disable
+  - number of rtpMidi devices
+Device control
+  - power off
+  - reboot
+  - restart software
+Midi
+  - reload midi devices
+  - Midi clock output device select
+Project
+  - New
+  - Save
+  - Load
+  - Copy
+Pattern
+  - Copy
+  - Reset
+Track
+  -̶ M̶i̶d̶i̶ d̶e̶v̶i̶c̶e̶ c̶h̶a̶n̶n̶e̶l̶
+
+Note menu entries to make:
+  - midi note value
+  - midi velocity
+  - note length
+  - start time offset
+
+Menu entries for when in step mode with no other buttons pressed
+  - Tempo
+  - Viewable Tracks
+*/
+
+
+
+var menuItemTemplate = new menuItem(
+  function () {
+
+  },
+  function () { // upFn
+
+  },
+  function () { // dwnFn
+
+  },
+  function () { // selFn
+
+  },
+  function () { // genFn
+
+  },
+  function () { // dispFn
+
+  },
+  null,
+  true // optional bool to indicate if the menu show go back to the parent on select
+);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/**TODO**/
+// Create functions to serialize and de-serialize project data for saving/loading. Doing this as
+// hand-written functions will make the save files much smaller as opposed to using a stringify
+// module from npm. This way, we are only saving and loading the data neccesary for the project
+// and not extra data associated only with runtime functions. 

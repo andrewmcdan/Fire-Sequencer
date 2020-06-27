@@ -7,22 +7,28 @@
         "lmtime": 0,
         "modified": false
       },
-      "Fire.code-workspace": {
-        "type": "-",
-        "size": 98,
-        "lmtime": 0,
-        "modified": false
-      },
       "FireSequencer.js": {
         "type": "-",
-        "size": 73422,
-        "lmtime": 1592882361322,
+        "size": 114069,
+        "lmtime": 1593224063515,
         "modified": false
       },
-      "FireSequencer.ts": {
+      "Project info.gdoc": {
         "type": "-",
-        "size": 83147,
-        "lmtime": 0,
+        "size": 179,
+        "lmtime": 1592964010000,
+        "modified": false
+      },
+      "Untitled document.gdoc": {
+        "type": "-",
+        "size": 179,
+        "lmtime": 1592964009000,
+        "modified": false
+      },
+      "_Project info.gdoc": {
+        "type": "-",
+        "size": 179,
+        "lmtime": 1592964075000,
         "modified": false
       },
       "binding.gyp": {
@@ -44,6 +50,12 @@
         "modified": false
       },
       "build": {},
+      "config.txt": {
+        "type": "-",
+        "size": 1812,
+        "lmtime": 1593101492027,
+        "modified": false
+      },
       "constants.js": {
         "type": "-",
         "size": 1432,
@@ -58,7 +70,13 @@
       },
       "dataObjFile.json": {
         "type": "-",
-        "size": 29757,
+        "size": 25261,
+        "lmtime": 0,
+        "modified": true
+      },
+      "fire.code-workspace": {
+        "type": "-",
+        "size": 98,
         "lmtime": 0,
         "modified": false
       },
@@ -219,7 +237,7 @@
       },
       "package-lock.json": {
         "type": "-",
-        "size": 22667,
+        "size": 22882,
         "lmtime": 0,
         "modified": true
       },
@@ -239,6 +257,12 @@
         "type": "-",
         "size": 491,
         "lmtime": 0,
+        "modified": false
+      },
+      "fFire.code-workspace": {
+        "type": "-",
+        "size": 98,
+        "lmtime": 1593228719543,
         "modified": false
       }
     }
