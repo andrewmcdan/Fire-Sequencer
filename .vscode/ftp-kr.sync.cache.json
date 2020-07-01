@@ -9,20 +9,8 @@
       },
       "FireSequencer.js": {
         "type": "-",
-        "size": 114069,
-        "lmtime": 1593224063515,
-        "modified": false
-      },
-      "Project info.gdoc": {
-        "type": "-",
-        "size": 179,
-        "lmtime": 1592964010000,
-        "modified": false
-      },
-      "Untitled document.gdoc": {
-        "type": "-",
-        "size": 179,
-        "lmtime": 1592964009000,
+        "size": 133376,
+        "lmtime": 1593487350604,
         "modified": false
       },
       "_Project info.gdoc": {
@@ -70,15 +58,27 @@
       },
       "dataObjFile.json": {
         "type": "-",
-        "size": 25261,
+        "size": 45441,
         "lmtime": 0,
         "modified": true
+      },
+      "fFire.code-workspace": {
+        "type": "-",
+        "size": 98,
+        "lmtime": 1593228719543,
+        "modified": false
       },
       "fire.code-workspace": {
         "type": "-",
         "size": 98,
         "lmtime": 0,
         "modified": false
+      },
+      "globalSave": {
+        "type": "-",
+        "size": 3974,
+        "lmtime": 1593387410736,
+        "modified": true
       },
       "main.js": {
         "type": "-",
@@ -237,20 +237,27 @@
       },
       "package-lock.json": {
         "type": "-",
-        "size": 22882,
+        "size": 23734,
         "lmtime": 0,
         "modified": true
       },
       "polyrythm.js": {
         "type": "-",
-        "size": 2338,
-        "lmtime": 0,
+        "size": 1552,
+        "lmtime": 1593452262800,
+        "modified": false
+      },
+      "projects": {},
+      "saveFile": {
+        "type": "-",
+        "size": 141,
+        "lmtime": 1593378374942,
         "modified": false
       },
       "seq_loop.js": {
         "type": "-",
-        "size": 10414,
-        "lmtime": 0,
+        "size": 10413,
+        "lmtime": 1593453320412,
         "modified": false
       },
       "test.json": {
@@ -259,10 +266,10 @@
         "lmtime": 0,
         "modified": false
       },
-      "fFire.code-workspace": {
+      "timingLog.json": {
         "type": "-",
-        "size": 98,
-        "lmtime": 1593228719543,
+        "size": 6961,
+        "lmtime": 1593450570549,
         "modified": false
       }
     }

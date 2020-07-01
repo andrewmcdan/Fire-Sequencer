@@ -2,24 +2,6 @@ var playing = false;
 var firstLoopIteration = true;
 var loopTimeMillis = new Date().getTime();
 
-/***************************************************************************************
-
-Loop function
-
-Create a looping function that plays all the notes and stuff.
-This function is called every 1ms and checks to see if anything
-is due to be played. This is done by looking at the current step in
-every active tracks current pattern and comparing its startTimeOffset
-with how long it's been since the the loop started.
-
-If there exists a difference in the length of the currnet patterns,
-The loop length will be based off of the longest and all others will
-loop back through to fill the length of the longest pattern.
-
-Things to track during the loop:
-  when the loop started
-***************************************************************************************/
-
 function theLoopFn() {
   // clearInterval(theLoopInterval);
   // console.log("loop");

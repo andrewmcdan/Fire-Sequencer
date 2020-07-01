@@ -22,7 +22,7 @@ seq.state.loopTimeMillis = new Date().getTime();
 seq.state.currentBPM = 120;
 seq.state.newTrackDataWaiting = false;
 seq.state.stepNumberCounted = 0;
-seq.state.immediateTrackUpdate = false;
+seq.state.immediateTrackUpdate = true;
 seq.track = [];
 var newTrackData = [];
 
