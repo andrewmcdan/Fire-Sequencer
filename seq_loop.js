@@ -93,7 +93,13 @@ ipc.connectTo(
     });
     ipc.of.nodeMidi.on('seqStop', seqStop);
     ipc.of.nodeMidi.on('tempoChange', function (data) {
-      seq.state.currentBPM = data
+      if(seq.state.playing){
+        seqStop();
+        seq.state.currentBPM = data
+        seqPlay();
+      }else{
+        seq.state.currentBPM = data
+      }
     });
     ipc.of.nodeMidi.on('setITU', function(data){ // ITC = Immediate Track Updates
       seq.state.immediateTrackUpdate=data;

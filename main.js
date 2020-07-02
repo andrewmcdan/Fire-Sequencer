@@ -12,6 +12,32 @@ var child;
 
 usbDetect.startMonitoring();
 
+const ipc = require('node-ipc');
+const { clearInterval } = require('timers');
+
+ipc.config.id = 'nodeMainJS';
+ipc.config.retry = 1500;
+ipc.config.silent = true;
+
+ipc.connectTo(
+    'nodeMidi',
+    function () {
+        ipc.of.nodeMidi.on(
+            'connect',
+            function () {
+                ipc.of.nodeMidi.emit('mainJSProcessConnected');
+                console.log("Connected to Fire Sequencer main process.");
+            }
+        );
+        ipc.of.nodeMidi.on(
+            'disconnect',
+            function () {
+                console.log("Disconnected form Fire Sequencer main process.");
+            }
+        );
+    }
+);
+
 var detectionInterval = setInterval(function(){
   usbDetect.find(fireVID, firePID, function(err, devices) {
     if (!err) {
