@@ -143,6 +143,7 @@ for (let step = 0; step < fireMidiOut.getPortCount(); step++) {
 var btnLEDSysEx = [0xf0, 0x47, 0x7f, 0x43, 0x65, 0x00, 0x04, 0, 0, 0, 0, 0xF7];
 var gridBtnLEDcolor = JSON.parse('{"btn":[{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0},{"red":0,"grn":0,"blu":0}]}');
 
+/* #region   */
 const BTN_LED_OFF = 0,
   PATTERN_BROWSER_GRID_DIMRED = 0x01,
   PATTERN_BROWSER_GRID_RED = 0x02,
@@ -187,7 +188,9 @@ const BTN_LED_OFF = 0,
   STOP_BTN_LED = 21,
   REC_BTN_LED = 22,
   CHANNEL_MIXER_USER_USER_BTN_LED = 23;
+/* #endregion */
 
+/* #region   */
 var notGridBtnLEDS = [
   PATTERN_BROWSER_GRID_DIMRED, // pattern up btn LED      0
   PATTERN_BROWSER_GRID_DIMRED, // pattern dwn btn LED     1
@@ -220,7 +223,9 @@ var notGridBtnLEDS = [
   17 // channel/mixer/user1/user2 LEDs    23
 ];
 
+/* #endregion */
 
+/* #region   */
 const DIM_VAL = 10,
   LED_COLOR_WHITE = (127 << 17) | (127 << 9) | (127 << 1),
   LED_COLOR_WHITE_DIM = (DIM_VAL << 17) | (DIM_VAL << 9) | (DIM_VAL << 1),
@@ -238,11 +243,21 @@ const DIM_VAL = 10,
   LED_COLOR_MAGENTA_DIM = (DIM_VAL << 17) | (0 << 9) | (DIM_VAL << 1),
   LED_COLOR_ORANGE = (127 << 17) | (65 << 9) | (0 << 1),
   LED_COLOR_OFF = (0 << 17) | (0 << 9) | (0 << 1),
+  CHARCODE_UPARROW1 = 0x7f,
+  CHARCODE_DOWNARROW1 = 0x80,
+  CHARCODE_UPARROW_SMALL = 0x81,
+  CHARCODE_DOWNARROW_SMALL = 0x82,
   CHARCODE_UPARROW = 0x83,
   CHARCODE_RIGHTARROW = 0x84,
   CHARCODE_DOWNARROW = 0x85,
-  CHARCODE_LEFTARROW = 0x86;
+  CHARCODE_LEFTARROW = 0x86,
+  CHARCODE_25_SHADE = 0x87,
+  CHARCODE_50_SHADE = 0x88,
+  CHARCODE_75_SHADE = 0x89,
+  CHARCODE_FLAT_SYMBOL = 0x8a;
+/* #endregion */
 
+/* #region   */
 const LED_COLORS = [
   LED_COLOR_OFF,
   LED_COLOR_WHITE,
@@ -261,9 +276,11 @@ const LED_COLORS = [
   LED_COLOR_MAGENTA_DIM,
   LED_COLOR_ORANGE
 ];
+/* #endregion */
 
 const LED_COLORS_NAMES = ["Off", "White", "White (dim)", "Red", "Red (dim)", "Green", "Green (dim)", "Blue", "Blue (dim)", "Aqua", "Aqua (dim)", "Yellow", "Yellow (dim)", "Magenta", "Magenta (dim)", "Orange"];
 
+/* #region   */
 var noteColors = {};
 noteColors.C = LED_COLOR_WHITE;
 noteColors.Csharp = LED_COLOR_ORANGE;
@@ -282,17 +299,19 @@ noteColors.A = LED_COLOR_WHITE;
 noteColors.Asharp = LED_COLOR_ORANGE;
 noteColors.Bflat = noteColors.Asharp;
 noteColors.B = LED_COLOR_WHITE;
+/* #endregion */
 
 // Piano, chromatic, major, harmonic minor, melodic minor, Whole tone, diminished,
 // major pentatonic, minor pentatonic, Japanese In Sen, Major bebop,
 // dominant bebop, blues, arabic, Enigmatic, Neopolitan, Neopolitan minor,
 // Hungarian minor, Dorian, Phrygian, Lydian, Mixolydian, Aeolian, and Locrian
+/* #region   */
 var scales = {};
 scales.indexNames = ["chromatic", "major", "harmMajor", "harmMinor", "melMinor", "wholeTone", "majorPent", "minorPent", "japInSen", "majBebop", "domBebop", "blues", "arabic", "enigmatic", "neoplitan", "neoplitanMinor", "hungarianMinor", "dorian", "phrygian", "lydian", "mixolydian", "aeolian", "locrian"];
 scales.text = ["Chromatic", "Major", "Harmonic Major", "Harmonic Minor", "Melodic Minor", "Whole Tone", "Major Pentatonic", "Minor Pentatonic", "Japanese InSen", "Major Bebop", "Dominant Bebop", "Blues", "Arabic", "Enigmatic", "Neoplitan", "Neoplitan Minor", "Hungarian Minor", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian", "Locrian"];
 scales.noteColorIndexes = ["C", "Csharp", "D", "Dsharp", "E", "F", "Fsharp", "G", "Gsharp", "A", "Asharp", "B"];
 scales.noteNamesSharps = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-scales.noteNamesFlats = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"];
+scales.noteNamesFlats = ["C", "D" + String.fromCharCode(CHARCODE_FLAT_SYMBOL), "D", "E" + String.fromCharCode(CHARCODE_FLAT_SYMBOL), "E", "F", "G" + String.fromCharCode(CHARCODE_FLAT_SYMBOL), "G", "A" + String.fromCharCode(CHARCODE_FLAT_SYMBOL), "A", "B" + String.fromCharCode(CHARCODE_FLAT_SYMBOL), "B"];
 scales.chromatic = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 scales.major = [2, 2, 1, 2, 2, 2];
 scales.harmMinor = [2, 1, 2, 2, 1, 3];
@@ -316,12 +335,14 @@ scales.lydian = [2, 2, 2, 1, 2, 2];
 scales.mixolydian = [2, 2, 1, 2, 2, 1];
 scales.aeolian = [2, 1, 2, 2, 1, 2];
 scales.locrian = [1, 2, 2, 1, 2, 2];
+/* #endregion */
 // console.log(scales);
 
 
 /// Build the "track" object
 var trackNumIndex = 0;
 
+// @note track building functions
 function patternEvent(data, eventIdIndex, time = 0) {
   this.startTimePatternOffset = time;
   this.data = data;
@@ -597,10 +618,11 @@ seq.state.OLEDmemMapContents = "";
 seq.state.OLEDclearTimeout = setTimeout(function () {
   clearOLEDmemMap();
   FireOLED_SendMemMap();
-}, 3000);
+}, 1000);
 seq.state.firstLoopIteration = true;
 seq.state.loopTimeMillis = Date.now();
 seq.state.currentBPM = 120;
+seq.state.currentBeatsPerMeasure = 4;
 seq.state.gridBtnsPressedUpper = 0;
 seq.state.gridBtnsPressedLower = 0;
 seq.state.gridBtnsPressedLast = 0;
@@ -630,8 +652,9 @@ for (let q = 0; q < 16; q++) {
     seq.settings.encoders.control[q][r].midiCC = count++;
     seq.settings.encoders.control[q][r].value = 0;
     seq.settings.encoders.control[q][r].midiCCtype = "rel1"; // abs, rel1 (127 = -1, 1 = +1), rel2 (63 = -1, 65 = +1), rel1Inv, rel2Inv
-    seq.settings.encoders.control[q][r].midiOutPort = null;
+    seq.settings.encoders.control[q][r].midiOutPort = 5;
     seq.settings.encoders.control[q][r].midiOutChannel = 1;
+    seq.settings.encoders.control[q][r].midiOutPortName = "MIDI Translator MIDI 7 ";
   }
 }
 
@@ -648,13 +671,44 @@ for (let q = 0; q < 16; q++) {
     seq.project.encoders.control[q][r].midiCC = count++;
     seq.project.encoders.control[q][r].value = 0;
     seq.project.encoders.control[q][r].midiCCtype = "rel1"; // abs, rel1 (127 = -1, 1 = +1), rel2 (63 = -1, 65 = +1), rel1Inv, rel2Inv
-    seq.project.encoders.control[q][r].midiOutPort = null;
+    seq.project.encoders.control[q][r].midiOutPort = 5;
     seq.project.encoders.control[q][r].midiOutChannel = 1;
+    seq.project.encoders.control[q][r].midiOutPortName = "MIDI Translator MIDI 7 ";
   }
 }
 
+/* #region  updateEncoderOutputPortIndexesByName() */
+function updateEncoderOutputPortIndexesByName() {
+  for (let w = 0; w < 16; w++) {
+    for (let m = 0; m < 4; m++) {
+      let foundGlobal = false;
+      let foundProject = false;
+      for (let i = 0; i < midiOutputDevices.length; i++) {
+        if (typeof midiOutputDevicesNames[i] == "string") {
+          if (midiOutputDevicesNames[i].includes(seq.settings.encoders.control[w][m].midiOutPortName)) {
+            seq.settings.encoders.control[w][m].midiOutPort = i;
+            foundGlobal = true;
+          }
+          if (midiOutputDevicesNames[i].includes(seq.project.encoders.control[w][m].midiOutPortName)) {
+            seq.project.encoders.control[w][m].midiOutPort = i;
+            foundProject = true;
+          }
+        }
+      }
+      if (!foundGlobal) {
+        seq.settings.encoders.control[w][m].midiOutPort = null;
+      }
+      if (!foundProject) {
+        seq.settings.encoders.control[w][m].midiOutPort = null;
+      }
+    }
+  }
+}
+/* #endregion */
+
+
 var yOffset = 0,
-  xOffset = 0;;
+  xOffset = 0;
 
 if ((process.argv[2] && process.argv[2] === '--debugLevel') && (process.argv[3])) {
   settings.debugLevel = parseInt(process.argv[3]);
@@ -680,37 +734,56 @@ ipc.config.id = 'nodeMidi';
 ipc.config.retry = 1500;
 ipc.config.silent = true;
 var seqLoop_ipcSocket; // ipc socket for the seq_loop.js process.
+var seqLoop_ipcIsEstablished = false;
+var wifiControl = {
+  ipcSocket: null,
+  isEstablished: false
+};
 
+/* #region  ipc.serve(... */
 ipc.serve(
   function () {
     ipc.server.on(
       'get-seq.track-Var',
       function (data, socket) {
-        // ipc.log('got a message : '.debug, data);
-        // console.log(socket);
         seqLoop_ipcSocket = socket;
+        seqLoop_ipcIsEstablished = true;
+        seq.state.playEnabled = true;
         ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
         ipc.server.emit(seqLoop_ipcSocket, 'tempoChange', seq.state.currentBPM);
+        console.log("SeqLoop client has connected.");
       }
     );
+    ipc.server.on('wifiControlConnected', function (data, socket) {
+      wifiControl.ipcSocket = socket;
+      wifiControl.isEstablished = true;
+      console.log("WiFi Control client has connected.");
+      ipc.server.emit(wifiControl.ipcSocket,'scanForNetworks');
+    })
     ipc.server.on('play-note', playNote);
     ipc.server.on('step', stepHighlight);
     ipc.server.on(
       'socket.disconnected',
       function (socket, destroyedSocketID) {
-        console.log("client disconnect");
-        // ipc.log('client ' + destroyedSocketID + ' has disconnected!');
+        if (socket == wifiControl.ipcSocket) {
+          wifiControl.isEstablished = false;
+          console.log("WiFi Control client disconnected.");
+        } else if (socket == seqLoop_ipcSocket) {
+          seqLoop_ipcIsEstablished = false;
+          console.log("SeqLoop client disconnected.");
+        }
       }
     );
   }
 );
 
 ipc.server.start();
-
+/* #endregion */
 
 /**************************************************************************************
 @note playNote
 **************************************************************************************/
+/* #region   */
 function playNote(eventData, socket = NULL) {
   // newTimingLogEntry("playnote : " + JSON.stringify(eventData));
   // console.log(eventData);
@@ -746,36 +819,40 @@ function playNote(eventData, socket = NULL) {
   }
   // newTimingLogEntry("playnote : '" + JSON.stringify(eventData) + "' : done");
 }
+/* #endregion */
 
-function midiOutCC(midiDeviceIndex,channel,ccNum,ccData){
+/* #region  midiOutCC(...) */
+function midiOutCC(midiDeviceIndex, channel, ccNum, ccData) {
   let midiDevice = false;
-  if(midiDeviceIndex!=null && midiDeviceIndex!=false){
+  if (midiDeviceIndex != null && midiDeviceIndex != false) {
     midiDevice = midiOutputDevices[midiDeviceIndex];
-  }else{
+  } else {
     return false;
   }
-  let newMidiMessage = [0,0,0];
+  let newMidiMessage = [0, 0, 0];
   newMidiMessage[0] = 0xb0 + channel - 1;
   newMidiMessage[1] = ccNum;
   newMidiMessage[2] = ccData;
-  if(midiDevice!=false){
+  if (midiDevice != false) {
     midiDevice.sendMessage(newMidiMessage);
-  }else{
+  } else {
     return false;
   }
   return true;
 }
+/* #endregion */
 
 let oldBtn = new Array(4);
 for (let k = 0; k < 4; k++) {
   oldBtn[k] = 0;
 }
 // highlight the current step in the grid
+/* #region  stepHighlight(stepNumber) */
 function stepHighlight(stepNumber) {
   seq.state.playing = true;
-  console.log({
-    stepNumber
-  });
+  // console.log({
+  //   stepNumber
+  // });
 
   // need  to set grid button led colors to white for the step seq is on.
   // this should only be done for tracks whose patterns are in view of the current step.
@@ -814,6 +891,7 @@ function stepHighlight(stepNumber) {
     }
   }
 }
+/* #endregion */
 
 /***************************************************************************************
 
@@ -881,7 +959,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                 if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
                   track.patterns["id_" + track.currentPattern].events["id_" + step].enabled = !track.patterns["id_" + track.currentPattern].events["id_" + step].enabled;
                 }
-                ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
+                if (seqLoop_ipcIsEstablished) {
+                  ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
+                }
               }
               updateAllGridBtnLEDs();
               displayTrackAndPatInfo(track, track.patterns["id_" + track.currentPattern]);
@@ -913,7 +993,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             PlotStringToPixelMemMap("Not working.", 0, 35, 16, 1);
             seq.state.OLEDmemMapContents = "REC";
             FireOLED_SendMemMap();
-            ipc.server.emit(seqLoop_ipcSocket, 'seqRec');
+            if (seqLoop_ipcIsEstablished) {
+              ipc.server.emit(seqLoop_ipcSocket, 'seqRec');
+            }
             break;
           case 52: // stop button
             seq.state.playing = false;
@@ -923,7 +1005,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             FireOLED_SendMemMap(0);
             notGridBtnLEDS[PLAY_BTN_LED] = PATSONG_PLAY_DIMYELLOW;
             updateAllNotGridBtnLEDS();
-            ipc.server.emit(seqLoop_ipcSocket, 'seqStop');
+            if (seqLoop_ipcIsEstablished) {
+              ipc.server.emit(seqLoop_ipcSocket, 'seqStop');
+            }
             updateAllGridBtnLEDs();
             break;
           case 51: // play button
@@ -933,7 +1017,13 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             FireOLED_SendMemMap(0);
             notGridBtnLEDS[PLAY_BTN_LED] = PATSONG_PLAY_GREEN;
             updateAllNotGridBtnLEDS();
-            ipc.server.emit(seqLoop_ipcSocket, 'seqPlay');
+            if (seqLoop_ipcIsEstablished && seq.state.playEnabled) {
+              ipc.server.emit(seqLoop_ipcSocket, 'seqPlay', seq.state.currentBeatsPerMeasure);
+            }else if(!seqLoop_ipcIsEstablished){
+              console.log("Cannot play because the SeqLoop client is not connectd.");
+            }else if(!seq.state.playEnabled){
+              console.log("Cannot play because the play function has been disabled.");
+            }
             break;
           case 50: // pat/song button
             // PlotStringToPixelMemMap(String.fromCharCode(CHARCODE_LEFTARROW, CHARCODE_RIGHTARROW), PlotStringToPixelMemMap(String.fromCharCode(CHARCODE_UPARROW, CHARCODE_DOWNARROW), 0, 0, 16, 2, 0), 0, 16, 2, 0);
@@ -970,140 +1060,14 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             }
             break;
           case 39: // track four mute/solo button
-
-            if (seq.state.altPressed) {
-              seq.state.selectedTrack = 3 + seq.state.selectedTrackRange;
-            } else if (seq.state.shiftPressed) {
-              if (!seq.track[seq.state.selectedTrackRange + 3].solo) {
-                seq.track.forEach(function (track, i) {
-                  if (i != seq.state.selectedTrackRange + 3) {
-                    track.mute = true;
-                    track.solo = false;
-                  } else {
-                    track.mute = false;
-                    track.solo = true;
-                  }
-                });
-              } else {
-                seq.track.forEach(function (track, i) {
-                  track.mute = false;
-                  track.solo = false;
-                });
-              }
-            } else {
-              seq.track[seq.state.selectedTrackRange + 3].mute = !seq.track[seq.state.selectedTrackRange + 3].mute;
-            }
-
-            ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
-            updateAllNotGridBtnLEDS();
-            console.log(seq.state.selectedTrack);
-
-            displayTrackAndPatInfo(seq.track[seq.state.selectedTrack], seq.track[seq.state.selectedTrack].patterns["id_" + seq.track[seq.state.selectedTrack].currentPattern]);
-            break;
           case 38: // track three mute/solo button
-            selTrack = seq.track[seq.state.selectedTrack];
-            curPat = selTrack.patterns["id_" + selTrack.currentPattern];
-            if (seq.state.altPressed) {
-              seq.state.selectedTrack = 2 + seq.state.selectedTrackRange;
-            } else if (seq.state.shiftPressed) {
-              if (!seq.track[seq.state.selectedTrackRange + 2].solo) {
-                seq.track.forEach(function (track, i) {
-                  if (i != seq.state.selectedTrackRange + 2) {
-                    track.mute = true;
-                    track.solo = false;
-                  } else {
-                    track.mute = false;
-                    track.solo = true;
-                  }
-                });
-              } else {
-                seq.track.forEach(function (track, i) {
-                  track.mute = false;
-                  track.solo = false;
-                });
-              }
-            } else {
-              seq.track[seq.state.selectedTrackRange + 2].mute = !seq.track[seq.state.selectedTrackRange + 2].mute;
-            }
-            ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
-            updateAllNotGridBtnLEDS();
-            selTrack = seq.track[seq.state.selectedTrack];
-            curPat = selTrack.patterns["id_" + selTrack.currentPattern];
-            displayTrackAndPatInfo(selTrack, curPat);
-            break;
           case 37: // track two mute/solo button
-            selTrack = seq.track[seq.state.selectedTrack];
-            curPat = selTrack.patterns["id_" + selTrack.currentPattern];
-            if (seq.state.altPressed) {
-              seq.state.selectedTrack = 1 + seq.state.selectedTrackRange;
-            } else if (seq.state.shiftPressed) {
-              if (!seq.track[seq.state.selectedTrackRange + 1].solo) {
-                seq.track.forEach(function (track, i) {
-                  if (i != seq.state.selectedTrackRange + 1) {
-                    track.mute = true;
-                    track.solo = false;
-                  } else {
-                    track.mute = false;
-                    track.solo = true;
-                  }
-                });
-              } else {
-                seq.track.forEach(function (track, i) {
-                  track.mute = false;
-                  track.solo = false;
-                });
-              }
-            } else {
-              seq.track[seq.state.selectedTrackRange + 1].mute = !seq.track[seq.state.selectedTrackRange + 1].mute;
-            }
-            ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
-            updateAllNotGridBtnLEDS();
-            displayTrackAndPatInfo(seq.track[seq.state.selectedTrack], seq.track[seq.state.selectedTrack].patterns["id_" + seq.track[seq.state.selectedTrack].currentPattern]);
-            break;
           case 36: // track one mute/solo button
-            selTrack = seq.track[seq.state.selectedTrack];
-            curPat = selTrack.patterns["id_" + selTrack.currentPattern];
-            if (seq.state.altPressed) {
-              seq.state.selectedTrack = 0 + seq.state.selectedTrackRange;
-              /** TODO: **/
-              // Need to display the Track Name when selected track changes
-
-            } else if (seq.state.shiftPressed) {
-              if (!seq.track[seq.state.selectedTrackRange + 0].solo) {
-                seq.track.forEach(function (track, i) {
-                  if (i != seq.state.selectedTrackRange + 0) {
-                    track.mute = true;
-                    track.solo = false;
-                  } else {
-                    track.mute = false;
-                    track.solo = true;
-                  }
-                });
-              } else {
-                seq.track.forEach(function (track, i) {
-                  track.mute = false;
-                  track.solo = false;
-                });
-              }
-            } else {
-              seq.track[seq.state.selectedTrackRange + 0].mute = !seq.track[seq.state.selectedTrackRange + 0].mute;
-            }
-            ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
-            updateAllNotGridBtnLEDS();
-            displayTrackAndPatInfo(seq.track[seq.state.selectedTrack], seq.track[seq.state.selectedTrack].patterns["id_" + seq.track[seq.state.selectedTrack].currentPattern]);
+            soloMuteTrackSelectUpdate(message[1] - 36);
             break;
           case 35: // grid right /** TODO: **/
             // non-shift, non-alt  
             // shift grid right by 16 steps for current selected track and pattern, unless it is at the end of the pattern.
-            // track.addPattern(4, 110, 8);
-            // track.patterns["id_1"].viewArea = 0;
-            // track.updateOutputIndex();
-            // })
-
-            // seq.track[0].currentPattern = 0;
-            // seq.track[1].currentPattern = 1;
-            // seq.track[2].currentPattern = 2;
-            // seq.track[3].currentPattern = 3;
             selTrack = seq.track[seq.state.selectedTrack];
             curPat = selTrack.patterns["id_" + selTrack.currentPattern];
             // console.log(selTrack.patterns["id_"+selTrack.currentPattern]);
@@ -1258,18 +1222,23 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                 // cycle through non menu options
                 seq.state.menu.selectEncoderMode++;
                 if (seq.state.menu.selectEncoderMode >= 0 && seq.state.menu.selectEncoderMode < 10) {
-                  if (seq.state.menu.selectEncoderMode >= 2) {
+                  if (seq.state.menu.selectEncoderMode >= 3) {
                     seq.state.menu.selectEncoderMode = 0;
                   }
                   clearOLEDmemMap();
-                  PlotStringToPixelMemMap("Display:", 0, 0, 24, 1);
+                  PlotStringToPixelMemMap("Encoder:", 0, 0, 24, 1);
                   if (seq.state.menu.selectEncoderMode == 0) {
-                    PlotStringToPixelMemMap("Track Info", 0, 26, 24, 1);
+                    PlotStringToPixelMemMap("TrackRange", 0, 26, 24, 1);
                   } else if (seq.state.menu.selectEncoderMode == 1) {
                     PlotStringToPixelMemMap("BPM", 0, 26, 24, 1);
+                  } else if (seq.state.menu.selectEncoderMode == 2) {
+                    PlotStringToPixelMemMap("Beat/Measure", 0, 26, 24, 1);
                   }
                   FireOLED_SendMemMap();
                 } else if (seq.state.menu.selectEncoderMode >= 10 && seq.state.menu.selectEncoderMode < 20) {
+                  if (seq.state.menu.selectEncoderMode > 14) { ///////////
+                    seq.state.menu.selectEncoderMode = 11;
+                  }
                   clearOLEDmemMap();
                   let track = seq.track[seq.state.selectedTrackRange + ((seq.state.gridBtnsPressedLast / 16) & 0xff)]; // determine which track is associated with row the button is on.
                   if (seq.state.menu.selectEncoderMode == 11) {
@@ -1282,6 +1251,36 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                       }
                     }
                     PlotStringToPixelMemMap(scales.noteNamesFlats[noteVal % 12] + (Math.ceil((noteVal - 20) / 12)), 0, 20, 32, 2);
+                  } else if (seq.state.menu.selectEncoderMode == 12) {
+                    let noteVelocity = 0;
+                    if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
+                      step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
+                      if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                        noteVelocity = track.patterns["id_" + track.currentPattern].events["id_" + step].velocity;
+                        PlotStringToPixelMemMap("Note Velocity: " + noteVelocity.toString(), 0, 0, 16, 1);
+                      }
+                    }
+                    PlotStringToPixelMemMap(noteVelocity.toString(), 0, 20, 32, 2);
+                  } else if (seq.state.menu.selectEncoderMode == 13) {
+                    let noteLength = 0;
+                    if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
+                      step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
+                      if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                        noteLength = track.patterns["id_" + track.currentPattern].events["id_" + step].length;
+                        PlotStringToPixelMemMap("Note Length: " + noteLength.toString(), 0, 0, 16, 1);
+                      }
+                    }
+                    PlotStringToPixelMemMap(noteLength.toString(), 0, 20, 32, 2);
+                  } else if (seq.state.menu.selectEncoderMode == 14) {
+                    let noteStartOffset = 0;
+                    if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
+                      step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
+                      if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                        noteStartOffset = track.patterns["id_" + track.currentPattern].events["id_" + step].startTimePatternOffset;
+                        PlotStringToPixelMemMap("Note Start Offset: " + noteStartOffset.toString(), 0, 0, 16, 1);
+                      }
+                    }
+                    PlotStringToPixelMemMap(noteStartOffset.toString(), 0, 20, 32, 2);
                   } else {
                     seq.state.menu.selectEncoderMode = 10;
                   }
@@ -1291,84 +1290,13 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             }
             break;
           case 19: // @note encoder 4 touch
-            if (seq.state.encBeingTouched == 0 || seq.state.encBeingTouched == 19) {
-              seq.state.encBeingTouched = message[1];
-              seq.state.encLastTouched = message[1];
-              // if (seq.state.OLEDmemMapContents != "encoder19") {
-              clearOLEDmemMap();
-              // }
-              // get encoder's assign name for it current function
-              if (seq.settings.encoders.global) {
-                name = seq.settings.encoders.control[seq.state.encoderBank][3].name;
-                // console.log(name);
-                PlotStringToPixelMemMap("Glbl Ctrl Name:", 0, 0, 16);
-                PlotStringToPixelMemMap(name, 0, 20, 16);
-                PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][3].value.toString() + "    ", 0, 40, 16);
-                FireOLED_SendMemMap(0);
-                seq.state.OLEDmemMapContents = "encoder19";
-              }
-              /** TODO: **/
-              // need per project version of above code
-            }
-            break;
           case 18: // encoder 3 touch
-            if (seq.state.encBeingTouched == 0 || seq.state.encBeingTouched == 18) {
-              seq.state.encBeingTouched = message[1];
-              seq.state.encLastTouched = message[1];
-              // if (seq.state.OLEDmemMapContents != "encoder18") {
-              clearOLEDmemMap();
-              // }
-              if (seq.settings.encoders.global) {
-                name = seq.settings.encoders.control[seq.state.encoderBank][2].name;
-                // console.log(name);
-                PlotStringToPixelMemMap("Glbl Ctrl Name:", 0, 0, 16);
-                PlotStringToPixelMemMap(name, 0, 20, 16);
-                PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][2].value.toString() + "    ", 0, 40, 16);
-                FireOLED_SendMemMap(0);
-                seq.state.OLEDmemMapContents = "encoder18";
-              }
-              /** TODO: **/
-              // need per project version of above code
-            }
-            break;
           case 17: // encoder 2 touch
-            if (seq.state.encBeingTouched == 0 || seq.state.encBeingTouched == 17) {
-              seq.state.encBeingTouched = message[1];
-              seq.state.encLastTouched = message[1];
-              // if (seq.state.OLEDmemMapContents != "encoder17") {
-              clearOLEDmemMap();
-              // }
-              if (seq.settings.encoders.global) {
-                name = seq.settings.encoders.control[seq.state.encoderBank][1].name;
-                // console.log(name);
-                PlotStringToPixelMemMap("Glbl Ctrl Name:", 0, 0, 16);
-                PlotStringToPixelMemMap(name, 0, 20, 16);
-                PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][1].value.toString() + "    ", 0, 40, 16);
-                FireOLED_SendMemMap(0);
-                seq.state.OLEDmemMapContents = "encoder17";
-              }
-              /** TODO: **/
-              // need per project version of above code
-            }
-            break;
           case 16: // encoder 1 touch
-            if (seq.state.encBeingTouched == 0 || seq.state.encBeingTouched == 16) {
+            if (seq.state.encBeingTouched == 0 || seq.state.encBeingTouched == message[1]) {
               seq.state.encBeingTouched = message[1];
               seq.state.encLastTouched = message[1];
-              // if (seq.state.OLEDmemMapContents != "encoder16") {
-              clearOLEDmemMap();
-              // }
-              if (seq.settings.encoders.global) {
-                name = seq.settings.encoders.control[seq.state.encoderBank][0].name;
-                // console.log(name);
-                PlotStringToPixelMemMap("Glbl Ctrl Name:", 0, 0, 16);
-                PlotStringToPixelMemMap(name, 0, 20, 16);
-                PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][0].value.toString() + "    ", 0, 40, 16);
-                FireOLED_SendMemMap(0);
-                seq.state.OLEDmemMapContents = "encoder16";
-              }
-              /** TODO: **/
-              // need per project version of above code
+              encoderTouch(message[1] - 16);
             }
             break;
         }
@@ -1382,9 +1310,6 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           } else {
             seq.state.gridBtnsPressedUpper &= ~(1 << (btnIndex - 32));
           }
-
-          // console.log(seq.state.gridBtnsPressedLower);
-
           btnLEDSysEx[7] = btnIndex;
           btnLEDSysEx[8] = (gridBtnLEDcolor.btn[btnIndex].red) & 0x7F;
           btnLEDSysEx[9] = (gridBtnLEDcolor.btn[btnIndex].grn) & 0x7F;
@@ -1445,56 +1370,18 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           case 25: // Select button
             break;
           case 19: // encoder 4 touch
-            if (seq.state.encBeingTouched == 19) {
-              seq.state.encBeingTouched = 0;
-            }
-            break;
           case 18: // encoder 3 touch
-            if (seq.state.encBeingTouched == 18) {
-              seq.state.encBeingTouched = 0;
-            }
-            break;
           case 17: // encoder 2 touch
-            if (seq.state.encBeingTouched == 17) {
-              seq.state.encBeingTouched = 0;
-            }
-            break;
           case 16: // encoder 1 touch
-            if (seq.state.encBeingTouched == 16) {
+            if (seq.state.encBeingTouched == message[1]) {
               seq.state.encBeingTouched = 0;
             }
             break;
         }
         break;
       case 176: // @note CC event
-        // if (message[1] == 118 && message[2] == 127) {
-        //   // FireOLED_DrawBitmap_partial(xOffset, ++yOffset, bitmaps.bitmap_thermom32x32, 32, 32);
-        //   PlotStringToPixelMemMap("~ABCDEFGH", 0, 0, 32, 0, 1);
-        //   PlotStringToPixelMemMap("ancdefghij", 0, 32, 32, 1, 0);
-        //   // PlotStringToPixelMemMap("klmnopqrstuvwxyz", 0, 48, 32, 2, 1);
-        //   // PlotStringToPixelMemMap("RSTUVYZ", 0, 48, 24, 3, 0);
-        //   FireOLED_SendMemMap(0);
-        //   xOffset = 0;
-        // } else if (message[1] == 118 && message[2] == 1) {
-        //   if (yOffset == 0) {
-        //     yOffset++;
-        //     xOffset++;
-        //   }
-        //   yOffset--;
-        //   // PlotStringToPixelMemMap("ABCDEFGHIJKLMN", 0, 0, 24, 0, 0);
-        //   // PlotStringToPixelMemMap("OPQRSTUVY", 0, 16, 24, 1, 1);
-        //   // PlotStringToPixelMemMap("abcdefghklm", 0, 32, 24, 2, 0);
-        //   // PlotStringToPixelMemMap("nopqrstu", 0, 48, 24, 3, 1);
-        //   // function PlotBitmapToPixelMemmap(inBitmap, xOrigin, yOrigin, bmp_width, bmp_height, invert) {
-        //   PlotBitmapToPixelMemmap(bitmaps.bitmap_X_64x64, 0, 0, 64, 64, 2);
-        //   FireOLED_SendMemMap(0);
-        // }
         switch (message[1]) {
           case 118: // select encoder
-
-            /** TODO: **/
-            // Need to display the Track Name when selected track changes
-            // let thisSelTrack = seq.track[seq.state.selectedTrack];
             if (message[2] == 127) {
               // @note select encoder down
               // console.log("down");
@@ -1522,11 +1409,23 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                   if (seq.state.currentBPM > 20) {
                     seq.state.currentBPM--;
                   }
-                  console.log(seq.state.currentBPM);
-                  ipc.server.emit(seqLoop_ipcSocket, 'tempoChange', seq.state.currentBPM);
+                  // console.log(seq.state.currentBPM);
+                  if (seqLoop_ipcIsEstablished) {
+                    ipc.server.emit(seqLoop_ipcSocket, 'tempoChange', seq.state.currentBPM);
+                  }
                   clearOLEDmemMap();
                   PlotStringToPixelMemMap("BPM:", 0, 0, 32, 2);
                   PlotStringToPixelMemMap(seq.state.currentBPM.toString(), 0, 36, 24, 2);
+                  FireOLED_SendMemMap();
+                } else if (seq.state.menu.selectEncoderMode == 2) {
+                  if (seq.state.currentBeatsPerMeasure > 2) {
+                    seq.state.currentBeatsPerMeasure--;
+                  }
+                  // console.log(seq.state.currentBPM);
+                  // ipc.server.emit(seqLoop_ipcSocket, 'tempoChange', seq.state.currentBPM);
+                  clearOLEDmemMap();
+                  PlotStringToPixelMemMap("Beats / Measure:", 0, 0, 24, 2);
+                  PlotStringToPixelMemMap(seq.state.currentBeatsPerMeasure.toString(), 0, 36, 24, 2);
                   FireOLED_SendMemMap();
                 } else if (seq.state.menu.selectEncoderMode >= 10 && seq.state.menu.selectEncoderMode < 20) {
                   clearOLEDmemMap();
@@ -1544,7 +1443,48 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                         PlotStringToPixelMemMap("Note Value: " + noteVal.toString(), 0, 0, 16, 1);
                       }
                     }
-                    PlotStringToPixelMemMap(scales.noteNamesSharps[noteVal % 12] + (Math.ceil((noteVal - 20) / 12)), 0, 20, 32, 2);
+                    PlotStringToPixelMemMap(scales.noteNamesFlats[noteVal % 12] + (Math.ceil((noteVal - 20) / 12)), 0, 20, 32, 2);
+                  } else if (seq.state.menu.selectEncoderMode == 12) { // change note velocity
+                    let noteVelocity = 0;
+                    if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
+                      step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
+                      if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                        if (track.patterns["id_" + track.currentPattern].events["id_" + step].velocity > 0) {
+                          noteVelocity = --track.patterns["id_" + track.currentPattern].events["id_" + step].velocity;
+                        } else {
+                          noteVelocity = track.patterns["id_" + track.currentPattern].events["id_" + step].velocity;
+                        }
+                        PlotStringToPixelMemMap("Note Velocity: " + noteVelocity.toString(), 0, 0, 16, 1);
+                      }
+                    }
+                    PlotStringToPixelMemMap(noteVelocity.toString(), 0, 20, 32, 2);
+                  } else if (seq.state.menu.selectEncoderMode == 13) { // change note length
+                    let noteLength = 0;
+                    if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
+                      step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
+                      if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                        if (track.patterns["id_" + track.currentPattern].events["id_" + step].length > 0) {
+                          track.patterns["id_" + track.currentPattern].events["id_" + step].length -= 5;
+                          noteLength = track.patterns["id_" + track.currentPattern].events["id_" + step].length;
+                        } else {
+                          noteLength = track.patterns["id_" + track.currentPattern].events["id_" + step].length;
+                        }
+                        PlotStringToPixelMemMap("Note Length: " + noteLength.toString(), 0, 0, 16, 1);
+                      }
+                    }
+                    PlotStringToPixelMemMap(noteLength.toString(), 0, 20, 32, 2);
+
+                  } else if (seq.state.menu.selectEncoderMode == 14) { // change note starttime offset
+                    let noteStartOffset = 0;
+                    if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
+                      step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
+                      if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                        noteStartOffset = --track.patterns["id_" + track.currentPattern].events["id_" + step].startTimePatternOffset;
+                        PlotStringToPixelMemMap("Note Start Offset: " + noteStartOffset.toString(), 0, 0, 16, 1);
+                      }
+                    }
+                    PlotStringToPixelMemMap(noteStartOffset.toString(), 0, 20, 32, 2);
+
                   }
                   FireOLED_SendMemMap();
                 }
@@ -1553,6 +1493,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                   seq.track[seq.track.length - 1].addPattern(16, 110, 4);
                   seq.track[seq.track.length - 1].updateOutputIndex();
                 }
+
               }
             } else if (message[2] == 1) {
 
@@ -1567,7 +1508,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                 settingsMenu(2, 16);
               } else {
                 // console.log("display track range + up");
-                if (seq.state.menu.selectEncoderMode == 0) {
+                if (seq.state.menu.selectEncoderMode == 0) { // selected track range up
                   if (seq.state.selectedTrackRange > 0) {
                     seq.state.selectedTrackRange--;
                     seq.state.selectedTrack--;
@@ -1577,20 +1518,32 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                   selTrack = seq.track[seq.state.selectedTrack];
                   curPat = selTrack.patterns["id_" + selTrack.currentPattern];
                   displayTrackAndPatInfo(selTrack, curPat);
-                } else if (seq.state.menu.selectEncoderMode == 1) {
+                } else if (seq.state.menu.selectEncoderMode == 1) { // BPM up
                   if (seq.state.currentBPM < 280) {
                     seq.state.currentBPM++;
                   }
-                  console.log(seq.state.currentBPM);
-                  ipc.server.emit(seqLoop_ipcSocket, 'tempoChange', seq.state.currentBPM);
+                  // console.log(seq.state.currentBPM);
+                  if (seqLoop_ipcIsEstablished) {
+                    ipc.server.emit(seqLoop_ipcSocket, 'tempoChange', seq.state.currentBPM);
+                  }
                   clearOLEDmemMap();
                   PlotStringToPixelMemMap("BPM:", 0, 0, 32, 2);
                   PlotStringToPixelMemMap(seq.state.currentBPM.toString(), 0, 36, 24, 2);
                   FireOLED_SendMemMap();
+                } else if (seq.state.menu.selectEncoderMode == 2) {
+                  if (seq.state.currentBeatsPerMeasure < 16) {
+                    seq.state.currentBeatsPerMeasure++;
+                  }
+                  // console.log(seq.state.currentBPM);
+                  // ipc.server.emit(seqLoop_ipcSocket, 'tempoChange', seq.state.currentBPM);
+                  clearOLEDmemMap();
+                  PlotStringToPixelMemMap("Beats / Measure:", 0, 0, 24, 2);
+                  PlotStringToPixelMemMap(seq.state.currentBeatsPerMeasure.toString(), 0, 36, 24, 2);
+                  FireOLED_SendMemMap();
                 } else if (seq.state.menu.selectEncoderMode >= 10 && seq.state.menu.selectEncoderMode < 20) {
                   clearOLEDmemMap();
                   let track = seq.track[seq.state.selectedTrackRange + ((seq.state.gridBtnsPressedLast / 16) & 0xff)]; // determine which track is associated with row the button is on.
-                  if (seq.state.menu.selectEncoderMode == 11) {
+                  if (seq.state.menu.selectEncoderMode == 11) { // change note value
                     let noteVal = 0;
                     if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
                       step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
@@ -1603,7 +1556,46 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                         PlotStringToPixelMemMap("Note Value: " + noteVal.toString(), 0, 0, 16, 1);
                       }
                     }
-                    PlotStringToPixelMemMap(scales.noteNamesSharps[noteVal % 12] + (Math.ceil((noteVal - 20) / 12)), 0, 20, 32, 2);
+                    PlotStringToPixelMemMap(scales.noteNamesFlats[noteVal % 12] + (Math.ceil((noteVal - 20) / 12)), 0, 20, 32, 2);
+                  } else if (seq.state.menu.selectEncoderMode == 12) { // change note velocity
+                    let noteVelocity = 0;
+                    if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
+                      step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
+                      if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                        if (track.patterns["id_" + track.currentPattern].events["id_" + step].velocity < 127) {
+                          noteVelocity = ++track.patterns["id_" + track.currentPattern].events["id_" + step].velocity;
+                        } else {
+                          noteVelocity = track.patterns["id_" + track.currentPattern].events["id_" + step].velocity;
+                        }
+                        PlotStringToPixelMemMap("Note Velocity: " + noteVelocity.toString(), 0, 0, 16, 1);
+                      }
+                    }
+                    PlotStringToPixelMemMap(noteVelocity.toString(), 0, 20, 32, 2);
+                  } else if (seq.state.menu.selectEncoderMode == 13) { // change note length
+                    let noteLength = 0;
+                    if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
+                      step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
+                      if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                        if (track.patterns["id_" + track.currentPattern].events["id_" + step].length < 500) {
+                          track.patterns["id_" + track.currentPattern].events["id_" + step].length += 5;
+                          noteLength = track.patterns["id_" + track.currentPattern].events["id_" + step].length;
+                        } else {
+                          noteLength = track.patterns["id_" + track.currentPattern].events["id_" + step].length;
+                        }
+                        PlotStringToPixelMemMap("Note Length: " + noteLength.toString(), 0, 0, 16, 1);
+                      }
+                    }
+                    PlotStringToPixelMemMap(noteLength.toString(), 0, 20, 32, 2);
+                  } else if (seq.state.menu.selectEncoderMode == 14) { // change note starttime offset
+                    let noteStartOffset = 0;
+                    if (track.patterns["id_" + track.currentPattern].patIsStepBased) {
+                      step = (seq.state.gridBtnsPressedLast % 16) + (track.patterns["id_" + track.currentPattern].viewArea * 16); // step in the row
+                      if (track.patterns["id_" + track.currentPattern].events["id_" + step] != undefined) {
+                        noteStartOffset = ++track.patterns["id_" + track.currentPattern].events["id_" + step].startTimePatternOffset;
+                        PlotStringToPixelMemMap("Note Start Offset: " + noteStartOffset.toString(), 0, 0, 16, 1);
+                      }
+                    }
+                    PlotStringToPixelMemMap(noteStartOffset.toString(), 0, 20, 32, 2);
                   }
                   FireOLED_SendMemMap();
                 }
@@ -1611,285 +1603,19 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             } else {
               // non useful
             }
+            sendTrackUpdateToSeqLoop();
             break;
-          case 19: // @note encBank #1
-            /** TODO: **/
-            // need to implement sending the midi data to the appropriate device. 
-            if (seq.settings.encoders.global) {
-              // abs, rel1 (127 = -1, 1 = +1), rel2 (63 = -1, 65 = +1), rel1Inv, rel2Inv
-              // if (seq.settings.encoders.control[seq.state.encoderBank][3].midiCCtype == "abs") {
-              switch (seq.settings.encoders.control[seq.state.encoderBank][3].midiCCtype) {
-                case "abs":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value += message[2];
-                    if (seq.settings.encoders.control[seq.state.encoderBank][3].value > 127) {
-                      seq.settings.encoders.control[seq.state.encoderBank][3].value = 127;
-                    }
-                    // send value to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value -= (128 - message[2]);
-                    if (seq.settings.encoders.control[seq.state.encoderBank][3].value < 0) {
-                      seq.settings.encoders.control[seq.state.encoderBank][3].value = 0;
-                    }
-                    // send value to CC
-                  }
-                  break;
-                case "rel1":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value = "CC Up    ";
-                    // send value of 1 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value = "CC Down";
-                    // send value of 127 to CC
-                  }
-                  break;
-                case "rel2":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value = "CC Up    ";
-                    // send value of 65 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value = "CC Down";
-                    // send value of 63 to CC
-                  }
-                  break;
-                case "rel1Inv":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value = "CC Up    ";
-                    // send value of 127 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value = "CC Down";
-                    // send value of 1 to CC
-                  }
-                  break;
-                case "rel2Inv":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value = "CC Up    ";
-                    // send value of 63 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][3].value = "CC Down";
-                    // send value of 65 to CC
-                  }
-                  break;
-                default:
-              }
-
-
-              if (seq.state.encBeingTouched == 19 && !seq.state.menu.entered) {
-                if (typeof seq.settings.encoders.control[seq.state.encoderBank][3].value == "string") {
-                  PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][3].value + "    ", 0, 40, 16);
-                } else {
-                  PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][3].value.toString() + "    ", 0, 40, 16);
-                }
-                FireOLED_SendMemMap(8);
-              }
-            } else if (seq.settings.encoders.control[seq.state.encoderBank][3].midiCCtype == "rel1") {
-              /** TODO: **/
-              // need to create a per project version of the above code
-            }
+          case 19: // @note encBank #4
+            encBankUpdate(3, message[2]);
             break;
-          case 18: // @note encBank #2
-            if (seq.settings.encoders.global) {
-              // abs, rel1 (127 = -1, 1 = +1), rel2 (63 = -1, 65 = +1), rel1Inv, rel2Inv
-              switch (seq.settings.encoders.control[seq.state.encoderBank][2].midiCCtype) {
-                case "abs":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value += message[2];
-                    if (seq.settings.encoders.control[seq.state.encoderBank][2].value > 127) {
-                      seq.settings.encoders.control[seq.state.encoderBank][2].value = 127;
-                    }
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value -= (128 - message[2]);
-                    if (seq.settings.encoders.control[seq.state.encoderBank][2].value < 0) {
-                      seq.settings.encoders.control[seq.state.encoderBank][2].value = 0;
-                    }
-                  }
-                  break;
-                case "rel1":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value = "CC Up    ";
-                    // send value of 1 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value = "CC Down";
-                    // send value of 127 to CC
-                  }
-                  break;
-                case "rel2":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value = "CC Up    ";
-                    // send value of 65 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value = "CC Down";
-                    // send value of 63 to CC
-                  }
-                  break;
-                case "rel1Inv":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value = "CC Up    ";
-                    // send value of 127 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value = "CC Down";
-                    // send value of 1 to CC
-                  }
-                  break;
-                case "rel2Inv":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value = "CC Up    ";
-                    // send value of 63 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][2].value = "CC Down";
-                    // send value of 65 to CC
-                  }
-                  break;
-                default:
-              }
-              if (seq.state.encBeingTouched == 18 && !seq.state.menu.entered) {
-                if (typeof seq.settings.encoders.control[seq.state.encoderBank][2].value == "string") {
-                  PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][2].value + "    ", 0, 40, 16);
-                } else {
-                  PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][2].value.toString() + "    ", 0, 40, 16);
-                }
-                FireOLED_SendMemMap(8);
-              }
-            } else {
-              /** TODO: **/
-              // need to create a per project version of the above code
-            }
+          case 18: // @note encBank #3
+            encBankUpdate(2, message[2]);
             break;
-          case 17: // @note encBank #3
-            if (seq.settings.encoders.global) {
-              // abs, rel1 (127 = -1, 1 = +1), rel2 (63 = -1, 65 = +1), rel1Inv, rel2Inv
-              switch (seq.settings.encoders.control[seq.state.encoderBank][1].midiCCtype) {
-                case "abs":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value += message[2];
-                    if (seq.settings.encoders.control[seq.state.encoderBank][1].value > 127) {
-                      seq.settings.encoders.control[seq.state.encoderBank][1].value = 127;
-                    }
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value -= (128 - message[2]);
-                    if (seq.settings.encoders.control[seq.state.encoderBank][1].value < 0) {
-                      seq.settings.encoders.control[seq.state.encoderBank][1].value = 0;
-                    }
-                  }
-                  break;
-                case "rel1":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value = "CC Up    ";
-                    // send value of 1 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value = "CC Down";
-                    // send value of 127 to CC
-                  }
-                  break;
-                case "rel2":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value = "CC Up    ";
-                    // send value of 65 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value = "CC Down";
-                    // send value of 63 to CC
-                  }
-                  break;
-                case "rel1Inv":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value = "CC Up    ";
-                    // send value of 127 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value = "CC Down";
-                    // send value of 1 to CC
-                  }
-                  break;
-                case "rel2Inv":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value = "CC Up    ";
-                    // send value of 63 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][1].value = "CC Down";
-                    // send value of 65 to CC
-                  }
-                  break;
-                default:
-              }
-              if (seq.state.encBeingTouched == 17 && !seq.state.menu.entered) {
-                if (typeof seq.settings.encoders.control[seq.state.encoderBank][1].value == "string") {
-                  PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][1].value + "    ", 0, 40, 16);
-                } else {
-                  PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][1].value.toString() + "    ", 0, 40, 16);
-                }
-                FireOLED_SendMemMap(8);
-              }
-            } else {
-              /** TODO: **/
-              // need to create a per project version of the above code
-            }
+          case 17: // @note encBank #2
+            encBankUpdate(1, message[2]);
             break;
-          case 16: // @note encBank #4
-            if (seq.settings.encoders.global) {
-              // abs, rel1 (127 = -1, 1 = +1), rel2 (63 = -1, 65 = +1), rel1Inv, rel2Inv
-              switch (seq.settings.encoders.control[seq.state.encoderBank][0].midiCCtype) {
-                case "abs":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value += message[2];
-                    if (seq.settings.encoders.control[seq.state.encoderBank][0].value > 127) {
-                      seq.settings.encoders.control[seq.state.encoderBank][0].value = 127;
-                    }
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value -= (128 - message[2]);
-                    if (seq.settings.encoders.control[seq.state.encoderBank][0].value < 0) {
-                      seq.settings.encoders.control[seq.state.encoderBank][0].value = 0;
-                    }
-                  }
-                  break;
-                case "rel1":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value = "CC Up    ";
-                    // send value of 1 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value = "CC Down";
-                    // send value of 127 to CC
-                  }
-                  break;
-                case "rel2":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value = "CC Up    ";
-                    // send value of 65 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value = "CC Down";
-                    // send value of 63 to CC
-                  }
-                  break;
-                case "rel1Inv":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value = "CC Up    ";
-                    // send value of 127 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value = "CC Down";
-                    // send value of 1 to CC
-                  }
-                  break;
-                case "rel2Inv":
-                  if (message[2] >= 1 && message[2] < 10) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value = "CC Up    ";
-                    // send value of 63 to CC
-                  } else if (message[2] <= 127 && message[2] > 100) {
-                    seq.settings.encoders.control[seq.state.encoderBank][0].value = "CC Down";
-                    // send value of 65 to CC
-                  }
-                  break;
-                default:
-              }
-              if (seq.state.encBeingTouched == 16 && !seq.state.menu.entered) {
-                if (typeof seq.settings.encoders.control[seq.state.encoderBank][0].value == "string") {
-                  PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][0].value + "    ", 0, 40, 16);
-                } else {
-                  PlotStringToPixelMemMap(seq.settings.encoders.control[seq.state.encoderBank][0].value.toString() + "    ", 0, 40, 16);
-                }
-                FireOLED_SendMemMap(8);
-              }
-            } else {
-              /** TODO: **/
-              // need to create a per project version of the above code
-            }
+          case 16: // @note encBank #1
+            encBankUpdate(0, message[2]);
             break;
         }
         break;
@@ -1898,6 +1624,151 @@ fireMidiIn.on('message', async function (deltaTime, message) {
     }
   }
 });
+
+function soloMuteTrackSelectUpdate(buttonIdex = null) {
+  let selTrack = seq.track[seq.state.selectedTrack];
+  let curPat = selTrack.patterns["id_" + selTrack.currentPattern];
+  if (seq.state.altPressed) {
+    seq.state.selectedTrack = buttonIdex + seq.state.selectedTrackRange;
+  } else if (seq.state.shiftPressed) {
+    if (!seq.track[seq.state.selectedTrackRange + buttonIdex].solo) {
+      seq.track.forEach(function (track, i) {
+        if (i != seq.state.selectedTrackRange + buttonIdex) {
+          track.mute = true;
+          track.solo = false;
+        } else {
+          track.mute = false;
+          track.solo = true;
+        }
+      });
+    } else {
+      seq.track.forEach(function (track, i) {
+        track.mute = false;
+        track.solo = false;
+      });
+    }
+  } else {
+    seq.track[seq.state.selectedTrackRange + buttonIdex].mute = !seq.track[seq.state.selectedTrackRange + buttonIdex].mute;
+  }
+  // ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
+  sendTrackUpdateToSeqLoop();
+  updateAllNotGridBtnLEDS();
+  selTrack = seq.track[seq.state.selectedTrack];
+  curPat = selTrack.patterns["id_" + selTrack.currentPattern];
+  displayTrackAndPatInfo(selTrack, curPat);
+}
+
+function sendTrackUpdateToSeqLoop() {
+  if (sendTrackUpdateToSeqLoop.lastUpdate === "undefined") {
+    sendTrackUpdateToSeqLoop.lastUpdate = Date.now();
+  }
+  let timeMillis = Date.now();
+  if (timeMillis - sendTrackUpdateToSeqLoop.lastUpdate < 250) {
+    return;
+  }
+  sendTrackUpdateToSeqLoop.lastUpdate = Date.now();
+  setTimeout(() => {
+    ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
+  }, 250);
+}
+
+function encoderTouch(encIndex = null) {
+  let globalOrProject = seq.settings.encoders.global ? "settings" : "project";
+  clearOLEDmemMap();
+  // }
+  name = seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].name;
+  // console.log(name);
+  PlotStringToPixelMemMap(seq.settings.encoders.global ? "Glbl Ctrl Name:" : "Controller Name:", 0, 0, 16);
+  PlotStringToPixelMemMap(name, 0, 20, 16);
+  if (typeof seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value == "string") {
+    PlotStringToPixelMemMap(seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value + "    ", 0, 40, 16);
+  } else {
+    PlotStringToPixelMemMap(seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value.toString() + "    ", 0, 40, 16);
+  }
+  FireOLED_SendMemMap(0);
+  seq.state.OLEDmemMapContents = "encoder" + (encIndex + 16);
+}
+
+
+function encBankUpdate(encIndex = null, mesTwo = null) {
+  if (encIndex != null && mesTwo != null) {
+    let globalOrProject = seq.settings.encoders.global ? "settings" : "project";
+    selEnc = seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex];
+    // abs, rel1 (127 = -1, 1 = +1), rel2 (63 = -1, 65 = +1), rel1Inv, rel2Inv
+    switch (seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].midiCCtype) {
+      case "abs":
+        if (mesTwo >= 1 && mesTwo < 10) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value += mesTwo;
+          if (seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value > 127) {
+            seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = 127;
+          }
+          // send value to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, selEnc.value);
+        } else if (mesTwo <= 127 && mesTwo > 100) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value -= (128 - mesTwo);
+          if (seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value < 0) {
+            seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = 0;
+          }
+          // send value to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, selEnc.value);
+        }
+        break;
+      case "rel1":
+        if (mesTwo >= 1 && mesTwo < 10) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = "CC Up    ";
+          // send value of 1 to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, 1);
+        } else if (mesTwo <= 127 && mesTwo > 100) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = "CC Down";
+          // send value of 127 to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, 127);
+        }
+        break;
+      case "rel2":
+        if (mesTwo >= 1 && mesTwo < 10) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = "CC Up    ";
+          // send value of 65 to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, 65);
+        } else if (mesTwo <= 127 && mesTwo > 100) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = "CC Down";
+          // send value of 63 to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, 63);
+        }
+        break;
+      case "rel1Inv":
+        if (mesTwo >= 1 && mesTwo < 10) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = "CC Up    ";
+          // send value of 127 to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, 127);
+        } else if (mesTwo <= 127 && mesTwo > 100) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = "CC Down";
+          // send value of 1 to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, 1);
+        }
+        break;
+      case "rel2Inv":
+        if (mesTwo >= 1 && mesTwo < 10) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = "CC Up    ";
+          // send value of 63 to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, 63);
+        } else if (mesTwo <= 127 && mesTwo > 100) {
+          seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value = "CC Down";
+          // send value of 65 to CC
+          midiOutCC(selEnc.midiOutPort, selEnc.midiOutChannel, selEnc.midiCC, 65);
+        }
+        break;
+      default:
+    }
+    if (seq.state.encBeingTouched == encIndex + 16 && !seq.state.menu.entered) {
+      if (typeof seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value == "string") {
+        PlotStringToPixelMemMap(seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value + "    ", 0, 40, 16);
+      } else {
+        PlotStringToPixelMemMap(seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value.toString() + "    ", 0, 40, 16);
+      }
+      FireOLED_SendMemMap(8);
+    }
+  }
+}
 
 function displayTrackAndPatInfo(track, pat) {
   // newTimingLogEntry("displaying track and pat info");
@@ -1977,6 +1848,9 @@ function PlotStringToPixelMemMap(inString, xOrigin, yOrigin, heightPx, spacing =
   let cursor = xOrigin;
   for (let i = 0; i < inString.length; i++) {
     // get the width of the character from the array. Its the last value in each array.
+    if (typeof inString != "string") {
+      inString = inString.toString();
+    }
     let currentCharWidth = font[inString.charCodeAt(i) - 32][font[inString.charCodeAt(i) - 32].length - 1];
     let currentCharData = font[inString.charCodeAt(i) - 32];
     PlotBitmapToPixelMemmap(currentCharData, cursor, yOrigin, currentCharWidth, heightPx, invert ? 1 : 0);
@@ -2103,10 +1977,13 @@ function updateAllNotGridBtnLEDS() {
 */
 function FireOLED_SendMemMap(section = 0) {
   clearTimeout(seq.state.OLEDclearTimeout);
-  seq.state.OLEDclearTimeout = setTimeout(function () {
-    clearOLEDmemMap();
-    FireOLED_SendMemMap();
-  }, seq.settings.general.OLEDtimeout * 1000);
+  if (FireOLED_SendMemMap.caller.name != "") { // this prevents the timeout CB from running over and over.
+    seq.state.OLEDclearTimeout = setTimeout(function () {
+      clearOLEDmemMap();
+      FireOLED_SendMemMap();
+    }, seq.settings.general.OLEDtimeout * 1000);
+  }
+
 
   let timeMillis = Date.now();
   if (timeMillis - seq.state.lastOLEDupdateTime < 50) {
@@ -2235,6 +2112,7 @@ function clearOLEDmemMap() {
   seq.state.OLEDmemMapContents = "";
 }
 
+/* #region  debug and exit functions */
 async function debug(s, lvl, comment) {
   if (!lvl) {
     lvl = 5;
@@ -2297,6 +2175,7 @@ process.on('SIGUSR2', exitHandler.bind(null, {
 process.on('uncaughtException', exitHandler.bind(null, {
   exit: true
 }));
+/* #endregion */
 
 function between(x, num1, num2, inclusive = true) {
   if (num1 > num2 && inclusive) {
@@ -2350,12 +2229,6 @@ seq.settings.menu.currentMenu = 0;
           entering main settings menu on action = 0. Otherwise, param is ignored.
 *************************************************************************************************/
 function settingsMenu(action, textSize, menuToEnter = null) {
-  // console.log("current menu at beginning of menu function");
-
-  // console.log(seq.settings.menu.currentMenu);
-  // console.log(" ");
-
-
   switch (action) {
     case 0: // begin menu
       console.log("menu start");
@@ -2815,6 +2688,7 @@ var trackColorPreset = new menuItem(
     }
   }, null, true
 );
+
 var trackColorRed = new menuItem(
   function () {
     let selTrack = seq.track[seq.state.selectedTrack];
@@ -2871,6 +2745,7 @@ var trackColorRed = new menuItem(
     return dispText;
   }, null, true
 );
+
 var trackColorGrn = new menuItem(
   function () {
     let selTrack = seq.track[seq.state.selectedTrack];
@@ -2927,6 +2802,7 @@ var trackColorGrn = new menuItem(
     return dispText;
   }, null, true
 );
+
 var trackColorBlu = new menuItem(
   function () {
     let selTrack = seq.track[seq.state.selectedTrack];
@@ -3065,7 +2941,7 @@ var trackOutputDevice = new menuItem(
             // console.log(name);
             let devText = "";
             if (seq.track[seq.state.selectedTrack].outputIndex == i) {
-              devText = String.fromCharCode(0x84);
+              devText = String.fromCharCode(CHARCODE_RIGHTARROW);
             }
             devText = devText + midiOutputDevicesNames[i].substring(0, 9);
             devText = devText + "...";
@@ -3212,7 +3088,7 @@ var trackMidiChannel = new menuItem(
         dispText.push(i.toString());
       }
       if (seq.track[seq.state.selectedTrack].midiChannel == i) {
-        dispText[i] = String.fromCharCode(0x84) + dispText[i];
+        dispText[i] = String.fromCharCode(CHARCODE_RIGHTARROW) + dispText[i];
       }
     }
     return dispText;
@@ -3258,7 +3134,9 @@ var globalImmeiateTrackUpdatesMenu = new menuItem(
   },
   function (selection) { // selFn
     seq.state.immediateTrackUpdates = selection == 0;
-    ipc.server.emit(seqLoop_ipcSocket, 'setITU', seq.state.immediateTrackUpdates);
+    if (seqLoop_ipcIsEstablished) {
+      ipc.server.emit(seqLoop_ipcSocket, 'setITU', seq.state.immediateTrackUpdates);
+    }
   },
   function () { // genFn
     return true;
@@ -3266,13 +3144,13 @@ var globalImmeiateTrackUpdatesMenu = new menuItem(
   function (uselessBool) { // dispFn
     let returnStrings = [];
     if (seq.state.immediateTrackUpdates) {
-      returnStrings.push(String.fromCharCode(0x84) + "Enable");
+      returnStrings.push(String.fromCharCode(CHARCODE_RIGHTARROW) + "Enable");
     } else {
       returnStrings.push("Enable");
     }
 
     if (!seq.state.immediateTrackUpdates) {
-      returnStrings.push(String.fromCharCode(0x84) + "Disable");
+      returnStrings.push(String.fromCharCode(CHARCODE_RIGHTARROW) + "Disable");
     } else {
       returnStrings.push("Disable");
     }
@@ -3655,7 +3533,7 @@ Menu entries for when in step mode with no other buttons pressed
 */
 
 
-
+// @note menuItemTemplate
 var menuItemTemplate = new menuItem(
   function () {
 
@@ -3678,19 +3556,6 @@ var menuItemTemplate = new menuItem(
   null,
   true // optional bool to indicate if the menu show go back to the parent on select
 );
-
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 /** TODO: **/
 // Create functions to serialize and de-serialize project data for saving/loading. Doing this as
@@ -3730,8 +3595,12 @@ function loadGlobalData() {
       seq.settings.encoders.control[q][r].midiCC = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiCC;
       seq.settings.encoders.control[q][r].value = anObjectToHoldData.seqSettingsEncoders.control[q][r].value;
       seq.settings.encoders.control[q][r].midiCCtype = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiCCtype;
+      seq.settings.encoders.control[q][r].midiOutPort = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiOutPort;
+      seq.settings.encoders.control[q][r].midiOutChannel = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiOutChannel;
+      seq.settings.encoders.control[q][r].midiOutPortName = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiOutPortName;
     }
   }
+  updateEncoderOutputPortIndexesByName();
 }
 
 loadGlobalData();

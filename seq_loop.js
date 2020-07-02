@@ -28,13 +28,13 @@ var newTrackData = [];
 
 var theLoopInterval;
 
-function seqPlay() {
+function seqPlay(beats = 4) {
   if (!seq.state.playing) {
     console.log("play");
     seq.state.playing = true;
     seq.state.loopTimeMillis = new Date().getTime();
     seq.state.stepNumberCounted = 0;
-    theLoopInterval = setInterval(theLoopFn);
+    theLoopInterval = setInterval(theLoopFn,1,beats);
   }
 }
 
@@ -88,7 +88,9 @@ ipc.connectTo(
         }
       }
     );
-    ipc.of.nodeMidi.on('seqPlay', seqPlay);
+    ipc.of.nodeMidi.on('seqPlay', function(beats){
+      seqPlay(beats);
+    });
     ipc.of.nodeMidi.on('seqStop', seqStop);
     ipc.of.nodeMidi.on('tempoChange', function (data) {
       seq.state.currentBPM = data
@@ -156,7 +158,10 @@ function theLoopFn(stepsPerBeat = 4) {
         data.lengthTime = stepTime * (data.event.length / 100);
         // console.log(data.event.enabled);
         if (data.event.enabled) {
-          ipc.of.nodeMidi.emit('play-note', data);
+          setTimeout(() => {
+            ipc.of.nodeMidi.emit('play-note', data);
+          }, stepTime*(data.event.startTimePatternOffset / 100)*1000);          
+          // ipc.of.nodeMidi.emit('play-note', data);
           // console.log("note played");
         }
         // advance current step
