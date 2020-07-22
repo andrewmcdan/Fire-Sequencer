@@ -137,41 +137,22 @@ function theLoopFn(stepsPerBeat = 4) {
     seq.track = newTrackData;
     seq.state.newTrackDataWaiting = false;
   }
-
-  let currentTimeMillis = new Date().getTime();
-  let loopTimeDiffMillis = currentTimeMillis - seq.state.loopTimeMillis;
-  let sequencerBPM = seq.state.currentBPM;
-  let seqSecsPerBeat = 60 / sequencerBPM;
-  let stepTime = seqSecsPerBeat / stepsPerBeat;
-
-  let stepNumberCalculated = Math.trunc(loopTimeDiffMillis / (stepTime * 1000));
-  if (stepNumberCalculated == seq.state.stepNumberCounted + 1) {
+  if ((Math.trunc((new Date().getTime()-seq.state.loopTimeMillis)/(((60/seq.state.currentBPM)/stepsPerBeat)*1000))) == seq.state.stepNumberCounted + 1) {
     // Next step started
-    // console.log(seq.state.stepNumberCounted);
     //go through each track
     seq.track.forEach(function (track, index) {
-      if (!track.mute && seq.track[index].patterns["id_" + track.currentPattern].patIsStepBased) { // if track is not muted and is step based
-
-        let origPatLength = seq.track[index].patterns["id_" + track.currentPattern].patLength; // 16
-        let origPatBeatsInPat = seq.track[index].patterns["id_" + track.currentPattern].beatsInPattern; // 4
-        let thisPatStepsPerBeat = origPatLength / origPatBeatsInPat; // 24 / 4 = 6
-        let thisPatStepSkips = (stepsPerBeat / thisPatStepsPerBeat) - 1; // 4 / 6 = 2, 2 - 1 = 1
-
-        // play currentStep Event
+      let curPat = seq.track[index].patterns[`id_${track.currentPattern}`];
+      if (!track.mute && curPat.patIsStepBased) { // if track is not muted and is step based
         let data = {};
-        data.event = seq.track[index].patterns["id_" + track.currentPattern].events["id_" + (seq.state.stepNumberCounted % origPatLength)];
+        data.event = curPat.events["id_" + (seq.state.stepNumberCounted % curPat.patLength)];
         data.track = index;
         data.lengthTime = stepTime * (data.event.length / 100);
-        // console.log(data.event.enabled);
         if (data.event.enabled) {
           setTimeout(() => {
             ipc.of.nodeMidi.emit('play-note', data);
           }, stepTime*(data.event.startTimePatternOffset / 100)*1000);          
-          // ipc.of.nodeMidi.emit('play-note', data);
-          // console.log("note played");
         }
-        // advance current step
-        seq.track[index].patterns["id_" + track.currentPattern].currentStep++;
+        curPat.currentStep++;
       }
     });
     ipc.of.nodeMidi.emit('step', seq.state.stepNumberCounted);

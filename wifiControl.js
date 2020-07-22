@@ -60,14 +60,14 @@ piWifi.scan(function (err, networks) {
     if (err) {
         return console.error(err.message);
     }
-    console.log(networks);
+    // console.log(networks);
 });
 
 piWifi.status('wlan0', function (err, status) {
     if (err) {
         return console.error(err.message);
     }
-    console.log(status);
+    // console.log(status);
 });
 
 // var obj34 = {params:{param1:3,param2:"three",param3:null}};

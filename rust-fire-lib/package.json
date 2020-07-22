@@ -1,0 +1,14 @@
+{
+  "name": "rust-fire-lib",
+  "version": "0.1.0",
+  "description": "Rust library for FireSequencer",
+  "main": "lib/index.js",
+  "author": "A.McD.",
+  "license": "MIT",
+  "dependencies": {
+    "neon-cli": "^0.4.0"
+  },
+  "scripts": {
+    "install": "neon build"
+  }
+}

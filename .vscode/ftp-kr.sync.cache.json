@@ -1,6 +1,64 @@
 {
   "ftp://192.168.1.209@pi": {
+    ".bash_history": {
+      "type": "-",
+      "size": 9772,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".bash_logout": {
+      "type": "-",
+      "size": 220,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".bashrc": {
+      "type": "-",
+      "size": 3523,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".config": {},
+    ".gnupg": {},
+    ".lesshst": {
+      "type": "-",
+      "size": 28,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".node_repl_history": {
+      "type": "-",
+      "size": 0,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".npm": {},
+    ".profile": {
+      "type": "-",
+      "size": 807,
+      "lmtime": 0,
+      "modified": false
+    },
+    "config.txt": {
+      "type": "-",
+      "size": 1812,
+      "lmtime": 0,
+      "modified": false
+    },
+    "fontStuff": {},
+    "grep": {
+      "type": "-",
+      "size": 11,
+      "lmtime": 0,
+      "modified": false
+    },
     "nodeMidi": {
+      ".ftpconfig": {
+        "type": "-",
+        "size": 356,
+        "lmtime": 1592868143996,
+        "modified": false
+      },
       ".gitignore": {
         "type": "-",
         "size": 375,
@@ -46,13 +104,13 @@
       "Fire.code-workspace": {
         "type": "-",
         "size": 152,
-        "lmtime": 1593631549992,
+        "lmtime": 1595017263820,
         "modified": false
       },
       "FireSequencer.js": {
         "type": "-",
-        "size": 142639,
-        "lmtime": 1593689825356,
+        "size": 162785,
+        "lmtime": 1595019551812,
         "modified": false
       },
       "_Project info.gdoc": {
@@ -69,9 +127,9 @@
       },
       "bitmaps.js": {
         "type": "-",
-        "size": 127139,
+        "size": 127140,
         "lmtime": 1593688956653,
-        "modified": false
+        "modified": true
       },
       "bitmaps.json": {
         "type": "-",
@@ -118,14 +176,14 @@
       },
       "globalSave": {
         "type": "-",
-        "size": 9151,
+        "size": 9115,
         "lmtime": 1593387410736,
         "modified": true
       },
       "main.js": {
         "type": "-",
-        "size": 2509,
-        "lmtime": 0,
+        "size": 3179,
+        "lmtime": 1593716937568,
         "modified": false
       },
       "midi.js": {
@@ -277,11 +335,23 @@
         "wide-align": {},
         "wrappy": {}
       },
+      "obf.js": {
+        "type": "-",
+        "size": 986740,
+        "lmtime": 1594151913368,
+        "modified": false
+      },
       "package-lock.json": {
         "type": "-",
-        "size": 25144,
+        "size": 24794,
         "lmtime": 0,
         "modified": true
+      },
+      "package.json": {
+        "type": "-",
+        "size": 637,
+        "lmtime": 0,
+        "modified": false
       },
       "polyrythm.js": {
         "type": "-",
@@ -298,8 +368,8 @@
       },
       "seq_loop.js": {
         "type": "-",
-        "size": 10638,
-        "lmtime": 1593655697444,
+        "size": 10770,
+        "lmtime": 1593715690873,
         "modified": false
       },
       "test.json": {
@@ -314,10 +384,16 @@
         "lmtime": 1593450570549,
         "modified": false
       },
+      "wifiControl.js": {
+        "type": "-",
+        "size": 2364,
+        "lmtime": 1593717313636,
+        "modified": false
+      },
       "wifiTest.js": {
         "type": "-",
-        "size": 278,
-        "lmtime": 1593603634178,
+        "size": 2075,
+        "lmtime": 1593693666160,
         "modified": false
       }
     }
