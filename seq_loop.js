@@ -55,6 +55,8 @@ ipc.config.id = 'nodeSeqLoop';
 ipc.config.retry = 1500;
 ipc.config.silent = true;
 
+var logDisconnect = true;
+
 ipc.connectTo(
   'nodeMidi',
   function () {
@@ -63,7 +65,8 @@ ipc.connectTo(
       function () {
         // ipc.log('## connected to nodeMidi ##'.rainbow, ipc.config.delay);
         ipc.of.nodeMidi.emit('get-seq.track-Var');
-        console.log("Connected to Fire Sequencer main process.");        
+        console.log("Connected to Fire Sequencer main process.");
+        logDisconnect=true;
       }
     );
     ipc.of.nodeMidi.on(
@@ -72,7 +75,10 @@ ipc.connectTo(
         // ipc.log('disconnected from nodeMidi'.notice);
         // console.log("Disconnected from main processs.");
         seqStop(false);
+        if(logDisconnect){
         console.log("Disconnected form Fire Sequencer main process.");
+        logDisconnect=false;
+        }
       }      
     );
     ipc.of.nodeMidi.on(
@@ -137,21 +143,44 @@ function theLoopFn(stepsPerBeat = 4) {
     seq.track = newTrackData;
     seq.state.newTrackDataWaiting = false;
   }
+
+  // let currentTimeMillis = new Date().getTime();
+  // let loopTimeDiffMillis = currentTimeMillis - seq.state.loopTimeMillis;
+  // let sequencerBPM = seq.state.currentBPM;
+  // let seqSecsPerBeat = 60 / sequencerBPM;
+  let stepTime = (60 / seq.state.currentBPM) / stepsPerBeat;
+  // let stepNumberCalculated = Math.trunc(loopTimeDiffMillis / (stepTime * 1000));
+
+  // let stepNumberCalculated = Math.trunc((new Date().getTime()-seq.state.loopTimeMillis)/(((60/seq.state.currentBPM)/stepsPerBeat) * 1000));
+  
+  // if (stepNumberCalculated == seq.state.stepNumberCounted + 1) {
   if ((Math.trunc((new Date().getTime()-seq.state.loopTimeMillis)/(((60/seq.state.currentBPM)/stepsPerBeat)*1000))) == seq.state.stepNumberCounted + 1) {
     // Next step started
+    // console.log(seq.state.stepNumberCounted);
     //go through each track
     seq.track.forEach(function (track, index) {
       let curPat = seq.track[index].patterns[`id_${track.currentPattern}`];
       if (!track.mute && curPat.patIsStepBased) { // if track is not muted and is step based
+
+        // let origPatLength = curPat.patLength; // 16
+        // let origPatBeatsInPat = curPat.beatsInPattern; // 4
+        // let thisPatStepsPerBeat = origPatLength / origPatBeatsInPat; // 24 / 4 = 6
+        // let thisPatStepSkips = (stepsPerBeat / thisPatStepsPerBeat) - 1; // 4 / 6 = 2, 2 - 1 = 1
+
+        // play currentStep Event
         let data = {};
         data.event = curPat.events["id_" + (seq.state.stepNumberCounted % curPat.patLength)];
         data.track = index;
         data.lengthTime = stepTime * (data.event.length / 100);
+        // console.log(data.event.enabled);
         if (data.event.enabled) {
           setTimeout(() => {
             ipc.of.nodeMidi.emit('play-note', data);
           }, stepTime*(data.event.startTimePatternOffset / 100)*1000);          
+          // ipc.of.nodeMidi.emit('play-note', data);
+          // console.log("note played");
         }
+        // advance current step
         curPat.currentStep++;
       }
     });

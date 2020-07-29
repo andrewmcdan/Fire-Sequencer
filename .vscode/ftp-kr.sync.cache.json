@@ -65,52 +65,10 @@
         "lmtime": 0,
         "modified": false
       },
-      "266d.png": {
-        "type": "-",
-        "size": 3645,
-        "lmtime": 1593688498577,
-        "modified": false
-      },
-      "DEJAVUSANSMONO-BOLD.TTF": {
-        "type": "-",
-        "size": 313856,
-        "lmtime": 1298842640000,
-        "modified": false
-      },
-      "DEJAVUSANSMONO-BOLDOBLIQUE.TTF": {
-        "type": "-",
-        "size": 235848,
-        "lmtime": 1298842640000,
-        "modified": false
-      },
-      "DEJAVUSANSMONO-OBLIQUE.TTF": {
-        "type": "-",
-        "size": 241972,
-        "lmtime": 1298842640000,
-        "modified": false
-      },
-      "DEJAVUSANSMONO.TTF": {
-        "type": "-",
-        "size": 333636,
-        "lmtime": 1298842640000,
-        "modified": false
-      },
-      "FIGUBM__.TTF": {
-        "type": "-",
-        "size": 26708,
-        "lmtime": 1126989450000,
-        "modified": false
-      },
-      "Fire.code-workspace": {
-        "type": "-",
-        "size": 152,
-        "lmtime": 1595017263820,
-        "modified": false
-      },
       "FireSequencer.js": {
         "type": "-",
-        "size": 162785,
-        "lmtime": 1595019551812,
+        "size": 163191,
+        "lmtime": 1595301428171,
         "modified": false
       },
       "_Project info.gdoc": {
@@ -131,25 +89,7 @@
         "lmtime": 1593688956653,
         "modified": true
       },
-      "bitmaps.json": {
-        "type": "-",
-        "size": 0,
-        "lmtime": 0,
-        "modified": false
-      },
       "build": {},
-      "config.txt": {
-        "type": "-",
-        "size": 1812,
-        "lmtime": 1593101492027,
-        "modified": false
-      },
-      "constants.js": {
-        "type": "-",
-        "size": 1432,
-        "lmtime": 0,
-        "modified": false
-      },
       "dataObjFile": {
         "type": "-",
         "size": 29705,
@@ -179,6 +119,12 @@
         "size": 9115,
         "lmtime": 1593387410736,
         "modified": true
+      },
+      "isolate-0x3c50778-v8.log": {
+        "type": "-",
+        "size": 1644089,
+        "lmtime": 0,
+        "modified": false
       },
       "main.js": {
         "type": "-",
@@ -359,7 +305,1142 @@
         "lmtime": 1593452262800,
         "modified": false
       },
+      "processed1.txt": {
+        "type": "-",
+        "size": 195763,
+        "lmtime": 0,
+        "modified": true
+      },
       "projects": {},
+      "rust-fire-lib": {
+        ".gitignore": {
+          "type": "-",
+          "size": 89,
+          "lmtime": 0,
+          "modified": false
+        },
+        "README.md": {
+          "type": "-",
+          "size": 48,
+          "lmtime": 1595160405297,
+          "modified": false
+        },
+        "lib": {
+          "index.js": {
+            "type": "-",
+            "size": 63,
+            "lmtime": 1595160405348,
+            "modified": false
+          }
+        },
+        "native": {
+          "Cargo.lock": {
+            "type": "-",
+            "size": 3454,
+            "lmtime": 1595160405421,
+            "modified": true
+          },
+          "Cargo.toml": {
+            "type": "-",
+            "size": 294,
+            "lmtime": 1595269117009,
+            "modified": false
+          },
+          "artifacts.json": {
+            "type": "-",
+            "size": 254,
+            "lmtime": 1595301399202,
+            "modified": false
+          },
+          "build.rs": {
+            "type": "-",
+            "size": 183,
+            "lmtime": 1595208509171,
+            "modified": false
+          },
+          "index.node": {
+            "type": "-",
+            "size": 2698724,
+            "lmtime": 0,
+            "modified": true
+          },
+          "src": {
+            "lib.rs": {
+              "type": "-",
+              "size": 992,
+              "lmtime": 1595300994780,
+              "modified": false
+            }
+          },
+          "target": {
+            ".rustc_info.json": {
+              "type": "-",
+              "size": 703,
+              "lmtime": 0,
+              "modified": false
+            },
+            "release": {
+              ".cargo-lock": {
+                "type": "-",
+                "size": 0,
+                "lmtime": 0,
+                "modified": false
+              },
+              ".fingerprint": {},
+              "build": {
+                "bitflags-4af2e92e7755d84a": {},
+                "bitflags-50aa25f9667468d1": {},
+                "byteorder-98b6bf33e193c539": {},
+                "byteorder-9a3d6c8af5e4ee60": {},
+                "getrandom-55a7f27b0f38f2e2": {},
+                "getrandom-d31864b9024dbfc7": {},
+                "libc-0625db57a3f8bdfe": {},
+                "libc-20c6ce4ddc046726": {},
+                "memchr-44d8e5e7a75b5f76": {},
+                "memchr-607fde1146530e4d": {},
+                "neon-4f32f7ac8ad2a87f": {},
+                "neon-8088fff0db90c9fa": {},
+                "neon-build-11a8572a948a4f8f": {
+                  "build-script-build": {
+                    "type": "-",
+                    "size": 2655240,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "build_script_build-11a8572a948a4f8f": {
+                    "type": "-",
+                    "size": 2655240,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "build_script_build-11a8572a948a4f8f.d": {
+                    "type": "-",
+                    "size": 504,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "neon-build-c378e961ede24442": {
+                  "invoked.timestamp": {
+                    "type": "-",
+                    "size": 48,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "out": {},
+                  "output": {
+                    "type": "-",
+                    "size": 0,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "root-output": {
+                    "type": "-",
+                    "size": 91,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "stderr": {
+                    "type": "-",
+                    "size": 0,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "neon-sys-b63e8b20c9e9ff2d": {
+                  "build-script-build": {
+                    "type": "-",
+                    "size": 2972892,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "build_script_build-b63e8b20c9e9ff2d": {
+                    "type": "-",
+                    "size": 2972892,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "build_script_build-b63e8b20c9e9ff2d.d": {
+                    "type": "-",
+                    "size": 494,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "neon-sys-d1df4e8e313a575e": {
+                  "invoked.timestamp": {
+                    "type": "-",
+                    "size": 48,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "out": {},
+                  "output": {
+                    "type": "-",
+                    "size": 1687,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "root-output": {
+                    "type": "-",
+                    "size": 89,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "stderr": {
+                    "type": "-",
+                    "size": 6662,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "nix-71becd12db6b784a": {},
+                "nix-d4ff3beffec18e8d": {},
+                "proc-macro2-8af98da06e228503": {},
+                "proc-macro2-f84a18c9b42ce0db": {},
+                "rust-fire-lib-b99e44f62605e54f": {
+                  "invoked.timestamp": {
+                    "type": "-",
+                    "size": 48,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "out": {},
+                  "output": {
+                    "type": "-",
+                    "size": 0,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "root-output": {
+                    "type": "-",
+                    "size": 94,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "stderr": {
+                    "type": "-",
+                    "size": 0,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "rust-fire-lib-bae6180d5433242e": {
+                  "build-script-build": {
+                    "type": "-",
+                    "size": 2655356,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "build_script_build-bae6180d5433242e": {
+                    "type": "-",
+                    "size": 2655356,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "build_script_build-bae6180d5433242e.d": {
+                    "type": "-",
+                    "size": 288,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "serde-5cc5c1c92f7f59c4": {
+                  "build-script-build": {
+                    "type": "-",
+                    "size": 2718700,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "build_script_build-5cc5c1c92f7f59c4": {
+                    "type": "-",
+                    "size": 2718700,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "build_script_build-5cc5c1c92f7f59c4.d": {
+                    "type": "-",
+                    "size": 485,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "serde-acbb0adc22775cd0": {
+                  "invoked.timestamp": {
+                    "type": "-",
+                    "size": 48,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "out": {},
+                  "output": {
+                    "type": "-",
+                    "size": 324,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "root-output": {
+                    "type": "-",
+                    "size": 86,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "stderr": {
+                    "type": "-",
+                    "size": 0,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "serde_derive-1b85a0775f40353a": {},
+                "serde_derive-2b8e62160fcd325d": {},
+                "syn-3784d239cc0deace": {},
+                "syn-451298ac444a25b2": {}
+              },
+              "deps": {
+                "aho_corasick-917963cce5a00c77.d": {
+                  "type": "-",
+                  "size": 6329,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "bincode-26a4da16e4a0b794.d": {
+                  "type": "-",
+                  "size": 4514,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "bitflags-a15f3efdde8c5b33.d": {
+                  "type": "-",
+                  "size": 610,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "byteorder-2f442b08fa43ab45.d": {
+                  "type": "-",
+                  "size": 950,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "cc-efa6ecce0c656ca9.d": {
+                  "type": "-",
+                  "size": 937,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "cfg_if-347c82fbc89744bf.d": {
+                  "type": "-",
+                  "size": 600,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "cslice-d66862d034ad44a9.d": {
+                  "type": "-",
+                  "size": 596,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "getrandom-9384119ed40cb073.d": {
+                  "type": "-",
+                  "size": 2795,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "lazy_static-9116484ce0eb23f6.d": {
+                  "type": "-",
+                  "size": 1008,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libaho_corasick-917963cce5a00c77.rlib": {
+                  "type": "-",
+                  "size": 1137426,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libaho_corasick-917963cce5a00c77.rmeta": {
+                  "type": "-",
+                  "size": 809711,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libbincode-26a4da16e4a0b794.rlib": {
+                  "type": "-",
+                  "size": 532822,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libbincode-26a4da16e4a0b794.rmeta": {
+                  "type": "-",
+                  "size": 479246,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libbitflags-a15f3efdde8c5b33.rlib": {
+                  "type": "-",
+                  "size": 45202,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libbitflags-a15f3efdde8c5b33.rmeta": {
+                  "type": "-",
+                  "size": 44428,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libbyteorder-2f442b08fa43ab45.rlib": {
+                  "type": "-",
+                  "size": 366812,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libbyteorder-2f442b08fa43ab45.rmeta": {
+                  "type": "-",
+                  "size": 357199,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libc-558d969a7dc1cd31.d": {
+                  "type": "-",
+                  "size": 5414,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libcc-efa6ecce0c656ca9.rlib": {
+                  "type": "-",
+                  "size": 769780,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libcc-efa6ecce0c656ca9.rmeta": {
+                  "type": "-",
+                  "size": 143578,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libcfg_if-347c82fbc89744bf.rlib": {
+                  "type": "-",
+                  "size": 6038,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libcfg_if-347c82fbc89744bf.rmeta": {
+                  "type": "-",
+                  "size": 5268,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libcslice-d66862d034ad44a9.rlib": {
+                  "type": "-",
+                  "size": 27082,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libcslice-d66862d034ad44a9.rmeta": {
+                  "type": "-",
+                  "size": 25868,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libgetrandom-9384119ed40cb073.rlib": {
+                  "type": "-",
+                  "size": 94974,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libgetrandom-9384119ed40cb073.rmeta": {
+                  "type": "-",
+                  "size": 53140,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "liblazy_static-9116484ce0eb23f6.rlib": {
+                  "type": "-",
+                  "size": 20110,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "liblazy_static-9116484ce0eb23f6.rmeta": {
+                  "type": "-",
+                  "size": 19326,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "liblibc-558d969a7dc1cd31.rlib": {
+                  "type": "-",
+                  "size": 3577554,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "liblibc-558d969a7dc1cd31.rmeta": {
+                  "type": "-",
+                  "size": 3105830,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libmemchr-24887c0ed0674136.rlib": {
+                  "type": "-",
+                  "size": 63358,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libmemchr-24887c0ed0674136.rmeta": {
+                  "type": "-",
+                  "size": 58493,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libneon-2225284f5320a56d.rlib": {
+                  "type": "-",
+                  "size": 625784,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libneon-2225284f5320a56d.rmeta": {
+                  "type": "-",
+                  "size": 457574,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libneon_build-971a21ac8b6cca99.rlib": {
+                  "type": "-",
+                  "size": 2712,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libneon_build-971a21ac8b6cca99.rmeta": {
+                  "type": "-",
+                  "size": 1584,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libneon_runtime-c5edf3816068c1bd.rlib": {
+                  "type": "-",
+                  "size": 30036,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libneon_runtime-c5edf3816068c1bd.rmeta": {
+                  "type": "-",
+                  "size": 24090,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libneon_sys-4f223300b9911dd5.rlib": {
+                  "type": "-",
+                  "size": 71150,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libneon_sys-4f223300b9911dd5.rmeta": {
+                  "type": "-",
+                  "size": 30101,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libnix-d03b4b8c0073c12e.rlib": {
+                  "type": "-",
+                  "size": 5181862,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libnix-d03b4b8c0073c12e.rmeta": {
+                  "type": "-",
+                  "size": 4166486,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libppv_lite86-38f7f2bcecb4eeb1.rlib": {
+                  "type": "-",
+                  "size": 362560,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libppv_lite86-38f7f2bcecb4eeb1.rmeta": {
+                  "type": "-",
+                  "size": 340367,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libproc_macro2-0678be924a378da5.rlib": {
+                  "type": "-",
+                  "size": 721216,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libproc_macro2-0678be924a378da5.rmeta": {
+                  "type": "-",
+                  "size": 224551,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libquote-56198e242cd3be93.rlib": {
+                  "type": "-",
+                  "size": 509080,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libquote-56198e242cd3be93.rmeta": {
+                  "type": "-",
+                  "size": 228578,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "librand-fa682b9c2ca1e9f3.rlib": {
+                  "type": "-",
+                  "size": 1413710,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "librand-fa682b9c2ca1e9f3.rmeta": {
+                  "type": "-",
+                  "size": 1183392,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "librand_chacha-8ed9ab6e260dd6ed.rlib": {
+                  "type": "-",
+                  "size": 134308,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "librand_chacha-8ed9ab6e260dd6ed.rmeta": {
+                  "type": "-",
+                  "size": 115274,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "librand_core-8cfbf0584a54dba8.rlib": {
+                  "type": "-",
+                  "size": 161384,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "librand_core-8cfbf0584a54dba8.rmeta": {
+                  "type": "-",
+                  "size": 120142,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libregex-49540df86e212a79.rlib": {
+                  "type": "-",
+                  "size": 2495418,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libregex-49540df86e212a79.rmeta": {
+                  "type": "-",
+                  "size": 977866,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libregex_syntax-efd5f81eafcd4211.rlib": {
+                  "type": "-",
+                  "size": 7261252,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libregex_syntax-efd5f81eafcd4211.rmeta": {
+                  "type": "-",
+                  "size": 5422147,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "librust_fire_lib.so": {
+                  "type": "-",
+                  "size": 2861348,
+                  "lmtime": 0,
+                  "modified": true
+                },
+                "libsemver-4ff02abd26b3150e.rlib": {
+                  "type": "-",
+                  "size": 322000,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libsemver-4ff02abd26b3150e.rmeta": {
+                  "type": "-",
+                  "size": 191320,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libsemver_parser-72f4608324710324.rlib": {
+                  "type": "-",
+                  "size": 217304,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libsemver_parser-72f4608324710324.rmeta": {
+                  "type": "-",
+                  "size": 68549,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libserde-5863a9ad2020339d.rlib": {
+                  "type": "-",
+                  "size": 5148352,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libserde-5863a9ad2020339d.rmeta": {
+                  "type": "-",
+                  "size": 4966410,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libserde_derive-b51102f326f7474e.so": {
+                  "type": "-",
+                  "size": 7527668,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libsyn-bc178a888cefea83.rlib": {
+                  "type": "-",
+                  "size": 4527178,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libsyn-bc178a888cefea83.rmeta": {
+                  "type": "-",
+                  "size": 2059766,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libthread_local-90a31e5d6b9b7903.rlib": {
+                  "type": "-",
+                  "size": 134742,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libthread_local-90a31e5d6b9b7903.rmeta": {
+                  "type": "-",
+                  "size": 90924,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libunicode_xid-5a9503d291f14858.rlib": {
+                  "type": "-",
+                  "size": 159426,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libunicode_xid-5a9503d291f14858.rmeta": {
+                  "type": "-",
+                  "size": 144907,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libunix_ipc-7468d6002e21b99f.rlib": {
+                  "type": "-",
+                  "size": 213134,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libunix_ipc-7468d6002e21b99f.rmeta": {
+                  "type": "-",
+                  "size": 101883,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libvoid-a720318ce9867299.rlib": {
+                  "type": "-",
+                  "size": 11464,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "libvoid-a720318ce9867299.rmeta": {
+                  "type": "-",
+                  "size": 9138,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "memchr-24887c0ed0674136.d": {
+                  "type": "-",
+                  "size": 1603,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "neon-2225284f5320a56d.d": {
+                  "type": "-",
+                  "size": 7285,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "neon_build-971a21ac8b6cca99.d": {
+                  "type": "-",
+                  "size": 624,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "neon_runtime-c5edf3816068c1bd.d": {
+                  "type": "-",
+                  "size": 7749,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "neon_sys-4f223300b9911dd5.d": {
+                  "type": "-",
+                  "size": 610,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "nix-d03b4b8c0073c12e.d": {
+                  "type": "-",
+                  "size": 15932,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "ppv_lite86-38f7f2bcecb4eeb1.d": {
+                  "type": "-",
+                  "size": 1675,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "proc_macro2-0678be924a378da5.d": {
+                  "type": "-",
+                  "size": 2099,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "quote-56198e242cd3be93.d": {
+                  "type": "-",
+                  "size": 2627,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "rand-fa682b9c2ca1e9f3.d": {
+                  "type": "-",
+                  "size": 13127,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "rand_chacha-8ed9ab6e260dd6ed.d": {
+                  "type": "-",
+                  "size": 1337,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "rand_core-8cfbf0584a54dba8.d": {
+                  "type": "-",
+                  "size": 2318,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "regex-49540df86e212a79.d": {
+                  "type": "-",
+                  "size": 7646,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "regex_syntax-efd5f81eafcd4211.d": {
+                  "type": "-",
+                  "size": 12134,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "rust_fire_lib.d": {
+                  "type": "-",
+                  "size": 192,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "semver-4ff02abd26b3150e.d": {
+                  "type": "-",
+                  "size": 1294,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "semver_parser-72f4608324710324.d": {
+                  "type": "-",
+                  "size": 2117,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "serde-5863a9ad2020339d.d": {
+                  "type": "-",
+                  "size": 6646,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "serde_derive-b51102f326f7474e.d": {
+                  "type": "-",
+                  "size": 4480,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "syn-bc178a888cefea83.d": {
+                  "type": "-",
+                  "size": 12892,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "thread_local-90a31e5d6b9b7903.d": {
+                  "type": "-",
+                  "size": 1753,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "unicode_xid-5a9503d291f14858.d": {
+                  "type": "-",
+                  "size": 988,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "unix_ipc-7468d6002e21b99f.d": {
+                  "type": "-",
+                  "size": 2046,
+                  "lmtime": 0,
+                  "modified": false
+                },
+                "void-a720318ce9867299.d": {
+                  "type": "-",
+                  "size": 582,
+                  "lmtime": 0,
+                  "modified": false
+                }
+              },
+              "examples": {},
+              "incremental": {},
+              "librust_fire_lib.d": {
+                "type": "-",
+                "size": 173,
+                "lmtime": 0,
+                "modified": false
+              },
+              "librust_fire_lib.so": {
+                "type": "-",
+                "size": 2861348,
+                "lmtime": 0,
+                "modified": true
+              }
+            }
+          }
+        },
+        "node_modules": {
+          ".bin": {},
+          "ansi-escape-sequences": {
+            ".travis.yml": {
+              "type": "-",
+              "size": 59,
+              "lmtime": 0,
+              "modified": false
+            },
+            "LICENSE": {
+              "type": "-",
+              "size": 1103,
+              "lmtime": 1595160443635,
+              "modified": false
+            },
+            "README.hbs": {
+              "type": "-",
+              "size": 1748,
+              "lmtime": 1595160443619,
+              "modified": false
+            },
+            "README.md": {
+              "type": "-",
+              "size": 13445,
+              "lmtime": 1595160441656,
+              "modified": false
+            },
+            "dist": {
+              "index.js": {
+                "type": "-",
+                "size": 8003,
+                "lmtime": 1595160443696,
+                "modified": false
+              },
+              "index.mjs": {
+                "type": "-",
+                "size": 7193,
+                "lmtime": 1595160443654,
+                "modified": false
+              }
+            },
+            "index.mjs": {
+              "type": "-",
+              "size": 6062,
+              "lmtime": 1595160441587,
+              "modified": false
+            },
+            "jsdoc.conf": {
+              "type": "-",
+              "size": 69,
+              "lmtime": 1595160441521,
+              "modified": false
+            },
+            "node_modules": {
+              "array-back": {
+                "LICENSE": {
+                  "type": "-",
+                  "size": 1103,
+                  "lmtime": 1595160443938,
+                  "modified": false
+                },
+                "README.hbs": {
+                  "type": "-",
+                  "size": 1428,
+                  "lmtime": 1595160443830,
+                  "modified": false
+                },
+                "README.md": {
+                  "type": "-",
+                  "size": 2340,
+                  "lmtime": 1595160443796,
+                  "modified": false
+                },
+                "dist": {
+                  "index.js": {
+                    "type": "-",
+                    "size": 1663,
+                    "lmtime": 1595160444060,
+                    "modified": false
+                  }
+                },
+                "index.mjs": {
+                  "type": "-",
+                  "size": 1269,
+                  "lmtime": 1595160443784,
+                  "modified": false
+                },
+                "package.json": {
+                  "type": "-",
+                  "size": 2217,
+                  "lmtime": 1595160443766,
+                  "modified": false
+                }
+              }
+            },
+            "package.json": {
+              "type": "-",
+              "size": 2050,
+              "lmtime": 1595160441461,
+              "modified": false
+            },
+            "test.js": {
+              "type": "-",
+              "size": 417,
+              "lmtime": 1595160441401,
+              "modified": false
+            }
+          },
+          "ansi-escapes": {
+            "index.js": {
+              "type": "-",
+              "size": 2751,
+              "lmtime": 0,
+              "modified": false
+            },
+            "license": {
+              "type": "-",
+              "size": 1109,
+              "lmtime": 0,
+              "modified": false
+            },
+            "package.json": {
+              "type": "-",
+              "size": 1861,
+              "lmtime": 0,
+              "modified": false
+            },
+            "readme.md": {
+              "type": "-",
+              "size": 3694,
+              "lmtime": 1595160444076,
+              "modified": false
+            }
+          },
+          "ansi-regex": {},
+          "ansi-styles": {},
+          "array-back": {},
+          "balanced-match": {},
+          "brace-expansion": {},
+          "builtins": {},
+          "chalk": {},
+          "chardet": {},
+          "cli-cursor": {},
+          "cli-width": {},
+          "color-convert": {},
+          "color-name": {},
+          "command-line-args": {},
+          "command-line-commands": {},
+          "command-line-usage": {},
+          "concat-map": {},
+          "deep-extend": {},
+          "escape-string-regexp": {},
+          "external-editor": {},
+          "figures": {},
+          "find-replace": {},
+          "fs.realpath": {},
+          "git-config": {},
+          "glob": {},
+          "handlebars": {},
+          "has-flag": {},
+          "iconv-lite": {},
+          "inflight": {},
+          "inherits": {},
+          "iniparser": {},
+          "inquirer": {},
+          "is-fullwidth-code-point": {},
+          "lodash": {},
+          "lodash.padend": {},
+          "mimic-fn": {},
+          "minimatch": {},
+          "minimist": {},
+          "mkdirp": {},
+          "mute-stream": {},
+          "neo-async": {},
+          "neon-cli": {},
+          "once": {},
+          "onetime": {},
+          "os-tmpdir": {},
+          "path-is-absolute": {},
+          "quickly-copy-file": {},
+          "reduce-flatten": {},
+          "restore-cursor": {},
+          "rimraf": {},
+          "rsvp": {},
+          "run-async": {},
+          "rx-lite": {},
+          "rx-lite-aggregates": {},
+          "safer-buffer": {},
+          "semver": {},
+          "signal-exit": {},
+          "source-map": {},
+          "spdx-correct": {},
+          "spdx-exceptions": {},
+          "spdx-expression-parse": {},
+          "spdx-license-ids": {},
+          "string-width": {},
+          "strip-ansi": {},
+          "supports-color": {},
+          "table-layout": {},
+          "test-value": {},
+          "through": {},
+          "tmp": {},
+          "toml": {},
+          "ts-typed-json": {},
+          "typical": {},
+          "uglify-js": {},
+          "validate-npm-package-license": {},
+          "validate-npm-package-name": {},
+          "wordwrap": {},
+          "wordwrapjs": {},
+          "wrappy": {}
+        },
+        "package-lock.json": {
+          "type": "-",
+          "size": 23688,
+          "lmtime": 0,
+          "modified": false
+        },
+        "package.json": {
+          "type": "-",
+          "size": 269,
+          "lmtime": 1595160405271,
+          "modified": false
+        }
+      },
       "saveFile": {
         "type": "-",
         "size": 255,
@@ -368,8 +1449,8 @@
       },
       "seq_loop.js": {
         "type": "-",
-        "size": 10770,
-        "lmtime": 1593715690873,
+        "size": 10951,
+        "lmtime": 1595505052712,
         "modified": false
       },
       "test.json": {
@@ -380,8 +1461,8 @@
       },
       "timingLog.json": {
         "type": "-",
-        "size": 6961,
-        "lmtime": 1593450570549,
+        "size": 459,
+        "lmtime": 1595270929141,
         "modified": false
       },
       "wifiControl.js": {

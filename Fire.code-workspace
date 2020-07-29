@@ -6,6 +6,6 @@
 	],
 	"settings": {
 		"files.autoSave": "onFocusChange",
-		"inline-bookmarks.view.showVisibleFilesOnly": true
+		"inline-bookmarks.view.showVisibleFilesOnly": false
 	}
 }
