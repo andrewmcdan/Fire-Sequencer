@@ -4,7 +4,6 @@ console.log(nativeLib.hello());
 // console.log(addon.between(99,34,99,true));
 
 
-
 /** TODO: @todo list
  *
  *  - figure out somehting to use browser button for
@@ -432,7 +431,7 @@ function defaultTrack(stepMode = true) { // if called with first argument as fal
   this.monophonicMode = false;
   this.defaultColor = 127;
   this.outputType = "midi"; // "midi" for MIDI device output. "cv" for control voltage output
-  this.outputName = "MIDI Translator MIDI 5 ";
+  this.outputName = "USB Midi MIDI 1 ";
   this.outputIndex = "0";
   this.midiChannel = 0;
   this.trackName = "Track" + (this.num < 10 ? "0" + (this.num + 1) : (this.num + 1));
@@ -932,7 +931,7 @@ for (let q = 0; q < 16; q++) {
     seq.settings.encoders.control[q][r].midiCCtype = midiCCtypeName[1]; // "rel1"; // abs, rel1 (127 = -1, 1 = +1), rel2 (63 = -1, 65 = +1), rel1Inv, rel2Inv
     seq.settings.encoders.control[q][r].midiOutPort = 5;
     seq.settings.encoders.control[q][r].midiOutChannel = 1;
-    seq.settings.encoders.control[q][r].midiOutPortName = "MIDI Translator MIDI 4 ";
+    seq.settings.encoders.control[q][r].midiOutPortName = "USB Midi MIDI 1 ";
   }
 }
 
@@ -951,7 +950,7 @@ for (let q = 0; q < 16; q++) {
     seq.project.encoders.control[q][r].midiCCtype = "abs"; // abs, rel1 (127 = -1, 1 = +1), rel2 (63 = -1, 65 = +1), rel1Inv, rel2Inv
     seq.project.encoders.control[q][r].midiOutPort = 5;
     seq.project.encoders.control[q][r].midiOutChannel = 1;
-    seq.project.encoders.control[q][r].midiOutPortName = "MIDI Translator MIDI 7 ";
+    seq.project.encoders.control[q][r].midiOutPortName = "USB Midi MIDI 1 ";
   }
 }
 
@@ -995,7 +994,7 @@ updateAllGridBtnLEDs();
 updateAllNotGridBtnLEDS();
 
 // By default, the device goes into Step Mode.
-seq.mode.Note();
+seq.mode.Step();
 // fs.writeFileSync('dataObjFile.json', JSON.stringify(seq.track));
 // loadGlobalData();
 
@@ -1065,7 +1064,6 @@ ipc.server.start();
 **************************************************************************************/
 function playNote(eventData, socket = null, timeoutIndex = null) {
   // newTimingLogEntry("playnote : " + JSON.stringify(eventData));
-  // console.log(eventData)
 
   if (settings.osType != "Windows_NT") {
     let midiDevice = false;
@@ -1150,9 +1148,7 @@ for (let k = 0; k < 4; k++) {
 // @note step highlight
 function stepHighlight(stepNumber) {
   seq.state.playing = true;
-  // console.log({
-  //   stepNumber
-  // });
+
 
   // need  to set grid button led colors to white for the step seq is on.
   // this should only be done for tracks whose patterns are in view of the current step.
@@ -1207,7 +1203,7 @@ function stepHighlight(stepNumber) {
 ***************************************************************************************/
 
 fireMidiIn.on('message', async function (deltaTime, message) {
-  // console.log(deltaTime);
+
   let selTrack = seq.track[seq.state.selectedTrack];
   let curPat = selTrack.patterns["id_" + selTrack.currentPattern];
   if (settings.flushedInput) { // make sure we ignore incoming messages until the input butffers have been flushed.
@@ -1246,14 +1242,6 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           // seq.mode.names = ["Step", "Note", "Drum", "Perform", "Alt-Step"];
           switch (seq.mode.current) {
             case 0: // step mode
-              // let timeoutVar = setTimeout((btns) => {
-              //   console.log("time out")
-              //   console.log(btns)
-              // }, 500, btnIndex)
-              // console.log(timeoutVar)
-              // setTimeout((tVar) => {
-              //   console.log(tVar)
-              // }, 1000, timeoutVar);
 
               // reset menu stuff so that we dont enter old menus
               resetMenus();
@@ -1266,8 +1254,8 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                   if (curPat.events["id_" + step] != undefined) {
                     curPat.events["id_" + step].enabled = !curPat.events["id_" + step].enabled;
                   }
-                  sendTrackUpdateToSeqLoop();
                 }
+                sendTrackUpdateToSeqLoop();
                 updateAllGridBtnLEDs();
                 displayTrackAndPatInfo(track, curPat);
               };
@@ -1323,7 +1311,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
                   step = getBitPosition(row4Bits) + (curPat.viewArea * 16); // step in the row
                   if (getBitPosition(seq.state.gridBtnsPressedLower) != null && curPat.events["id_" + step] != undefined && numBtnsPressed == 2) {
                     curPat.events["id_" + step].data = seq.mode.Note.notes[getBitPosition(seq.state.gridBtnsPressedLower)].value;
-                    // console.log(seq.mode.Note.notes[getBitPosition(seq.state.gridBtnsPressedLower)].value);
+                    // log(seq.mode.Note.notes[getBitPosition(seq.state.gridBtnsPressedLower)].value);
                   } else if (getBitPosition(row3Bits) != null && curPat.events["id_" + step] != undefined && numBtnsPressed == 2) {
                     curPat.events["id_" + step].data = seq.mode.Note.notes[getBitPosition(row3Bits) + 32].value;
                   }
@@ -1496,7 +1484,6 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             resetMenus();
             let btn = message[1] - 36;
             seq.state.muteSoloBtnsLastPressed = 1 << btn;
-            // console.log(seq.state.muteSoloBtnsLastPressed);
             seq.state.muteSoloBtnsTimeouts[btn].time = Date.now();
             seq.state.muteSoloBtnsTimeouts[btn].fn = soloMuteTrackSelectUpdate;
             break;
@@ -1506,7 +1493,6 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             selTrack = seq.track[seq.state.selectedTrack];
             curPat = selTrack.patterns["id_" + selTrack.currentPattern];
 
-            // console.log(curPat);
 
             if (!seq.state.shiftPressed && !seq.state.altPressed) {
               if (curPat.patLength / 16 > curPat.viewArea + 1) {
@@ -1573,13 +1559,10 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             // newTimingLogEntry("direct");
             // testSpeedOfAccessingObjectsByOtherWay(10000);
             // newTimingLogEntry("direct done");
-            // console.log("writing to file");
             // writeTimingLogToFile();
 
             // selTrack = seq.track[seq.state.selectedTrack];
             // curPat = selTrack.patterns["id_" + selTrack.currentPattern];
-
-            // console.log()
             // saveProject(uuidv4(), "default");
 
             break;
@@ -1669,7 +1652,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             }
             break;
         }
-        sendTrackUpdateToSeqLoop();
+        // sendTrackUpdateToSeqLoop();
         break;
       case 128: // @note note-off event
         if (message[1] >= 54 && message[1] <= 117) { // grid button
@@ -1700,8 +1683,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
               //     displayTrackAndPatInfo(track, curPat);
               if (Date.now() - seq.state.gridBtnsTimeouts[btnIndex].time < 100) {
                 seq.state.gridBtnsTimeouts[btnIndex].fn(btnIndex);
-              }
 
+              }
+              // sendTrackUpdateToSeqLoop();
 
               break;
             case 1: // note mode
@@ -1782,8 +1766,8 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           case 31: // pattern up button
             break;
           case 26: // encoder bank button
-            if(Date.now() - seq.state.encoderBankTimeout > 1000){
-              seq.state.encoderBank=0;
+            if (Date.now() - seq.state.encoderBankTimeout > 1000) {
+              seq.state.encoderBank = 0;
             }
             setEncoderBankLEDs();
             break;
@@ -1804,10 +1788,10 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           case 118: // select encoder
             if (message[2] == 127) {
               // @note select encoder down / CCW
-              if(seq.state.altPressed && seq.state.shiftPressed){
+              if (seq.state.altPressed && seq.state.shiftPressed) {
                 seq.track.push(new defaultTrack());
-                seq.track[seq.track.length-1].addPattern(16,seq.state.currentBPM,4);
-              }else if (seq.state.menu.entered) {
+                seq.track[seq.track.length - 1].addPattern(16, seq.state.currentBPM, 4);
+              } else if (seq.state.menu.entered) {
                 // draw the menu items
                 seq.state.menu.timeOut.refresh();
                 settingsMenu(1);
@@ -1917,13 +1901,13 @@ function sendTrackUpdateToSeqLoop() {
     return;
   }
   let timeMillis = Date.now();
-  if (timeMillis - sendTrackUpdateToSeqLoop.lastUpdate < 250) {
+  if (timeMillis - sendTrackUpdateToSeqLoop.lastUpdate < 50) {
     return;
   }
   sendTrackUpdateToSeqLoop.lastUpdate = Date.now();
   // setTimeout(() => {
   ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
-  // }, 250);
+  // }, 50);
 }
 
 function encoderTouch(encIndex = null) {
@@ -2045,7 +2029,7 @@ function setEncoderBankLEDs() {
         seq.state.encoderBank = 0;
       }
       notGridBtnLEDS[23] = seq.state.encoderBank;
-    }else if (seq.settings.encoders.banks == 16) {
+    } else if (seq.settings.encoders.banks == 16) {
       if (seq.state.encoderBank == 16) {
         seq.state.encoderBank = 0;
       }
@@ -2057,7 +2041,7 @@ function setEncoderBankLEDs() {
         seq.state.encoderBank = 0;
       }
       notGridBtnLEDS[23] = seq.state.encoderBank;
-    }else if (seq.project.encoders.banks == 16) {
+    } else if (seq.project.encoders.banks == 16) {
       if (seq.state.encoderBank == 16) {
         seq.state.encoderBank = 0;
       }
@@ -2186,7 +2170,6 @@ function updateAllGridBtnLEDs() {
       }
     }
   } else if (seq.mode.current == 1) {
-    // console.log("mode 1 grid btns");
     switch (seq.mode.Note.bottomRowMode) {
       case 0: // bottom row extends keyboard
         for (let i = 0; i < 64; i++) {
@@ -2563,28 +2546,8 @@ function getBitPosition(n) {
   return null;
 }
 
-// console.log(bitCount(0xFF)) //=> 8
-
-
-// 120 bpm, 16 steps,
-// 60/120 = 0.5 sec/beat
-// 16/4 = 4 steps/beats
-// 4 * 0.5 = total pattern time
-
-// (60/bpm)*(patternLength/stepPerBeat)
-
-
-
-
 seq.settings.menu = {};
-// seq.settings.menu.currentState = 0;
-// seq.settings.menu.prevState = 0;
-// seq.settings.menu.nextState = 0;
 seq.settings.menu.currentMenu = 0;
-// seq.settings.menu.itemDisplayOffset = 0;
-// seq.settings.menu.itemSelectOffset = 0;
-
-
 
 // @note settings menu
 /*************************************************************************************************
@@ -2735,6 +2698,7 @@ function subMenu(text, items, parent, textSize = 16) {
 var trackMonophonicModeToggle = new menuItem(
   function () {
     this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     this.tempVar = seq.track[seq.state.selectedTrack];
     return "Mono Mode";
   },
@@ -2777,6 +2741,8 @@ var trackMonophonicModeToggle = new menuItem(
 
 var encoderBankGlobalSettingsNumBanks = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     this.tempVar = seq.settings.encoders.global ? "settings" : "project"
     return "# of banks: " + seq[this.tempVar].encoders.banks;
   },
@@ -2818,6 +2784,8 @@ var encoderBankGlobalSettingsNumBanks = new menuItem(
 
 var encoderBankGlobalSettingsGlobalEnable = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "GlblCtrl: " + (seq.settings.encoders.global ? "Enabled" : "Disabled");
   },
   function () { // upFn
@@ -2855,6 +2823,8 @@ var encoderBankGlobalSettingsGlobalEnable = new menuItem(
 
 var midiInDeviceEnable = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Midi In En/Disable";
   },
   function () { // upFn
@@ -2912,6 +2882,8 @@ var midiInDeviceEnable = new menuItem(
 
 var midiOutDeviceEnable = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Midi Out En/Disable";
   },
   function () { // upFn
@@ -2969,6 +2941,8 @@ var midiOutDeviceEnable = new menuItem(
 
 var midiClockInputDeviceSelect = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     // seq.settings.midi.clockInSource
     // seq.settings.midi.clockInEnabled
     return "Midi Clock In Source";
@@ -3028,6 +3002,8 @@ var midiClockInputDeviceSelect = new menuItem(
 
 var trackColorPreset = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     let text = "Preset: ";
     let selTrack = seq.track[seq.state.selectedTrack];
     if (selTrack.patterns["id_" + selTrack.currentPattern].color.mode == "preset") {
@@ -3088,6 +3064,8 @@ var trackColorPreset = new menuItem(
 
 var trackColorRed = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     let selTrack = seq.track[seq.state.selectedTrack];
     let text = "Red: ";
     text = text + selTrack.patterns["id_" + selTrack.currentPattern].color.red;
@@ -3145,6 +3123,8 @@ var trackColorRed = new menuItem(
 
 var trackColorGrn = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     let selTrack = seq.track[seq.state.selectedTrack];
     let text = "Green: ";
     text = text + selTrack.patterns["id_" + selTrack.currentPattern].color.grn;
@@ -3202,6 +3182,8 @@ var trackColorGrn = new menuItem(
 
 var trackColorBlu = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     let selTrack = seq.track[seq.state.selectedTrack];
     let text = "Blue: ";
     text = text + selTrack.patterns["id_" + selTrack.currentPattern].color.blu;
@@ -3363,6 +3345,8 @@ var trackOutputDevice = new menuItem(
 
 var trackOutputType = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Type (MIDI/CV)";
   },
   function () { // upFn
@@ -3401,8 +3385,11 @@ var trackOutputType = new menuItem(
 
 var trackName = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     let selTrack = seq.track[seq.state.selectedTrack];
     selTrack.trackNameTemp = selTrack.trackName;
+    this.goBackOnSel = false;
     return "Track Name";
   },
   function () { // upFn
@@ -3449,6 +3436,8 @@ var trackName = new menuItem(
 
 var trackMidiChannel = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     this.currentSelectedItem = seq.track[seq.state.selectedTrack].midiChannel;
     return "Midi out Channel";
   },
@@ -3514,6 +3503,8 @@ midiClockInputDeviceSelect.parentMenu = settingsMidiMenu;
 
 var globalImmeiateTrackUpdatesMenu = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Immediate Track Updates";
   },
   function () { // upFn
@@ -3559,6 +3550,8 @@ var globalImmeiateTrackUpdatesMenu = new menuItem(
 
 var settingsPowerControl_shutdown = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Shutdown"
   },
   function () { // upFn
@@ -3574,7 +3567,7 @@ var settingsPowerControl_shutdown = new menuItem(
 
   },
   function () { // dispFn
-    return ["Be sure to","save your data!","OK, Shutdown"]
+    return ["Be sure to", "save your data!", "OK, Shutdown"]
   },
   null,
   true // optional bool to indicate if the menu show go back to the parent on select
@@ -3582,6 +3575,8 @@ var settingsPowerControl_shutdown = new menuItem(
 
 var settingsPowerControl_reboot = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Full reboot"
   },
   function () { // upFn
@@ -3597,7 +3592,7 @@ var settingsPowerControl_reboot = new menuItem(
 
   },
   function () { // dispFn
-    return ["Be sure to","save your data!","OK, Reboot"]
+    return ["Be sure to", "save your data!", "OK, Reboot"]
   },
   null,
   true // optional bool to indicate if the menu show go back to the parent on select
@@ -3605,6 +3600,8 @@ var settingsPowerControl_reboot = new menuItem(
 
 var settingsPowerControl_restartFireSeq = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Restart FireSeq"
   },
   function () { // upFn
@@ -3620,7 +3617,7 @@ var settingsPowerControl_restartFireSeq = new menuItem(
 
   },
   function () { // dispFn
-    return ["Be sure to","save your data!","OK, Restart"]
+    return ["Be sure to", "save your data!", "OK, Restart"]
   },
   null,
   true // optional bool to indicate if the menu show go back to the parent on select
@@ -3628,7 +3625,7 @@ var settingsPowerControl_restartFireSeq = new menuItem(
 
 var settingsPowerControlMenu = new subMenu(
   "Power Control",
-  [settingsPowerControl_shutdown,settingsPowerControl_reboot,settingsPowerControl_restartFireSeq],
+  [settingsPowerControl_shutdown, settingsPowerControl_reboot, settingsPowerControl_restartFireSeq],
   null
 )
 
@@ -3653,40 +3650,45 @@ var projectSave = new menuItem(
     this.tempVar = {};
     this.tempVar.name = seq.currentProjectName;
     this.tempVar.currentSelectedItem = 0;
+    this.goBackOnSel = false;
     return "Save project";
   },
   function () { // upFn
-    if(this.tempVar.currentSelectedItem > 0){
+    if (this.tempVar.currentSelectedItem > 0) {
       this.tempVar.currentSelectedItem--;
     }
-    if((this.tempVar.currentSelectedItem < 1 || this.tempVar.currentSelectedItem >= 107) && this.currentSelectedItem>0){
+    if ((this.tempVar.currentSelectedItem < 1 || this.tempVar.currentSelectedItem >= 107) && this.currentSelectedItem > 0) {
       this.currentSelectedItem--;
     }
   },
   function () { // dwnFn
-    if(this.tempVar.currentSelectedItem<109){
-      this.tempVar.currentSelectedItem++;
+    if (this.tempVar.currentSelectedItem < 109) {
+      if (seq.state.shiftPressed) {
+        this.tempVar.currentSelectedItem = 108;
+      } else {
+        this.tempVar.currentSelectedItem++;
+      }
     }
-    if((this.tempVar.currentSelectedItem < 2 || this.tempVar.currentSelectedItem > 108) && this.currentSelectedItem<3){
+    if ((this.tempVar.currentSelectedItem < 2 || this.tempVar.currentSelectedItem > 108) && this.currentSelectedItem < 3) {
       this.currentSelectedItem++;
     }
   },
   function (selection) { // selFn
-    switch(selection){
+    switch (selection) {
       case 0:
         this.tempVar.name = "";
         break;
       case 2:
-        saveProject(seq.currentProjectID,this.tempVar.name);
+        saveProject(seq.currentProjectID, this.tempVar.name);
         this.goBackOnSel = true;
         break;
       case 3:
         this.goBackOnSel = true;
         break;
       default:
-        if(seq.state.altPressed){
-          this.tempVar.name = this.tempVar.name.substring(0,this.tempVar.name.length-1);
-        }else{
+        if (seq.state.altPressed) {
+          this.tempVar.name = this.tempVar.name.substring(0, this.tempVar.name.length - 1);
+        } else {
           this.tempVar.name = this.tempVar.name + String.fromCharCode(this.tempVar.currentSelectedItem + 31);
         }
     }
@@ -3694,19 +3696,19 @@ var projectSave = new menuItem(
   function () { // genFn
   },
   function () { // dispFn
-    switch(this.tempVar.currentSelectedItem){
+    switch (this.tempVar.currentSelectedItem) {
       case 0:
-        return ["Project Name:",this.tempVar.name,"Press select","to clear name"];
+        return ["Project Name:", this.tempVar.name, "Press select", "to clear name"];
       case 107:
       case 108:
       case 109:
-        return ["Project Name:",this.tempVar.name,"SAVE","CANCEL"];
+        return ["Project Name:", this.tempVar.name, "SAVE", "CANCEL"];
       default:
-        let dispString = this.tempVar.name + String.fromCharCode(this.tempVar.currentSelectedItem+31);
-        for(; PlotStringToPixelMemMap(dispString,0,0,16,0,false,true)>114;){
+        let dispString = this.tempVar.name + String.fromCharCode(this.tempVar.currentSelectedItem + 31);
+        for (; PlotStringToPixelMemMap(dispString, 0, 0, 16, 0, false, true) > 114;) {
           dispString = dispString.substring(1);
         }
-        return ["Project Name:",dispString,"SAVE","CANCEL"]
+        return ["Project Name:", dispString, "SAVE", "CANCEL"]
     }
   },
   null,
@@ -3722,13 +3724,19 @@ var projectLoad = new menuItem(
     return "Load project";
   },
   function () { // upFn
-    if(this.currentSelectedItem>0){
+    if (this.currentSelectedItem > 0) {
       this.currentSelectedItem--;
+      if (this.currentSelectedItem < this.currentDisplayRange) {
+        this.currentDisplayRange = this.currentSelectedItem;
+      }
     }
   },
   function () { // dwnFn
-    if(this.currentSelectedItem<this.tempVar.numProjects-1){
+    if (this.currentSelectedItem < this.tempVar.numProjects - 1) {
       this.currentSelectedItem++;
+      if (this.currentDisplayRange + 2 < this.currentSelectedItem && this.currentDisplayRange < this.tempVar.numProjects - 4) {
+        this.currentDisplayRange++;
+      }
     }
   },
   function (selection) { // selFn
@@ -3739,7 +3747,7 @@ var projectLoad = new menuItem(
   },
   function () { // dispFn
     let dispArray = [];
-    this.tempVar.projectsArray.forEach((proj,ind)=>{
+    this.tempVar.projectsArray.forEach((proj, ind) => {
       dispArray.push(proj.name);
     })
     return dispArray;
@@ -3749,33 +3757,80 @@ var projectLoad = new menuItem(
 )
 
 var projectNewFromCurrent = new menuItem(
-  /** TODO: @todo new project from current menu item
-   * **/
   function () {
+    this.currentSelectedItem = 0;
+    this.tempVar = {};
+    this.tempVar.name = seq.currentProjectName;
+    this.tempVar.currentSelectedItem = 0;
+    this.goBackOnSel = false;
     return "Save as new";
   },
   function () { // upFn
-
+    if (this.tempVar.currentSelectedItem > 0) {
+      this.tempVar.currentSelectedItem--;
+    }
+    if ((this.tempVar.currentSelectedItem < 1 || this.tempVar.currentSelectedItem >= 107) && this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+    }
   },
   function () { // dwnFn
-
+    if (this.tempVar.currentSelectedItem < 109) {
+      if (seq.state.shiftPressed) {
+        this.tempVar.currentSelectedItem = 108;
+      } else {
+        this.tempVar.currentSelectedItem++;
+      }
+    }
+    if ((this.tempVar.currentSelectedItem < 2 || this.tempVar.currentSelectedItem > 108) && this.currentSelectedItem < 3) {
+      this.currentSelectedItem++;
+    }
   },
-  function () { // selFn
-
+  function (selection) { // selFn
+    switch (selection) {
+      case 0:
+        this.tempVar.name = "";
+        break;
+      case 2:
+        loadProject(saveProject(uuidv4(), this.tempVar.name));
+        this.goBackOnSel = true;
+        break;
+      case 3:
+        this.goBackOnSel = true;
+        break;
+      default:
+        if (seq.state.altPressed) {
+          this.tempVar.name = this.tempVar.name.substring(0, this.tempVar.name.length - 1);
+        } else {
+          this.tempVar.name = this.tempVar.name + String.fromCharCode(this.tempVar.currentSelectedItem + 31);
+        }
+    }
   },
   function () { // genFn
-
   },
   function () { // dispFn
-
+    switch (this.tempVar.currentSelectedItem) {
+      case 0:
+        return ["Project Name:", this.tempVar.name, "Press select", "to clear name"];
+      case 107:
+      case 108:
+      case 109:
+        return ["Project Name:", this.tempVar.name, "SAVE", "CANCEL"];
+      default:
+        let dispString = this.tempVar.name + String.fromCharCode(this.tempVar.currentSelectedItem + 31);
+        for (; PlotStringToPixelMemMap(dispString, 0, 0, 16, 0, false, true) > 114;) {
+          dispString = dispString.substring(1);
+        }
+        return ["Project Name:", dispString, "SAVE", "CANCEL"]
+    }
   },
-  null
-);
+  null,
+  false
+)
 
 var projectNewFromDefault = new menuItem(
-  /** TODO: @todo new empty project menu item
-   * **/
   function () {
+    this.currentSelectedItem = 10;
+    this.currentDisplayRange = 0;
     return "New empty proj";
   },
   function () { // upFn
@@ -3784,76 +3839,133 @@ var projectNewFromDefault = new menuItem(
   function () { // dwnFn
 
   },
-  function () { // selFn
-
+  function (selection) { // selFn
+    loadProject("1d1fc495-e297-472a-b26f-7400eedfe207")
+    seq.currentProjectID = uuidv4();
+    seq.currentProjectName = "New project";
   },
   function () { // genFn
 
   },
   function () { // dispFn
-
+    return ["Are you sure?", "This will destroy", "the current", "project"]
   },
-  null
-);
+  null,
+  true
+)
+// 1d1fc495-e297-472a-b26f-7400eedfe207
+
 
 var projectDeleteLine1 = new menuItem(
-  /** TODO: @todo delete project menu item
-   * **/
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
+    this.tempVar = {};
+    this.tempVar.projectsArray = getProjectsFromSaveFile();
     return "Be careful.";
   },
-  function () { // upFn
-
-  },
-  function () { // dwnFn
-
-  },
-  function () { // selFn
-
-  },
-  function () { // genFn
-
-  },
-  function () { // dispFn
-    return ["project 1", "project 2"];
-  },
-  null
+  projDelUp,
+  projDelDwn,
+  projDelSel,
+  function () {},
+  projDelDisp,
+  null,
+  true
 );
 
 var projectDeleteLine2 = new menuItem(
-  /** TODO: @todo delete project 2 menu item
-   * **/
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
+    this.tempVar = projectDeleteLine1.tempVar;
     return "This is permanent";
   },
-  function () { // upFn
+  projDelUp,
+  projDelDwn,
+  projDelSel,
+  function () {},
+  projDelDisp,
+  null,
+  true
+);
 
+function projDelUp() {
+  if (this.currentSelectedItem > 0) {
+    this.currentSelectedItem--;
+    if(this.currentSelectedItem<this.currentDisplayRange){
+      this.currentDisplayRange=this.currentSelectedItem;
+    }
+  }
+}
+
+function projDelDwn() {
+  if (this.currentSelectedItem < this.tempVar.projectsArray.length-1) {
+    this.currentSelectedItem++;
+    if(this.currentDisplayRange+2<this.currentSelectedItem && this.currentDisplayRange<this.tempVar.projectsArray.length-4){
+      this.currentDisplayRange++;
+    }
+  }
+}
+
+function projDelSel(selection) {
+  projectDeleteAfter.tempVar = this.tempVar.projectsArray[selection];
+  projectDeleteAfter.currentSelectedItem=0;
+}
+
+function projDelDisp() {
+  let returnArray = [];
+  for(let i = 0; i < this.tempVar.projectsArray.length; i++){
+    returnArray.push(this.tempVar.projectsArray[i].name);
+  }
+  return returnArray;
+}
+
+var projectDeleteAfter = new menuItem(
+  function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
+    return ""
+  },
+  function () { // upFn
+    if(this.currentSelectedItem>0){
+      this.currentSelectedItem--;
+    }
   },
   function () { // dwnFn
-
+    if(this.currentSelectedItem<5){
+      this.currentSelectedItem++;
+    }
   },
   function () { // selFn
-
+    deleteProject(this.tempVar.uuid)
   },
   function () { // genFn
 
   },
   function () { // dispFn
-    return ["project 1", "project 2"];
+    return ["Delete","\" " + this.tempVar.name + " \"","","Confirm Delete?"]
   },
-  null
+  null,
+  true
 );
+
 
 var projectInfo = new menuItem(
   // @todo project info
   function () {
+    this.currentSelectedItem = 50;
+    this.currentDisplayRange = 0;
     return "Project Info";
   },
   function () { // upFn
-
+    if (this.currentDisplayRange > 0) {
+      this.currentDisplayRange--;
+    }
   },
   function () { // dwnFn
-
+    if (this.currentDisplayRange < 6) {
+      this.currentDisplayRange++;
+    }
   },
   function () { // selFn
 
@@ -3862,7 +3974,20 @@ var projectInfo = new menuItem(
 
   },
   function () { // dispFn
-    return ["disp info"];
+    let projectsArray = getProjectsFromSaveFile();
+    let projCreationDate;
+    let projModDate;
+    let returnArray = [];
+    projectsArray.forEach((proj, ind) => {
+      if (proj.uuid == seq.currentProjectID) {
+        projCreationDate = new Date(proj.dateCreated);
+        projCreationDateString = projCreationDate.getFullYear().toString() + "/" + (projCreationDate.getMonth() + 1).toString() + "/" + (projCreationDate.getDay() + 1).toString();
+        projModDate = new Date(proj.dateModified);
+        projModDateString = projModDate.getFullYear().toString() + "/" + (projModDate.getMonth() + 1).toString() + "/" + (projModDate.getDay() + 1).toString();
+        returnArray = ["Project Name:", proj.name, "", "Created:", projCreationDateString, "", "Modified:", projModDateString]
+      }
+    })
+    return returnArray;
   },
   null
 );
@@ -3892,8 +4017,12 @@ projectLoad.parentMenu = settingsProjectMenu;
 projectNewFromCurrent.parentMenu = settingsProjectMenu;
 projectDeleteConfirm1.parentMenu = settingsProjectMenu;
 projectDeleteConfirm2.parentMenu = projectDeleteConfirm1;
-projectDeleteLine1.parentMenu = projectDeleteConfirm2;
-projectDeleteLine2.parentMenu = projectDeleteConfirm2;
+// projectDeleteLine1.parentMenu = projectDeleteConfirm2;
+// projectDeleteLine2.parentMenu = projectDeleteConfirm2;
+projectDeleteLine1.parentMenu = projectDeleteAfter;
+projectDeleteLine2.parentMenu = projectDeleteAfter;
+projectDeleteAfter.parentMenu = settingsProjectMenu;
+
 
 var settingsTrackMenu = new subMenu(
   function () {
@@ -3916,7 +4045,7 @@ trackMonophonicModeToggle.parentMenu = settingsTrackMenu;
 
 var settingsMainMenu = new subMenu(
   null,
-  [settingsGlobalMenu, settingsProjectMenu, settingsTrackMenu,settingsPowerControlMenu],
+  [settingsGlobalMenu, settingsProjectMenu, settingsTrackMenu, settingsPowerControlMenu],
   null
 )
 
@@ -3948,11 +4077,13 @@ var encodersMenuOutDevice = new menuItem(
     return ["list/midi&CV ports", "Encoder", "Line 3"];
   },
   null,
-  true // optional bool to indicate if the menu show go back to the parent on select
+  true
 );
 
 var encodersMenuMidiChan = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Midi out channel";
   },
   function () { // upFn
@@ -3974,7 +4105,7 @@ var encodersMenuMidiChan = new menuItem(
   function () { // selFn
     this.tempVar = seq.settings.encoders.global ? "settings" : "project";
     let selEnc = seq[this.tempVar].encoders.control[seq.state.encoderBank][seq.state.encLastTouched - 16];
-    selEnc.midiChannel = this.currentSelectedItem + 1;
+    selEnc.midiOutChannel = this.currentSelectedItem + 1;
     saveGlobalData();
   },
   function () { // genFn
@@ -3988,11 +4119,13 @@ var encodersMenuMidiChan = new menuItem(
     return dispText;
   },
   null,
-  true // optional bool to indicate if the menu show go back to the parent on select
+  true
 );
 
 var encodersMenuMidiCC = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Midi out CC#";
   },
   function () { // upFn
@@ -4034,6 +4167,8 @@ var encodersMenuMidiCC = new menuItem(
 
 var encodersMenuName = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     this.tempVar = seq.settings.encoders.global ? "settings" : "project";
     let selEnc = seq[this.tempVar].encoders.control[seq.state.encoderBank][seq.state.encLastTouched - 16];
     selEnc.tempName = selEnc.name;
@@ -4047,7 +4182,11 @@ var encodersMenuName = new menuItem(
   },
   function () { // dwnFn
     if (this.currentSelectedItem < 107) {
-      this.currentSelectedItem++;
+      if (seq.state.shiftPressed) {
+        this.currentSelectedItem = 106;
+      } else {
+        this.currentSelectedItem++;
+      }
     }
   },
   function (selection) { // selFn
@@ -4086,6 +4225,8 @@ var encodersMenuName = new menuItem(
 
 var encodersMenuCCType = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Midi CC Type";
   },
   function () { // upFn
@@ -4108,7 +4249,6 @@ var encodersMenuCCType = new menuItem(
     this.tempVar = seq.settings.encoders.global ? "settings" : "project";
     let selEnc = seq[this.tempVar].encoders.control[seq.state.encoderBank][seq.state.encLastTouched - 16];
     selEnc.midiCCtype = midiCCtypeName[selection];
-    // console.log(midiCCtypeName[selection]);
   },
   function () {},
   function () { // dispFn
@@ -4132,6 +4272,8 @@ encodersMenuCCType.parentMenu = encodersMenu;
 
 var gridBtnMenuNote = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     let track = seq.track[seq.state.selectedTrackRange + ((seq.state.gridBtnsPressedLast / 16) & 0xff)]; // determine which track is associated with row the button is on.
     this.tempVar = {};
     this.tempVar.track = track;
@@ -4171,6 +4313,8 @@ var gridBtnMenuNote = new menuItem(
 
 var gridBtnMenuVelocity = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     let track = seq.track[seq.state.selectedTrackRange + ((seq.state.gridBtnsPressedLast / 16) & 0xff)]; // determine which track is associated with row the button is on.
     this.tempVar = {};
     this.tempVar.track = track;
@@ -4205,6 +4349,8 @@ var gridBtnMenuVelocity = new menuItem(
 
 var gridBtnMenuLength = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     let track = seq.track[seq.state.selectedTrackRange + ((seq.state.gridBtnsPressedLast / 16) & 0xff)]; // determine which track is associated with row the button is on.
     this.tempVar = {};
     this.tempVar.track = track;
@@ -4215,12 +4361,12 @@ var gridBtnMenuLength = new menuItem(
   },
   function () { // upFn
     if (this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length < 10000) {
-      ++this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length;
+      this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length += 5;
     }
   },
   function () { // dwnFn
     if (this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length > 1) {
-      --this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length;
+      this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length -= 5;
     }
   },
   function (selection) { // selFn
@@ -4239,6 +4385,8 @@ var gridBtnMenuLength = new menuItem(
 
 var gridBtnMenuOffset = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     let track = seq.track[seq.state.selectedTrackRange + ((seq.state.gridBtnsPressedLast / 16) & 0xff)]; // determine which track is associated with row the button is on.
     this.tempVar = {};
     this.tempVar.track = track;
@@ -4384,6 +4532,8 @@ var scalesMenuRoot = new menuItem(
 
 var scalesMenuOffset = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Disp Shift"
   },
   function () { // upFn
@@ -4408,6 +4558,8 @@ var scalesMenuOffset = new menuItem(
 
 var scalesMenuOctave = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Octave";
   },
   function () { // upFn
@@ -4432,6 +4584,8 @@ var scalesMenuOctave = new menuItem(
 
 var scalesMenuBottomRowMode = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
     return "Btm Row Mode";
   },
   function () { // upFn
@@ -4481,12 +4635,12 @@ var soloTrack_mode_MenuItem = new menuItem(
     return "Track Mode"
   },
   function () { // upFn
-    if(this.currentSelectedItem>0){
-    this.currentSelectedItem--;
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
     }
   },
   function () { // dwnFn
-    if(this.currentSelectedItem<1){
+    if (this.currentSelectedItem < 1) {
       this.currentSelectedItem++;
     }
   },
@@ -4512,7 +4666,7 @@ var soloTrack_trackNote_menuItem = new menuItem(
     this.currentSelectedItem = 0;
     this.tempVar = {};
     this.tempVar.track = seq.track[seq.state.selectedTrackRange + getBitPosition(seq.state.muteSoloBtnsLastPressed)]; // determine which track is associated with row the button is on.
-    switch(this.tempVar.track.trackMode){
+    switch (this.tempVar.track.trackMode) {
       case 0:
         return "Default Note"
       case 1:
@@ -4520,16 +4674,40 @@ var soloTrack_trackNote_menuItem = new menuItem(
     }
   },
   function () { // upFn
-    if(this.tempVar.track.defaultNote<127){
+    if (this.tempVar.track.defaultNote < 127) {
       this.tempVar.track.defaultNote++;
     }
-    playNote({event:{startTimePatternOffset:0,data:this.tempVar.track.defaultNote,length:50,velocity:100,id:0,idText:"",enabled:true},track:this.tempVar.track.num,lengthTime:0.0625})
+    playNote({
+      event: {
+        startTimePatternOffset: 0,
+        data: this.tempVar.track.defaultNote,
+        length: 50,
+        velocity: 100,
+        id: 0,
+        idText: "",
+        enabled: true
+      },
+      track: this.tempVar.track.num,
+      lengthTime: 0.0625
+    })
   },
   function () { // dwnFn
-    if(this.tempVar.track.defaultNote>1){
+    if (this.tempVar.track.defaultNote > 1) {
       this.tempVar.track.defaultNote--;
     }
-    playNote({event:{startTimePatternOffset:0,data:this.tempVar.track.defaultNote,length:50,velocity:100,id:0,idText:"",enabled:true},track:this.tempVar.track.num,lengthTime:0.0625})
+    playNote({
+      event: {
+        startTimePatternOffset: 0,
+        data: this.tempVar.track.defaultNote,
+        length: 50,
+        velocity: 100,
+        id: 0,
+        idText: "",
+        enabled: true
+      },
+      track: this.tempVar.track.num,
+      lengthTime: 0.0625
+    })
   },
   function () { // selFn
   },
@@ -4597,6 +4775,8 @@ M̶e̶n̶u̶ e̶n̶t̶r̶i̶e̶s̶ f̶o̶r̶ w̶h̶e̶n̶ i̶n̶ s̶t̶e̶p̶ m�
 // @note menuItemTemplate
 var menuItemTemplate = new menuItem(
   function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
 
   },
   function () { // upFn
@@ -4654,95 +4834,112 @@ loadGlobalData();
 
 function loadProject(IDuuid) {
   try {
-  let projectFilename = "projects/"+IDuuid.toString();
-  let projectFileAsString = fs.readFileSync(projectFilename);
-  let projAsStringArrays = projectFileAsString.toString().split('\n');
-  let stateObj = JSON.parse(projAsStringArrays[0]);
-  let settingsObj = JSON.parse(projAsStringArrays[1]);
-  let trackObj = JSON.parse(projAsStringArrays[2]);
+    let projectFilename = "projects/" + IDuuid.toString();
+    let projectFileAsString = fs.readFileSync(projectFilename);
+    let projAsStringArrays = projectFileAsString.toString().split('\n');
+    let stateObj = JSON.parse(projAsStringArrays[0]);
+    let settingsObj = JSON.parse(projAsStringArrays[1]);
+    let trackObj = JSON.parse(projAsStringArrays[2]);
 
 
-  seq.state.currentBPM = stateObj.currentBPM;
-  seq.state.mute = stateObj.mute;
-  seq.state.selectedTrack = stateObj.selectedTrack;
-  seq.state.selectedTrackRange = stateObj.selectedTrackRange;
-  seq.state.solo = stateObj.solo;
+    seq.state.currentBPM = stateObj.currentBPM;
+    seq.state.mute = stateObj.mute;
+    seq.state.selectedTrack = stateObj.selectedTrack;
+    seq.state.selectedTrackRange = stateObj.selectedTrackRange;
+    seq.state.solo = stateObj.solo;
 
-  seq.settings.midi = Object.assign(settingsObj.midiSettings);
-  seq.project.encoders = Object.assign(settingsObj.encodersPerProject);
+    seq.settings.midi = Object.assign(settingsObj.midiSettings);
+    seq.project.encoders = Object.assign(settingsObj.encodersPerProject);
 
-  trackNumIndex=0; // reset to 0 - global variable, will be accessed by the creation method for new defaultTrack
-  seq.track = []; // reset seq.track to empty array
-  console.log("loading project");
-  trackObj.forEach((track,ind)=>{
-    // console.log("   track: " + ind);
-    // console.log(seq.track[ind])
-    seq.track.push(new defaultTrack());
-    // console.log(track.patterns)
-    seq.track[ind].currentPattern = track.currentPattern;
-    seq.track[ind].mute = track.mute;
-    seq.track[ind].solo = track.solo;
-    seq.track[ind].monophonicMode = track.monophonicMode;
-    seq.track[ind].defaultColor = track.defaultColor;
-    seq.track[ind].outputType = track.outputType;
-    seq.track[ind].outputName = track.outputName;
-    seq.track[ind].outputIndex = track.outputIndex;
-    seq.track[ind].midiChannel = track.midiChannel;
-    seq.track[ind].trackName = track.trackName;
-    seq.track[ind].channel = track.channel;
-    seq.track[ind].CVportNum = track.CVportNum;
-    seq.track[ind].trackMode = track.trackMode;
-    seq.track[ind].defaultNote = track.defaultNote;
+    trackNumIndex = 0; // reset to 0 - global variable, will be accessed by the creation method for new defaultTrack
+    seq.track = []; // reset seq.track to empty array
+    console.log("loading project");
+    trackObj.forEach((track, ind) => {
+      seq.track.push(new defaultTrack());
+      seq.track[ind].currentPattern = track.currentPattern;
+      seq.track[ind].mute = track.mute;
+      seq.track[ind].solo = track.solo;
+      seq.track[ind].monophonicMode = track.monophonicMode;
+      seq.track[ind].defaultColor = track.defaultColor;
+      seq.track[ind].outputType = track.outputType;
+      seq.track[ind].outputName = track.outputName;
+      seq.track[ind].outputIndex = track.outputIndex;
+      seq.track[ind].midiChannel = track.midiChannel;
+      seq.track[ind].trackName = track.trackName;
+      seq.track[ind].channel = track.channel;
+      seq.track[ind].CVportNum = track.CVportNum;
+      seq.track[ind].trackMode = track.trackMode;
+      seq.track[ind].defaultNote = track.defaultNote;
 
-    seq.track[ind].updateOutputIndex();
+      seq.track[ind].updateOutputIndex();
 
-    let count=0;
-    while(track.patterns["id_"+count]!=undefined){
-      // console.log("      pattern: " + count);
-      // console.log(track.patterns["id_"+count].events);
-      // console.log("");
-      let pat = track.patterns["id_"+count];
-      seq.track[ind].addPattern(pat.patLength,pat.originalBPM,pat.beatsInPattern);
+      let count = 0;
+      while (track.patterns["id_" + count] != undefined) {
+        let pat = track.patterns["id_" + count];
+        seq.track[ind].addPattern(pat.patLength, pat.originalBPM, pat.beatsInPattern);
 
-      seq.track[ind].patterns["id_"+count].color.red = pat.color.red;
-      seq.track[ind].patterns["id_"+count].color.grn = pat.color.grn;
-      seq.track[ind].patterns["id_"+count].color.blu = pat.color.blu;
-      seq.track[ind].patterns["id_"+count].color.mode = pat.color.mode;
-      seq.track[ind].patterns["id_"+count].defaults.noteData = pat.defaults.noteData;
-      seq.track[ind].patterns["id_"+count].defaults.noteLength = pat.defaults.noteLength;
-      seq.track[ind].patterns["id_"+count].defaults.noteOffset = pat.defaults.noteOffset;
-      seq.track[ind].patterns["id_"+count].defaults.noteVelocity = pat.defaults.noteVelocity;
-      seq.track[ind].patterns["id_"+count].patIsStepBased = pat.patIsStepBased;
-      seq.track[ind].patterns["id_"+count].viewArea = pat.viewArea;
+        seq.track[ind].patterns["id_" + count].color.red = pat.color.red;
+        seq.track[ind].patterns["id_" + count].color.grn = pat.color.grn;
+        seq.track[ind].patterns["id_" + count].color.blu = pat.color.blu;
+        seq.track[ind].patterns["id_" + count].color.mode = pat.color.mode;
+        seq.track[ind].patterns["id_" + count].defaults.noteData = pat.defaults.noteData;
+        seq.track[ind].patterns["id_" + count].defaults.noteLength = pat.defaults.noteLength;
+        seq.track[ind].patterns["id_" + count].defaults.noteOffset = pat.defaults.noteOffset;
+        seq.track[ind].patterns["id_" + count].defaults.noteVelocity = pat.defaults.noteVelocity;
+        seq.track[ind].patterns["id_" + count].patIsStepBased = pat.patIsStepBased;
+        seq.track[ind].patterns["id_" + count].viewArea = pat.viewArea;
 
-      for(let i = 0; i < pat.patLength; i++){
-        // console.log("         event: "+i);
-        seq.track[ind].patterns["id_"+count].events["id_"+i].startTimePatternOffset = pat.events["id_"+i].startTimePatternOffset;
-        seq.track[ind].patterns["id_"+count].events["id_"+i].data = pat.events["id_"+i].data;
-        seq.track[ind].patterns["id_"+count].events["id_"+i].length = pat.events["id_"+i].length;
-        seq.track[ind].patterns["id_"+count].events["id_"+i].velocity = pat.events["id_"+i].velocity;
-        seq.track[ind].patterns["id_"+count].events["id_"+i].enabled = pat.events["id_"+i].enabled;
+        for (let i = 0; i < pat.patLength; i++) {
+          seq.track[ind].patterns["id_" + count].events["id_" + i].startTimePatternOffset = pat.events["id_" + i].startTimePatternOffset;
+          seq.track[ind].patterns["id_" + count].events["id_" + i].data = pat.events["id_" + i].data;
+          seq.track[ind].patterns["id_" + count].events["id_" + i].length = pat.events["id_" + i].length;
+          seq.track[ind].patterns["id_" + count].events["id_" + i].velocity = pat.events["id_" + i].velocity;
+          seq.track[ind].patterns["id_" + count].events["id_" + i].enabled = pat.events["id_" + i].enabled;
+        }
+        count++;
       }
-      count++;
-    }
-  })
+    })
 
-  seq.currentProjectID = IDuuid;
-  seq.currentProjectName = getProjectsFromSaveFile().find(element => element.uuid == IDuuid).name;
+    seq.currentProjectID = IDuuid;
+    seq.currentProjectName = getProjectsFromSaveFile().find(element => element.uuid == IDuuid).name;
 
-  updateAllGridBtnLEDs();
-  updateAllNotGridBtnLEDS();
-  updateEncoderOutputPortIndexesByName();
-  sendTrackUpdateToSeqLoop();
+    updateAllGridBtnLEDs();
+    updateAllNotGridBtnLEDS();
+    updateEncoderOutputPortIndexesByName();
+    sendTrackUpdateToSeqLoop();
 
-  console.log("loading complete");
-  
-  return true;
-  }catch(err){
-    if(err.code === 'ENOENT'){
+    console.log("loading complete");
+
+    return true;
+  } catch (err) {
+    if (err.code === 'ENOENT') {
       console.log("file not found")
     }
     return false;
+  }
+}
+
+function deleteProject(IDuuid){
+  let projectsArray = getProjectsFromSaveFile();
+  let found = null;
+  for(let i = 0; i < projectsArray.length; i++){
+    if(IDuuid == projectsArray[i].uuid){
+      found = i;
+      i = projectsArray.length;
+    }
+  }
+  if(found!==null){
+    projectsArray.splice(found,1);
+  }else{
+    return false;
+  }
+  try {
+    fs.writeFileSync('saveFile', JSON.stringify(projectsArray));
+    fs.unlinkSync("projects/"+IDuuid)
+    return true;
+  } catch (err) {
+    console.log(err)
+    return err;
   }
 }
 
@@ -4759,22 +4956,22 @@ function saveProject(IDuuid, nameString) {
   }
   if (found !== null) {
     tempObj[found].dateModified = Date.now()
-    try{
+    try {
       fs.writeFileSync('saveFile', JSON.stringify(tempObj));
-    }catch(err){
+    } catch (err) {
       console.log(err)
     }
   } else {
-    
+
     let lineData = {};
     lineData.name = nameString;
     lineData.uuid = IDuuid;
     lineData.dateCreated = Date.now();
     lineData.dateModified = Date.now();
     tempObj.push(lineData);
-    try{
-    fs.writeFileSync('saveFile', JSON.stringify(tempObj));
-    }catch(err){
+    try {
+      fs.writeFileSync('saveFile', JSON.stringify(tempObj));
+    } catch (err) {
       console.log(err)
     }
   }
@@ -4799,11 +4996,12 @@ function saveProject(IDuuid, nameString) {
   returnString += JSON.stringify(returnObj.settingsAndProjectObj);
   returnString += "\r\n";
   returnString += JSON.stringify(seq.track);
-  try{
-  fs.writeFileSync("projects/" + IDuuid, returnString);
-  }catch(err){
+  try {
+    fs.writeFileSync("projects/" + IDuuid, returnString);
+  } catch (err) {
     console.log(err)
   }
+  return IDuuid;
 }
 
 function getProjectsFromSaveFile() {
@@ -4820,4 +5018,12 @@ function newTimingLogEntry(entryText) {
 
 function writeTimingLogToFile() {
   fs.writeFileSync('timingLog.json', JSON.stringify(timingLog));
+}
+
+function convertUTCepochToPrettyString(time) {
+  let dateObj = Date(time);
+  let monthArray = ["Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let dateString = monthArray[dateObj.getMonth()] + " " + dateObj.getDate() + ", " + dateObj.getFullYear();
+  let timeString = (dateObj.getHours() > 12 ? dateObj.getHours() - 12 : dateObj.getHours()).toString() + ":" + dateObj.getMinutes().toString();
+  return [dateString, timeString];
 }

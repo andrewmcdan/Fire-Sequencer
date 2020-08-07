@@ -65,11 +65,17 @@
         "lmtime": 0,
         "modified": false
       },
+      "Fire.code-workspace": {
+        "type": "-",
+        "size": 153,
+        "lmtime": 0,
+        "modified": false
+      },
       "FireSequencer.js": {
         "type": "-",
-        "size": 163191,
+        "size": 181049,
         "lmtime": 1595301428171,
-        "modified": false
+        "modified": true
       },
       "_Project info.gdoc": {
         "type": "-",
@@ -1443,15 +1449,15 @@
       },
       "saveFile": {
         "type": "-",
-        "size": 255,
+        "size": 247,
         "lmtime": 1593603542784,
         "modified": true
       },
       "seq_loop.js": {
         "type": "-",
-        "size": 10951,
+        "size": 11070,
         "lmtime": 1595505052712,
-        "modified": false
+        "modified": true
       },
       "test.json": {
         "type": "-",
@@ -1461,9 +1467,9 @@
       },
       "timingLog.json": {
         "type": "-",
-        "size": 459,
+        "size": 189,
         "lmtime": 1595270929141,
-        "modified": false
+        "modified": true
       },
       "wifiControl.js": {
         "type": "-",

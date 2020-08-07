@@ -84,6 +84,8 @@ ipc.connectTo(
     ipc.of.nodeMidi.on(
       'seq.trackVar', //any event or message type your server listens for
       function (data) {
+        // console.log("got data");
+        // console.log(data[0].patterns.id_0.events.id_0);
         // ipc.log('got a message from nodeMidi : '.debug, data);
         // console.log(data);
         if (seq.state.immediateTrackUpdate) {
@@ -109,6 +111,7 @@ ipc.connectTo(
     });
     ipc.of.nodeMidi.on('setITU', function(data){ // ITC = Immediate Track Updates
       seq.state.immediateTrackUpdate=data;
+      console.log(seq.state.immediateTrackUpdate);
     });
   }
 );
