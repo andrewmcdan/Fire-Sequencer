@@ -25,19 +25,6 @@ console.log(nativeLib.hello());
 
 const os = require('os');
 const ipc = require('node-ipc');
-
-// This code spawns the seq_loop node process. In testing, we manually spawn
-// sequence looper so that we can bedug it.
-/** TODO: @todo spawn seq_loop
- *
- */
-// const spawn = require('child_process').spawn;
-// const path = require('path');
-// const command = 'node';
-// const parameters = [path.resolve('seq_loop.js')];
-// const child = spawn(command, parameters, {
-//   stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
-// });
 const bitmaps = require('./bitmaps.js');
 var fs = require('fs');
 // const lineReader = require('line-reader');
@@ -48,9 +35,7 @@ const {
 const {
   v4: uuidv4
 } = require('uuid');
-const {
-  bitmap_tesseract64x64
-} = require('./bitmaps.js');
+console.log("jkhsdkjfhsjkdhf");
 var settings = {};
 var timingLog = [];
 var fireOLED_pixelMemMap = new Array(128);
@@ -118,16 +103,16 @@ for (let step = 0; step < fireMidiIn.getPortCount(); step++) {
   }
   if (fireMidiIn.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
     fireMidiIn.openPort(step);
-  } else if (settings.osType != "Windows_NT") {
-    midiInputDevices[step] = new midi.Input();
-    midiInputDevices[step].openPort(step);
-    midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
-    midiInputDevicesEnabled[step] = true;
-    if (midiInputDevicesNames[step].includes("RtMidi Output Client:RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
-      midiInputDevicesHidden[step] = true;
-    } else {
-      midiInputDevicesHidden[step] = false;
-    }
+  // } else if (settings.osType != "Windows_NT") {
+  //   midiInputDevices[step] = new midi.Input();
+  //   midiInputDevices[step].openPort(step);
+  //   midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
+  //   midiInputDevicesEnabled[step] = true;
+  //   if (midiInputDevicesNames[step].includes("RtMidi Output Client:RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+  //     midiInputDevicesHidden[step] = true;
+  //   } else {
+  //     midiInputDevicesHidden[step] = false;
+  //   }
   }
 }
 
@@ -147,17 +132,17 @@ for (let step = 0; step < fireMidiOut.getPortCount(); step++) {
   }
   if (fireMidiOut.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
     fireMidiOut.openPort(step);
-  } else if (settings.osType != "Windows_NT") {
-    midiOutputDevices[step] = new midi.Output();
-    midiOutputDevices[step].openPort(step);
-    midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
-    midiOutputDevicesEnabled[step] = true;
-    // console.log(midiOutputDevicesNames[step]);
-    if (midiOutputDevicesNames[step].includes("RtMidi Input Client:RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
-      midiOutputDevicesHidden[step] = true;
-    } else {
-      midiOutputDevicesHidden[step] = false;
-    }
+  // } else if (settings.osType != "Windows_NT") {
+  //   midiOutputDevices[step] = new midi.Output();
+  //   midiOutputDevices[step].openPort(step);
+  //   midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
+  //   midiOutputDevicesEnabled[step] = true;
+  //   // console.log(midiOutputDevicesNames[step]);
+  //   if (midiOutputDevicesNames[step].includes("RtMidi Input Client:RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+  //     midiOutputDevicesHidden[step] = true;
+  //   } else {
+  //     midiOutputDevicesHidden[step] = false;
+    // }
   }
 }
 
@@ -3951,7 +3936,6 @@ var projectDeleteAfter = new menuItem(
 
 
 var projectInfo = new menuItem(
-  // @todo project info
   function () {
     this.currentSelectedItem = 50;
     this.currentDisplayRange = 0;
@@ -4017,8 +4001,6 @@ projectLoad.parentMenu = settingsProjectMenu;
 projectNewFromCurrent.parentMenu = settingsProjectMenu;
 projectDeleteConfirm1.parentMenu = settingsProjectMenu;
 projectDeleteConfirm2.parentMenu = projectDeleteConfirm1;
-// projectDeleteLine1.parentMenu = projectDeleteConfirm2;
-// projectDeleteLine2.parentMenu = projectDeleteConfirm2;
 projectDeleteLine1.parentMenu = projectDeleteAfter;
 projectDeleteLine2.parentMenu = projectDeleteAfter;
 projectDeleteAfter.parentMenu = settingsProjectMenu;
@@ -4742,6 +4724,11 @@ Wifi
 rtpMidi
   - enable / disable
   - number of rtpMidi devices
+OSC
+  - enable / disable
+  - broadcast enable / disable
+  - remote device address(s)
+  - remote device port(s)
 Device control
   - power off
   - reboot
@@ -4750,10 +4737,10 @@ Midi
   - reload midi devices
   - Midi clock output device select
 Project
-  - New
-  - Save
-  - Load
-  - Copy
+  -̶ N̶e̶w̶
+  -̶ S̶a̶v̶e̶
+  -̶ L̶o̶a̶d̶
+  -̶ C̶o̶p̶y̶
 Pattern
   - Copy
   - Reset
@@ -4807,30 +4794,31 @@ function saveGlobalData() {
   fs.writeFileSync('globalSave', JSON.stringify(glob));
 }
 
-function loadGlobalData() {
-  let anObjectToHoldData = JSON.parse(fs.readFileSync('globalSave'));
+!function loadGlobalData() {
+  let a = JSON.parse(fs.readFileSync('globalSave'));
 
-  seq.settings.midi.clockInEnabled = anObjectToHoldData.seqSettingsmidi.clockInEnabled;
-  seq.settings.midi.clockInSource = anObjectToHoldData.seqSettingsmidi.clockInSource;
+  seq.settings.midi.clockInEnabled = a.seqSettingsmidi.clockInEnabled;
+  seq.settings.midi.clockInSource = a.seqSettingsmidi.clockInSource;
 
-  seq.settings.encoders.banks = anObjectToHoldData.seqSettingsEncoders.banks;
-  seq.settings.encoders.global = anObjectToHoldData.seqSettingsEncoders.global;
+  seq.settings.encoders.banks = a.seqSettingsEncoders.banks;
+  seq.settings.encoders.global = a.seqSettingsEncoders.global;
 
   for (let q = 0; q < 16; q++) {
     for (let r = 0; r < 4; r++) {
-      seq.settings.encoders.control[q][r].name = anObjectToHoldData.seqSettingsEncoders.control[q][r].name;
-      seq.settings.encoders.control[q][r].midiCC = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiCC;
-      seq.settings.encoders.control[q][r].value = anObjectToHoldData.seqSettingsEncoders.control[q][r].value;
-      seq.settings.encoders.control[q][r].midiCCtype = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiCCtype;
-      seq.settings.encoders.control[q][r].midiOutPort = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiOutPort;
-      seq.settings.encoders.control[q][r].midiOutChannel = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiOutChannel;
-      seq.settings.encoders.control[q][r].midiOutPortName = anObjectToHoldData.seqSettingsEncoders.control[q][r].midiOutPortName;
+      seq.settings.encoders.control[q][r].name = a.seqSettingsEncoders.control[q][r].name;
+      seq.settings.encoders.control[q][r].midiCC = a.seqSettingsEncoders.control[q][r].midiCC;
+      seq.settings.encoders.control[q][r].value = a.seqSettingsEncoders.control[q][r].value;
+      seq.settings.encoders.control[q][r].midiCCtype = a.seqSettingsEncoders.control[q][r].midiCCtype;
+      seq.settings.encoders.control[q][r].midiOutPort = a.seqSettingsEncoders.control[q][r].midiOutPort;
+      seq.settings.encoders.control[q][r].midiOutChannel = a.seqSettingsEncoders.control[q][r].midiOutChannel;
+      seq.settings.encoders.control[q][r].midiOutPortName = a.seqSettingsEncoders.control[q][r].midiOutPortName;
     }
   }
   updateEncoderOutputPortIndexesByName();
-}
+  setEncoderBankLEDs();
+}()
 
-loadGlobalData();
+// loadGlobalData();
 
 function loadProject(IDuuid) {
   try {

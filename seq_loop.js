@@ -9,6 +9,57 @@ TODO:
 
 */
 
+const midi = require('midi');
+
+
+// Set up a new input.
+const midi_In = new midi.Input(),
+  midi_Out = new midi.Output();
+var midiInputDevices = [],
+  midiInputDevicesNames = [],
+  midiInputDevicesEnabled = [],
+  midiOutputDevices = [],
+  midiOutputDevicesNames = [],
+  midiOutputDevicesEnabled = [],
+  midiInputDevicesHidden = [],
+  midiOutputDevicesHidden = [];
+
+// find out open Akai Fire MIDI input port
+// Also create array of all ports and open them.
+
+for (let step = 0; step < midi_In.getPortCount(); step++) {
+  if (midi_In.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") == -1) {
+    midiInputDevices[step] = new midi.Input();
+    midiInputDevices[step].openPort(step);
+    midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
+    midiInputDevicesEnabled[step] = true;
+    if (midiInputDevicesNames[step].includes("RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+      midiInputDevicesHidden[step] = true;
+    } else {
+      midiInputDevicesHidden[step] = false;
+    }
+  }
+}
+
+// find out open Akai Fire MIDI output port and open it under "fireMidiOut"
+// Also create array of all ports and open them.
+for (let step = 0; step < midi_Out.getPortCount(); step++) {
+  if (midi_Out.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") == -1) {
+    midiOutputDevices[step] = new midi.Output();
+    midiOutputDevices[step].openPort(step);
+    midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
+    midiOutputDevicesEnabled[step] = true;
+    // console.log(midiOutputDevicesNames[step]);
+    if (midiOutputDevicesNames[step].includes("RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+      midiOutputDevicesHidden[step] = true;
+    } else {
+      midiOutputDevicesHidden[step] = false;
+    }
+  }
+}
+
+
+
 var seq = {};
 seq.bpm = 1;
 seq.state = {};
@@ -34,15 +85,17 @@ function seqPlay(beats = 4) {
     seq.state.playing = true;
     seq.state.loopTimeMillis = new Date().getTime();
     seq.state.stepNumberCounted = 0;
-    theLoopInterval = setInterval(theLoopFn,1,beats);
+    theLoopInterval = setInterval(theLoopFn, 1, beats);
   }
 }
 
-function seqStop(log=true) {
+function seqStop(log = true) {
   clearInterval(theLoopInterval);
   seq.state.playing = false;
   seq.state.firstLoopIteration = true;
-  if(log){console.log("stop")}
+  if (log) {
+    console.log("stop")
+  }
 }
 
 function updateMaxPatternLength() {
@@ -66,7 +119,7 @@ ipc.connectTo(
         // ipc.log('## connected to nodeMidi ##'.rainbow, ipc.config.delay);
         ipc.of.nodeMidi.emit('get-seq.track-Var');
         console.log("Connected to Fire Sequencer main process.");
-        logDisconnect=true;
+        logDisconnect = true;
       }
     );
     ipc.of.nodeMidi.on(
@@ -75,11 +128,11 @@ ipc.connectTo(
         // ipc.log('disconnected from nodeMidi'.notice);
         // console.log("Disconnected from main processs.");
         seqStop(false);
-        if(logDisconnect){
-        console.log("Disconnected form Fire Sequencer main process.");
-        logDisconnect=false;
+        if (logDisconnect) {
+          console.log("Disconnected form Fire Sequencer main process.");
+          logDisconnect = false;
         }
-      }      
+      }
     );
     ipc.of.nodeMidi.on(
       'seq.trackVar', //any event or message type your server listens for
@@ -96,23 +149,29 @@ ipc.connectTo(
         }
       }
     );
-    ipc.of.nodeMidi.on('seqPlay', function(beats){
+    ipc.of.nodeMidi.on('seqPlay', function (beats) {
       seqPlay(beats);
     });
     ipc.of.nodeMidi.on('seqStop', seqStop);
     ipc.of.nodeMidi.on('tempoChange', function (data) {
-      if(seq.state.playing){
+      if (seq.state.playing) {
         seqStop();
         seq.state.currentBPM = data
         seqPlay();
-      }else{
+      } else {
         seq.state.currentBPM = data
       }
     });
-    ipc.of.nodeMidi.on('setITU', function(data){ // ITC = Immediate Track Updates
-      seq.state.immediateTrackUpdate=data;
+    ipc.of.nodeMidi.on('setITU', function (data) { // ITC = Immediate Track Updates
+      seq.state.immediateTrackUpdate = data;
       console.log(seq.state.immediateTrackUpdate);
     });
+    ipc.of.nodeMidi.on('requestMidiDevices',function (){
+      let midiDevices={};
+      midiDevices.in = midiInputDevicesNames;
+      midiDevices.out = midiOutputDevicesNames;
+      ipc.of.nodeMidi.emit('midiDevices',midiDevices);
+    })
   }
 );
 
@@ -155,9 +214,9 @@ function theLoopFn(stepsPerBeat = 4) {
   // let stepNumberCalculated = Math.trunc(loopTimeDiffMillis / (stepTime * 1000));
 
   // let stepNumberCalculated = Math.trunc((new Date().getTime()-seq.state.loopTimeMillis)/(((60/seq.state.currentBPM)/stepsPerBeat) * 1000));
-  
+
   // if (stepNumberCalculated == seq.state.stepNumberCounted + 1) {
-  if ((Math.trunc((new Date().getTime()-seq.state.loopTimeMillis)/(((60/seq.state.currentBPM)/stepsPerBeat)*1000))) == seq.state.stepNumberCounted + 1) {
+  if ((Math.trunc((new Date().getTime() - seq.state.loopTimeMillis) / (((60 / seq.state.currentBPM) / stepsPerBeat) * 1000))) == seq.state.stepNumberCounted + 1) {
     // Next step started
     // console.log(seq.state.stepNumberCounted);
     //go through each track
@@ -179,7 +238,7 @@ function theLoopFn(stepsPerBeat = 4) {
         if (data.event.enabled) {
           setTimeout(() => {
             ipc.of.nodeMidi.emit('play-note', data);
-          }, stepTime*(data.event.startTimePatternOffset / 100)*1000);          
+          }, stepTime * (data.event.startTimePatternOffset / 100) * 1000);
           // ipc.of.nodeMidi.emit('play-note', data);
           // console.log("note played");
         }
