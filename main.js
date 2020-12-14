@@ -3,7 +3,7 @@ const spawn = require('child_process').spawn;
 const path = require('path');
 const kill = require('tree-kill');
 const exec = require('child_process').exec;
-const osc = require('osc');
+// const osc = require('osc');
 
 const fireVID = 2536;
 const firePID = 67;

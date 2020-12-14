@@ -1,11 +1,8 @@
-var nativeLib = require('./rust-fire-lib/native');
-console.log(nativeLib.hello());
-
-// console.log(addon.between(99,34,99,true));
-
-
 /** TODO: @todo list
- *
+ *  
+ *  - Crate menu for changing steps per beat
+ *  - implement a way to trigger patterns using external midi
+ *  - need to be able to set step note value by external controller
  *  - figure out somehting to use browser button for
  *  - figure out metronome / midi clock thing
  *  - drum mode
@@ -35,7 +32,7 @@ const {
 const {
   v4: uuidv4
 } = require('uuid');
-console.log("jkhsdkjfhsjkdhf");
+
 var settings = {};
 var timingLog = [];
 var fireOLED_pixelMemMap = new Array(128);
@@ -76,7 +73,7 @@ if (settings.osType != "Windows_NT") { // virtual midi port not supported on Win
       debug("virinpout");
       debug(`m: ${message} d: ${deltaTime}`);
     }
-  });
+  }); 
 }
 */
 
@@ -103,16 +100,16 @@ for (let step = 0; step < fireMidiIn.getPortCount(); step++) {
   }
   if (fireMidiIn.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
     fireMidiIn.openPort(step);
-  // } else if (settings.osType != "Windows_NT") {
-  //   midiInputDevices[step] = new midi.Input();
-  //   midiInputDevices[step].openPort(step);
-  //   midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
-  //   midiInputDevicesEnabled[step] = true;
-  //   if (midiInputDevicesNames[step].includes("RtMidi Output Client:RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
-  //     midiInputDevicesHidden[step] = true;
-  //   } else {
-  //     midiInputDevicesHidden[step] = false;
-  //   }
+  } else if (settings.osType != "Windows_NT") {
+    midiInputDevices[step] = new midi.Input();
+    midiInputDevices[step].openPort(step);
+    midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
+    midiInputDevicesEnabled[step] = true;
+    if (midiInputDevicesNames[step].includes("RtMidi Output Client:RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+      midiInputDevicesHidden[step] = true;
+    } else {
+      midiInputDevicesHidden[step] = false;
+    }
   }
 }
 
@@ -132,17 +129,17 @@ for (let step = 0; step < fireMidiOut.getPortCount(); step++) {
   }
   if (fireMidiOut.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
     fireMidiOut.openPort(step);
-  // } else if (settings.osType != "Windows_NT") {
-  //   midiOutputDevices[step] = new midi.Output();
-  //   midiOutputDevices[step].openPort(step);
-  //   midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
-  //   midiOutputDevicesEnabled[step] = true;
-  //   // console.log(midiOutputDevicesNames[step]);
-  //   if (midiOutputDevicesNames[step].includes("RtMidi Input Client:RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
-  //     midiOutputDevicesHidden[step] = true;
-  //   } else {
-  //     midiOutputDevicesHidden[step] = false;
-    // }
+  } else if (settings.osType != "Windows_NT") {
+    midiOutputDevices[step] = new midi.Output();
+    midiOutputDevices[step].openPort(step);
+    midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
+    midiOutputDevicesEnabled[step] = true;
+    // console.log(midiOutputDevicesNames[step]);
+    if (midiOutputDevicesNames[step].includes("RtMidi Input Client:RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+      midiOutputDevicesHidden[step] = true;
+    } else {
+      midiOutputDevicesHidden[step] = false;
+    }
   }
 }
 
@@ -374,11 +371,11 @@ function trackPattern(patLength = 16, bpm = 120, beats = 4) {
   this.color.red = 127;
   this.color.grn = 0;
   this.color.blu = 127;
-  this.color.mode = "preset"; // other option is "preset"
+  this.color.mode = "preset"; // "preset" or "rgb"
   this.color.preset = 5;
   this.defaults = {};
   this.defaults.noteData = 60;
-  this.defaults.noteLength = 50;
+  this.defaults.noteLength = 99;
   this.defaults.noteOffset = 0;
   this.defaults.noteVelocity = 100;
   this.addEventByTime = function (data = this.defaults.noteData, timeOffset = this.defaults.noteOffset) {
@@ -415,9 +412,9 @@ function defaultTrack(stepMode = true) { // if called with first argument as fal
   this.solo = false;
   this.monophonicMode = false;
   this.defaultColor = 127;
-  this.outputType = "midi"; // "midi" for MIDI device output. "cv" for control voltage output
-  this.outputName = "USB Midi MIDI 1 ";
-  this.outputIndex = "0";
+  this.outputType = 1; // 1 for MIDI device output. 2 for control voltage output
+  this.outputName = "MIDI Translator MIDI 1";
+  this.outputIndex = null;
   this.midiChannel = 0;
   this.trackName = "Track" + (this.num < 10 ? "0" + (this.num + 1) : (this.num + 1));
   this.channel = 0;
@@ -434,10 +431,10 @@ function defaultTrack(stepMode = true) { // if called with first argument as fal
     return "id_" + this.patternIdIndex++;
   }
   this.updateOutputIndex = function () {
-    if (this.outputType == "midi") {
+    if (this.outputType == 1) {
       let midiDevice = false;
       let found = false;
-      for (let i = 0; i < midiOutputDevices.length; i++) {
+      for (let i = 0; i < midiOutputDevicesNames.length; i++) {
         if (typeof midiOutputDevicesNames[i] == "string") {
           if (midiOutputDevicesNames[i].includes(this.outputName)) {
             this.outputIndex = i;
@@ -450,6 +447,7 @@ function defaultTrack(stepMode = true) { // if called with first argument as fal
       }
       return found;
     } else {
+      console.log("6");
       /** TODO: @todo CV gate stuff
        * **/
       return true;
@@ -864,7 +862,7 @@ seq.state.OLEDclearTimeout = setTimeout(function () {
 seq.state.firstLoopIteration = true;
 seq.state.loopTimeMillis = Date.now();
 seq.state.currentBPM = 120;
-seq.state.currentBeatsPerMeasure = 4;
+seq.state.currentStepsPerBeat = 4;
 seq.state.muteSoloBtnsLastPressed = null;
 seq.state.gridBtnsPressedUpper = 0;
 seq.state.gridBtnsPressedLower = 0;
@@ -1011,9 +1009,27 @@ ipc.serve(
         ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
         ipc.server.emit(seqLoop_ipcSocket, 'tempoChange', seq.state.currentBPM);
         console.log("SeqLoop client has connected.");
+        ipc.server.emit(seqLoop_ipcSocket, 'requestMidiDevices');
         // console.log(socket);
       }
     );
+    ipc.server.on('midiDevices', function(data,socket){
+      // let midiDevices={};
+      // midiDevices.in = midiInputDevicesNames;
+      // midiDevices.out = midiOutputDevicesNames;
+      // console.log(data);
+      midiInputDevicesNames = data.in.names;
+      midiOutputDevicesNames = data.out.names;
+      midiInputDevicesEnabled = data.in.enabled;
+      midiOutputDevicesEnabled = data.out.enabled;
+      midiInputDevicesHidden = data.in.hidden;
+      midiOutputDevicesHidden = data.out.hidden;
+      // console.log(midiInputDevicesNames);
+      seq.track.forEach(function (track, index) {
+        track.updateOutputIndex();
+      })
+      ipc.server.emit(seqLoop_ipcSocket, 'seq.trackVar', seq.track);
+    });
     ipc.server.on('wifiControlConnected', function (data, socket) {
       wifiControl.ipcSocket = socket;
       wifiControl.isEstablished = true;
@@ -1053,7 +1069,7 @@ function playNote(eventData, socket = null, timeoutIndex = null) {
   if (settings.osType != "Windows_NT") {
     let midiDevice = false;
     if (seq.track[eventData.track].outputIndex != null) {
-      if (seq.track[eventData.track].outputType == "midi") {
+      if (seq.track[eventData.track].outputType == 1) {
         midiDevice = midiOutputDevices[seq.track[eventData.track].outputIndex];
       } else {
         // do thing for CV GATE output
@@ -1413,7 +1429,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             notGridBtnLEDS[PLAY_BTN_LED] = PATSONG_PLAY_GREEN;
             updateAllNotGridBtnLEDS();
             if (seqLoop_ipcIsEstablished && seq.state.playEnabled) {
-              ipc.server.emit(seqLoop_ipcSocket, 'seqPlay', seq.state.currentBeatsPerMeasure);
+              ipc.server.emit(seqLoop_ipcSocket, 'seqPlay', seq.state.currentStepsPerBeat);
             } else if (!seqLoop_ipcIsEstablished) {
               console.log("Cannot play because the SeqLoop client is not connectd.");
             } else if (!seq.state.playEnabled) {
@@ -1498,6 +1514,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             } else {
 
             }
+            sendTrackUpdateToSeqLoop();
             updateAllGridBtnLEDs();
             displayTrackAndPatInfo(seq.track[seq.state.selectedTrack], seq.track[seq.state.selectedTrack].patterns["id_" + seq.track[seq.state.selectedTrack].currentPattern]);
             break;
@@ -1524,6 +1541,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             if (curPat.viewArea >= curPat.patLength / 16) {
               curPat.viewArea--;
             }
+            sendTrackUpdateToSeqLoop();
             updateAllGridBtnLEDs();
             displayTrackAndPatInfo(seq.track[seq.state.selectedTrack], seq.track[seq.state.selectedTrack].patterns["id_" + seq.track[seq.state.selectedTrack].currentPattern]);
             break;
@@ -1900,9 +1918,9 @@ function encoderTouch(encIndex = null) {
   let noteControlEn = seq.settings.encoders.noteControl;
   clearOLEDmemMap();
   if (!noteControlEn) {
-    name = seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].name;
+    ctrlName = seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].name;
     PlotStringToPixelMemMap(seq.settings.encoders.global ? "Glbl Ctrl Name:" : "Controller Name:", 0, 0, 16);
-    PlotStringToPixelMemMap(name, 0, 20, 16);
+    PlotStringToPixelMemMap(ctrlName, 0, 20, 16);
     if (typeof seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value == "string") {
       PlotStringToPixelMemMap(seq[globalOrProject].encoders.control[seq.state.encoderBank][encIndex].value + "    ", 0, 40, 16);
     } else {
@@ -2652,6 +2670,8 @@ function settingsMenu(action, menuToEnter = null) {
 
 }
 
+
+// @note MenuItem constructor function
 function menuItem(text, upFn, dwnFn, selFn, genFn, dispFn, parent, goBack = false, textSize = 16) {
   this.isGeneratedList = false;
   this.upActionFn = upFn;
@@ -2670,6 +2690,7 @@ function menuItem(text, upFn, dwnFn, selFn, genFn, dispFn, parent, goBack = fals
   this.fontSize = textSize;
 }
 
+// @note subMenu constructor function
 function subMenu(text, items, parent, textSize = 16) {
   this.isSubMenu = true;
   this.parentDisplayText = text;
@@ -3247,7 +3268,7 @@ var trackOutputDevice = new menuItem(
   function () {
     this.currentSelectedItem = 0;
     this.currentDisplayRange = 0;
-    if (seq.track[seq.state.selectedTrack].outputType == "midi") {
+    if (seq.track[seq.state.selectedTrack].outputType == 1) {
       this.tempVar = 0;
       for (let i = 0; i < midiOutputDevicesNames.length; i++) {
         if (midiOutputDevicesEnabled[i] && !midiOutputDevicesHidden[i]) {
@@ -3277,7 +3298,7 @@ var trackOutputDevice = new menuItem(
     }
   },
   function (selection) { // selFn
-    if (seq.track[seq.state.selectedTrack].outputType == "midi") {
+    if (seq.track[seq.state.selectedTrack].outputType == 1) {
       let devCount = 0;
       for (let i = 0; i < midiOutputDevicesNames.length; i++) {
         if (midiOutputDevicesEnabled[i] && !midiOutputDevicesHidden[i]) {
@@ -3298,7 +3319,7 @@ var trackOutputDevice = new menuItem(
   },
   function (genReturn) { // dispFn
     let displayStrings = [];
-    if (seq.track[seq.state.selectedTrack].outputType == "midi") {
+    if (seq.track[seq.state.selectedTrack].outputType == 1) {
       for (let i = 0; i < midiOutputDevicesNames.length; i++) {
         if (midiOutputDevicesEnabled[i] && !midiOutputDevicesHidden[i]) {
           if (midiOutputDevicesNames[i].length > 16) {
@@ -3352,9 +3373,9 @@ var trackOutputType = new menuItem(
   },
   function (selection) { // selFn
     if (selection == 0) {
-      seq.track[seq.state.selectedTrack].outputType = "midi";
+      seq.track[seq.state.selectedTrack].outputType = 1;
     } else if (selection == 1) {
-      seq.track[seq.state.selectedTrack].outputType = "cv";
+      seq.track[seq.state.selectedTrack].outputType = 2;
     } else {
       console.log("Something went wrong");
     }
@@ -4343,12 +4364,20 @@ var gridBtnMenuLength = new menuItem(
   },
   function () { // upFn
     if (this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length < 10000) {
-      this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length += 5;
+      if(seq.state.altPressed){
+        this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length += 1;
+      }else{
+        this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length += 10;
+      }
     }
   },
   function () { // dwnFn
     if (this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length > 1) {
-      this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length -= 5;
+      if(seq.state.altPressed){
+        this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length -= 1;
+      }else{
+        this.tempVar.track.patterns["id_" + this.tempVar.track.currentPattern].events["id_" + this.tempVar.step].length -= 10;
+      }
     }
   },
   function (selection) { // selFn

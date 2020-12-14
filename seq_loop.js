@@ -9,56 +9,55 @@ TODO:
 
 */
 
-const midi = require('midi');
+// var fs = require('fs');
+// var timingLog = [];
+
+// const midi = require('midi');
 
 
-// Set up a new input.
-const midi_In = new midi.Input(),
-  midi_Out = new midi.Output();
-var midiInputDevices = [],
-  midiInputDevicesNames = [],
-  midiInputDevicesEnabled = [],
-  midiOutputDevices = [],
-  midiOutputDevicesNames = [],
-  midiOutputDevicesEnabled = [],
-  midiInputDevicesHidden = [],
-  midiOutputDevicesHidden = [];
+// // Set up a new input.
+// const midi_In = new midi.Input(),
+//   midi_Out = new midi.Output();
+// var midiInputDevices = [],
+//   midiInputDevicesNames = [],
+//   midiInputDevicesEnabled = [],
+//   midiOutputDevices = [],
+//   midiOutputDevicesNames = [],
+//   midiOutputDevicesEnabled = [],
+//   midiInputDevicesHidden = [],
+//   midiOutputDevicesHidden = [];
 
-// find out open Akai Fire MIDI input port
-// Also create array of all ports and open them.
+// // create array of all input ports and open them.
 
-for (let step = 0; step < midi_In.getPortCount(); step++) {
-  if (midi_In.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") == -1) {
-    midiInputDevices[step] = new midi.Input();
-    midiInputDevices[step].openPort(step);
-    midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
-    midiInputDevicesEnabled[step] = true;
-    if (midiInputDevicesNames[step].includes("RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
-      midiInputDevicesHidden[step] = true;
-    } else {
-      midiInputDevicesHidden[step] = false;
-    }
-  }
-}
+// for (let step = 0; step < midi_In.getPortCount(); step++) {
+//   if (midi_In.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") == -1) {
+//     midiInputDevices[step] = new midi.Input();
+//     midiInputDevices[step].openPort(step);
+//     midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
+//     midiInputDevicesEnabled[step] = true;
+//     if (midiInputDevicesNames[step].includes("RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+//       midiInputDevicesHidden[step] = true;
+//     } else {
+//       midiInputDevicesHidden[step] = false;
+//     }
+//   }
+// }
 
-// find out open Akai Fire MIDI output port and open it under "fireMidiOut"
-// Also create array of all ports and open them.
-for (let step = 0; step < midi_Out.getPortCount(); step++) {
-  if (midi_Out.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") == -1) {
-    midiOutputDevices[step] = new midi.Output();
-    midiOutputDevices[step].openPort(step);
-    midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
-    midiOutputDevicesEnabled[step] = true;
-    // console.log(midiOutputDevicesNames[step]);
-    if (midiOutputDevicesNames[step].includes("RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
-      midiOutputDevicesHidden[step] = true;
-    } else {
-      midiOutputDevicesHidden[step] = false;
-    }
-  }
-}
-
-
+// // create array of all output ports and open them.
+// for (let step = 0; step < midi_Out.getPortCount(); step++) {
+//   if (midi_Out.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") == -1) {
+//     midiOutputDevices[step] = new midi.Output();
+//     midiOutputDevices[step].openPort(step);
+//     midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
+//     midiOutputDevicesEnabled[step] = true;
+//     // console.log(midiOutputDevicesNames[step]);
+//     if (midiOutputDevicesNames[step].includes("RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+//       midiOutputDevicesHidden[step] = true;
+//     } else {
+//       midiOutputDevicesHidden[step] = false;
+//     }
+//   }
+// }
 
 var seq = {};
 seq.bpm = 1;
@@ -79,13 +78,15 @@ var newTrackData = [];
 
 var theLoopInterval;
 
-function seqPlay(beats = 4) {
+var currentStepsPerBeat = 4;
+
+function seqPlay(stepsPerBeat = 4) {
   if (!seq.state.playing) {
     console.log("play");
     seq.state.playing = true;
     seq.state.loopTimeMillis = new Date().getTime();
     seq.state.stepNumberCounted = 0;
-    theLoopInterval = setInterval(theLoopFn, 1, beats);
+    theLoopInterval = setInterval(theLoopFn, 1, stepsPerBeat);
   }
 }
 
@@ -149,15 +150,16 @@ ipc.connectTo(
         }
       }
     );
-    ipc.of.nodeMidi.on('seqPlay', function (beats) {
-      seqPlay(beats);
+    ipc.of.nodeMidi.on('seqPlay', function (stepsPerBeat) {
+      seqPlay(stepsPerBeat);
+      currentStepsPerBeat = stepsPerBeat;
     });
     ipc.of.nodeMidi.on('seqStop', seqStop);
     ipc.of.nodeMidi.on('tempoChange', function (data) {
       if (seq.state.playing) {
         seqStop();
         seq.state.currentBPM = data
-        seqPlay();
+        seqPlay(currentStepsPerBeat);
       } else {
         seq.state.currentBPM = data
       }
@@ -166,16 +168,20 @@ ipc.connectTo(
       seq.state.immediateTrackUpdate = data;
       console.log(seq.state.immediateTrackUpdate);
     });
-    ipc.of.nodeMidi.on('requestMidiDevices',function (){
-      let midiDevices={};
-      midiDevices.in = midiInputDevicesNames;
-      midiDevices.out = midiOutputDevicesNames;
-      ipc.of.nodeMidi.emit('midiDevices',midiDevices);
-    })
+    // ipc.of.nodeMidi.on('requestMidiDevices',function (){
+    //   let midiDevices={};
+    //   midiDevices.in = {};
+    //   midiDevices.in.names = midiInputDevicesNames;
+    //   midiDevices.in.enabled = midiInputDevicesEnabled;
+    //   midiDevices.in.hidden = midiInputDevicesHidden;
+    //   midiDevices.out = {};
+    //   midiDevices.out.names = midiOutputDevicesNames;
+    //   midiDevices.out.enabled = midiOutputDevicesEnabled;
+    //   midiDevices.out.hidden = midiOutputDevicesHidden;
+    //   ipc.of.nodeMidi.emit('midiDevices',midiDevices);
+    // })
   }
 );
-
-
 
 /***************************************************************************************
 
@@ -199,13 +205,7 @@ Things to track during the loop:
 // need to rework the loop so that it is step based not loop time based. Either that, or use this loop as
 // a time based loop and create a new one that is step based.
 
-function theLoopFn(stepsPerBeat = 4) {
-
-  if (seq.state.newTrackDataWaiting && (seq.state.stepNumberCounted % 16 == 0)) {
-    seq.track = newTrackData;
-    seq.state.newTrackDataWaiting = false;
-  }
-
+function theLoopFn(stepsPerBeat = 4) { 
   // let currentTimeMillis = new Date().getTime();
   // let loopTimeDiffMillis = currentTimeMillis - seq.state.loopTimeMillis;
   // let sequencerBPM = seq.state.currentBPM;
@@ -216,7 +216,8 @@ function theLoopFn(stepsPerBeat = 4) {
   // let stepNumberCalculated = Math.trunc((new Date().getTime()-seq.state.loopTimeMillis)/(((60/seq.state.currentBPM)/stepsPerBeat) * 1000));
 
   // if (stepNumberCalculated == seq.state.stepNumberCounted + 1) {
-  if ((Math.trunc((new Date().getTime() - seq.state.loopTimeMillis) / (((60 / seq.state.currentBPM) / stepsPerBeat) * 1000))) == seq.state.stepNumberCounted + 1) {
+  // if ((Math.trunc((new Date().getTime() - seq.state.loopTimeMillis) / (((60 / seq.state.currentBPM) / stepsPerBeat) * 1000))) == seq.state.stepNumberCounted + 1) {
+  if ((Math.trunc((new Date().getTime() - seq.state.loopTimeMillis) / (stepTime * 1000))) == seq.state.stepNumberCounted + 1) {
     // Next step started
     // console.log(seq.state.stepNumberCounted);
     //go through each track
@@ -236,10 +237,13 @@ function theLoopFn(stepsPerBeat = 4) {
         data.lengthTime = stepTime * (data.event.length / 100);
         // console.log(data.event.enabled);
         if (data.event.enabled) {
-          setTimeout(() => {
-            ipc.of.nodeMidi.emit('play-note', data);
-          }, stepTime * (data.event.startTimePatternOffset / 100) * 1000);
-          // ipc.of.nodeMidi.emit('play-note', data);
+          // setTimeout(() => {
+          //   ipc.of.nodeMidi.emit('play-note', data);
+          //   // playNote(data);
+          // }, stepTime * (data.event.startTimePatternOffset / 100) * 1000);
+          ipc.of.nodeMidi.emit('play-note', data);
+          // newTimingLogEntry("playNote");
+          // playNote(data);
           // console.log("note played");
         }
         // advance current step
@@ -248,10 +252,67 @@ function theLoopFn(stepsPerBeat = 4) {
     });
     ipc.of.nodeMidi.emit('step', seq.state.stepNumberCounted);
     seq.state.stepNumberCounted++;
+  } else {
+    if (seq.state.newTrackDataWaiting && (seq.state.stepNumberCounted % 16 == 0)) {
+      seq.track = newTrackData;
+      seq.state.newTrackDataWaiting = false;
+    }
   }
 }
 
-
+/**************************************************************************************
+@note playNote
+**************************************************************************************/
+function playNote(eventData, socket = null, timeoutIndex = null) {
+  // console.log(eventData);
+    let midiDevice = false;
+    if (seq.track[eventData.track].outputIndex != null) {
+      if (seq.track[eventData.track].outputType == 1) {
+        midiDevice = midiOutputDevices[seq.track[eventData.track].outputIndex];
+      } else {
+        // do thing for CV GATE output
+        /** TODO: @todo CV gate stuff
+         **/
+      }
+    } else {
+      // do not output anything since outputIndex is null. This would mean that a device has not been selected.
+      return;
+    }
+    // parse eventData and generate midi data
+    if (eventData.event.velocity > 0) {
+      let newMidiMessage = [0, 0, 0];
+      newMidiMessage[0] = 0x90 + seq.track[eventData.track].channel;
+      newMidiMessage[1] = eventData.event.data;
+      newMidiMessage[2] = eventData.event.velocity;
+      // send midi data to device associated with track
+      if (midiDevice != false) {
+        midiDevice.sendMessage(newMidiMessage);
+      }
+      newMidiMessage[0] = 0x80 + seq.track[eventData.track].channel;
+      if (eventData.lengthTime != null) {
+        setTimeout(function () {
+          if (midiDevice != false) {
+            midiDevice.sendMessage(newMidiMessage);
+          }
+        }, eventData.lengthTime * 1000);
+      } else if (seq.track[seq.state.selectedTrack].monophonicMode) {
+        seq.state.noteTimeout = setTimeout(function () {
+          if (midiDevice != false) {
+            midiDevice.sendMessage(newMidiMessage);
+          }
+        }, 10000);
+      }
+    } else {
+      let newMidiMessage = [0, 0, 0];
+      newMidiMessage[0] = 0x80 + seq.track[eventData.track].channel;
+      newMidiMessage[1] = eventData.event.data;
+      newMidiMessage[2] = eventData.event.velocity;
+      // send midi data to device associated with track
+      if (midiDevice != false) {
+        midiDevice.sendMessage(newMidiMessage);
+      }
+    }
+}
 
 // seq.track.forEach(function(track, index) {
 //   // let pattern = track.patterns["id_" + track.currentPattern];
@@ -347,3 +408,73 @@ function theLoopFn(stepsPerBeat = 4) {
 //   });
 // }
 // seqPlay();
+
+// function newTimingLogEntry(entryText) {
+//   let newEntry = {};
+//   newEntry.time = process.hrtime();
+//   newEntry.text = entryText;
+//   timingLog.push(newEntry);
+// }
+
+// function writeTimingLogToFile() {
+//   fs.writeFileSync('timingLog.json', JSON.stringify(timingLog));
+// }
+
+/* #region  debug and exit functions */
+async function debug(s, lvl, comment) {
+  if (!lvl) {
+    lvl = 5;
+  }
+  if (lvl <= settings.debugLevel) {
+    console.log("______________________");
+    console.log("|    DEBUG OUTPUT    |");
+    if (comment) {
+      console.log(comment);
+    }
+    console.log("----------------------");
+    console.log(s);
+    console.log("______________________");
+    console.log("**********************");
+    console.log(" ");
+    console.log(" ");
+  }
+}
+
+function exit() {
+  // writeTimingLogToFile();
+}
+
+
+function exitHandler(options, exitCode) {
+  exit();
+  if (options.cleanup) debug('clean', 2);
+  if (exitCode || exitCode === 0) debug(exitCode, 1);
+  if (options.exit) process.exit();
+  console.log({
+    exitCode
+  });
+  console.log("Change debug logging level with '--debugLevel [0-5]'");
+}
+
+//do something when app is closing
+process.on('exit', exitHandler.bind(null, {
+  cleanup: true
+}));
+
+//catches ctrl+c event
+process.on('SIGINT', exitHandler.bind(null, {
+  exit: true
+}));
+
+// catches "kill pid" (for example: nodemon restart)
+process.on('SIGUSR1', exitHandler.bind(null, {
+  exit: true
+}));
+process.on('SIGUSR2', exitHandler.bind(null, {
+  exit: true
+}));
+
+//catches uncaught exceptions
+process.on('uncaughtException', exitHandler.bind(null, {
+  exit: true
+}));

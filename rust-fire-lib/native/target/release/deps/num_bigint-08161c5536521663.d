@@ -1,0 +1,12 @@
+/home/pi/nodeMidi/rust-fire-lib/native/target/release/deps/num_bigint-08161c5536521663.rmeta: /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/lib.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/macros.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/bigint.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/biguint.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/algorithms.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/monty.rs
+
+/home/pi/nodeMidi/rust-fire-lib/native/target/release/deps/libnum_bigint-08161c5536521663.rlib: /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/lib.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/macros.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/bigint.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/biguint.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/algorithms.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/monty.rs
+
+/home/pi/nodeMidi/rust-fire-lib/native/target/release/deps/num_bigint-08161c5536521663.d: /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/lib.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/macros.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/bigint.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/biguint.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/algorithms.rs /home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/monty.rs
+
+/home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/lib.rs:
+/home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/macros.rs:
+/home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/bigint.rs:
+/home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/biguint.rs:
+/home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/algorithms.rs:
+/home/pi/.cargo/registry/src/github.com-1285ae84e5963aae/num-bigint-0.2.6/src/monty.rs:

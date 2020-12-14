@@ -5,7 +5,6 @@
 		}
 	],
 	"settings": {
-		"files.autoSave": "onFocusChange",
-		"inline-bookmarks.view.showVisibleFilesOnly": false
+		"files.autoSave": "onFocusChange"
 	}
 }

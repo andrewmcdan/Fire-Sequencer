@@ -61,32 +61,32 @@
       },
       ".gitignore": {
         "type": "-",
-        "size": 375,
-        "lmtime": 0,
+        "size": 362,
+        "lmtime": 1596844415470,
         "modified": false
       },
       "Fire.code-workspace": {
         "type": "-",
-        "size": 153,
-        "lmtime": 0,
+        "size": 98,
+        "lmtime": 1607863348288,
         "modified": false
       },
       "FireSequencer.js": {
         "type": "-",
-        "size": 181049,
-        "lmtime": 1595301428171,
+        "size": 188073,
+        "lmtime": 1596847391391,
         "modified": true
       },
       "_Project info.gdoc": {
         "type": "-",
         "size": 179,
-        "lmtime": 1592964075000,
+        "lmtime": 1607863348005,
         "modified": false
       },
       "binding.gyp": {
         "type": "-",
         "size": 1605,
-        "lmtime": 0,
+        "lmtime": 1607863348024,
         "modified": false
       },
       "bitmaps.js": {
@@ -95,11 +95,42 @@
         "lmtime": 1593688956653,
         "modified": true
       },
-      "build": {},
+      "build": {
+        "Makefile": {
+          "type": "-",
+          "size": 12790,
+          "lmtime": 1607863352614,
+          "modified": false
+        },
+        "binding.Makefile": {
+          "type": "-",
+          "size": 112,
+          "lmtime": 1607863352558,
+          "modified": false
+        },
+        "config.gypi": {
+          "type": "-",
+          "size": 5645,
+          "lmtime": 1607863352545,
+          "modified": false
+        },
+        "midi.target.mk": {
+          "type": "-",
+          "size": 4235,
+          "lmtime": 1607863352190,
+          "modified": false
+        }
+      },
+      "config.txt": {
+        "type": "-",
+        "size": 1812,
+        "lmtime": 1607863348093,
+        "modified": false
+      },
       "dataObjFile": {
         "type": "-",
         "size": 29705,
-        "lmtime": 0,
+        "lmtime": 1607863348118,
         "modified": false
       },
       "dataObjFile.json": {
@@ -108,10 +139,16 @@
         "lmtime": 0,
         "modified": true
       },
+      "emitter.js": {
+        "type": "-",
+        "size": 2237,
+        "lmtime": 1607863348243,
+        "modified": false
+      },
       "fFire.code-workspace": {
         "type": "-",
         "size": 98,
-        "lmtime": 1593228719543,
+        "lmtime": 1607863348257,
         "modified": false
       },
       "fire.code-workspace": {
@@ -122,32 +159,44 @@
       },
       "globalSave": {
         "type": "-",
-        "size": 9115,
+        "size": 9396,
         "lmtime": 1593387410736,
         "modified": true
       },
       "isolate-0x3c50778-v8.log": {
         "type": "-",
         "size": 1644089,
-        "lmtime": 0,
+        "lmtime": 1607863348765,
         "modified": false
       },
       "main.js": {
         "type": "-",
-        "size": 3179,
-        "lmtime": 1593716937568,
-        "modified": false
+        "size": 5048,
+        "lmtime": 1597113190723,
+        "modified": true
       },
       "midi.js": {
         "type": "-",
         "size": 54362,
-        "lmtime": 0,
+        "lmtime": 1607863349247,
+        "modified": false
+      },
+      "midi0.js": {
+        "type": "-",
+        "size": 22342,
+        "lmtime": 1607863349313,
         "modified": false
       },
       "midi1.js": {
         "type": "-",
         "size": 18571,
-        "lmtime": 0,
+        "lmtime": 1607863349370,
+        "modified": false
+      },
+      "midi2.js": {
+        "type": "-",
+        "size": 50498,
+        "lmtime": 1607863349674,
         "modified": false
       },
       "node_modules": {
@@ -290,25 +339,25 @@
       "obf.js": {
         "type": "-",
         "size": 986740,
-        "lmtime": 1594151913368,
+        "lmtime": 1607863349987,
         "modified": false
       },
       "package-lock.json": {
         "type": "-",
-        "size": 24794,
+        "size": 31357,
         "lmtime": 0,
         "modified": true
       },
       "package.json": {
         "type": "-",
-        "size": 637,
+        "size": 683,
         "lmtime": 0,
-        "modified": false
+        "modified": true
       },
       "polyrythm.js": {
         "type": "-",
         "size": 1552,
-        "lmtime": 1593452262800,
+        "lmtime": 1607863351260,
         "modified": false
       },
       "processed1.txt": {
@@ -317,7 +366,44 @@
         "lmtime": 0,
         "modified": true
       },
-      "projects": {},
+      "projects": {
+        "0d15f579-d640-4f12-bca3-4679111154ec": {
+          "type": "-",
+          "size": 21119,
+          "lmtime": 1597113180690,
+          "modified": false
+        },
+        "1bf5cc60-f9d1-41a6-a24d-4104b58cda3f": {
+          "type": "-",
+          "size": 21121,
+          "lmtime": 1597113180666,
+          "modified": false
+        },
+        "1d1fc495-e297-472a-b26f-7400eedfe207": {
+          "type": "-",
+          "size": 21125,
+          "lmtime": 1597113180592,
+          "modified": false
+        },
+        "5c2ef2ce-05f9-4778-a6d8-f609253c2ec5": {
+          "type": "-",
+          "size": 21121,
+          "lmtime": 1597113180573,
+          "modified": false
+        },
+        "d329ad1f-c04a-4588-9de0-08d11460d2ab": {
+          "type": "-",
+          "size": 21123,
+          "lmtime": 1597113180551,
+          "modified": false
+        },
+        "ef4ebf18-9bdd-4adc-9204-8abe73f85d06": {
+          "type": "-",
+          "size": 21111,
+          "lmtime": 1597113180512,
+          "modified": false
+        }
+      },
       "rust-fire-lib": {
         ".gitignore": {
           "type": "-",
@@ -342,15 +428,15 @@
         "native": {
           "Cargo.lock": {
             "type": "-",
-            "size": 3454,
+            "size": 4399,
             "lmtime": 1595160405421,
             "modified": true
           },
           "Cargo.toml": {
             "type": "-",
-            "size": 294,
+            "size": 332,
             "lmtime": 1595269117009,
-            "modified": false
+            "modified": true
           },
           "artifacts.json": {
             "type": "-",
@@ -366,7 +452,7 @@
           },
           "index.node": {
             "type": "-",
-            "size": 2698724,
+            "size": 2741392,
             "lmtime": 0,
             "modified": true
           },
@@ -394,17 +480,61 @@
               },
               ".fingerprint": {},
               "build": {
-                "bitflags-4af2e92e7755d84a": {},
-                "bitflags-50aa25f9667468d1": {},
-                "byteorder-98b6bf33e193c539": {},
-                "byteorder-9a3d6c8af5e4ee60": {},
-                "getrandom-55a7f27b0f38f2e2": {},
-                "getrandom-d31864b9024dbfc7": {},
-                "libc-0625db57a3f8bdfe": {},
-                "libc-20c6ce4ddc046726": {},
                 "memchr-44d8e5e7a75b5f76": {},
-                "memchr-607fde1146530e4d": {},
-                "neon-4f32f7ac8ad2a87f": {},
+                "memchr-607fde1146530e4d": {
+                  "invoked.timestamp": {
+                    "type": "-",
+                    "size": 48,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "out": {},
+                  "output": {
+                    "type": "-",
+                    "size": 144,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "root-output": {
+                    "type": "-",
+                    "size": 87,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "stderr": {
+                    "type": "-",
+                    "size": 0,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
+                "neon-4f32f7ac8ad2a87f": {
+                  "invoked.timestamp": {
+                    "type": "-",
+                    "size": 48,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "out": {},
+                  "output": {
+                    "type": "-",
+                    "size": 39,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "root-output": {
+                    "type": "-",
+                    "size": 85,
+                    "lmtime": 0,
+                    "modified": false
+                  },
+                  "stderr": {
+                    "type": "-",
+                    "size": 0,
+                    "lmtime": 0,
+                    "modified": false
+                  }
+                },
                 "neon-8088fff0db90c9fa": {},
                 "neon-build-11a8572a948a4f8f": {
                   "build-script-build": {
@@ -500,10 +630,12 @@
                     "modified": false
                   }
                 },
-                "nix-71becd12db6b784a": {},
-                "nix-d4ff3beffec18e8d": {},
-                "proc-macro2-8af98da06e228503": {},
-                "proc-macro2-f84a18c9b42ce0db": {},
+                "num-bigint-1e40f53be978c02d": {},
+                "num-bigint-917ac65b1c50cb96": {},
+                "num-integer-89e84c666c67833c": {},
+                "num-integer-af829fe386471849": {},
+                "num-traits-16ee9ad0878c23ec": {},
+                "num-traits-bcc96c8c77b74a66": {},
                 "rust-fire-lib-b99e44f62605e54f": {
                   "invoked.timestamp": {
                     "type": "-",
@@ -550,58 +682,7 @@
                     "lmtime": 0,
                     "modified": false
                   }
-                },
-                "serde-5cc5c1c92f7f59c4": {
-                  "build-script-build": {
-                    "type": "-",
-                    "size": 2718700,
-                    "lmtime": 0,
-                    "modified": false
-                  },
-                  "build_script_build-5cc5c1c92f7f59c4": {
-                    "type": "-",
-                    "size": 2718700,
-                    "lmtime": 0,
-                    "modified": false
-                  },
-                  "build_script_build-5cc5c1c92f7f59c4.d": {
-                    "type": "-",
-                    "size": 485,
-                    "lmtime": 0,
-                    "modified": false
-                  }
-                },
-                "serde-acbb0adc22775cd0": {
-                  "invoked.timestamp": {
-                    "type": "-",
-                    "size": 48,
-                    "lmtime": 0,
-                    "modified": false
-                  },
-                  "out": {},
-                  "output": {
-                    "type": "-",
-                    "size": 324,
-                    "lmtime": 0,
-                    "modified": false
-                  },
-                  "root-output": {
-                    "type": "-",
-                    "size": 86,
-                    "lmtime": 0,
-                    "modified": false
-                  },
-                  "stderr": {
-                    "type": "-",
-                    "size": 0,
-                    "lmtime": 0,
-                    "modified": false
-                  }
-                },
-                "serde_derive-1b85a0775f40353a": {},
-                "serde_derive-2b8e62160fcd325d": {},
-                "syn-3784d239cc0deace": {},
-                "syn-451298ac444a25b2": {}
+                }
               },
               "deps": {
                 "aho_corasick-917963cce5a00c77.d": {
@@ -1209,13 +1290,13 @@
               "incremental": {},
               "librust_fire_lib.d": {
                 "type": "-",
-                "size": 173,
+                "size": 182,
                 "lmtime": 0,
-                "modified": false
+                "modified": true
               },
               "librust_fire_lib.so": {
                 "type": "-",
-                "size": 2861348,
+                "size": 2741392,
                 "lmtime": 0,
                 "modified": true
               }
@@ -1447,40 +1528,50 @@
           "modified": false
         }
       },
+      "rust_seq": {
+        "src": {
+          "main.rs": {
+            "type": "-",
+            "size": 2962,
+            "lmtime": 1595259850276,
+            "modified": false
+          }
+        }
+      },
       "saveFile": {
         "type": "-",
-        "size": 247,
-        "lmtime": 1593603542784,
+        "size": 621,
+        "lmtime": 1596829759171,
         "modified": true
       },
       "seq_loop.js": {
         "type": "-",
-        "size": 11070,
-        "lmtime": 1595505052712,
+        "size": 17900,
+        "lmtime": 1598112077452,
         "modified": true
       },
       "test.json": {
         "type": "-",
         "size": 491,
-        "lmtime": 0,
+        "lmtime": 1607863351575,
         "modified": false
       },
       "timingLog.json": {
         "type": "-",
-        "size": 189,
-        "lmtime": 1595270929141,
-        "modified": true
+        "size": 2,
+        "lmtime": 1607863368336,
+        "modified": false
       },
       "wifiControl.js": {
         "type": "-",
         "size": 2364,
-        "lmtime": 1593717313636,
+        "lmtime": 1607863351867,
         "modified": false
       },
       "wifiTest.js": {
         "type": "-",
         "size": 2075,
-        "lmtime": 1593693666160,
+        "lmtime": 1607863351993,
         "modified": false
       }
     }

@@ -1,0 +1,1716 @@
+Statistical profiling result from isolate-0x3c50778-v8.log, (22345 ticks, 1749 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+     46    0.2%          /lib/arm-linux-gnueabihf/libc-2.28.so
+     42    0.2%          5aded000-5adee000
+     22    0.1%          /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.25
+     15    0.1%          /lib/arm-linux-gnueabihf/libgcc_s.so.1
+     14    0.1%          [vectors]
+      1    0.0%          529f8000-529f9000
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+    301    1.3%    1.4%  LazyCompile: *FireOLED_SendMemMap /home/pi/nodeMidi/FireSequencer.js:2248:29
+    225    1.0%    1.0%  LazyCompile: *PlotStringToPixelMemMap /home/pi/nodeMidi/FireSequencer.js:2001:33
+     92    0.4%    0.4%  LazyCompile: *processTimers timers.js:220:23
+     88    0.4%    0.4%  LazyCompile: *clearOLEDmemMap /home/pi/nodeMidi/FireSequencer.js:2376:25
+     75    0.3%    0.3%  Builtin: InterpreterEntryTrampoline
+     67    0.3%    0.3%  Builtin: KeyedLoadIC
+     64    0.3%    0.3%  LazyCompile: *emit events.js:147:44
+     62    0.3%    0.3%  Builtin: StoreIC
+     56    0.3%    0.3%  LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     55    0.2%    0.2%  LazyCompile: *updateAllGridBtnLEDs /home/pi/nodeMidi/FireSequencer.js:2060:30
+     51    0.2%    0.2%  LazyCompile: *playNote /home/pi/nodeMidi/FireSequencer.js:1059:18
+     45    0.2%    0.2%  LazyCompile: ~FireOLED_SendMemMap /home/pi/nodeMidi/FireSequencer.js:2248:29
+     45    0.2%    0.2%  LazyCompile: *gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     40    0.2%    0.2%  Builtin: StringAdd_CheckNone_NotTenured
+     38    0.2%    0.2%  Builtin: KeyedLoadIC_Megamorphic
+     37    0.2%    0.2%  Stub: JSEntryStub
+     32    0.1%    0.1%  Builtin: Call_ReceiverIsAny
+     31    0.1%    0.1%  Builtin: GetProperty
+     30    0.1%    0.1%  Builtin: CallFunction_ReceiverIsAny
+     28    0.1%    0.1%  Builtin: KeyedStoreIC
+     27    0.1%    0.1%  LazyCompile: ~updateAllGridBtnLEDs /home/pi/nodeMidi/FireSequencer.js:2060:30
+     21    0.1%    0.1%  LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     21    0.1%    0.1%  LazyCompile: ~displayTrackAndPatInfo /home/pi/nodeMidi/FireSequencer.js:1943:32
+     19    0.1%    0.1%  Builtin: LoadIC
+     17    0.1%    0.1%  LazyCompile: ~stepHighlight /home/pi/nodeMidi/FireSequencer.js:1143:23
+     17    0.1%    0.1%  LazyCompile: ~playNote /home/pi/nodeMidi/FireSequencer.js:1059:18
+     17    0.1%    0.1%  LazyCompile: ~ontimeout timers.js:429:19
+     17    0.1%    0.1%  LazyCompile: ~emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+     16    0.1%    0.1%  Stub: CallApiCallbackStub
+     16    0.1%    0.1%  LazyCompile: *ArraySpliceFallback native array.js:452:29
+     15    0.1%    0.1%  Builtin: JSEntryTrampoline
+     13    0.1%    0.1%  LazyCompile: ~nextTick internal/process/next_tick.js:96:20
+     13    0.1%    0.1%  Builtin: KeyedLoadIC_PolymorphicName
+     13    0.1%    0.1%  Builtin: CEntry_Return1_DontSaveFPRegs_ArgvOnStack_NoBuiltinExit
+     12    0.1%    0.1%  LazyCompile: *PlotBitmapToPixelMemmap /home/pi/nodeMidi/FireSequencer.js:2360:33
+     12    0.1%    0.1%  Builtin: KeyedStoreIC_Megamorphic
+     11    0.0%    0.0%  LazyCompile: ~insert timers.js:167:16
+     11    0.0%    0.0%  LazyCompile: *onStreamRead internal/stream_base_commons.js:87:22
+     11    0.0%    0.0%  Builtin: Equal
+     11    0.0%    0.0%  Builtin: CallFunction_ReceiverIsNotNullOrUndefined
+     11    0.0%    0.0%  Builtin: CEntry_Return1_DontSaveFPRegs_ArgvOnStack_BuiltinExit
+     10    0.0%    0.0%  LazyCompile: ~_tickCallback internal/process/next_tick.js:41:25
+     10    0.0%    0.0%  Builtin: CompileLazy
+      9    0.0%    0.0%  Stub: DirectCEntryStub
+      9    0.0%    0.0%  Stub: CallApiCallbackStub {1}
+      9    0.0%    0.0%  LazyCompile: ~maybeReadMore _stream_readable.js:579:23
+      9    0.0%    0.0%  LazyCompile: ~emit$ /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:90:19
+      9    0.0%    0.0%  LazyCompile: ~ArraySpliceFallback native array.js:452:29
+      8    0.0%    0.0%  Stub: ArraySingleArgumentConstructorStub
+      8    0.0%    0.0%  LazyCompile: ~readableAddChunk _stream_readable.js:232:26
+      8    0.0%    0.0%  LazyCompile: ~maybeReadMore_ _stream_readable.js:586:24
+      8    0.0%    0.0%  LazyCompile: ~encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+      8    0.0%    0.0%  LazyCompile: ~emit /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:72:14
+      8    0.0%    0.0%  Builtin: OrdinaryToPrimitive_Number
+      8    0.0%    0.0%  Builtin: ForInEnumerate {1}
+      7    0.0%    0.0%  LazyCompile: ~Readable.read _stream_readable.js:391:35
+      7    0.0%    0.0%  Builtin: DeleteProperty
+      7    0.0%    0.0%  Builtin: CallWithArrayLike
+      7    0.0%    0.0%  Builtin: CallVarargs
+      7    0.0%    0.0%  Builtin: ArgumentsAdaptorTrampoline
+      6    0.0%    0.0%  LazyCompile: ~setTimeout timers.js:388:20
+      6    0.0%    0.0%  LazyCompile: ~seq.mode.Step /home/pi/nodeMidi/FireSequencer.js:511:26
+      6    0.0%    0.0%  LazyCompile: ~rearm timers.js:443:15
+      6    0.0%    0.0%  LazyCompile: ~onwrite _stream_writable.js:450:17
+      6    0.0%    0.0%  LazyCompile: ~emitBeforeScript internal/async_hooks.js:340:26
+      6    0.0%    0.0%  LazyCompile: ~emitAfterScript internal/async_hooks.js:354:25
+      6    0.0%    0.0%  LazyCompile: ~Message /home/pi/nodeMidi/node_modules/js-message/Message.js:1:17
+      6    0.0%    0.0%  LazyCompile: *remove internal/linkedlist.js:15:16
+      6    0.0%    0.0%  Builtin: ForInFilter
+      6    0.0%    0.0%  Builtin: Construct
+      6    0.0%    0.0%  Builtin: AdaptorWithExitFrame
+      5    0.0%    0.0%  Stub: StoreFastElementStub
+      5    0.0%    0.0%  LazyCompile: ~sendTrackUpdateToSeqLoop /home/pi/nodeMidi/FireSequencer.js:1823:34
+      5    0.0%    0.0%  LazyCompile: ~Timeout internal/timers.js:55:17
+      5    0.0%    0.0%  LazyCompile: ~ArraySpeciesCreate native array.js:13:28
+      5    0.0%    0.0%  LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1089:29
+      5    0.0%    0.0%  LazyCompile: *parse /home/pi/nodeMidi/node_modules/js-message/Message.js:54:19
+      5    0.0%    0.0%  LazyCompile: *ontimeout timers.js:429:19
+      5    0.0%    0.0%  Builtin: ObjectPrototypeToString
+      5    0.0%    0.0%  Builtin: HasProperty
+      5    0.0%    0.0%  Builtin: FastNewObject
+      4    0.0%    0.0%  LazyCompile: ~updateAllNotGridBtnLEDS /home/pi/nodeMidi/FireSequencer.js:2209:33
+      4    0.0%    0.0%  LazyCompile: ~isEmpty internal/fixed_queue.js:91:10
+      4    0.0%    0.0%  LazyCompile: ~exports.active timers.js:151:41
+      4    0.0%    0.0%  LazyCompile: ~TickObject internal/process/next_tick.js:74:16
+      4    0.0%    0.0%  LazyCompile: ~SimpleMove native array.js:212:20
+      4    0.0%    0.0%  LazyCompile: ~Readable.push _stream_readable.js:207:35
+      4    0.0%    0.0%  LazyCompile: ~ComputeSpliceDeleteCount native array.js:441:34
+      4    0.0%    0.0%  LazyCompile: *nextTick internal/process/next_tick.js:96:20
+      4    0.0%    0.0%  LazyCompile: *SimpleMove native array.js:212:20
+      4    0.0%    0.0%  LazyCompile: *Readable.read _stream_readable.js:391:35
+      4    0.0%    0.0%  Builtin: StringPrototypeSplit
+      4    0.0%    0.0%  Builtin: StringAdd_ConvertRight_NotTenured
+      4    0.0%    0.0%  Builtin: FastNewClosure
+      3    0.0%    0.0%  LazyCompile: ~pushAsyncIds internal/async_hooks.js:389:22
+      3    0.0%    0.0%  LazyCompile: ~log /home/pi/nodeMidi/node_modules/node-ipc/services/IPC.js:64:13
+      3    0.0%    0.0%  LazyCompile: ~isFull internal/fixed_queue.js:67:9
+      3    0.0%    0.0%  LazyCompile: ~initAsyncResource internal/timers.js:45:27
+      3    0.0%    0.0%  LazyCompile: ~emitPromiseRejectionWarnings internal/process/promises.js:119:38
+      3    0.0%    0.0%  LazyCompile: ~clearOLEDmemMap /home/pi/nodeMidi/FireSequencer.js:2376:25
+      3    0.0%    0.0%  LazyCompile: ~TimersList timers.js:195:20
+      3    0.0%    0.0%  LazyCompile: ~Socket._read net.js:527:34
+      3    0.0%    0.0%  LazyCompile: ~PlotStringToPixelMemMap /home/pi/nodeMidi/FireSequencer.js:2001:33
+      3    0.0%    0.0%  Builtin: ToLength
+      3    0.0%    0.0%  Builtin: StringToNumber
+      3    0.0%    0.0%  Builtin: StringSubstring
+      3    0.0%    0.0%  Builtin: StoreGlobalIC
+      3    0.0%    0.0%  Builtin: InterpreterPushUndefinedAndArgsThenCall
+      3    0.0%    0.0%  Builtin: CreateTypedArray
+      3    0.0%    0.0%  Builtin: AsyncFunctionPromiseRelease
+      2    0.0%    0.0%  Stub: StoreFastElementStub {3}
+      2    0.0%    0.0%  Stub: StoreFastElementStub {1}
+      2    0.0%    0.0%  LazyCompile: ~shift internal/fixed_queue.js:76:8
+      2    0.0%    0.0%  LazyCompile: ~resolve path.js:1068:28
+      2    0.0%    0.0%  LazyCompile: ~push internal/fixed_queue.js:95:7
+      2    0.0%    0.0%  LazyCompile: ~push internal/fixed_queue.js:71:7
+      2    0.0%    0.0%  LazyCompile: ~popAsyncIds internal/async_hooks.js:402:21
+      2    0.0%    0.0%  LazyCompile: ~parse /home/pi/nodeMidi/node_modules/node-ipc/entities/EventParser.js:25:8
+      2    0.0%    0.0%  LazyCompile: ~listOnTimeout timers.js:226:23
+      2    0.0%    0.0%  LazyCompile: ~NativeModule.require internal/bootstrap/loaders.js:150:34
+      2    0.0%    0.0%  LazyCompile: ~ComputeSpliceStartIndex native array.js:434:33
+      2    0.0%    0.0%  LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:2220:37
+      2    0.0%    0.0%  LazyCompile: *stepHighlight /home/pi/nodeMidi/FireSequencer.js:1143:23
+      2    0.0%    0.0%  LazyCompile: *emitBeforeScript internal/async_hooks.js:340:26
+      2    0.0%    0.0%  LazyCompile: *SimpleSlice native array.js:203:21
+      2    0.0%    0.0%  LazyCompile: *ComputeSpliceStartIndex native array.js:434:33
+      2    0.0%    0.0%  LazyCompile: *<anonymous> /home/pi/nodeMidi/FireSequencer.js:1089:29
+      2    0.0%    0.0%  Eval: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1:1
+      2    0.0%    0.0%  Builtin: StringIndexOf
+      2    0.0%    0.0%  Builtin: StringEqual
+      2    0.0%    0.0%  Builtin: ObjectPrototypeValueOf
+      2    0.0%    0.0%  Builtin: LoadICTrampoline
+      2    0.0%    0.0%  Builtin: HandleApiCall
+      2    0.0%    0.0%  Builtin: FulfillPromise
+      2    0.0%    0.0%  Builtin: Call_ReceiverIsNotNullOrUndefined
+      2    0.0%    0.0%  Builtin: CallBoundFunction
+      2    0.0%    0.0%  Builtin: ArrayBufferIsView
+      2    0.0%    0.0%  Builtin: Add {1}
+      1    0.0%    0.0%  Stub: StoreFastElementStub {4}
+      1    0.0%    0.0%  Stub: StoreFastElementStub {2}
+      1    0.0%    0.0%  Stub: CallApiGetterStub
+      1    0.0%    0.0%  Script: ~<anonymous> internal/url.js:1:11
+      1    0.0%    0.0%  LazyCompile: ~writeOrBuffer _stream_writable.js:365:23
+      1    0.0%    0.0%  LazyCompile: ~write console.js:153:15
+      1    0.0%    0.0%  LazyCompile: ~tryOnTimeout timers.js:292:22
+      1    0.0%    0.0%  LazyCompile: ~shift internal/fixed_queue.js:104:8
+      1    0.0%    0.0%  LazyCompile: ~patternEvent /home/pi/nodeMidi/FireSequencer.js:375:22
+      1    0.0%    0.0%  LazyCompile: ~parse /home/pi/nodeMidi/node_modules/js-message/Message.js:54:19
+      1    0.0%    0.0%  LazyCompile: ~onStreamRead internal/stream_base_commons.js:87:22
+      1    0.0%    0.0%  LazyCompile: ~ok assert.js:345:12
+      1    0.0%    0.0%  LazyCompile: ~normalizeString path.js:52:25
+      1    0.0%    0.0%  LazyCompile: ~loadGlobalData /home/pi/nodeMidi/FireSequencer.js:4300:24
+      1    0.0%    0.0%  LazyCompile: ~howMuchToRead _stream_readable.js:365:23
+      1    0.0%    0.0%  LazyCompile: ~handleWriteReq internal/stream_base_commons.js:12:24
+      1    0.0%    0.0%  LazyCompile: ~getDefaultTriggerAsyncId internal/async_hooks.js:270:34
+      1    0.0%    0.0%  LazyCompile: ~chunkInvalid _stream_readable.js:303:22
+      1    0.0%    0.0%  LazyCompile: ~args internal/util/types.js:11:10
+      1    0.0%    0.0%  LazyCompile: ~afterWrite _stream_writable.js:481:20
+      1    0.0%    0.0%  LazyCompile: ~addPattern /home/pi/nodeMidi/FireSequencer.js:453:30
+      1    0.0%    0.0%  LazyCompile: ~addEventByStep /home/pi/nodeMidi/FireSequencer.js:416:34
+      1    0.0%    0.0%  LazyCompile: ~addChunk _stream_readable.js:285:18
+      1    0.0%    0.0%  LazyCompile: ~_unrefTimer net.js:333:52
+      1    0.0%    0.0%  LazyCompile: ~Writable.write _stream_writable.js:273:36
+      1    0.0%    0.0%  LazyCompile: ~PlotBitmapToPixelMemmap /home/pi/nodeMidi/FireSequencer.js:2360:33
+      1    0.0%    0.0%  LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:275:28
+      1    0.0%    0.0%  LazyCompile: ~Module._compile internal/modules/cjs/loader.js:705:37
+      1    0.0%    0.0%  LazyCompile: ~Console.(anonymous function) console.js:196:47
+      1    0.0%    0.0%  LazyCompile: *validateAsyncId internal/async_hooks.js:117:25
+      1    0.0%    0.0%  LazyCompile: *ok assert.js:345:12
+      1    0.0%    0.0%  LazyCompile: *getDefaultTriggerAsyncId internal/async_hooks.js:270:34
+      1    0.0%    0.0%  LazyCompile: *append internal/linkedlist.js:29:16
+      1    0.0%    0.0%  Builtin: ToObject
+      1    0.0%    0.0%  Builtin: ToInteger
+      1    0.0%    0.0%  Builtin: StringPrototypeIndexOf
+      1    0.0%    0.0%  Builtin: StrictEqual
+      1    0.0%    0.0%  Builtin: ResolvePromise
+      1    0.0%    0.0%  Builtin: RecordWrite
+      1    0.0%    0.0%  Builtin: ObjectPrototypeHasOwnProperty
+      1    0.0%    0.0%  Builtin: NonPrimitiveToPrimitive_Default
+      1    0.0%    0.0%  Builtin: LoadIC_FunctionPrototype
+      1    0.0%    0.0%  Builtin: KeyedStoreICTrampoline
+      1    0.0%    0.0%  Builtin: JSBuiltinsConstructStub
+      1    0.0%    0.0%  Builtin: InterpreterPushArgsThenConstructArrayFunction
+      1    0.0%    0.0%  Builtin: InterpreterPushArgsThenCallWithFinalSpread
+      1    0.0%    0.0%  Builtin: GreaterThanOrEqual
+      1    0.0%    0.0%  Builtin: CopyFastSmiOrObjectElements
+      1    0.0%    0.0%  Builtin: ConstructFunction
+      1    0.0%    0.0%  Builtin: CallWithSpread
+      1    0.0%    0.0%  Builtin: CallForwardVarargs
+      1    0.0%    0.0%  Builtin: CEntry_Return1_DontSaveFPRegs_ArgvInRegister_NoBuiltinExit
+      1    0.0%    0.0%  Builtin: ArrayPrototypeShift
+      1    0.0%    0.0%  Builtin: ArrayForEach
+
+ [C++]:
+   ticks  total  nonlib   name
+   8817   39.5%   39.7%  epoll_pwait
+   1688    7.6%    7.6%  __libc_write
+    997    4.5%    4.5%  __clock_gettime
+    521    2.3%    2.3%  void node::StreamBase::JSMethod<node::LibuvStreamWrap, &(int node::StreamBase::WriteString<(node::encoding)1>(v8::FunctionCallbackInfo<v8::Value> const&))>(v8::FunctionCallbackInfo<v8::Value> const&)
+    372    1.7%    1.7%  v8::internal::JsonStringifier::Result v8::internal::JsonStringifier::Serialize_<true>(v8::internal::Handle<v8::internal::Object>, bool, v8::internal::Handle<v8::internal::Object>)
+    367    1.6%    1.7%  v8::internal::JsonStringifier::SerializeString(v8::internal::Handle<v8::internal::String>)
+    290    1.3%    1.3%  __GI___pthread_getspecific
+    143    0.6%    0.6%  v8::internal::String::GetFlatContent()
+    128    0.6%    0.6%  __libc_read
+    114    0.5%    0.5%  v8::Isolate::GetCurrentContext()
+    114    0.5%    0.5%  node::contextify::ContextifyScript::New(v8::FunctionCallbackInfo<v8::Value> const&)
+    103    0.5%    0.5%  v8::internal::LookupIterator::PropertyOrElement(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, bool*, v8::internal::LookupIterator::Configuration)
+     87    0.4%    0.4%  v8::internal::JSObject::FastPropertyAt(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Representation, v8::internal::FieldIndex)
+     78    0.3%    0.4%  v8::internal::FieldIndex::ForDescriptor(v8::internal::Map const*, int)
+     71    0.3%    0.3%  v8::EscapableHandleScope::EscapableHandleScope(v8::Isolate*)
+     70    0.3%    0.3%  _init
+     65    0.3%    0.3%  v8::internal::String::SlowEquals(v8::internal::String*)
+     61    0.3%    0.3%  v8::internal::LookupIterator::State v8::internal::LookupIterator::LookupInRegularHolder<false>(v8::internal::Map*, v8::internal::JSReceiver*) [clone .part.64]
+     61    0.3%    0.3%  v8::internal::Heap::AllocateRaw(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment)
+     59    0.3%    0.3%  v8::base::Thread::GetThreadLocal(int)
+     58    0.3%    0.3%  v8::internal::StringTable::LookupStringIfExists_NoAllocate(v8::internal::String*)
+     58    0.3%    0.3%  v8::internal::JsonParser<false>::ScanJsonString()
+     55    0.2%    0.2%  v8::internal::Execution::Call(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, int, v8::internal::Handle<v8::internal::Object>*)
+     50    0.2%    0.2%  v8::internal::(anonymous namespace)::MakeStringThin(v8::internal::String*, v8::internal::String*, v8::internal::Isolate*)
+     48    0.2%    0.2%  v8::Object::Get(v8::Local<v8::Context>, v8::Local<v8::Value>)
+     47    0.2%    0.2%  v8::HandleScope::~HandleScope()
+     46    0.2%    0.2%  v8::EscapableHandleScope::Escape(v8::internal::Object**)
+     45    0.2%    0.2%  v8::internal::StringTable::LookupString(v8::internal::Isolate*, v8::internal::Handle<v8::internal::String>)
+     45    0.2%    0.2%  v8::internal::IntToCString(int, v8::internal::Vector<char>)
+     44    0.2%    0.2%  v8::(anonymous namespace)::CallDepthScope<false>::CallDepthScope(v8::internal::Isolate*, v8::Local<v8::Context>)
+     43    0.2%    0.2%  node::contextify::ContextifyContext::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     43    0.2%    0.2%  __pthread_mutex_unlock_usercnt
+     42    0.2%    0.2%  v8::internal::JsonParser<false>::ParseJsonObject()
+     41    0.2%    0.2%  v8::internal::LookupIterator::GetDataValue() const
+     40    0.2%    0.2%  v8::internal::ConsString* v8::internal::String::VisitFlat<v8::internal::IteratingStringHasher>(v8::internal::IteratingStringHasher*, v8::internal::String*, int)
+     39    0.2%    0.2%  v8::internal::Scavenger::ScavengeObject(v8::internal::HeapObjectReference**, v8::internal::HeapObject*)
+     39    0.2%    0.2%  v8::internal::Factory::NewFixedArrayWithFiller(v8::internal::Heap::RootListIndex, int, v8::internal::Object*, v8::internal::PretenureFlag)
+     39    0.2%    0.2%  node::InternalCallbackScope::Close()
+     38    0.2%    0.2%  v8::internal::Object::GetProperty(v8::internal::LookupIterator*)
+     37    0.2%    0.2%  __write
+     36    0.2%    0.2%  v8::Context::Exit()
+     36    0.2%    0.2%  v8::Context::Enter()
+     35    0.2%    0.2%  __udivmoddi4
+     35    0.2%    0.2%  __libc_malloc
+     34    0.2%    0.2%  void v8::internal::LookupIterator::NextInternal<false>(v8::internal::Map*, v8::internal::JSReceiver*)
+     33    0.1%    0.1%  void v8::internal::String::WriteToFlat<unsigned char>(v8::internal::String*, unsigned char*, int, int)
+     33    0.1%    0.1%  v8::internal::PropertyDescriptor::ToPropertyDescriptor(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDescriptor*)
+     33    0.1%    0.1%  v8::internal::LookupIterator::State v8::internal::LookupIterator::LookupInRegularHolder<true>(v8::internal::Map*, v8::internal::JSReceiver*) [clone .part.62]
+     32    0.1%    0.1%  v8::internal::Runtime::GetObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, bool*)
+     31    0.1%    0.1%  v8::internal::JSObject::GetElementsAccessor()
+     31    0.1%    0.1%  memcmp
+     30    0.1%    0.1%  v8::internal::JsonStringifier::StackPush(v8::internal::Handle<v8::internal::Object>)
+     30    0.1%    0.1%  v8::internal::JsonParser<false>::ParseJsonNumber()
+     30    0.1%    0.1%  v8::Locker::IsActive()
+     30    0.1%    0.1%  node::(anonymous namespace)::TimerWrap::Now(v8::FunctionCallbackInfo<v8::Value> const&)
+     29    0.1%    0.1%  v8::internal::Logger::ApiEntryCall(char const*)
+     28    0.1%    0.1%  v8::HandleScope::HandleScope(v8::Isolate*)
+     24    0.1%    0.1%  v8::internal::JSArray::SetLength(v8::internal::Handle<v8::internal::JSArray>, unsigned int)
+     24    0.1%    0.1%  v8::Value::Uint32Value(v8::Local<v8::Context>) const
+     24    0.1%    0.1%  v8::(anonymous namespace)::CallDepthScope<false>::~CallDepthScope()
+     23    0.1%    0.1%  v8::internal::ThreadId::GetCurrentThreadId()
+     23    0.1%    0.1%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::SetLengthImpl(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSArray>, unsigned int, v8::internal::Handle<v8::internal::FixedArrayBase>)
+     22    0.1%    0.1%  v8::internal::JsonStringifier::ApplyToJsonFunction(v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>)
+     22    0.1%    0.1%  node::AsyncWrap::EmitTraceEventAfter(node::AsyncWrap::ProviderType, double)
+     19    0.1%    0.1%  v8::internal::SlicedString::SlicedStringGet(int)
+     19    0.1%    0.1%  v8::internal::JSReceiver::class_name()
+     19    0.1%    0.1%  v8::internal::HandleScope::DeleteExtensions(v8::internal::Isolate*)
+     19    0.1%    0.1%  uv__hrtime
+     18    0.1%    0.1%  v8::internal::HeapObject::map() const
+     18    0.1%    0.1%  uv_timer_stop
+     18    0.1%    0.1%  int v8::internal::BinarySearch<(v8::internal::SearchMode)0, v8::internal::TransitionArray>(v8::internal::TransitionArray*, v8::internal::Name*, int, int*)
+     17    0.1%    0.1%  v8::internal::JsonStringifier::Result v8::internal::JsonStringifier::Serialize_<false>(v8::internal::Handle<v8::internal::Object>, bool, v8::internal::Handle<v8::internal::Object>)
+     17    0.1%    0.1%  v8::internal::JsonParser<false>::CommitStateToJsonObject(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Map>, v8::internal::Vector<v8::internal::Handle<v8::internal::Object> const>)
+     17    0.1%    0.1%  v8::internal::JSObject::AllocateStorageForMap(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Map>)
+     17    0.1%    0.1%  v8::internal::Factory::NewRawOneByteString(int, v8::internal::PretenureFlag)
+     17    0.1%    0.1%  v8::internal::Accessors::ArrayLengthSetter(v8::Local<v8::Name>, v8::Local<v8::Value>, v8::PropertyCallbackInfo<v8::Boolean> const&)
+     17    0.1%    0.1%  v8::Value::ToInteger(v8::Local<v8::Context>) const
+     17    0.1%    0.1%  v8::Value::IsExternal() const
+     17    0.1%    0.1%  v8::Isolate::GetCurrent()
+     17    0.1%    0.1%  cfree
+     16    0.1%    0.1%  v8::internal::Map::FindRootMap() const
+     16    0.1%    0.1%  v8::internal::JSObject::MigrateToMap(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Map>, int)
+     16    0.1%    0.1%  v8::internal::Isolate::FireCallCompletedCallback()
+     15    0.1%    0.1%  v8::internal::compiler::GraphReducer::ReduceTop()
+     15    0.1%    0.1%  v8::internal::String::Flatten(v8::internal::Handle<v8::internal::String>, v8::internal::PretenureFlag)
+     15    0.1%    0.1%  v8::internal::Scavenger::ScavengePage(v8::internal::MemoryChunk*)
+     15    0.1%    0.1%  v8::internal::HeapObject::SizeFromMap(v8::internal::Map*) const
+     15    0.1%    0.1%  v8::internal::FastDtoa(double, v8::internal::FastDtoaMode, int, v8::internal::Vector<char>, int*, int*)
+     15    0.1%    0.1%  v8::(anonymous namespace)::CallDepthScope<true>::CallDepthScope(v8::internal::Isolate*, v8::Local<v8::Context>)
+     15    0.1%    0.1%  node::GetBinding(v8::FunctionCallbackInfo<v8::Value> const&)
+     15    0.1%    0.1%  memmove
+     14    0.1%    0.1%  void v8::internal::LookupIterator::Start<false>()
+     14    0.1%    0.1%  v8::internal::compiler::SourcePositionTable::GetSourcePosition(v8::internal::compiler::Node*) const
+     14    0.1%    0.1%  v8::internal::StringHasher::GetHashField()
+     14    0.1%    0.1%  v8::internal::HeapObject* v8::base::AsAtomicPointer::Release_CompareAndSwap<v8::internal::HeapObject*>(v8::internal::HeapObject**, std::remove_reference<v8::internal::HeapObject*>::type, std::remove_reference<v8::internal::HeapObject*>::type)
+     14    0.1%    0.1%  v8::internal::Accessors::ArrayLengthGetter(v8::Local<v8::Name>, v8::PropertyCallbackInfo<v8::Value> const&)
+     14    0.1%    0.1%  v8::External::Value() const
+     14    0.1%    0.1%  node::InternalCallbackScope::InternalCallbackScope(node::Environment*, v8::Local<v8::Object>, node::async_context const&, node::InternalCallbackScope::ResourceExpectation)
+     14    0.1%    0.1%  fwrite
+     13    0.1%    0.1%  v8::internal::Object::GetPropertyWithAccessor(v8::internal::LookupIterator*)
+     13    0.1%    0.1%  v8::internal::MaybeHandle<v8::internal::Object> v8::internal::(anonymous namespace)::HandleApiCallHelper<false>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::FunctionTemplateInfo>, v8::internal::Handle<v8::internal::Object>, v8::internal::BuiltinArguments)
+     13    0.1%    0.1%  v8::internal::JSObject::AddDataElement(v8::internal::Handle<v8::internal::JSObject>, unsigned int, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::ShouldThrow)
+     13    0.1%    0.1%  v8::internal::Heap::NotifyObjectLayoutChange(v8::internal::HeapObject*, int, v8::internal::PerThreadAssertScopeDebugOnly<(v8::internal::PerThreadAssertType)0, false> const&)
+     13    0.1%    0.1%  v8::internal::FixedArray::set(int, v8::internal::Object*)
+     13    0.1%    0.1%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleySmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)1> >::GetEntryForIndex(v8::internal::Isolate*, v8::internal::JSObject*, v8::internal::FixedArrayBase*, unsigned int)
+     13    0.1%    0.1%  v8::Integer::NewFromUnsigned(v8::Isolate*, unsigned int)
+     13    0.1%    0.1%  uv_timer_start
+     12    0.1%    0.1%  v8::internal::TransitionsAccessor::FindTransitionToDataProperty(v8::internal::Handle<v8::internal::Name>, v8::internal::TransitionsAccessor::RequestedLocation)
+     12    0.1%    0.1%  v8::internal::Scavenger::Process(v8::internal::OneshotBarrier*)
+     12    0.1%    0.1%  v8::internal::SaveContext::~SaveContext()
+     12    0.1%    0.1%  v8::internal::SaveContext::SaveContext(v8::internal::Isolate*)
+     12    0.1%    0.1%  v8::internal::Name::Hash()
+     12    0.1%    0.1%  v8::internal::MapUpdater::FindTargetMap()
+     12    0.1%    0.1%  v8::internal::JsonParser<false>::ParseJsonValue()
+     12    0.1%    0.1%  v8::internal::JSReceiver::ValidateAndApplyPropertyDescriptor(v8::internal::Isolate*, v8::internal::LookupIterator*, bool, v8::internal::PropertyDescriptor*, v8::internal::PropertyDescriptor*, v8::internal::ShouldThrow, v8::internal::Handle<v8::internal::Name>)
+     12    0.1%    0.1%  v8::internal::Factory::NewStringFromUtf8(v8::internal::Vector<char const>, v8::internal::PretenureFlag)
+     12    0.1%    0.1%  v8::internal::Factory::NewStringFromOneByte(v8::internal::Vector<unsigned char const>, v8::internal::PretenureFlag)
+     12    0.1%    0.1%  node::InternalMakeCallback(node::Environment*, v8::Local<v8::Object>, v8::Local<v8::Function>, int, v8::Local<v8::Value>*, node::async_context)
+     11    0.0%    0.0%  v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment)
+     11    0.0%    0.0%  v8::internal::FunctionTemplateInfo::IsTemplateFor(v8::internal::Map*) [clone .part.334]
+     11    0.0%    0.0%  v8::Isolate::SuppressMicrotaskExecutionScope::SuppressMicrotaskExecutionScope(v8::Isolate*)
+     11    0.0%    0.0%  uv__io_poll
+     11    0.0%    0.0%  uv__async_io
+     11    0.0%    0.0%  node::Environment::GetNow()
+     11    0.0%    0.0%  node::(anonymous namespace)::TimerWrap::New(v8::FunctionCallbackInfo<v8::Value> const&)
+     10    0.0%    0.0%  v8::internal::TransitionArray::SearchDetails(int, v8::internal::PropertyKind, v8::internal::PropertyAttributes, int*)
+     10    0.0%    0.0%  v8::internal::LookupIterator::TransitionToAccessorProperty(v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes)
+     10    0.0%    0.0%  v8::internal::KeyAccumulator::CollectOwnPropertyNames(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::JSObject>)
+     10    0.0%    0.0%  v8::internal::JSReceiver::OrdinaryDefineOwnProperty(v8::internal::LookupIterator*, v8::internal::PropertyDescriptor*, v8::internal::ShouldThrow)
+     10    0.0%    0.0%  v8::internal::Isolate::RunMicrotasks()
+     10    0.0%    0.0%  v8::internal::Bitmap::Clear()
+     10    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::SetLength(v8::internal::Handle<v8::internal::JSArray>, unsigned int)
+     10    0.0%    0.0%  strlen
+     10    0.0%    0.0%  node::AsyncWrap::MakeCallback(v8::Local<v8::Function>, int, v8::Local<v8::Value>*)
+     10    0.0%    0.0%  node::(anonymous namespace)::DecodeData(v8::FunctionCallbackInfo<v8::Value> const&)
+      9    0.0%    0.0%  v8::internal::compiler::(anonymous namespace)::SourcePositionWrapper::Reduce(v8::internal::compiler::Node*)
+      9    0.0%    0.0%  v8::internal::Runtime_StoreCallbackProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      9    0.0%    0.0%  v8::internal::OrderedHashSet::Add(v8::internal::Handle<v8::internal::OrderedHashSet>, v8::internal::Handle<v8::internal::Object>)
+      9    0.0%    0.0%  v8::internal::Object::CreateListFromArrayLike(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::ElementTypes)
+      9    0.0%    0.0%  v8::internal::JSObject::EnsureWritableFastElements(v8::internal::Handle<v8::internal::JSObject>)
+      9    0.0%    0.0%  v8::internal::Heap::RightTrimFixedArray(v8::internal::FixedArrayBase*, int)
+      9    0.0%    0.0%  v8::internal::Factory::TryNewFixedArray(int, v8::internal::PretenureFlag)
+      9    0.0%    0.0%  v8::internal::Factory::InitializeJSObjectFromMap(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Map>)
+      9    0.0%    0.0%  v8::internal::Factory::InitializeJSObjectBody(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Map>, int)
+      9    0.0%    0.0%  v8::Integer::New(v8::Isolate*, int)
+      9    0.0%    0.0%  v8::Function::Call(v8::Local<v8::Context>, v8::Local<v8::Value>, int, v8::Local<v8::Value>*)
+      9    0.0%    0.0%  node::(anonymous namespace)::TimerWrap::Start(v8::FunctionCallbackInfo<v8::Value> const&)
+      9    0.0%    0.0%  node::(anonymous namespace)::TimerWrap::OnTimeout(uv_timer_s*)
+      9    0.0%    0.0%  memcpy
+      9    0.0%    0.0%  __GI___pthread_mutex_lock
+      8    0.0%    0.0%  v8::internal::String::ToNumber(v8::internal::Handle<v8::internal::String>)
+      8    0.0%    0.0%  v8::internal::String::ComputeAndSetHash()
+      8    0.0%    0.0%  v8::internal::PrototypeIterator::Advance()
+      8    0.0%    0.0%  v8::internal::KeyAccumulator::AddKey(v8::internal::Object*, v8::internal::AddKeyConversion)
+      8    0.0%    0.0%  v8::internal::JSObject::GetHeaderSize(v8::internal::InstanceType, bool)
+      8    0.0%    0.0%  v8::(anonymous namespace)::CallDepthScope<true>::~CallDepthScope()
+      8    0.0%    0.0%  double v8::internal::(anonymous namespace)::InternalStringToDouble<unsigned char const*, unsigned char const*>(v8::internal::UnicodeCache*, unsigned char const*, unsigned char const*, int, double)
+      7    0.0%    0.0%  v8::internal::Strtod(v8::internal::Vector<char const>, int)
+      7    0.0%    0.0%  v8::internal::String::SlowFlatten(v8::internal::Handle<v8::internal::ConsString>, v8::internal::PretenureFlag)
+      7    0.0%    0.0%  v8::internal::StoreBuffer::MoveEntriesToRememberedSet(int)
+      7    0.0%    0.0%  v8::internal::Runtime_StringSplit(int, v8::internal::Object**, v8::internal::Isolate*)
+      7    0.0%    0.0%  v8::internal::Runtime_DeleteProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      7    0.0%    0.0%  v8::internal::PagedSpace::AllocateRaw(int, v8::internal::AllocationAlignment)
+      7    0.0%    0.0%  v8::internal::Object::GetOrCreateHash(v8::internal::Isolate*)
+      7    0.0%    0.0%  v8::internal::Map::GetConstructor() const
+      7    0.0%    0.0%  v8::internal::LargeObjectSpace::FindPage(unsigned int)
+      7    0.0%    0.0%  v8::internal::JSReceiver::DefineProperties(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>)
+      7    0.0%    0.0%  v8::internal::IterateAndScavengePromotedObjectsVisitor::HandleSlot(v8::internal::HeapObject*, unsigned int, v8::internal::HeapObject*)
+      7    0.0%    0.0%  v8::internal::Heap::CopyBlock(unsigned int, unsigned int, int)
+      7    0.0%    0.0%  v8::internal::Factory::NewStruct(v8::internal::InstanceType, v8::internal::PretenureFlag)
+      7    0.0%    0.0%  v8::internal::Factory::GetNumberStringCache(v8::internal::Handle<v8::internal::Object>)
+      7    0.0%    0.0%  v8::internal::(anonymous namespace)::GetIdentityHashHelper(v8::internal::Isolate*, v8::internal::JSReceiver*) [clone .isra.398]
+      7    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleySmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)1> >::Get(v8::internal::Handle<v8::internal::JSObject>, unsigned int)
+      7    0.0%    0.0%  v8::Isolate::SuppressMicrotaskExecutionScope::~SuppressMicrotaskExecutionScope()
+      7    0.0%    0.0%  uv__run_timers
+      7    0.0%    0.0%  operator new(unsigned int)
+      7    0.0%    0.0%  node::AsyncWrap::EmitAfter(node::Environment*, double)
+      6    0.0%    0.0%  v8::internal::compiler::GraphTrimmer::TrimGraph()
+      6    0.0%    0.0%  v8::internal::compiler::GraphReducer::Reduce(v8::internal::compiler::Node*)
+      6    0.0%    0.0%  v8::internal::Zone::New(unsigned int)
+      6    0.0%    0.0%  v8::internal::TransitionsAccessor::SearchTransition(v8::internal::Name*, v8::internal::PropertyKind, v8::internal::PropertyAttributes)
+      6    0.0%    0.0%  v8::internal::TransitionsAccessor::Initialize()
+      6    0.0%    0.0%  v8::internal::TimerEventScope<v8::internal::TimerEventExecute>::LogTimerEvent(v8::internal::Logger::StartEnd)
+      6    0.0%    0.0%  v8::internal::StackFrameIterator::StackFrameIterator(v8::internal::Isolate*)
+      6    0.0%    0.0%  v8::internal::SerializerDeserializer::Iterate(v8::internal::Isolate*, v8::internal::RootVisitor*)
+      6    0.0%    0.0%  v8::internal::PowersOfTenCache::GetCachedPowerForBinaryExponentRange(int, int, v8::internal::DiyFp*, int*)
+      6    0.0%    0.0%  v8::internal::Object::AddDataProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::ShouldThrow, v8::internal::Object::StoreFromKeyed)
+      6    0.0%    0.0%  v8::internal::NormalizedMapCache::Get(v8::internal::Handle<v8::internal::Map>, v8::internal::PropertyNormalizationMode)
+      6    0.0%    0.0%  v8::internal::MaybeHandle<v8::internal::Object> v8::internal::(anonymous namespace)::HandleApiCallHelper<true>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::FunctionTemplateInfo>, v8::internal::Handle<v8::internal::Object>, v8::internal::BuiltinArguments)
+      6    0.0%    0.0%  v8::internal::Map::TransitionToAccessorProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Map>, v8::internal::Handle<v8::internal::Name>, int, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes)
+      6    0.0%    0.0%  v8::internal::Logger::ApiNamedPropertyAccess(char const*, v8::internal::JSObject*, v8::internal::Object*)
+      6    0.0%    0.0%  v8::internal::KeyAccumulator::CollectOwnElementIndices(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::JSObject>)
+      6    0.0%    0.0%  v8::internal::JSObject::SetPrototype(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Object>, bool, v8::internal::ShouldThrow)
+      6    0.0%    0.0%  v8::internal::Builtin_HandleApiCall(int, v8::internal::Object**, v8::internal::Isolate*)
+      6    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedSmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)0> >::Get(v8::internal::Handle<v8::internal::JSObject>, unsigned int)
+      6    0.0%    0.0%  v8::Object::InternalFieldCount()
+      6    0.0%    0.0%  uv__run_check
+      6    0.0%    0.0%  sigemptyset
+      6    0.0%    0.0%  node::AsyncWrap::~AsyncWrap()
+      6    0.0%    0.0%  node::AsyncWrap::EmitTraceEventBefore()
+      6    0.0%    0.0%  int v8::internal::BinarySearch<(v8::internal::SearchMode)1, v8::internal::DescriptorArray>(v8::internal::DescriptorArray*, v8::internal::Name*, int, int*)
+      5    0.0%    0.0%  void v8::internal::LookupIterator::RestartInternal<false>(v8::internal::LookupIterator::InterceptorState)
+      5    0.0%    0.0%  void v8::internal::LookupIterator::NextInternal<true>(v8::internal::Map*, v8::internal::JSReceiver*)
+      5    0.0%    0.0%  v8::internal::String::IsOneByteRepresentation() const
+      5    0.0%    0.0%  v8::internal::Runtime_StringToNumber(int, v8::internal::Object**, v8::internal::Isolate*)
+      5    0.0%    0.0%  v8::internal::MapUpdater::FindRootMap()
+      5    0.0%    0.0%  v8::internal::LookupIterator::GetAccessors() const
+      5    0.0%    0.0%  v8::internal::KeyAccumulator::CollectKeys(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::JSReceiver>)
+      5    0.0%    0.0%  v8::internal::JSReceiver::SetProperties(v8::internal::HeapObject*)
+      5    0.0%    0.0%  v8::internal::JSReceiver::GetPropertyAttributes(v8::internal::LookupIterator*)
+      5    0.0%    0.0%  v8::internal::JSReceiver::GetOwnPropertyDescriptor(v8::internal::LookupIterator*, v8::internal::PropertyDescriptor*)
+      5    0.0%    0.0%  v8::internal::JSObject::SetNormalizedProperty(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Name>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDetails)
+      5    0.0%    0.0%  v8::internal::JSObject::HasEnumerableElements()
+      5    0.0%    0.0%  v8::internal::JSObject::DefineOwnPropertyIgnoreAttributes(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::ShouldThrow, v8::internal::JSObject::AccessorInfoHandling)
+      5    0.0%    0.0%  v8::internal::HeapObject::synchronized_set_map(v8::internal::Map*)
+      5    0.0%    0.0%  v8::internal::Heap::CreateFillerObjectAt(unsigned int, int, v8::internal::ClearRecordedSlots, v8::internal::ClearFreedMemoryMode)
+      5    0.0%    0.0%  v8::internal::HashTable<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::Rehash(v8::internal::NameDictionary*)
+      5    0.0%    0.0%  v8::internal::FastKeyAccumulator::Prepare() [clone .part.54]
+      5    0.0%    0.0%  v8::internal::Factory::NumberToString(v8::internal::Handle<v8::internal::Object>, bool)
+      5    0.0%    0.0%  v8::internal::Factory::NewJSArray(v8::internal::ElementsKind, v8::internal::PretenureFlag)
+      5    0.0%    0.0%  v8::internal::Factory::CopyJSObjectWithAllocationSite(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::AllocationSite>)
+      5    0.0%    0.0%  v8::internal::Factory::AllocateRawArray(int, v8::internal::PretenureFlag)
+      5    0.0%    0.0%  v8::internal::DoubleToCString(double, v8::internal::Vector<char>)
+      5    0.0%    0.0%  v8::internal::Builtin_NumberPrototypeToString(int, v8::internal::Object**, v8::internal::Isolate*)
+      5    0.0%    0.0%  v8::internal::BiggestPowerTen(unsigned int, int, unsigned int*, int*)
+      5    0.0%    0.0%  v8::internal::(anonymous namespace)::CallJsIntrinsic(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSFunction>, v8::internal::BuiltinArguments)
+      5    0.0%    0.0%  v8::Value::Int32Value(v8::Local<v8::Context>) const
+      5    0.0%    0.0%  v8::HandleScope::CreateHandle(v8::internal::HeapObject*, v8::internal::Object*)
+      5    0.0%    0.0%  __pthread_cond_wait
+      5    0.0%    0.0%  __pthread_cond_signal
+      5    0.0%    0.0%  __aeabi_read_tp
+      4    0.0%    0.0%  v8::internal::compiler::NodeProperties::IsControlEdge(v8::internal::compiler::Edge)
+      4    0.0%    0.0%  v8::internal::TransitionsAccessor::SearchSpecial(v8::internal::Symbol*)
+      4    0.0%    0.0%  v8::internal::StringShape::StringShape(v8::internal::String const*)
+      4    0.0%    0.0%  v8::internal::String::SlowAsArrayIndex(unsigned int*)
+      4    0.0%    0.0%  v8::internal::Scanner::Scan()
+      4    0.0%    0.0%  v8::internal::Runtime_KeyedGetProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      4    0.0%    0.0%  v8::internal::Runtime_CreateObjectLiteral(int, v8::internal::Object**, v8::internal::Isolate*)
+      4    0.0%    0.0%  v8::internal::Runtime_ClassOf(int, v8::internal::Object**, v8::internal::Isolate*)
+      4    0.0%    0.0%  v8::internal::RegExpResultsCache::Lookup(v8::internal::Heap*, v8::internal::String*, v8::internal::Object*, v8::internal::FixedArray**, v8::internal::RegExpResultsCache::ResultsCacheType)
+      4    0.0%    0.0%  v8::internal::MemoryChunk::Initialize(v8::internal::Heap*, unsigned int, unsigned int, unsigned int, unsigned int, v8::internal::Executability, v8::internal::Space*, v8::internal::VirtualMemory*)
+      4    0.0%    0.0%  v8::internal::Map::NumberOfFields() const
+      4    0.0%    0.0%  v8::internal::Map::EquivalentToForTransition(v8::internal::Map const*) const
+      4    0.0%    0.0%  v8::internal::LookupIterator::TransitionToAccessorPair(v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes)
+      4    0.0%    0.0%  v8::internal::KeyedGetObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>)
+      4    0.0%    0.0%  v8::internal::JSReceiver::DeleteProperty(v8::internal::LookupIterator*, v8::internal::LanguageMode)
+      4    0.0%    0.0%  v8::internal::JSObject::GetElementsKind()
+      4    0.0%    0.0%  v8::internal::HeapObject::set_map_word(v8::internal::MapWord)
+      4    0.0%    0.0%  v8::internal::Heap::Scavenge()
+      4    0.0%    0.0%  v8::internal::Heap::RegisterNewArrayBuffer(v8::internal::JSArrayBuffer*)
+      4    0.0%    0.0%  v8::internal::Heap::RecordWrite(v8::internal::Object*, v8::internal::Object**, v8::internal::Object*)
+      4    0.0%    0.0%  v8::internal::Heap::OnMoveEvent(v8::internal::HeapObject*, v8::internal::HeapObject*, int)
+      4    0.0%    0.0%  v8::internal::HashTable<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::FindInsertionEntry(unsigned int)
+      4    0.0%    0.0%  v8::internal::Factory::Uint32ToString(unsigned int)
+      4    0.0%    0.0%  v8::internal::Factory::NewJSObject(v8::internal::Handle<v8::internal::JSFunction>, v8::internal::PretenureFlag)
+      4    0.0%    0.0%  v8::internal::Factory::NewFixedArray(int, v8::internal::PretenureFlag)
+      4    0.0%    0.0%  v8::internal::Dictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::Add(v8::internal::Handle<v8::internal::NameDictionary>, v8::internal::Handle<v8::internal::Name>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDetails, int*)
+      4    0.0%    0.0%  v8::internal::Code::is_interpreter_trampoline_builtin() const
+      4    0.0%    0.0%  v8::internal::Builtin_JsonParse(int, v8::internal::Object**, v8::internal::Isolate*)
+      4    0.0%    0.0%  v8::internal::ApiNatives::InstantiateObject(v8::internal::Handle<v8::internal::ObjectTemplateInfo>, v8::internal::Handle<v8::internal::JSReceiver>)
+      4    0.0%    0.0%  v8::internal::AccountingAllocator::GetSegment(unsigned int)
+      4    0.0%    0.0%  v8::internal::(anonymous namespace)::SetupArrayBufferView(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSArrayBufferView>, v8::internal::Handle<v8::internal::JSArrayBuffer>, unsigned int, unsigned int, v8::internal::PretenureFlag)
+      4    0.0%    0.0%  v8::internal::(anonymous namespace)::JSObjectWalkVisitor<v8::internal::AllocationSiteUsageContext>::StructureWalk(v8::internal::Handle<v8::internal::JSObject>)
+      4    0.0%    0.0%  v8::internal::(anonymous namespace)::CheckEquivalent(v8::internal::Map const*, v8::internal::Map const*) [clone .part.366]
+      4    0.0%    0.0%  node::InternalCallbackScope::~InternalCallbackScope()
+      4    0.0%    0.0%  node::AsyncWrap::EmitTraceEventDestroy()
+      4    0.0%    0.0%  memset
+      4    0.0%    0.0%  __pthread_enable_asynccancel
+      4    0.0%    0.0%  __gettimeofday
+      3    0.0%    0.0%  void node::Buffer::(anonymous namespace)::StringSlice<(node::encoding)1>(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.0%    0.0%  v8::internal::compiler::Type::BitsetLub() const
+      3    0.0%    0.0%  v8::internal::compiler::OperatorProperties::HasFrameStateInput(v8::internal::compiler::Operator const*)
+      3    0.0%    0.0%  v8::internal::compiler::NodeProperties::IsExceptionalCall(v8::internal::compiler::Node*, v8::internal::compiler::Node**)
+      3    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::VisitSingleBytecode(v8::internal::SourcePositionTableIterator*)
+      3    0.0%    0.0%  v8::internal::Zone::NewExpand(unsigned int)
+      3    0.0%    0.0%  v8::internal::Worklist<std::pair<v8::internal::HeapObject*, int>, 256>::View::Push(std::pair<v8::internal::HeapObject*, int>)
+      3    0.0%    0.0%  v8::internal::String::ComputeArrayIndex(unsigned int*)
+      3    0.0%    0.0%  v8::internal::StoreBuffer::InsertDuringRuntime(v8::internal::StoreBuffer*, unsigned int)
+      3    0.0%    0.0%  v8::internal::Runtime_CreateDataProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      3    0.0%    0.0%  v8::internal::OptimizedFrame::GetDeoptimizationData(int*) const
+      3    0.0%    0.0%  v8::internal::Object::SetProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::LanguageMode, v8::internal::Object::StoreFromKeyed)
+      3    0.0%    0.0%  v8::internal::Object::ArraySpeciesConstructor(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>)
+      3    0.0%    0.0%  v8::internal::MaybeHandle<v8::internal::JSObject> v8::internal::(anonymous namespace)::CreateLiteral<v8::internal::(anonymous namespace)::ObjectBoilerplate>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::FeedbackVector>, int, v8::internal::Handle<v8::internal::HeapObject>, int)
+      3    0.0%    0.0%  v8::internal::Map::UnwrapFieldType(v8::internal::Object*)
+      3    0.0%    0.0%  v8::internal::Map::InstancesNeedRewriting(v8::internal::Map*, int, int, int, int*) const
+      3    0.0%    0.0%  v8::internal::LookupIterator::ApplyTransitionToDataProperty(v8::internal::Handle<v8::internal::JSReceiver>)
+      3    0.0%    0.0%  v8::internal::Log::MessageBuilder::AppendStringPart(v8::internal::String*, int)
+      3    0.0%    0.0%  v8::internal::KeyAccumulator::GetKeys(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::KeyCollectionMode, v8::internal::PropertyFilter, v8::internal::GetKeysConversion, bool, bool)
+      3    0.0%    0.0%  v8::internal::IsMoreGeneralElementsKindTransition(v8::internal::ElementsKind, v8::internal::ElementsKind)
+      3    0.0%    0.0%  v8::internal::FixedArray::set(int, v8::internal::Object*, v8::internal::WriteBarrierMode)
+      3    0.0%    0.0%  v8::internal::FixStaleLeftTrimmedHandlesVisitor::VisitRootPointers(v8::internal::Root, char const*, v8::internal::Object**, v8::internal::Object**)
+      3    0.0%    0.0%  v8::internal::Factory::SetNumberStringCache(v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::String>)
+      3    0.0%    0.0%  v8::internal::Factory::NewPropertyArray(int, v8::internal::PretenureFlag)
+      3    0.0%    0.0%  v8::internal::Factory::NewNumber(double, v8::internal::PretenureFlag)
+      3    0.0%    0.0%  v8::internal::Factory::NewJSTypedArray(v8::internal::ExternalArrayType, v8::internal::Handle<v8::internal::JSArrayBuffer>, unsigned int, unsigned int, v8::internal::PretenureFlag)
+      3    0.0%    0.0%  v8::internal::ExternalCallbackScope::ExternalCallbackScope(v8::internal::Isolate*, unsigned int)
+      3    0.0%    0.0%  v8::internal::DiyFp::Multiply(v8::internal::DiyFp const&)
+      3    0.0%    0.0%  v8::internal::Deserializer<v8::internal::BuiltinDeserializerAllocator>::ReadData(v8::internal::MaybeObject**, v8::internal::MaybeObject**, int, unsigned int)
+      3    0.0%    0.0%  v8::internal::CpuFeatures::FlushICache(void*, unsigned int)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::GetFastEnumPropertyKeys(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSObject>)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedSmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)0> >::GetEntryForIndex(v8::internal::Isolate*, v8::internal::JSObject*, v8::internal::FixedArrayBase*, unsigned int)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)2> >::PrependElementIndices(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::FixedArrayBase>, v8::internal::Handle<v8::internal::FixedArray>, v8::internal::GetKeysConversion, v8::internal::PropertyFilter)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)2> >::Delete(v8::internal::Handle<v8::internal::JSObject>, unsigned int)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::Get(v8::internal::Handle<v8::internal::JSObject>, unsigned int)
+      3    0.0%    0.0%  v8::String::NewFromUtf8(v8::Isolate*, char const*, v8::NewStringType, int)
+      3    0.0%    0.0%  v8::Context::GetNumberOfEmbedderDataFields()
+      3    0.0%    0.0%  uv_update_time
+      3    0.0%    0.0%  uv__run_prepare
+      3    0.0%    0.0%  node::fs::Read(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.0%    0.0%  node::RunMicrotasks(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.0%    0.0%  node::GetInternalBinding(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.0%    0.0%  memchr
+      3    0.0%    0.0%  __pthread_disable_asynccancel
+      3    0.0%    0.0%  __aeabi_uidivmod
+      3    0.0%    0.0%  __adddf3
+      2    0.0%    0.0%  void v8::internal::BodyDescriptorBase::IteratePointers<v8::internal::MarkingVisitor<(v8::internal::FixedArrayVisitationMode)1, (v8::internal::TraceRetainingPathMode)1, v8::internal::IncrementalMarkingState> >(v8::internal::HeapObject*, int, int, v8::internal::MarkingVisitor<(v8::internal::FixedArrayVisitationMode)1, (v8::internal::TraceRetainingPathMode)1, v8::internal::IncrementalMarkingState>*)
+      2    0.0%    0.0%  v8::internal::libc_memchr(void*, int, unsigned int)
+      2    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayWriter::EmitBytecode(v8::internal::interpreter::BytecodeNode const*)
+      2    0.0%    0.0%  v8::internal::compiler::Typer::Visitor::Reduce(v8::internal::compiler::Node*)
+      2    0.0%    0.0%  v8::internal::compiler::LinearScanAllocator::AllocateRegisters()
+      2    0.0%    0.0%  v8::internal::compiler::JSTypedLowering::Reduce(v8::internal::compiler::Node*)
+      2    0.0%    0.0%  v8::internal::compiler::BytecodeAnalysis::Analyze(v8::internal::BailoutId)
+      2    0.0%    0.0%  v8::internal::TranslatedState::TranslatedState(v8::internal::JavaScriptFrame const*)
+      2    0.0%    0.0%  v8::internal::String::IsFlat()
+      2    0.0%    0.0%  v8::internal::StackFrameIterator::Advance()
+      2    0.0%    0.0%  v8::internal::SpaceWithLinearArea::StartNextInlineAllocationStep()
+      2    0.0%    0.0%  v8::internal::SimpleStringBuilder::AddSubstring(char const*, int)
+      2    0.0%    0.0%  v8::internal::Scavenger::IterateAndScavengePromotedObject(v8::internal::HeapObject*, int)
+      2    0.0%    0.0%  v8::internal::Scanner::SkipWhiteSpace()
+      2    0.0%    0.0%  v8::internal::Scanner::ScanIdentifierOrKeywordInner(v8::internal::Scanner::LiteralScope*)
+      2    0.0%    0.0%  v8::internal::Runtime_SetProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      2    0.0%    0.0%  v8::internal::Runtime_ArraySpeciesConstructor(int, v8::internal::Object**, v8::internal::Isolate*)
+      2    0.0%    0.0%  v8::internal::RuntimeProfiler::ShouldOptimize(v8::internal::JSFunction*, v8::internal::JavaScriptFrame*)
+      2    0.0%    0.0%  v8::internal::Runtime::DeleteObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::Object>, v8::internal::LanguageMode)
+      2    0.0%    0.0%  v8::internal::OrderedHashTable<v8::internal::OrderedHashSet, 1>::Allocate(v8::internal::Isolate*, int, v8::internal::PretenureFlag)
+      2    0.0%    0.0%  v8::internal::Object::ToUint32(unsigned int*) const
+      2    0.0%    0.0%  v8::internal::Object::GetLengthFromArrayLike(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>)
+      2    0.0%    0.0%  v8::internal::Object::ConvertToString(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>)
+      2    0.0%    0.0%  v8::internal::Object::ConvertToName(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>)
+      2    0.0%    0.0%  v8::internal::Object::BooleanValue()
+      2    0.0%    0.0%  v8::internal::Map::TransitionElementsTo(v8::internal::Handle<v8::internal::Map>, v8::internal::ElementsKind)
+      2    0.0%    0.0%  v8::internal::Map::Normalize(v8::internal::Handle<v8::internal::Map>, v8::internal::PropertyNormalizationMode, char const*)
+      2    0.0%    0.0%  v8::internal::Map::AsElementsKind(v8::internal::Handle<v8::internal::Map>, v8::internal::ElementsKind)
+      2    0.0%    0.0%  v8::internal::LookupIterator::WriteDataValue(v8::internal::Handle<v8::internal::Object>, bool)
+      2    0.0%    0.0%  v8::internal::LargeObjectSpace::Contains(v8::internal::HeapObject*)
+      2    0.0%    0.0%  v8::internal::KeyAccumulator::IsShadowed(v8::internal::Handle<v8::internal::Object>)
+      2    0.0%    0.0%  v8::internal::JsonStringifier::StackPop()
+      2    0.0%    0.0%  v8::internal::JsonParser<false>::JsonParser(v8::internal::Isolate*, v8::internal::Handle<v8::internal::String>)
+      2    0.0%    0.0%  v8::internal::JSTypedArray::GetBuffer()
+      2    0.0%    0.0%  v8::internal::JSReceiver::OrdinaryDefineOwnProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDescriptor*, v8::internal::ShouldThrow)
+      2    0.0%    0.0%  v8::internal::JSReceiver::HasFastProperties() const
+      2    0.0%    0.0%  v8::internal::JSObject::ValidateElements(v8::internal::JSObject*)
+      2    0.0%    0.0%  v8::internal::JSObject::TransitionElementsKind(v8::internal::Handle<v8::internal::JSObject>, v8::internal::ElementsKind)
+      2    0.0%    0.0%  v8::internal::JSObject::IsExtensible(v8::internal::Handle<v8::internal::JSObject>)
+      2    0.0%    0.0%  v8::internal::JSObject::GetEmbedderFieldCount(v8::internal::Map const*)
+      2    0.0%    0.0%  v8::internal::JSObject::CreateDataProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::ShouldThrow)
+      2    0.0%    0.0%  v8::internal::JSFunction::EnsureHasInitialMap(v8::internal::Handle<v8::internal::JSFunction>)
+      2    0.0%    0.0%  v8::internal::JSArrayBuffer::Setup(v8::internal::Handle<v8::internal::JSArrayBuffer>, v8::internal::Isolate*, bool, void*, unsigned int, v8::internal::SharedFlag, bool)
+      2    0.0%    0.0%  v8::internal::Isolate::SetIdle(bool)
+      2    0.0%    0.0%  v8::internal::InterpretedFrame::Summarize(std::vector<v8::internal::FrameSummary, std::allocator<v8::internal::FrameSummary> >*) const
+      2    0.0%    0.0%  v8::internal::IdentityMapBase::GetEntry(v8::internal::Object*)
+      2    0.0%    0.0%  v8::internal::Heap::UpdateAllocationSite(v8::internal::Map*, v8::internal::HeapObject*, std::unordered_map<v8::internal::AllocationSite*, unsigned int, std::hash<v8::internal::AllocationSite*>, std::equal_to<v8::internal::AllocationSite*>, std::allocator<std::pair<v8::internal::AllocationSite* const, unsigned int> > >*)
+      2    0.0%    0.0%  v8::internal::Heap::ReserveSpace(std::vector<v8::internal::Heap::Chunk, std::allocator<v8::internal::Heap::Chunk> >*, std::vector<unsigned int, std::allocator<unsigned int> >*)
+      2    0.0%    0.0%  v8::internal::Heap::FullSizeNumberStringCacheLength()
+      2    0.0%    0.0%  v8::internal::HashTable<v8::internal::NumberDictionary, v8::internal::NumberDictionaryShape>::FindEntry(v8::internal::Isolate*, unsigned int)
+      2    0.0%    0.0%  v8::internal::HashTable<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::EnsureCapacity(v8::internal::Handle<v8::internal::NameDictionary>, int, v8::internal::PretenureFlag)
+      2    0.0%    0.0%  v8::internal::HandleScope::Extend(v8::internal::Isolate*)
+      2    0.0%    0.0%  v8::internal::Handle<v8::internal::FixedArray> v8::internal::Factory::NewFixedArrayWithMap<v8::internal::FixedArray>(v8::internal::Heap::RootListIndex, int, v8::internal::PretenureFlag)
+      2    0.0%    0.0%  v8::internal::GlobalHandles::Destroy(v8::internal::Object**)
+      2    0.0%    0.0%  v8::internal::FlatStringReader::FlatStringReader(v8::internal::Isolate*, v8::internal::Handle<v8::internal::String>)
+      2    0.0%    0.0%  v8::internal::FixedArray::FillWithHoles(int, int)
+      2    0.0%    0.0%  v8::internal::FieldType::cast(v8::internal::Object*)
+      2    0.0%    0.0%  v8::internal::FeedbackVector::New(v8::internal::Isolate*, v8::internal::Handle<v8::internal::SharedFunctionInfo>)
+      2    0.0%    0.0%  v8::internal::FeedbackVector::GetKind(v8::internal::FeedbackSlot) const
+      2    0.0%    0.0%  v8::internal::FastKeyAccumulator::GetKeysFast(v8::internal::GetKeysConversion)
+      2    0.0%    0.0%  v8::internal::Factory::NewJSTypedArray(v8::internal::ExternalArrayType, v8::internal::PretenureFlag)
+      2    0.0%    0.0%  v8::internal::Factory::NewFixedTypedArrayWithExternalPointer(int, v8::internal::ExternalArrayType, void*, v8::internal::PretenureFlag)
+      2    0.0%    0.0%  v8::internal::Factory::InitializeMap(v8::internal::Map*, v8::internal::InstanceType, int, v8::internal::ElementsKind, int)
+      2    0.0%    0.0%  v8::internal::ExternalCallbackScope::~ExternalCallbackScope()
+      2    0.0%    0.0%  v8::internal::DoubleToAscii(double, v8::internal::DtoaMode, int, v8::internal::Vector<char>, int*, int*, int*)
+      2    0.0%    0.0%  v8::internal::CanonicalHandleScope::Lookup(v8::internal::Object*)
+      2    0.0%    0.0%  v8::internal::Builtin_Impl_ArraySplice(v8::internal::BuiltinArguments, v8::internal::Isolate*)
+      2    0.0%    0.0%  v8::internal::BaseNameDictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::EnsureCapacity(v8::internal::Handle<v8::internal::NameDictionary>, int)
+      2    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedSmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)0> >::GetDetails(v8::internal::JSObject*, unsigned int)
+      2    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleySmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)1> >::GetDetails(v8::internal::JSObject*, unsigned int)
+      2    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::CollectElementIndices(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::FixedArrayBase>, v8::internal::KeyAccumulator*)
+      2    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::Add(v8::internal::Handle<v8::internal::JSObject>, unsigned int, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, unsigned int)
+      2    0.0%    0.0%  v8::base::bits::RoundUpToPowerOfTwo32(unsigned int)
+      2    0.0%    0.0%  v8::Value::ToObject(v8::Local<v8::Context>) const
+      2    0.0%    0.0%  v8::Object::SetPrototype(v8::Local<v8::Context>, v8::Local<v8::Value>)
+      2    0.0%    0.0%  v8::Object::Set(v8::Local<v8::Context>, v8::Local<v8::Value>, v8::Local<v8::Value>)
+      2    0.0%    0.0%  v8::ArrayBuffer::New(v8::Isolate*, void*, unsigned int, v8::ArrayBufferCreationMode)
+      2    0.0%    0.0%  uv_run
+      2    0.0%    0.0%  uv__read
+      2    0.0%    0.0%  std::_Hashtable<v8::internal::JSArrayBuffer*, std::pair<v8::internal::JSArrayBuffer* const, unsigned int>, std::allocator<std::pair<v8::internal::JSArrayBuffer* const, unsigned int> >, std::__detail::_Select1st, std::equal_to<v8::internal::JSArrayBuffer*>, v8::internal::LocalArrayBufferTracker::Hasher, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned int, unsigned int, std::__detail::_Hash_node<std::pair<v8::internal::JSArrayBuffer* const, unsigned int>, true>*)
+      2    0.0%    0.0%  node::TTYWrap::New(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.0%    0.0%  node::StreamBase::CallJSOnreadMethod(int, v8::Local<v8::Object>)
+      2    0.0%    0.0%  node::Exit(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.0%    0.0%  node::Environment::CheckImmediate(uv_check_s*)
+      2    0.0%    0.0%  node::DLOpen(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.0%    0.0%  node::AsyncWrap::EmitBefore(node::Environment*, double)
+      2    0.0%    0.0%  ceil
+      2    0.0%    0.0%  bool v8::internal::MarkBit::Set<(v8::internal::AccessMode)0>()
+      2    0.0%    0.0%  __mprotect
+      2    0.0%    0.0%  __aeabi_uldivmod
+      2    0.0%    0.0%  __aeabi_ul2d
+      1    0.0%    0.0%  void v8::internal::LookupIterator::Start<true>()
+      1    0.0%    0.0%  void v8::internal::LocalArrayBufferTracker::Process<v8::internal::ArrayBufferTracker::ProcessBuffers(v8::internal::Page*, v8::internal::ArrayBufferTracker::ProcessingMode)::{lambda(v8::internal::JSArrayBuffer*, v8::internal::JSArrayBuffer**)#1}>(v8::internal::ArrayBufferTracker::ProcessBuffers(v8::internal::Page*, v8::internal::ArrayBufferTracker::ProcessingMode)::{lambda(v8::internal::JSArrayBuffer*, v8::internal::JSArrayBuffer**)#1})
+      1    0.0%    0.0%  void std::vector<v8::internal::compiler::Node*, v8::internal::ZoneAllocator<v8::internal::compiler::Node*> >::_M_emplace_back_aux<v8::internal::compiler::Node*>(v8::internal::compiler::Node*&&)
+      1    0.0%    0.0%  void std::vector<v8::internal::Handle<v8::internal::Object>, v8::internal::ZoneAllocator<v8::internal::Handle<v8::internal::Object> > >::_M_emplace_back_aux<v8::internal::Handle<v8::internal::Object> const&>(v8::internal::Handle<v8::internal::Object> const&)
+      1    0.0%    0.0%  void std::vector<v8::internal::Handle<v8::internal::HeapObject>, v8::internal::ZoneAllocator<v8::internal::Handle<v8::internal::HeapObject> > >::_M_emplace_back_aux<v8::internal::Handle<v8::internal::HeapObject> const&>(v8::internal::Handle<v8::internal::HeapObject> const&)
+      1    0.0%    0.0%  void std::vector<v8::internal::GlobalHandles::Node*, std::allocator<v8::internal::GlobalHandles::Node*> >::_M_emplace_back_aux<v8::internal::GlobalHandles::Node* const&>(v8::internal::GlobalHandles::Node* const&)
+      1    0.0%    0.0%  void std::vector<unsigned char, v8::internal::ZoneAllocator<unsigned char> >::emplace_back<unsigned char>(unsigned char&&)
+      1    0.0%    0.0%  void std::__unguarded_linear_insert<v8::base::AtomicElement<v8::internal::Smi*>*, __gnu_cxx::__ops::_Val_comp_iter<v8::internal::EnumIndexComparator<v8::internal::NameDictionary> > >(v8::base::AtomicElement<v8::internal::Smi*>*, __gnu_cxx::__ops::_Val_comp_iter<v8::internal::EnumIndexComparator<v8::internal::NameDictionary> >)
+      1    0.0%    0.0%  void std::__introsort_loop<v8::base::AtomicElement<v8::internal::Smi*>*, int, __gnu_cxx::__ops::_Iter_comp_iter<v8::internal::EnumIndexComparator<v8::internal::NameDictionary> > >(v8::base::AtomicElement<v8::internal::Smi*>*, v8::base::AtomicElement<v8::internal::Smi*>*, int, __gnu_cxx::__ops::_Iter_comp_iter<v8::internal::EnumIndexComparator<v8::internal::NameDictionary> >)
+      1    0.0%    0.0%  v8::internal::interpreter::Interpreter::LookupNameOfBytecodeHandler(v8::internal::Code*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterTransfer(v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterInfo*, v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterInfo*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterListFreeEvent(v8::internal::interpreter::RegisterList)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeRegisterOptimizer::Materialize(v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterInfo*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitUnaryOperation(v8::internal::UnaryOperation*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitNoStackOverflowCheck(v8::internal::AstNode*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitNaryArithmeticExpression(v8::internal::NaryOperation*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitForEffect(v8::internal::Expression*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitAndPushIntoRegisterList(v8::internal::Expression*, v8::internal::interpreter::RegisterList*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::FinalizeBytecode(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Script>)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeDecoder::DecodeRegisterOperand(unsigned int, v8::internal::interpreter::OperandType, v8::internal::interpreter::OperandScale)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayWriter::Write(v8::internal::interpreter::BytecodeNode*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayWriter::BindLabel(v8::internal::interpreter::BytecodeLabel*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayRandomIterator::IsValid() const
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayBuilder::JumpIfNil(v8::internal::interpreter::BytecodeLabel*, v8::internal::Token::Value, v8::internal::interpreter::BytecodeArrayBuilder::NilValue)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayAccessor::current_bytecode() const
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayAccessor::SetOffset(int)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayAccessor::GetRegisterOperand(int) const
+      1    0.0%    0.0%  v8::internal::compiler::operator!=(v8::internal::compiler::SparseInputMask const&, v8::internal::compiler::SparseInputMask const&)
+      1    0.0%    0.0%  v8::internal::compiler::Typer::Visitor::TypeHeapConstant(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::Typer::Decorator::Decorate(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::TypedOptimization::Reduce(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::Type::NormalizeUnion(v8::internal::compiler::UnionType*, int, v8::internal::Zone*)
+      1    0.0%    0.0%  v8::internal::compiler::Type::IsInteger(v8::internal::Object*)
+      1    0.0%    0.0%  v8::internal::compiler::StateValuesCache::GetValuesNodeFromCache(v8::internal::compiler::Node**, unsigned int, v8::internal::compiler::SparseInputMask)
+      1    0.0%    0.0%  v8::internal::compiler::StateValuesCache::GetNodeForValues(v8::internal::compiler::Node**, unsigned int, v8::internal::BitVector const*, int)
+      1    0.0%    0.0%  v8::internal::compiler::StateValuesCache::BuildTree(unsigned int*, v8::internal::compiler::Node**, unsigned int, v8::internal::BitVector const*, int, unsigned int)
+      1    0.0%    0.0%  v8::internal::compiler::StateValuesCache::AreKeysEqual(void*, void*)
+      1    0.0%    0.0%  v8::internal::compiler::SimplifiedOperatorBuilder::CheckMaps(v8::base::Flags<v8::internal::compiler::CheckMapsFlag, int>, v8::internal::ZoneHandleSet<v8::internal::Map>, v8::internal::VectorSlotPair const&)
+      1    0.0%    0.0%  v8::internal::compiler::RegisterAllocationData::NewLiveRange(int, v8::internal::MachineRepresentation)
+      1    0.0%    0.0%  v8::internal::compiler::Operator::Operator(unsigned short, v8::base::Flags<v8::internal::compiler::Operator::Property, unsigned char>, char const*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::ReplaceUses(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::IsEffectEdge(v8::internal::compiler::Edge)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::InferReceiverMaps(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::ZoneHandleSet<v8::internal::Map>*)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::GetEffectInput(v8::internal::compiler::Node*, int)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::GetControlInput(v8::internal::compiler::Node*, int)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::FindFrameStateBefore(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::Node::New(v8::internal::Zone*, unsigned int, v8::internal::compiler::Operator const*, int, v8::internal::compiler::Node* const*, bool)
+      1    0.0%    0.0%  v8::internal::compiler::Node::Kill()
+      1    0.0%    0.0%  v8::internal::compiler::NamedAccessOf(v8::internal::compiler::Operator const*)
+      1    0.0%    0.0%  v8::internal::compiler::LiveRange::FirstIntersection(v8::internal::compiler::LiveRange*) const
+      1    0.0%    0.0%  v8::internal::compiler::JSTypeHintLowering::ReduceBinaryOperation(v8::internal::compiler::Operator const*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::FeedbackSlot) const
+      1    0.0%    0.0%  v8::internal::compiler::JSOperatorBuilder::Call(unsigned int, v8::internal::compiler::CallFrequency const&, v8::internal::VectorSlotPair const&, v8::internal::ConvertReceiverMode, v8::internal::SpeculationMode)
+      1    0.0%    0.0%  v8::internal::compiler::JSNativeContextSpecialization::ReduceNamedAccess(v8::internal::compiler::Node*, v8::internal::compiler::Node*, std::vector<v8::internal::Handle<v8::internal::Map>, std::allocator<v8::internal::Handle<v8::internal::Map> > > const&, v8::internal::Handle<v8::internal::Name>, v8::internal::compiler::AccessMode, v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::JSNativeContextSpecialization::ReduceElementAccess(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, std::vector<v8::internal::Handle<v8::internal::Map>, std::allocator<v8::internal::Handle<v8::internal::Map> > > const&, v8::internal::compiler::AccessMode, v8::internal::KeyedAccessLoadMode, v8::internal::KeyedAccessStoreMode)
+      1    0.0%    0.0%  v8::internal::compiler::JSNativeContextSpecialization::BuildPropertyAccess(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::Handle<v8::internal::Name>, v8::internal::ZoneVector<v8::internal::compiler::Node*>*, v8::internal::compiler::PropertyAccessInfo const&, v8::internal::compiler::AccessMode)
+      1    0.0%    0.0%  v8::internal::compiler::JSInliner::InlineCall(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::ZoneVector<v8::internal::compiler::Node*> const&)
+      1    0.0%    0.0%  v8::internal::compiler::JSGraph::Constant(int)
+      1    0.0%    0.0%  v8::internal::compiler::JSCallReducer::Reduce(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::GraphReducer::Revisit(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::GraphReducer::ReplaceWithValue(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::GraphReducer::Replace(v8::internal::compiler::Node*, v8::internal::compiler::Node*, unsigned int)
+      1    0.0%    0.0%  v8::internal::compiler::GraphReducer::ReduceNode(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::Graph::NewNode(v8::internal::compiler::Operator const*, int, v8::internal::compiler::Node* const*, bool)
+      1    0.0%    0.0%  v8::internal::compiler::Graph::AddDecorator(v8::internal::compiler::GraphDecorator*)
+      1    0.0%    0.0%  v8::internal::compiler::GapResolver::PerformMove(v8::internal::compiler::ParallelMove*, v8::internal::compiler::MoveOperands*)
+      1    0.0%    0.0%  v8::internal::compiler::FieldAccessOf(v8::internal::compiler::Operator const*)
+      1    0.0%    0.0%  v8::internal::compiler::EscapeAnalysis::Reduce(v8::internal::compiler::Node*, v8::internal::compiler::EffectGraphReducer::Reduction*)
+      1    0.0%    0.0%  v8::internal::compiler::DeadCodeElimination::ReduceNode(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::DeadCodeElimination::ReduceEffectNode(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::DeadCodeElimination::Reduce(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::CommonOperatorReducer::ReduceMerge(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::CommonOperatorBuilder::FrameState(v8::internal::BailoutId, v8::internal::compiler::OutputFrameStateCombine, v8::internal::compiler::FrameStateFunctionInfo const*)
+      1    0.0%    0.0%  v8::internal::compiler::CommonOperatorBuilder::Deoptimize(v8::internal::DeoptimizeKind, v8::internal::DeoptimizeReason, v8::internal::VectorSlotPair const&)
+      1    0.0%    0.0%  v8::internal::compiler::CodeAssemblerState::CodeAssemblerState(v8::internal::Isolate*, v8::internal::Zone*, v8::internal::CallInterfaceDescriptor const&, v8::internal::Code::Kind, char const*, v8::internal::PoisoningMitigationLevel, unsigned int, unsigned int, int)
+      1    0.0%    0.0%  v8::internal::compiler::CheckpointElimination::Reduce(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeLivenessMap::InitializeLiveness(int, int, v8::internal::Zone*)
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::VisitSubSmi()
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::VisitLdaSmi()
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::VisitLdaNamedProperty()
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::Environment::Copy()
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::Environment::BindAccumulator(v8::internal::compiler::Node*, v8::internal::compiler::BytecodeGraphBuilder::Environment::FrameStateAttachmentMode) [clone .constprop.246]
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::BuildLoopHeaderEnvironment(int)
+      1    0.0%    0.0%  v8::internal::compiler::AccessInfoFactory::ComputePropertyAccessInfo(v8::internal::Handle<v8::internal::Map>, v8::internal::Handle<v8::internal::Name>, v8::internal::compiler::AccessMode, v8::internal::compiler::PropertyAccessInfo*)
+      1    0.0%    0.0%  v8::internal::compiler::(anonymous namespace)::UpdateLiveness(v8::internal::interpreter::Bytecode, v8::internal::compiler::BytecodeLiveness&, v8::internal::compiler::BytecodeLivenessState**, v8::internal::interpreter::BytecodeArrayAccessor const&, v8::internal::compiler::BytecodeLivenessMap const&)
+      1    0.0%    0.0%  v8::internal::ZoneList<v8::internal::ExpressionClassifier<v8::internal::ParserTypes<v8::internal::Parser> >::Error>::Add(v8::internal::ExpressionClassifier<v8::internal::ParserTypes<v8::internal::Parser> >::Error const&, v8::internal::Zone*)
+      1    0.0%    0.0%  v8::internal::Zone::Zone(v8::internal::AccountingAllocator*, char const*, v8::internal::SegmentSize)
+      1    0.0%    0.0%  v8::internal::TranslatedFrame::GetValueCount()
+      1    0.0%    0.0%  v8::internal::TranslatedFrame::AdvanceIterator(std::_Deque_iterator<v8::internal::TranslatedValue, v8::internal::TranslatedValue&, v8::internal::TranslatedValue*>*)
+      1    0.0%    0.0%  v8::internal::TransitionsAccessor::GetPrototypeTransition(v8::internal::Handle<v8::internal::Object>)
+      1    0.0%    0.0%  v8::internal::StringToDouble(v8::internal::UnicodeCache*, v8::internal::Vector<unsigned char const>, int, double)
+      1    0.0%    0.0%  v8::internal::StringTable::LookupKey(v8::internal::Isolate*, v8::internal::StringTableKey*)
+      1    0.0%    0.0%  v8::internal::String::ToCString(v8::internal::AllowNullsFlag, v8::internal::RobustnessFlag, int, int, int*)
+      1    0.0%    0.0%  v8::internal::String::IsOneByteEqualTo(v8::internal::Vector<unsigned char const>)
+      1    0.0%    0.0%  v8::internal::StoreIC::ComputeHandler(v8::internal::LookupIterator*)
+      1    0.0%    0.0%  v8::internal::StackGuard::HandleInterrupts()
+      1    0.0%    0.0%  v8::internal::StackFrame::GetCallerState(v8::internal::StackFrame::State*) const
+      1    0.0%    0.0%  v8::internal::Space::AllocationStep(int, unsigned int, int)
+      1    0.0%    0.0%  v8::internal::SourcePositionTableBuilder::AddEntry(v8::internal::PositionTableEntry const&)
+      1    0.0%    0.0%  v8::internal::SimpleStringBuilder::Finalize()
+      1    0.0%    0.0%  v8::internal::ScopeInfo::HasPositionInfo() const
+      1    0.0%    0.0%  v8::internal::ScopeInfo::HasFunctionName() const
+      1    0.0%    0.0%  v8::internal::ScopeInfo::Create(v8::internal::Isolate*, v8::internal::Zone*, v8::internal::Scope*, v8::internal::MaybeHandle<v8::internal::ScopeInfo>)
+      1    0.0%    0.0%  v8::internal::ScopeInfo::ContextSlotIndex(v8::internal::Handle<v8::internal::ScopeInfo>, v8::internal::Handle<v8::internal::String>, v8::internal::VariableMode*, v8::internal::InitializationFlag*, v8::internal::MaybeAssignedFlag*)
+      1    0.0%    0.0%  v8::internal::Scope::Snapshot::Snapshot(v8::internal::Scope*)
+      1    0.0%    0.0%  v8::internal::Scope::ResolveVariablesRecursively(v8::internal::ParseInfo*)
+      1    0.0%    0.0%  v8::internal::Scope::LookupRecursive(v8::internal::ParseInfo*, v8::internal::VariableProxy*, v8::internal::Scope*)
+      1    0.0%    0.0%  v8::internal::Scope::LookupInScopeInfo(v8::internal::AstRawString const*)
+      1    0.0%    0.0%  v8::internal::Scope::GetDeclarationScope()
+      1    0.0%    0.0%  v8::internal::Scope::DeserializeScopeChain(v8::internal::Zone*, v8::internal::ScopeInfo*, v8::internal::DeclarationScope*, v8::internal::AstValueFactory*, v8::internal::Scope::DeserializationMode)
+      1    0.0%    0.0%  v8::internal::Scope::Declare(v8::internal::Zone*, v8::internal::AstRawString const*, v8::internal::VariableMode, v8::internal::VariableKind, v8::internal::InitializationFlag, v8::internal::MaybeAssignedFlag)
+      1    0.0%    0.0%  v8::internal::Scanner::PeekAhead()
+      1    0.0%    0.0%  v8::internal::Scanner::Next()
+      1    0.0%    0.0%  v8::internal::SafepointTable::SafepointTable(v8::internal::Code*)
+      1    0.0%    0.0%  v8::internal::SafepointTable::FindEntry(unsigned int) const
+      1    0.0%    0.0%  v8::internal::Runtime_StringCharCodeAt(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Runtime_PushBlockContext(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Runtime_KeyedLoadIC_Miss(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Runtime_InterpreterDeserializeLazy(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Runtime_CreateListFromArrayLike(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::RuntimeProfiler::MarkCandidatesForOptimization()
+      1    0.0%    0.0%  v8::internal::Runtime::SetObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::LanguageMode)
+      1    0.0%    0.0%  v8::internal::RootScavengeVisitor::VisitRootPointers(v8::internal::Root, char const*, v8::internal::Object**, v8::internal::Object**)
+      1    0.0%    0.0%  v8::internal::RootScavengeVisitor::VisitRootPointer(v8::internal::Root, char const*, v8::internal::Object**)
+      1    0.0%    0.0%  v8::internal::RelocIterator::next()
+      1    0.0%    0.0%  v8::internal::RelocInfo::set_target_address(unsigned int, v8::internal::WriteBarrierMode, v8::internal::ICacheFlushMode)
+      1    0.0%    0.0%  v8::internal::PatternRewriter::VisitVariableProxy(v8::internal::VariableProxy*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ParseUnaryExpression(bool*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ParsePostfixExpression(bool*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ParseIfStatement(v8::internal::ZoneList<v8::internal::AstRawString const*>*, bool*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ParseIdentifierNameOrPrivateName(bool*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::IsValidReferenceExpression(v8::internal::Expression*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ArrowFormalParametersUnexpectedToken()
+      1    0.0%    0.0%  v8::internal::ParseInfo::ParseInfo(v8::internal::Handle<v8::internal::Script>)
+      1    0.0%    0.0%  v8::internal::PagedSpace::SlowRefillLinearAllocationArea(int)
+      1    0.0%    0.0%  v8::internal::PagedSpace::RefillLinearAllocationAreaFromFreeList(unsigned int)
+      1    0.0%    0.0%  v8::internal::PagedSpace::RawSlowRefillLinearAllocationArea(int)
+      1    0.0%    0.0%  v8::internal::OrderedHashSet::ConvertToKeysArray(v8::internal::Handle<v8::internal::OrderedHashSet>, v8::internal::GetKeysConversion)
+      1    0.0%    0.0%  v8::internal::OptimizingCompileDispatcher::QueueForOptimization(v8::internal::OptimizedCompilationJob*)
+      1    0.0%    0.0%  v8::internal::OptimizedFrame::Summarize(std::vector<v8::internal::FrameSummary, std::allocator<v8::internal::FrameSummary> >*) const
+      1    0.0%    0.0%  v8::internal::OptimizedFrame::StackSlotOffsetRelativeToFp(int)
+      1    0.0%    0.0%  v8::internal::OptimizedCompilationInfo::native_context() const
+      1    0.0%    0.0%  v8::internal::Object* v8::internal::VisitWeakList<v8::internal::Context>(v8::internal::Heap*, v8::internal::Object*, v8::internal::WeakObjectRetainer*)
+      1    0.0%    0.0%  v8::internal::OFStreamBase::xsputn(char const*, int)
+      1    0.0%    0.0%  v8::internal::MigrateDeprecated(v8::internal::Handle<v8::internal::Object>)
+      1    0.0%    0.0%  v8::internal::MemoryAllocator::PreFreeMemory(v8::internal::MemoryChunk*)
+      1    0.0%    0.0%  v8::internal::MarkingVisitor<(v8::internal::FixedArrayVisitationMode)1, (v8::internal::TraceRetainingPathMode)1, v8::internal::IncrementalMarkingState>::VisitCodeTarget(v8::internal::Code*, v8::internal::RelocInfo*)
+      1    0.0%    0.0%  v8::internal::MarkCompactWeakObjectRetainer::RetainAs(v8::internal::Object*)
+      1    0.0%    0.0%  v8::internal::Map::WeakCellForMap(v8::internal::Handle<v8::internal::Map>)
+      1    0.0%    0.0%  v8::internal::Map::TransitionToPrototype(v8::internal::Handle<v8::internal::Map>, v8::internal::Handle<v8::internal::Object>)
+      1    0.0%    0.0%  v8::internal::Map::ReconfigureElementsKind(v8::internal::Handle<v8::internal::Map>, v8::internal::ElementsKind)
+      1    0.0%    0.0%  v8::internal::Map::EquivalentToForNormalization(v8::internal::Map const*, v8::internal::PropertyNormalizationMode) const
+      1    0.0%    0.0%  v8::internal::Map::CopyDropDescriptors(v8::internal::Handle<v8::internal::Map>)
+      1    0.0%    0.0%  v8::internal::Map::ConnectTransition(v8::internal::Handle<v8::internal::Map>, v8::internal::Handle<v8::internal::Map>, v8::internal::Handle<v8::internal::Name>, v8::internal::SimpleTransitionFlag)
+      1    0.0%    0.0%  v8::internal::LookupIterator::PropertyOrElement(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Name>, v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::LookupIterator::Configuration)
+      1    0.0%    0.0%  v8::internal::LookupIterator::PrepareTransitionToDataProperty(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::Object::StoreFromKeyed)
+      1    0.0%    0.0%  v8::internal::LookupIterator::LookupCachedProperty()
+      1    0.0%    0.0%  v8::internal::Logger::CodeCreateEvent(v8::internal::CodeEventListener::LogEventsAndTags, v8::internal::AbstractCode*, v8::internal::SharedFunctionInfo*, v8::internal::Name*, int, int)
+      1    0.0%    0.0%  v8::internal::Log::MessageBuilder& v8::internal::Log::MessageBuilder::operator<< <char const*>(char const*)
+      1    0.0%    0.0%  v8::internal::LoadIC::ComputeHandler(v8::internal::LookupIterator*)
+      1    0.0%    0.0%  v8::internal::JsonStringifier::SerializeJSReceiverSlow(v8::internal::Handle<v8::internal::JSReceiver>)
+      1    0.0%    0.0%  v8::internal::JsonParser<false>::ParseJson()
+      1    0.0%    0.0%  v8::internal::JavaScriptFrameIterator::Advance()
+      1    0.0%    0.0%  v8::internal::JSReceiver::SetPrototype(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::Object>, bool, v8::internal::ShouldThrow)
+      1    0.0%    0.0%  v8::internal::JSReceiver::DeleteNormalizedProperty(v8::internal::Handle<v8::internal::JSReceiver>, int)
+      1    0.0%    0.0%  v8::internal::JSReceiver::DefineOwnProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDescriptor*, v8::internal::ShouldThrow)
+      1    0.0%    0.0%  v8::internal::JSObject::RawFastPropertyAtPut(v8::internal::FieldIndex, v8::internal::Object*)
+      1    0.0%    0.0%  v8::internal::JSObject::MigrateSlowToFast(v8::internal::Handle<v8::internal::JSObject>, int, char const*)
+      1    0.0%    0.0%  v8::internal::JSObject::MigrateInstance(v8::internal::Handle<v8::internal::JSObject>)
+      1    0.0%    0.0%  v8::internal::JSObject::MakePrototypesFast(v8::internal::Handle<v8::internal::Object>, v8::internal::WhereToStart, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::JSObject::DefineOwnPropertyIgnoreAttributes(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::JSObject::AccessorInfoHandling)
+      1    0.0%    0.0%  v8::internal::JSArray::WouldChangeReadOnlyLength(v8::internal::Handle<v8::internal::JSArray>, unsigned int)
+      1    0.0%    0.0%  v8::internal::IterateAndScavengePromotedObjectsVisitor::VisitPointers(v8::internal::HeapObject*, v8::internal::Object**, v8::internal::Object**)
+      1    0.0%    0.0%  v8::internal::ItemParallelJob::~ItemParallelJob()
+      1    0.0%    0.0%  v8::internal::InnerPointerToCodeCache::GetCacheEntry(unsigned int)
+      1    0.0%    0.0%  v8::internal::IncrementalMarking::Step(unsigned int, v8::internal::IncrementalMarking::CompletionAction, v8::internal::StepOrigin, v8::internal::WorklistToProcess)
+      1    0.0%    0.0%  v8::internal::IC::UpdateState(v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>)
+      1    0.0%    0.0%  v8::internal::IC::PatchCache(v8::internal::Handle<v8::internal::Name>, v8::internal::MaybeObjectHandle const&)
+      1    0.0%    0.0%  v8::internal::HeapObjectIterator::Next()
+      1    0.0%    0.0%  v8::internal::HeapIterator::NextObject()
+      1    0.0%    0.0%  v8::internal::Heap::UnregisterStrongRoots(v8::internal::Object**)
+      1    0.0%    0.0%  v8::internal::Heap::SetStackLimits()
+      1    0.0%    0.0%  v8::internal::Heap::GetFillToAlign(unsigned int, v8::internal::AllocationAlignment)
+      1    0.0%    0.0%  v8::internal::HashTable<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::New(v8::internal::Isolate*, int, v8::internal::PretenureFlag, v8::internal::MinimumCapacity)
+      1    0.0%    0.0%  v8::internal::HashTable<v8::internal::GlobalDictionary, v8::internal::GlobalDictionaryShape>::Rehash()
+      1    0.0%    0.0%  v8::internal::HandlerTable::LookupRange(int, int*, v8::internal::HandlerTable::CatchPrediction*)
+      1    0.0%    0.0%  v8::internal::FunctionTemplateInfo::IsTemplateFor(v8::internal::Map*)
+      1    0.0%    0.0%  v8::internal::FreeList::Free(unsigned int, unsigned int, v8::internal::FreeMode)
+      1    0.0%    0.0%  v8::internal::FixedArray::Shrink(int)
+      1    0.0%    0.0%  v8::internal::FindCaller(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSFunction>)
+      1    0.0%    0.0%  v8::internal::FeedbackNexus::StateFromFeedback() const
+      1    0.0%    0.0%  v8::internal::FeedbackNexus::GetKeyedAccessStoreMode() const
+      1    0.0%    0.0%  v8::internal::FeedbackNexus::GetCompareOperationFeedback() const
+      1    0.0%    0.0%  v8::internal::FeedbackNexus::FindFirstName() const
+      1    0.0%    0.0%  v8::internal::FeedbackNexus::ExtractMaps(std::vector<v8::internal::Handle<v8::internal::Map>, std::allocator<v8::internal::Handle<v8::internal::Map> > >*) const
+      1    0.0%    0.0%  v8::internal::FastKeyAccumulator::GetKeys(v8::internal::GetKeysConversion)
+      1    0.0%    0.0%  v8::internal::Factory::NewProperSubString(v8::internal::Handle<v8::internal::String>, int, int)
+      1    0.0%    0.0%  v8::internal::Factory::NewNumberFromUint(unsigned int, v8::internal::PretenureFlag)
+      1    0.0%    0.0%  v8::internal::Factory::NewMap(v8::internal::InstanceType, int, v8::internal::ElementsKind, int)
+      1    0.0%    0.0%  v8::internal::Factory::NewJSObjectFromMap(v8::internal::Handle<v8::internal::Map>, v8::internal::PretenureFlag, v8::internal::Handle<v8::internal::AllocationSite>) [clone .constprop.169]
+      1    0.0%    0.0%  v8::internal::Factory::NewJSArrayStorage(v8::internal::Handle<v8::internal::JSArray>, int, int, v8::internal::ArrayStorageAllocationMode)
+      1    0.0%    0.0%  v8::internal::Factory::NewJSArrayBuffer(v8::internal::SharedFlag, v8::internal::PretenureFlag)
+      1    0.0%    0.0%  v8::internal::Factory::NewHeapNumber(v8::internal::MutableMode, v8::internal::PretenureFlag)
+      1    0.0%    0.0%  v8::internal::Factory::NewForeign(unsigned int, v8::internal::PretenureFlag)
+      1    0.0%    0.0%  v8::internal::Factory::NewConsString(v8::internal::Handle<v8::internal::String>, v8::internal::Handle<v8::internal::String>, int, bool)
+      1    0.0%    0.0%  v8::internal::Factory::NewBytecodeArray(int, unsigned char const*, int, int, v8::internal::Handle<v8::internal::FixedArray>)
+      1    0.0%    0.0%  v8::internal::Factory::NewAccessorPair()
+      1    0.0%    0.0%  v8::internal::Factory::New(v8::internal::Handle<v8::internal::Map>, v8::internal::PretenureFlag) [clone .constprop.192]
+      1    0.0%    0.0%  v8::internal::Factory::LookupSingleCharacterStringFromCode(unsigned int)
+      1    0.0%    0.0%  v8::internal::ExternalOneByteStringUtf16CharacterStream::FillBuffer(unsigned int)
+      1    0.0%    0.0%  v8::internal::ExpressionClassifier<v8::internal::ParserTypes<v8::internal::Parser> >::Accumulate(v8::internal::ExpressionClassifier<v8::internal::ParserTypes<v8::internal::Parser> >*, unsigned int)
+      1    0.0%    0.0%  v8::internal::Dictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::NumberOfEnumerableProperties()
+      1    0.0%    0.0%  v8::internal::Dictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::DeleteEntry(v8::internal::Handle<v8::internal::NameDictionary>, int)
+      1    0.0%    0.0%  v8::internal::Deserializer<v8::internal::DefaultDeserializerAllocator>::ReadObject(int, v8::internal::MaybeObject**, v8::internal::HeapObjectReferenceType)
+      1    0.0%    0.0%  v8::internal::Deserializer<v8::internal::DefaultDeserializerAllocator>::ReadData(v8::internal::MaybeObject**, v8::internal::MaybeObject**, int, unsigned int)
+      1    0.0%    0.0%  v8::internal::Deserializer<v8::internal::DefaultDeserializerAllocator>::PostProcessNewObject(v8::internal::HeapObject*, int)
+      1    0.0%    0.0%  v8::internal::DescriptorArray::GetDetails(int)
+      1    0.0%    0.0%  v8::internal::DescriptorArray::Append(v8::internal::Descriptor*)
+      1    0.0%    0.0%  v8::internal::DeclarationScope::DeclareArguments(v8::internal::AstValueFactory*)
+      1    0.0%    0.0%  v8::internal::DeclarationScope::DeclarationScope(v8::internal::Zone*, v8::internal::ScopeType, v8::internal::Handle<v8::internal::ScopeInfo>)
+      1    0.0%    0.0%  v8::internal::DeclarationScope::Analyze(v8::internal::ParseInfo*)
+      1    0.0%    0.0%  v8::internal::Context::DeoptimizedCodeListHead()
+      1    0.0%    0.0%  v8::internal::ComputeSeededIntegerHash(v8::internal::Isolate*, unsigned int)
+      1    0.0%    0.0%  v8::internal::Compiler::FinalizeCompilationJob(v8::internal::OptimizedCompilationJob*, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::CompareOperation::IsLiteralCompareTypeof(v8::internal::Expression**, v8::internal::Literal**)
+      1    0.0%    0.0%  v8::internal::CancelableTaskManager::TryAbort(unsigned long long)
+      1    0.0%    0.0%  v8::internal::CancelableTask::CancelableTask(v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Call::GetCallType() const
+      1    0.0%    0.0%  v8::internal::Builtins::IsLazy(int)
+      1    0.0%    0.0%  v8::internal::Builtin_ObjectDefineProperties(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Builtin_Impl_ObjectGetPrototypeOf(v8::internal::BuiltinArguments, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Builtin_DateNow(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Builtin_ArraySplice(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Builtin_ArrayBufferIsView(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::BuiltinDeserializer::ExtractCodeObjectSize(int)
+      1    0.0%    0.0%  v8::internal::Bitmap::MarkBitFromIndex(unsigned int)
+      1    0.0%    0.0%  v8::internal::BaseNameDictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::Add(v8::internal::Handle<v8::internal::NameDictionary>, v8::internal::Handle<v8::internal::Name>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDetails, int*)
+      1    0.0%    0.0%  v8::internal::AstValueFactory::GetString(unsigned int, bool, v8::internal::Vector<unsigned char const>)
+      1    0.0%    0.0%  v8::internal::Assembler::target_at_put(int, int)
+      1    0.0%    0.0%  v8::internal::Assembler::movw(v8::internal::Register, unsigned int, v8::internal::Condition)
+      1    0.0%    0.0%  v8::internal::Assembler::b(v8::internal::Label*, v8::internal::Condition)
+      1    0.0%    0.0%  v8::internal::Assembler::IsLdrPcImmediateOffset(int)
+      1    0.0%    0.0%  v8::internal::Assembler::CheckBuffer()
+      1    0.0%    0.0%  v8::internal::Assembler::AllocateAndInstallRequestedHeapObjects(v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::AllocationObserver::AllocationStep(int, unsigned int, unsigned int)
+      1    0.0%    0.0%  v8::internal::AllocWithRetry(unsigned int)
+      1    0.0%    0.0%  v8::internal::AccountingAllocator::ReturnSegment(v8::internal::Segment*)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::UpdateDescriptorForValue(v8::internal::Handle<v8::internal::Map>, int, v8::internal::PropertyConstness, v8::internal::Handle<v8::internal::Object>)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::ProbeInstantiationsCache(v8::internal::Isolate*, int, v8::internal::(anonymous namespace)::CachingMode)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::GetPropertyIfPresent(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::String>, v8::internal::Handle<v8::internal::Object>*) [clone .constprop.31]
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::GetOptimizedCode(v8::internal::Handle<v8::internal::JSFunction>, v8::internal::ConcurrencyMode, v8::internal::BailoutId, v8::internal::JavaScriptFrame*)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)2> >::GetDetails(v8::internal::JSObject*, unsigned int)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::ArrayBoilerplate::Create(v8::internal::Isolate*, v8::internal::Handle<v8::internal::HeapObject>, int, v8::internal::PretenureFlag) [clone .isra.36]
+      1    0.0%    0.0%  v8::base::hash_value(unsigned long long)
+      1    0.0%    0.0%  v8::base::RecursiveMutex::Lock()
+      1    0.0%    0.0%  v8::Value::IntegerValue() const
+      1    0.0%    0.0%  v8::Object::SetAlignedPointerInInternalField(int, void*)
+      1    0.0%    0.0%  v8::Object::Has(v8::Local<v8::Context>, v8::Local<v8::Value>)
+      1    0.0%    0.0%  v8::HandleScope::CreateHandle(v8::internal::Isolate*, v8::internal::Object*)
+      1    0.0%    0.0%  uv__write
+      1    0.0%    0.0%  uv__stream_io
+      1    0.0%    0.0%  u_hasBinaryProperty_64
+      1    0.0%    0.0%  std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const
+      1    0.0%    0.0%  std::ostream::sentry::sentry(std::ostream&)
+      1    0.0%    0.0%  std::ostream& std::ostream::_M_insert<long>(long)
+      1    0.0%    0.0%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, int)
+      1    0.0%    0.0%  std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+      1    0.0%    0.0%  std::_Hashtable<v8::internal::JSArrayBuffer*, std::pair<v8::internal::JSArrayBuffer* const, unsigned int>, std::allocator<std::pair<v8::internal::JSArrayBuffer* const, unsigned int> >, std::__detail::_Select1st, std::equal_to<v8::internal::JSArrayBuffer*>, v8::internal::LocalArrayBufferTracker::Hasher, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::erase(std::__detail::_Node_const_iterator<std::pair<v8::internal::JSArrayBuffer* const, unsigned int>, false, true>)
+      1    0.0%    0.0%  sigaddset
+      1    0.0%    0.0%  operator new[](unsigned int, std::nothrow_t const&)
+      1    0.0%    0.0%  operator new(unsigned int, std::nothrow_t const&)
+      1    0.0%    0.0%  node::i18n::(anonymous namespace)::GetVersion(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  node::fs::Unlink(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  node::fs::LStat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  node::fs::Close(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  node::StreamListener::OnStreamAlloc(unsigned int)
+      1    0.0%    0.0%  node::LibuvStreamWrap::Initialize(v8::Local<v8::Object>, v8::Local<v8::Value>, v8::Local<v8::Context>)::{lambda(v8::FunctionCallbackInfo<v8::Value> const&)#1}::_FUN(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  node::HandleWrap::OnClose(uv_handle_s*)
+      1    0.0%    0.0%  node::Environment::StartProfilerIdleNotifier()::{lambda(uv_check_s*)#2}::_FUN(uv_check_s*)
+      1    0.0%    0.0%  node::EmitToJSStreamListener::OnStreamRead(int, uv_buf_t const&)
+      1    0.0%    0.0%  do_futex_wait.constprop.2
+      1    0.0%    0.0%  brk
+      1    0.0%    0.0%  __munmap
+      1    0.0%    0.0%  __mmap
+      1    0.0%    0.0%  __libc_realloc
+      1    0.0%    0.0%  __GI___pthread_mutex_unlock
+
+ [Summary]:
+   ticks  total  nonlib   name
+   2265   10.1%   10.2%  JavaScript
+  18169   81.3%   81.8%  C++
+    254    1.1%    1.1%  GC
+    140    0.6%          Shared libraries
+   1749    7.8%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+   1688   22.3%    7.6%  __libc_write
+    521    6.9%    2.3%  void node::StreamBase::JSMethod<node::LibuvStreamWrap, &(int node::StreamBase::WriteString<(node::encoding)1>(v8::FunctionCallbackInfo<v8::Value> const&))>(v8::FunctionCallbackInfo<v8::Value> const&)
+    460    6.1%    2.1%  __clock_gettime
+    372    4.9%    1.7%  v8::internal::JsonStringifier::Result v8::internal::JsonStringifier::Serialize_<true>(v8::internal::Handle<v8::internal::Object>, bool, v8::internal::Handle<v8::internal::Object>)
+    367    4.9%    1.6%  v8::internal::JsonStringifier::SerializeString(v8::internal::Handle<v8::internal::String>)
+    263    3.5%    1.2%  __GI___pthread_getspecific
+    130    1.7%    0.6%  v8::internal::String::GetFlatContent()
+    114    1.5%    0.5%  node::contextify::ContextifyScript::New(v8::FunctionCallbackInfo<v8::Value> const&)
+    106    1.4%    0.5%  v8::Isolate::GetCurrentContext()
+    100    1.3%    0.4%  v8::internal::LookupIterator::PropertyOrElement(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, bool*, v8::internal::LookupIterator::Configuration)
+     87    1.2%    0.4%  v8::internal::JSObject::FastPropertyAt(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Representation, v8::internal::FieldIndex)
+     78    1.0%    0.3%  v8::internal::FieldIndex::ForDescriptor(v8::internal::Map const*, int)
+     69    0.9%    0.3%  v8::EscapableHandleScope::EscapableHandleScope(v8::Isolate*)
+     65    0.9%    0.3%  v8::internal::String::SlowEquals(v8::internal::String*)
+     58    0.8%    0.3%  v8::internal::LookupIterator::State v8::internal::LookupIterator::LookupInRegularHolder<false>(v8::internal::Map*, v8::internal::JSReceiver*) [clone .part.64]
+     58    0.8%    0.3%  v8::internal::JsonParser<false>::ScanJsonString()
+     58    0.8%    0.3%  _init
+     57    0.8%    0.3%  v8::internal::Heap::AllocateRaw(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment)
+     55    0.7%    0.2%  v8::base::Thread::GetThreadLocal(int)
+     48    0.6%    0.2%  v8::Object::Get(v8::Local<v8::Context>, v8::Local<v8::Value>)
+     45    0.6%    0.2%  v8::internal::IntToCString(int, v8::internal::Vector<char>)
+     43    0.6%    0.2%  v8::(anonymous namespace)::CallDepthScope<false>::CallDepthScope(v8::internal::Isolate*, v8::Local<v8::Context>)
+     43    0.6%    0.2%  node::contextify::ContextifyContext::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     42    0.6%    0.2%  v8::internal::StringTable::LookupString(v8::internal::Isolate*, v8::internal::Handle<v8::internal::String>)
+     42    0.6%    0.2%  v8::internal::JsonParser<false>::ParseJsonObject()
+     42    0.6%    0.2%  v8::EscapableHandleScope::Escape(v8::internal::Object**)
+     41    0.5%    0.2%  v8::internal::LookupIterator::GetDataValue() const
+     40    0.5%    0.2%  v8::HandleScope::~HandleScope()
+     38    0.5%    0.2%  v8::internal::Object::GetProperty(v8::internal::LookupIterator*)
+     37    0.5%    0.2%  v8::internal::Factory::NewFixedArrayWithFiller(v8::internal::Heap::RootListIndex, int, v8::internal::Object*, v8::internal::PretenureFlag)
+     33    0.4%    0.1%  void v8::internal::String::WriteToFlat<unsigned char>(v8::internal::String*, unsigned char*, int, int)
+     33    0.4%    0.1%  v8::internal::PropertyDescriptor::ToPropertyDescriptor(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDescriptor*)
+     32    0.4%    0.1%  v8::internal::Runtime::GetObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, bool*)
+     31    0.4%    0.1%  void v8::internal::LookupIterator::NextInternal<false>(v8::internal::Map*, v8::internal::JSReceiver*)
+     31    0.4%    0.1%  v8::internal::JSObject::GetElementsAccessor()
+     31    0.4%    0.1%  __libc_malloc
+     30    0.4%    0.1%  v8::internal::LookupIterator::State v8::internal::LookupIterator::LookupInRegularHolder<true>(v8::internal::Map*, v8::internal::JSReceiver*) [clone .part.62]
+     30    0.4%    0.1%  v8::internal::JsonStringifier::StackPush(v8::internal::Handle<v8::internal::Object>)
+     30    0.4%    0.1%  v8::internal::JsonParser<false>::ParseJsonNumber()
+     30    0.4%    0.1%  node::(anonymous namespace)::TimerWrap::Now(v8::FunctionCallbackInfo<v8::Value> const&)
+     28    0.4%    0.1%  v8::internal::(anonymous namespace)::MakeStringThin(v8::internal::String*, v8::internal::String*, v8::internal::Isolate*)
+     27    0.4%    0.1%  memcmp
+     25    0.3%    0.1%  v8::internal::ConsString* v8::internal::String::VisitFlat<v8::internal::IteratingStringHasher>(v8::internal::IteratingStringHasher*, v8::internal::String*, int)
+     24    0.3%    0.1%  v8::internal::JSArray::SetLength(v8::internal::Handle<v8::internal::JSArray>, unsigned int)
+     24    0.3%    0.1%  v8::Value::Uint32Value(v8::Local<v8::Context>) const
+     24    0.3%    0.1%  v8::(anonymous namespace)::CallDepthScope<false>::~CallDepthScope()
+     23    0.3%    0.1%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::SetLengthImpl(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSArray>, unsigned int, v8::internal::Handle<v8::internal::FixedArrayBase>)
+     22    0.3%    0.1%  v8::internal::JsonStringifier::ApplyToJsonFunction(v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>)
+     22    0.3%    0.1%  v8::Locker::IsActive()
+     21    0.3%    0.1%  __udivmoddi4
+     19    0.3%    0.1%  v8::internal::ThreadId::GetCurrentThreadId()
+     19    0.3%    0.1%  v8::internal::SlicedString::SlicedStringGet(int)
+     19    0.3%    0.1%  v8::internal::JSReceiver::class_name()
+     18    0.2%    0.1%  v8::internal::HeapObject::map() const
+     18    0.2%    0.1%  int v8::internal::BinarySearch<(v8::internal::SearchMode)0, v8::internal::TransitionArray>(v8::internal::TransitionArray*, v8::internal::Name*, int, int*)
+     17    0.2%    0.1%  v8::internal::JsonStringifier::Result v8::internal::JsonStringifier::Serialize_<false>(v8::internal::Handle<v8::internal::Object>, bool, v8::internal::Handle<v8::internal::Object>)
+     17    0.2%    0.1%  v8::internal::JsonParser<false>::CommitStateToJsonObject(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Map>, v8::internal::Vector<v8::internal::Handle<v8::internal::Object> const>)
+     17    0.2%    0.1%  v8::internal::JSObject::AllocateStorageForMap(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Map>)
+     17    0.2%    0.1%  v8::internal::Accessors::ArrayLengthSetter(v8::Local<v8::Name>, v8::Local<v8::Value>, v8::PropertyCallbackInfo<v8::Boolean> const&)
+     17    0.2%    0.1%  v8::Value::IsExternal() const
+     17    0.2%    0.1%  __write
+     16    0.2%    0.1%  v8::internal::Map::FindRootMap() const
+     16    0.2%    0.1%  v8::internal::Logger::ApiEntryCall(char const*)
+     16    0.2%    0.1%  v8::internal::Factory::NewRawOneByteString(int, v8::internal::PretenureFlag)
+     15    0.2%    0.1%  v8::internal::FastDtoa(double, v8::internal::FastDtoaMode, int, v8::internal::Vector<char>, int*, int*)
+     15    0.2%    0.1%  v8::Value::ToInteger(v8::Local<v8::Context>) const
+     15    0.2%    0.1%  v8::HandleScope::HandleScope(v8::Isolate*)
+     15    0.2%    0.1%  node::GetBinding(v8::FunctionCallbackInfo<v8::Value> const&)
+     15    0.2%    0.1%  memmove
+     15    0.2%    0.1%  __pthread_mutex_unlock_usercnt
+     14    0.2%    0.1%  void v8::internal::LookupIterator::Start<false>()
+     14    0.2%    0.1%  v8::internal::compiler::GraphReducer::ReduceTop()
+     14    0.2%    0.1%  v8::internal::String::Flatten(v8::internal::Handle<v8::internal::String>, v8::internal::PretenureFlag)
+     14    0.2%    0.1%  v8::internal::Accessors::ArrayLengthGetter(v8::Local<v8::Name>, v8::PropertyCallbackInfo<v8::Value> const&)
+     14    0.2%    0.1%  v8::Isolate::GetCurrent()
+     14    0.2%    0.1%  v8::External::Value() const
+     13    0.2%    0.1%  v8::internal::Object::GetPropertyWithAccessor(v8::internal::LookupIterator*)
+     13    0.2%    0.1%  v8::internal::MaybeHandle<v8::internal::Object> v8::internal::(anonymous namespace)::HandleApiCallHelper<false>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::FunctionTemplateInfo>, v8::internal::Handle<v8::internal::Object>, v8::internal::BuiltinArguments)
+     13    0.2%    0.1%  v8::internal::Execution::Call(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, int, v8::internal::Handle<v8::internal::Object>*)
+     13    0.2%    0.1%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleySmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)1> >::GetEntryForIndex(v8::internal::Isolate*, v8::internal::JSObject*, v8::internal::FixedArrayBase*, unsigned int)
+     13    0.2%    0.1%  uv_timer_start
+     12    0.2%    0.1%  v8::internal::TransitionsAccessor::FindTransitionToDataProperty(v8::internal::Handle<v8::internal::Name>, v8::internal::TransitionsAccessor::RequestedLocation)
+     12    0.2%    0.1%  v8::internal::MapUpdater::FindTargetMap()
+     12    0.2%    0.1%  v8::internal::JsonParser<false>::ParseJsonValue()
+     12    0.2%    0.1%  v8::internal::JSReceiver::ValidateAndApplyPropertyDescriptor(v8::internal::Isolate*, v8::internal::LookupIterator*, bool, v8::internal::PropertyDescriptor*, v8::internal::PropertyDescriptor*, v8::internal::ShouldThrow, v8::internal::Handle<v8::internal::Name>)
+     12    0.2%    0.1%  v8::internal::JSObject::MigrateToMap(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Map>, int)
+     12    0.2%    0.1%  v8::internal::Heap::NotifyObjectLayoutChange(v8::internal::HeapObject*, int, v8::internal::PerThreadAssertScopeDebugOnly<(v8::internal::PerThreadAssertType)0, false> const&)
+     12    0.2%    0.1%  v8::internal::FixedArray::set(int, v8::internal::Object*)
+     12    0.2%    0.1%  v8::internal::Factory::NewStringFromOneByte(v8::internal::Vector<unsigned char const>, v8::internal::PretenureFlag)
+     12    0.2%    0.1%  cfree
+     11    0.1%    0.0%  v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment)
+     11    0.1%    0.0%  v8::internal::FunctionTemplateInfo::IsTemplateFor(v8::internal::Map*) [clone .part.334]
+     11    0.1%    0.0%  v8::internal::Factory::NewStringFromUtf8(v8::internal::Vector<char const>, v8::internal::PretenureFlag)
+     11    0.1%    0.0%  node::(anonymous namespace)::TimerWrap::New(v8::FunctionCallbackInfo<v8::Value> const&)
+     10    0.1%    0.0%  v8::internal::TransitionArray::SearchDetails(int, v8::internal::PropertyKind, v8::internal::PropertyAttributes, int*)
+     10    0.1%    0.0%  v8::internal::StringHasher::GetHashField()
+     10    0.1%    0.0%  v8::internal::LookupIterator::TransitionToAccessorProperty(v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes)
+     10    0.1%    0.0%  v8::internal::KeyAccumulator::CollectOwnPropertyNames(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::JSObject>)
+     10    0.1%    0.0%  v8::internal::JSReceiver::OrdinaryDefineOwnProperty(v8::internal::LookupIterator*, v8::internal::PropertyDescriptor*, v8::internal::ShouldThrow)
+     10    0.1%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::SetLength(v8::internal::Handle<v8::internal::JSArray>, unsigned int)
+     10    0.1%    0.0%  node::(anonymous namespace)::DecodeData(v8::FunctionCallbackInfo<v8::Value> const&)
+      9    0.1%    0.0%  v8::internal::Runtime_StoreCallbackProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      9    0.1%    0.0%  v8::internal::OrderedHashSet::Add(v8::internal::Handle<v8::internal::OrderedHashSet>, v8::internal::Handle<v8::internal::Object>)
+      9    0.1%    0.0%  v8::internal::Object::CreateListFromArrayLike(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::ElementTypes)
+      9    0.1%    0.0%  v8::internal::JSObject::EnsureWritableFastElements(v8::internal::Handle<v8::internal::JSObject>)
+      9    0.1%    0.0%  v8::internal::HeapObject::SizeFromMap(v8::internal::Map*) const
+      9    0.1%    0.0%  v8::internal::Heap::RightTrimFixedArray(v8::internal::FixedArrayBase*, int)
+      9    0.1%    0.0%  v8::internal::Factory::TryNewFixedArray(int, v8::internal::PretenureFlag)
+      9    0.1%    0.0%  v8::Integer::NewFromUnsigned(v8::Isolate*, unsigned int)
+      9    0.1%    0.0%  v8::Integer::New(v8::Isolate*, int)
+      9    0.1%    0.0%  strlen
+      9    0.1%    0.0%  node::(anonymous namespace)::TimerWrap::Start(v8::FunctionCallbackInfo<v8::Value> const&)
+      8    0.1%    0.0%  v8::internal::compiler::SourcePositionTable::GetSourcePosition(v8::internal::compiler::Node*) const
+      8    0.1%    0.0%  v8::internal::compiler::(anonymous namespace)::SourcePositionWrapper::Reduce(v8::internal::compiler::Node*)
+      8    0.1%    0.0%  v8::internal::String::ToNumber(v8::internal::Handle<v8::internal::String>)
+      8    0.1%    0.0%  v8::internal::KeyAccumulator::AddKey(v8::internal::Object*, v8::internal::AddKeyConversion)
+      8    0.1%    0.0%  v8::internal::JSObject::AddDataElement(v8::internal::Handle<v8::internal::JSObject>, unsigned int, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::ShouldThrow)
+      8    0.1%    0.0%  double v8::internal::(anonymous namespace)::InternalStringToDouble<unsigned char const*, unsigned char const*>(v8::internal::UnicodeCache*, unsigned char const*, unsigned char const*, int, double)
+      7    0.1%    0.0%  v8::internal::Strtod(v8::internal::Vector<char const>, int)
+      7    0.1%    0.0%  v8::internal::String::SlowFlatten(v8::internal::Handle<v8::internal::ConsString>, v8::internal::PretenureFlag)
+      7    0.1%    0.0%  v8::internal::String::ComputeAndSetHash()
+      7    0.1%    0.0%  v8::internal::Runtime_StringSplit(int, v8::internal::Object**, v8::internal::Isolate*)
+      7    0.1%    0.0%  v8::internal::Runtime_DeleteProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      7    0.1%    0.0%  v8::internal::PagedSpace::AllocateRaw(int, v8::internal::AllocationAlignment)
+      7    0.1%    0.0%  v8::internal::Object::GetOrCreateHash(v8::internal::Isolate*)
+      7    0.1%    0.0%  v8::internal::Name::Hash()
+      7    0.1%    0.0%  v8::internal::Map::GetConstructor() const
+      7    0.1%    0.0%  v8::internal::JSReceiver::DefineProperties(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>)
+      7    0.1%    0.0%  v8::internal::JSObject::GetHeaderSize(v8::internal::InstanceType, bool)
+      7    0.1%    0.0%  v8::internal::Factory::NewStruct(v8::internal::InstanceType, v8::internal::PretenureFlag)
+      7    0.1%    0.0%  v8::internal::Factory::InitializeJSObjectBody(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Map>, int)
+      7    0.1%    0.0%  v8::internal::Factory::GetNumberStringCache(v8::internal::Handle<v8::internal::Object>)
+      7    0.1%    0.0%  v8::internal::(anonymous namespace)::GetIdentityHashHelper(v8::internal::Isolate*, v8::internal::JSReceiver*) [clone .isra.398]
+      7    0.1%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleySmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)1> >::Get(v8::internal::Handle<v8::internal::JSObject>, unsigned int)
+      7    0.1%    0.0%  operator new(unsigned int)
+      7    0.1%    0.0%  memcpy
+      6    0.1%    0.0%  v8::internal::Zone::New(unsigned int)
+      6    0.1%    0.0%  v8::internal::TransitionsAccessor::SearchTransition(v8::internal::Name*, v8::internal::PropertyKind, v8::internal::PropertyAttributes)
+      6    0.1%    0.0%  v8::internal::TransitionsAccessor::Initialize()
+      6    0.1%    0.0%  v8::internal::StackFrameIterator::StackFrameIterator(v8::internal::Isolate*)
+      6    0.1%    0.0%  v8::internal::PowersOfTenCache::GetCachedPowerForBinaryExponentRange(int, int, v8::internal::DiyFp*, int*)
+      6    0.1%    0.0%  v8::internal::Object::AddDataProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::ShouldThrow, v8::internal::Object::StoreFromKeyed)
+      6    0.1%    0.0%  v8::internal::NormalizedMapCache::Get(v8::internal::Handle<v8::internal::Map>, v8::internal::PropertyNormalizationMode)
+      6    0.1%    0.0%  v8::internal::MaybeHandle<v8::internal::Object> v8::internal::(anonymous namespace)::HandleApiCallHelper<true>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::HeapObject>, v8::internal::Handle<v8::internal::FunctionTemplateInfo>, v8::internal::Handle<v8::internal::Object>, v8::internal::BuiltinArguments)
+      6    0.1%    0.0%  v8::internal::Map::TransitionToAccessorProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Map>, v8::internal::Handle<v8::internal::Name>, int, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes)
+      6    0.1%    0.0%  v8::internal::Logger::ApiNamedPropertyAccess(char const*, v8::internal::JSObject*, v8::internal::Object*)
+      6    0.1%    0.0%  v8::internal::KeyAccumulator::CollectOwnElementIndices(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::JSObject>)
+      6    0.1%    0.0%  v8::internal::Builtin_HandleApiCall(int, v8::internal::Object**, v8::internal::Isolate*)
+      6    0.1%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedSmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)0> >::Get(v8::internal::Handle<v8::internal::JSObject>, unsigned int)
+      6    0.1%    0.0%  v8::Object::InternalFieldCount()
+      6    0.1%    0.0%  uv__hrtime
+      6    0.1%    0.0%  node::Environment::GetNow()
+      6    0.1%    0.0%  int v8::internal::BinarySearch<(v8::internal::SearchMode)1, v8::internal::DescriptorArray>(v8::internal::DescriptorArray*, v8::internal::Name*, int, int*)
+      6    0.1%    0.0%  __GI___pthread_mutex_lock
+      5    0.1%    0.0%  void v8::internal::LookupIterator::RestartInternal<false>(v8::internal::LookupIterator::InterceptorState)
+      5    0.1%    0.0%  v8::internal::compiler::GraphTrimmer::TrimGraph()
+      5    0.1%    0.0%  v8::internal::compiler::GraphReducer::Reduce(v8::internal::compiler::Node*)
+      5    0.1%    0.0%  v8::internal::StringTable::LookupStringIfExists_NoAllocate(v8::internal::String*)
+      5    0.1%    0.0%  v8::internal::Runtime_StringToNumber(int, v8::internal::Object**, v8::internal::Isolate*)
+      5    0.1%    0.0%  v8::internal::MapUpdater::FindRootMap()
+      5    0.1%    0.0%  v8::internal::LookupIterator::GetAccessors() const
+      5    0.1%    0.0%  v8::internal::KeyAccumulator::CollectKeys(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::JSReceiver>)
+      5    0.1%    0.0%  v8::internal::JSReceiver::SetProperties(v8::internal::HeapObject*)
+      5    0.1%    0.0%  v8::internal::JSReceiver::GetPropertyAttributes(v8::internal::LookupIterator*)
+      5    0.1%    0.0%  v8::internal::JSReceiver::GetOwnPropertyDescriptor(v8::internal::LookupIterator*, v8::internal::PropertyDescriptor*)
+      5    0.1%    0.0%  v8::internal::JSObject::SetNormalizedProperty(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Name>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDetails)
+      5    0.1%    0.0%  v8::internal::JSObject::HasEnumerableElements()
+      5    0.1%    0.0%  v8::internal::JSObject::DefineOwnPropertyIgnoreAttributes(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::ShouldThrow, v8::internal::JSObject::AccessorInfoHandling)
+      5    0.1%    0.0%  v8::internal::Heap::CreateFillerObjectAt(unsigned int, int, v8::internal::ClearRecordedSlots, v8::internal::ClearFreedMemoryMode)
+      5    0.1%    0.0%  v8::internal::HashTable<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::Rehash(v8::internal::NameDictionary*)
+      5    0.1%    0.0%  v8::internal::FastKeyAccumulator::Prepare() [clone .part.54]
+      5    0.1%    0.0%  v8::internal::Factory::NumberToString(v8::internal::Handle<v8::internal::Object>, bool)
+      5    0.1%    0.0%  v8::internal::Factory::InitializeJSObjectFromMap(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Map>)
+      5    0.1%    0.0%  v8::internal::Factory::CopyJSObjectWithAllocationSite(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::AllocationSite>)
+      5    0.1%    0.0%  v8::internal::Factory::AllocateRawArray(int, v8::internal::PretenureFlag)
+      5    0.1%    0.0%  v8::internal::DoubleToCString(double, v8::internal::Vector<char>)
+      5    0.1%    0.0%  v8::internal::Builtin_NumberPrototypeToString(int, v8::internal::Object**, v8::internal::Isolate*)
+      5    0.1%    0.0%  v8::internal::BiggestPowerTen(unsigned int, int, unsigned int*, int*)
+      5    0.1%    0.0%  v8::internal::(anonymous namespace)::CallJsIntrinsic(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSFunction>, v8::internal::BuiltinArguments)
+      5    0.1%    0.0%  v8::Value::Int32Value(v8::Local<v8::Context>) const
+      5    0.1%    0.0%  v8::HandleScope::CreateHandle(v8::internal::HeapObject*, v8::internal::Object*)
+      5    0.1%    0.0%  fwrite
+      4    0.1%    0.0%  v8::internal::TransitionsAccessor::SearchSpecial(v8::internal::Symbol*)
+      4    0.1%    0.0%  v8::internal::String::SlowAsArrayIndex(unsigned int*)
+      4    0.1%    0.0%  v8::internal::String::IsOneByteRepresentation() const
+      4    0.1%    0.0%  v8::internal::Scanner::Scan()
+      4    0.1%    0.0%  v8::internal::Runtime_KeyedGetProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      4    0.1%    0.0%  v8::internal::Runtime_CreateObjectLiteral(int, v8::internal::Object**, v8::internal::Isolate*)
+      4    0.1%    0.0%  v8::internal::Runtime_ClassOf(int, v8::internal::Object**, v8::internal::Isolate*)
+      4    0.1%    0.0%  v8::internal::RegExpResultsCache::Lookup(v8::internal::Heap*, v8::internal::String*, v8::internal::Object*, v8::internal::FixedArray**, v8::internal::RegExpResultsCache::ResultsCacheType)
+      4    0.1%    0.0%  v8::internal::PrototypeIterator::Advance()
+      4    0.1%    0.0%  v8::internal::Map::NumberOfFields() const
+      4    0.1%    0.0%  v8::internal::Map::EquivalentToForTransition(v8::internal::Map const*) const
+      4    0.1%    0.0%  v8::internal::LookupIterator::TransitionToAccessorPair(v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes)
+      4    0.1%    0.0%  v8::internal::KeyedGetObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>)
+      4    0.1%    0.0%  v8::internal::JSReceiver::DeleteProperty(v8::internal::LookupIterator*, v8::internal::LanguageMode)
+      4    0.1%    0.0%  v8::internal::JSObject::GetElementsKind()
+      4    0.1%    0.0%  v8::internal::HeapObject::synchronized_set_map(v8::internal::Map*)
+      4    0.1%    0.0%  v8::internal::HashTable<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::FindInsertionEntry(unsigned int)
+      4    0.1%    0.0%  v8::internal::Factory::Uint32ToString(unsigned int)
+      4    0.1%    0.0%  v8::internal::Factory::NewJSObject(v8::internal::Handle<v8::internal::JSFunction>, v8::internal::PretenureFlag)
+      4    0.1%    0.0%  v8::internal::Factory::NewFixedArray(int, v8::internal::PretenureFlag)
+      4    0.1%    0.0%  v8::internal::Dictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::Add(v8::internal::Handle<v8::internal::NameDictionary>, v8::internal::Handle<v8::internal::Name>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDetails, int*)
+      4    0.1%    0.0%  v8::internal::Code::is_interpreter_trampoline_builtin() const
+      4    0.1%    0.0%  v8::internal::Builtin_JsonParse(int, v8::internal::Object**, v8::internal::Isolate*)
+      4    0.1%    0.0%  v8::internal::ApiNatives::InstantiateObject(v8::internal::Handle<v8::internal::ObjectTemplateInfo>, v8::internal::Handle<v8::internal::JSReceiver>)
+      4    0.1%    0.0%  v8::internal::AccountingAllocator::GetSegment(unsigned int)
+      4    0.1%    0.0%  v8::internal::(anonymous namespace)::JSObjectWalkVisitor<v8::internal::AllocationSiteUsageContext>::StructureWalk(v8::internal::Handle<v8::internal::JSObject>)
+      4    0.1%    0.0%  v8::internal::(anonymous namespace)::CheckEquivalent(v8::internal::Map const*, v8::internal::Map const*) [clone .part.366]
+      4    0.1%    0.0%  __pthread_enable_asynccancel
+      4    0.1%    0.0%  __gettimeofday
+      3    0.0%    0.0%  void v8::internal::LookupIterator::NextInternal<true>(v8::internal::Map*, v8::internal::JSReceiver*)
+      3    0.0%    0.0%  void node::Buffer::(anonymous namespace)::StringSlice<(node::encoding)1>(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.0%    0.0%  v8::internal::compiler::Type::BitsetLub() const
+      3    0.0%    0.0%  v8::internal::compiler::OperatorProperties::HasFrameStateInput(v8::internal::compiler::Operator const*)
+      3    0.0%    0.0%  v8::internal::compiler::NodeProperties::IsExceptionalCall(v8::internal::compiler::Node*, v8::internal::compiler::Node**)
+      3    0.0%    0.0%  v8::internal::compiler::NodeProperties::IsControlEdge(v8::internal::compiler::Edge)
+      3    0.0%    0.0%  v8::internal::StringShape::StringShape(v8::internal::String const*)
+      3    0.0%    0.0%  v8::internal::String::ComputeArrayIndex(unsigned int*)
+      3    0.0%    0.0%  v8::internal::StoreBuffer::InsertDuringRuntime(v8::internal::StoreBuffer*, unsigned int)
+      3    0.0%    0.0%  v8::internal::SaveContext::SaveContext(v8::internal::Isolate*)
+      3    0.0%    0.0%  v8::internal::Runtime_CreateDataProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      3    0.0%    0.0%  v8::internal::OptimizedFrame::GetDeoptimizationData(int*) const
+      3    0.0%    0.0%  v8::internal::Object::ArraySpeciesConstructor(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>)
+      3    0.0%    0.0%  v8::internal::MaybeHandle<v8::internal::JSObject> v8::internal::(anonymous namespace)::CreateLiteral<v8::internal::(anonymous namespace)::ObjectBoilerplate>(v8::internal::Isolate*, v8::internal::Handle<v8::internal::FeedbackVector>, int, v8::internal::Handle<v8::internal::HeapObject>, int)
+      3    0.0%    0.0%  v8::internal::Map::UnwrapFieldType(v8::internal::Object*)
+      3    0.0%    0.0%  v8::internal::Map::InstancesNeedRewriting(v8::internal::Map*, int, int, int, int*) const
+      3    0.0%    0.0%  v8::internal::LookupIterator::ApplyTransitionToDataProperty(v8::internal::Handle<v8::internal::JSReceiver>)
+      3    0.0%    0.0%  v8::internal::Log::MessageBuilder::AppendStringPart(v8::internal::String*, int)
+      3    0.0%    0.0%  v8::internal::KeyAccumulator::GetKeys(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::KeyCollectionMode, v8::internal::PropertyFilter, v8::internal::GetKeysConversion, bool, bool)
+      3    0.0%    0.0%  v8::internal::IsMoreGeneralElementsKindTransition(v8::internal::ElementsKind, v8::internal::ElementsKind)
+      3    0.0%    0.0%  v8::internal::FixedArray::set(int, v8::internal::Object*, v8::internal::WriteBarrierMode)
+      3    0.0%    0.0%  v8::internal::Factory::SetNumberStringCache(v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::String>)
+      3    0.0%    0.0%  v8::internal::Factory::NewPropertyArray(int, v8::internal::PretenureFlag)
+      3    0.0%    0.0%  v8::internal::Factory::NewNumber(double, v8::internal::PretenureFlag)
+      3    0.0%    0.0%  v8::internal::Factory::NewJSArray(v8::internal::ElementsKind, v8::internal::PretenureFlag)
+      3    0.0%    0.0%  v8::internal::ExternalCallbackScope::ExternalCallbackScope(v8::internal::Isolate*, unsigned int)
+      3    0.0%    0.0%  v8::internal::DiyFp::Multiply(v8::internal::DiyFp const&)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::GetFastEnumPropertyKeys(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSObject>)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedSmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)0> >::GetEntryForIndex(v8::internal::Isolate*, v8::internal::JSObject*, v8::internal::FixedArrayBase*, unsigned int)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)2> >::PrependElementIndices(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::FixedArrayBase>, v8::internal::Handle<v8::internal::FixedArray>, v8::internal::GetKeysConversion, v8::internal::PropertyFilter)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)2> >::Delete(v8::internal::Handle<v8::internal::JSObject>, unsigned int)
+      3    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::Get(v8::internal::Handle<v8::internal::JSObject>, unsigned int)
+      3    0.0%    0.0%  v8::String::NewFromUtf8(v8::Isolate*, char const*, v8::NewStringType, int)
+      3    0.0%    0.0%  node::fs::Read(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.0%    0.0%  node::RunMicrotasks(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.0%    0.0%  node::GetInternalBinding(v8::FunctionCallbackInfo<v8::Value> const&)
+      3    0.0%    0.0%  memset
+      3    0.0%    0.0%  memchr
+      3    0.0%    0.0%  __adddf3
+      2    0.0%    0.0%  v8::internal::libc_memchr(void*, int, unsigned int)
+      2    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayWriter::EmitBytecode(v8::internal::interpreter::BytecodeNode const*)
+      2    0.0%    0.0%  v8::internal::compiler::Typer::Visitor::Reduce(v8::internal::compiler::Node*)
+      2    0.0%    0.0%  v8::internal::compiler::LinearScanAllocator::AllocateRegisters()
+      2    0.0%    0.0%  v8::internal::compiler::JSTypedLowering::Reduce(v8::internal::compiler::Node*)
+      2    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::VisitSingleBytecode(v8::internal::SourcePositionTableIterator*)
+      2    0.0%    0.0%  v8::internal::Zone::NewExpand(unsigned int)
+      2    0.0%    0.0%  v8::internal::TranslatedState::TranslatedState(v8::internal::JavaScriptFrame const*)
+      2    0.0%    0.0%  v8::internal::StackFrameIterator::Advance()
+      2    0.0%    0.0%  v8::internal::SpaceWithLinearArea::StartNextInlineAllocationStep()
+      2    0.0%    0.0%  v8::internal::SimpleStringBuilder::AddSubstring(char const*, int)
+      2    0.0%    0.0%  v8::internal::Scanner::SkipWhiteSpace()
+      2    0.0%    0.0%  v8::internal::Scanner::ScanIdentifierOrKeywordInner(v8::internal::Scanner::LiteralScope*)
+      2    0.0%    0.0%  v8::internal::Runtime_SetProperty(int, v8::internal::Object**, v8::internal::Isolate*)
+      2    0.0%    0.0%  v8::internal::Runtime_ArraySpeciesConstructor(int, v8::internal::Object**, v8::internal::Isolate*)
+      2    0.0%    0.0%  v8::internal::RuntimeProfiler::ShouldOptimize(v8::internal::JSFunction*, v8::internal::JavaScriptFrame*)
+      2    0.0%    0.0%  v8::internal::Runtime::DeleteObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::Object>, v8::internal::LanguageMode)
+      2    0.0%    0.0%  v8::internal::OrderedHashTable<v8::internal::OrderedHashSet, 1>::Allocate(v8::internal::Isolate*, int, v8::internal::PretenureFlag)
+      2    0.0%    0.0%  v8::internal::Object::GetLengthFromArrayLike(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>)
+      2    0.0%    0.0%  v8::internal::Object::ConvertToString(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>)
+      2    0.0%    0.0%  v8::internal::Object::ConvertToName(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>)
+      2    0.0%    0.0%  v8::internal::Object::BooleanValue()
+      2    0.0%    0.0%  v8::internal::Map::TransitionElementsTo(v8::internal::Handle<v8::internal::Map>, v8::internal::ElementsKind)
+      2    0.0%    0.0%  v8::internal::Map::Normalize(v8::internal::Handle<v8::internal::Map>, v8::internal::PropertyNormalizationMode, char const*)
+      2    0.0%    0.0%  v8::internal::Map::AsElementsKind(v8::internal::Handle<v8::internal::Map>, v8::internal::ElementsKind)
+      2    0.0%    0.0%  v8::internal::LookupIterator::WriteDataValue(v8::internal::Handle<v8::internal::Object>, bool)
+      2    0.0%    0.0%  v8::internal::LargeObjectSpace::Contains(v8::internal::HeapObject*)
+      2    0.0%    0.0%  v8::internal::KeyAccumulator::IsShadowed(v8::internal::Handle<v8::internal::Object>)
+      2    0.0%    0.0%  v8::internal::JsonStringifier::StackPop()
+      2    0.0%    0.0%  v8::internal::JsonParser<false>::JsonParser(v8::internal::Isolate*, v8::internal::Handle<v8::internal::String>)
+      2    0.0%    0.0%  v8::internal::JSTypedArray::GetBuffer()
+      2    0.0%    0.0%  v8::internal::JSReceiver::OrdinaryDefineOwnProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDescriptor*, v8::internal::ShouldThrow)
+      2    0.0%    0.0%  v8::internal::JSReceiver::HasFastProperties() const
+      2    0.0%    0.0%  v8::internal::JSObject::ValidateElements(v8::internal::JSObject*)
+      2    0.0%    0.0%  v8::internal::JSObject::TransitionElementsKind(v8::internal::Handle<v8::internal::JSObject>, v8::internal::ElementsKind)
+      2    0.0%    0.0%  v8::internal::JSObject::IsExtensible(v8::internal::Handle<v8::internal::JSObject>)
+      2    0.0%    0.0%  v8::internal::JSObject::GetEmbedderFieldCount(v8::internal::Map const*)
+      2    0.0%    0.0%  v8::internal::JSObject::CreateDataProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::ShouldThrow)
+      2    0.0%    0.0%  v8::internal::JSFunction::EnsureHasInitialMap(v8::internal::Handle<v8::internal::JSFunction>)
+      2    0.0%    0.0%  v8::internal::Isolate::RunMicrotasks()
+      2    0.0%    0.0%  v8::internal::InterpretedFrame::Summarize(std::vector<v8::internal::FrameSummary, std::allocator<v8::internal::FrameSummary> >*) const
+      2    0.0%    0.0%  v8::internal::Heap::RecordWrite(v8::internal::Object*, v8::internal::Object**, v8::internal::Object*)
+      2    0.0%    0.0%  v8::internal::Heap::FullSizeNumberStringCacheLength()
+      2    0.0%    0.0%  v8::internal::HashTable<v8::internal::NumberDictionary, v8::internal::NumberDictionaryShape>::FindEntry(v8::internal::Isolate*, unsigned int)
+      2    0.0%    0.0%  v8::internal::HashTable<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::EnsureCapacity(v8::internal::Handle<v8::internal::NameDictionary>, int, v8::internal::PretenureFlag)
+      2    0.0%    0.0%  v8::internal::Handle<v8::internal::FixedArray> v8::internal::Factory::NewFixedArrayWithMap<v8::internal::FixedArray>(v8::internal::Heap::RootListIndex, int, v8::internal::PretenureFlag)
+      2    0.0%    0.0%  v8::internal::FlatStringReader::FlatStringReader(v8::internal::Isolate*, v8::internal::Handle<v8::internal::String>)
+      2    0.0%    0.0%  v8::internal::FixedArray::FillWithHoles(int, int)
+      2    0.0%    0.0%  v8::internal::FieldType::cast(v8::internal::Object*)
+      2    0.0%    0.0%  v8::internal::FeedbackVector::New(v8::internal::Isolate*, v8::internal::Handle<v8::internal::SharedFunctionInfo>)
+      2    0.0%    0.0%  v8::internal::FeedbackVector::GetKind(v8::internal::FeedbackSlot) const
+      2    0.0%    0.0%  v8::internal::FastKeyAccumulator::GetKeysFast(v8::internal::GetKeysConversion)
+      2    0.0%    0.0%  v8::internal::Factory::InitializeMap(v8::internal::Map*, v8::internal::InstanceType, int, v8::internal::ElementsKind, int)
+      2    0.0%    0.0%  v8::internal::ExternalCallbackScope::~ExternalCallbackScope()
+      2    0.0%    0.0%  v8::internal::DoubleToAscii(double, v8::internal::DtoaMode, int, v8::internal::Vector<char>, int*, int*, int*)
+      2    0.0%    0.0%  v8::internal::Deserializer<v8::internal::BuiltinDeserializerAllocator>::ReadData(v8::internal::MaybeObject**, v8::internal::MaybeObject**, int, unsigned int)
+      2    0.0%    0.0%  v8::internal::CanonicalHandleScope::Lookup(v8::internal::Object*)
+      2    0.0%    0.0%  v8::internal::Builtin_Impl_ArraySplice(v8::internal::BuiltinArguments, v8::internal::Isolate*)
+      2    0.0%    0.0%  v8::internal::BaseNameDictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::EnsureCapacity(v8::internal::Handle<v8::internal::NameDictionary>, int)
+      2    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedSmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)0> >::GetDetails(v8::internal::JSObject*, unsigned int)
+      2    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleySmiElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)1> >::GetDetails(v8::internal::JSObject*, unsigned int)
+      2    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::CollectElementIndices(v8::internal::Handle<v8::internal::JSObject>, v8::internal::Handle<v8::internal::FixedArrayBase>, v8::internal::KeyAccumulator*)
+      2    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastHoleyObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)3> >::Add(v8::internal::Handle<v8::internal::JSObject>, unsigned int, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, unsigned int)
+      2    0.0%    0.0%  v8::base::bits::RoundUpToPowerOfTwo32(unsigned int)
+      2    0.0%    0.0%  v8::Value::ToObject(v8::Local<v8::Context>) const
+      2    0.0%    0.0%  uv_update_time
+      2    0.0%    0.0%  node::TTYWrap::New(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.0%    0.0%  node::Exit(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.0%    0.0%  node::DLOpen(v8::FunctionCallbackInfo<v8::Value> const&)
+      2    0.0%    0.0%  ceil
+      2    0.0%    0.0%  __pthread_disable_asynccancel
+      2    0.0%    0.0%  __aeabi_ul2d
+      2    0.0%    0.0%  __aeabi_read_tp
+      1    0.0%    0.0%  void v8::internal::LookupIterator::Start<true>()
+      1    0.0%    0.0%  void std::vector<v8::internal::compiler::Node*, v8::internal::ZoneAllocator<v8::internal::compiler::Node*> >::_M_emplace_back_aux<v8::internal::compiler::Node*>(v8::internal::compiler::Node*&&)
+      1    0.0%    0.0%  void std::vector<v8::internal::Handle<v8::internal::Object>, v8::internal::ZoneAllocator<v8::internal::Handle<v8::internal::Object> > >::_M_emplace_back_aux<v8::internal::Handle<v8::internal::Object> const&>(v8::internal::Handle<v8::internal::Object> const&)
+      1    0.0%    0.0%  void std::vector<v8::internal::Handle<v8::internal::HeapObject>, v8::internal::ZoneAllocator<v8::internal::Handle<v8::internal::HeapObject> > >::_M_emplace_back_aux<v8::internal::Handle<v8::internal::HeapObject> const&>(v8::internal::Handle<v8::internal::HeapObject> const&)
+      1    0.0%    0.0%  void std::vector<unsigned char, v8::internal::ZoneAllocator<unsigned char> >::emplace_back<unsigned char>(unsigned char&&)
+      1    0.0%    0.0%  void std::__unguarded_linear_insert<v8::base::AtomicElement<v8::internal::Smi*>*, __gnu_cxx::__ops::_Val_comp_iter<v8::internal::EnumIndexComparator<v8::internal::NameDictionary> > >(v8::base::AtomicElement<v8::internal::Smi*>*, __gnu_cxx::__ops::_Val_comp_iter<v8::internal::EnumIndexComparator<v8::internal::NameDictionary> >)
+      1    0.0%    0.0%  void std::__introsort_loop<v8::base::AtomicElement<v8::internal::Smi*>*, int, __gnu_cxx::__ops::_Iter_comp_iter<v8::internal::EnumIndexComparator<v8::internal::NameDictionary> > >(v8::base::AtomicElement<v8::internal::Smi*>*, v8::base::AtomicElement<v8::internal::Smi*>*, int, __gnu_cxx::__ops::_Iter_comp_iter<v8::internal::EnumIndexComparator<v8::internal::NameDictionary> >)
+      1    0.0%    0.0%  v8::internal::interpreter::Interpreter::LookupNameOfBytecodeHandler(v8::internal::Code*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterTransfer(v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterInfo*, v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterInfo*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeRegisterOptimizer::Materialize(v8::internal::interpreter::BytecodeRegisterOptimizer::RegisterInfo*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitUnaryOperation(v8::internal::UnaryOperation*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitNoStackOverflowCheck(v8::internal::AstNode*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitNaryArithmeticExpression(v8::internal::NaryOperation*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitForEffect(v8::internal::Expression*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::VisitAndPushIntoRegisterList(v8::internal::Expression*, v8::internal::interpreter::RegisterList*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeGenerator::FinalizeBytecode(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Script>)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeDecoder::DecodeRegisterOperand(unsigned int, v8::internal::interpreter::OperandType, v8::internal::interpreter::OperandScale)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayWriter::Write(v8::internal::interpreter::BytecodeNode*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayWriter::BindLabel(v8::internal::interpreter::BytecodeLabel*)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayRandomIterator::IsValid() const
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayBuilder::JumpIfNil(v8::internal::interpreter::BytecodeLabel*, v8::internal::Token::Value, v8::internal::interpreter::BytecodeArrayBuilder::NilValue)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayAccessor::current_bytecode() const
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayAccessor::SetOffset(int)
+      1    0.0%    0.0%  v8::internal::interpreter::BytecodeArrayAccessor::GetRegisterOperand(int) const
+      1    0.0%    0.0%  v8::internal::compiler::operator!=(v8::internal::compiler::SparseInputMask const&, v8::internal::compiler::SparseInputMask const&)
+      1    0.0%    0.0%  v8::internal::compiler::Typer::Visitor::TypeHeapConstant(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::Typer::Decorator::Decorate(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::TypedOptimization::Reduce(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::Type::NormalizeUnion(v8::internal::compiler::UnionType*, int, v8::internal::Zone*)
+      1    0.0%    0.0%  v8::internal::compiler::Type::IsInteger(v8::internal::Object*)
+      1    0.0%    0.0%  v8::internal::compiler::StateValuesCache::GetValuesNodeFromCache(v8::internal::compiler::Node**, unsigned int, v8::internal::compiler::SparseInputMask)
+      1    0.0%    0.0%  v8::internal::compiler::StateValuesCache::GetNodeForValues(v8::internal::compiler::Node**, unsigned int, v8::internal::BitVector const*, int)
+      1    0.0%    0.0%  v8::internal::compiler::StateValuesCache::AreKeysEqual(void*, void*)
+      1    0.0%    0.0%  v8::internal::compiler::SimplifiedOperatorBuilder::CheckMaps(v8::base::Flags<v8::internal::compiler::CheckMapsFlag, int>, v8::internal::ZoneHandleSet<v8::internal::Map>, v8::internal::VectorSlotPair const&)
+      1    0.0%    0.0%  v8::internal::compiler::RegisterAllocationData::NewLiveRange(int, v8::internal::MachineRepresentation)
+      1    0.0%    0.0%  v8::internal::compiler::Operator::Operator(unsigned short, v8::base::Flags<v8::internal::compiler::Operator::Property, unsigned char>, char const*, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::ReplaceUses(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::IsEffectEdge(v8::internal::compiler::Edge)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::InferReceiverMaps(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::ZoneHandleSet<v8::internal::Map>*)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::GetEffectInput(v8::internal::compiler::Node*, int)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::GetControlInput(v8::internal::compiler::Node*, int)
+      1    0.0%    0.0%  v8::internal::compiler::NodeProperties::FindFrameStateBefore(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::Node::New(v8::internal::Zone*, unsigned int, v8::internal::compiler::Operator const*, int, v8::internal::compiler::Node* const*, bool)
+      1    0.0%    0.0%  v8::internal::compiler::Node::Kill()
+      1    0.0%    0.0%  v8::internal::compiler::NamedAccessOf(v8::internal::compiler::Operator const*)
+      1    0.0%    0.0%  v8::internal::compiler::LiveRange::FirstIntersection(v8::internal::compiler::LiveRange*) const
+      1    0.0%    0.0%  v8::internal::compiler::JSTypeHintLowering::ReduceBinaryOperation(v8::internal::compiler::Operator const*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::FeedbackSlot) const
+      1    0.0%    0.0%  v8::internal::compiler::JSOperatorBuilder::Call(unsigned int, v8::internal::compiler::CallFrequency const&, v8::internal::VectorSlotPair const&, v8::internal::ConvertReceiverMode, v8::internal::SpeculationMode)
+      1    0.0%    0.0%  v8::internal::compiler::JSNativeContextSpecialization::ReduceNamedAccess(v8::internal::compiler::Node*, v8::internal::compiler::Node*, std::vector<v8::internal::Handle<v8::internal::Map>, std::allocator<v8::internal::Handle<v8::internal::Map> > > const&, v8::internal::Handle<v8::internal::Name>, v8::internal::compiler::AccessMode, v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::JSNativeContextSpecialization::ReduceElementAccess(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, std::vector<v8::internal::Handle<v8::internal::Map>, std::allocator<v8::internal::Handle<v8::internal::Map> > > const&, v8::internal::compiler::AccessMode, v8::internal::KeyedAccessLoadMode, v8::internal::KeyedAccessStoreMode)
+      1    0.0%    0.0%  v8::internal::compiler::JSNativeContextSpecialization::BuildPropertyAccess(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::Handle<v8::internal::Name>, v8::internal::ZoneVector<v8::internal::compiler::Node*>*, v8::internal::compiler::PropertyAccessInfo const&, v8::internal::compiler::AccessMode)
+      1    0.0%    0.0%  v8::internal::compiler::JSGraph::Constant(int)
+      1    0.0%    0.0%  v8::internal::compiler::JSCallReducer::Reduce(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::GraphReducer::Revisit(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::GraphReducer::ReplaceWithValue(v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*, v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::GraphReducer::Replace(v8::internal::compiler::Node*, v8::internal::compiler::Node*, unsigned int)
+      1    0.0%    0.0%  v8::internal::compiler::Graph::NewNode(v8::internal::compiler::Operator const*, int, v8::internal::compiler::Node* const*, bool)
+      1    0.0%    0.0%  v8::internal::compiler::Graph::AddDecorator(v8::internal::compiler::GraphDecorator*)
+      1    0.0%    0.0%  v8::internal::compiler::GapResolver::PerformMove(v8::internal::compiler::ParallelMove*, v8::internal::compiler::MoveOperands*)
+      1    0.0%    0.0%  v8::internal::compiler::FieldAccessOf(v8::internal::compiler::Operator const*)
+      1    0.0%    0.0%  v8::internal::compiler::EscapeAnalysis::Reduce(v8::internal::compiler::Node*, v8::internal::compiler::EffectGraphReducer::Reduction*)
+      1    0.0%    0.0%  v8::internal::compiler::DeadCodeElimination::ReduceNode(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::DeadCodeElimination::ReduceEffectNode(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::DeadCodeElimination::Reduce(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::CommonOperatorBuilder::FrameState(v8::internal::BailoutId, v8::internal::compiler::OutputFrameStateCombine, v8::internal::compiler::FrameStateFunctionInfo const*)
+      1    0.0%    0.0%  v8::internal::compiler::CommonOperatorBuilder::Deoptimize(v8::internal::DeoptimizeKind, v8::internal::DeoptimizeReason, v8::internal::VectorSlotPair const&)
+      1    0.0%    0.0%  v8::internal::compiler::CodeAssemblerState::CodeAssemblerState(v8::internal::Isolate*, v8::internal::Zone*, v8::internal::CallInterfaceDescriptor const&, v8::internal::Code::Kind, char const*, v8::internal::PoisoningMitigationLevel, unsigned int, unsigned int, int)
+      1    0.0%    0.0%  v8::internal::compiler::CheckpointElimination::Reduce(v8::internal::compiler::Node*)
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeLivenessMap::InitializeLiveness(int, int, v8::internal::Zone*)
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::VisitSubSmi()
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::VisitLdaSmi()
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::VisitLdaNamedProperty()
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::Environment::Copy()
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::Environment::BindAccumulator(v8::internal::compiler::Node*, v8::internal::compiler::BytecodeGraphBuilder::Environment::FrameStateAttachmentMode) [clone .constprop.246]
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeGraphBuilder::BuildLoopHeaderEnvironment(int)
+      1    0.0%    0.0%  v8::internal::compiler::BytecodeAnalysis::Analyze(v8::internal::BailoutId)
+      1    0.0%    0.0%  v8::internal::compiler::AccessInfoFactory::ComputePropertyAccessInfo(v8::internal::Handle<v8::internal::Map>, v8::internal::Handle<v8::internal::Name>, v8::internal::compiler::AccessMode, v8::internal::compiler::PropertyAccessInfo*)
+      1    0.0%    0.0%  v8::internal::compiler::(anonymous namespace)::UpdateLiveness(v8::internal::interpreter::Bytecode, v8::internal::compiler::BytecodeLiveness&, v8::internal::compiler::BytecodeLivenessState**, v8::internal::interpreter::BytecodeArrayAccessor const&, v8::internal::compiler::BytecodeLivenessMap const&)
+      1    0.0%    0.0%  v8::internal::ZoneList<v8::internal::ExpressionClassifier<v8::internal::ParserTypes<v8::internal::Parser> >::Error>::Add(v8::internal::ExpressionClassifier<v8::internal::ParserTypes<v8::internal::Parser> >::Error const&, v8::internal::Zone*)
+      1    0.0%    0.0%  v8::internal::Zone::Zone(v8::internal::AccountingAllocator*, char const*, v8::internal::SegmentSize)
+      1    0.0%    0.0%  v8::internal::TranslatedFrame::GetValueCount()
+      1    0.0%    0.0%  v8::internal::TranslatedFrame::AdvanceIterator(std::_Deque_iterator<v8::internal::TranslatedValue, v8::internal::TranslatedValue&, v8::internal::TranslatedValue*>*)
+      1    0.0%    0.0%  v8::internal::StringToDouble(v8::internal::UnicodeCache*, v8::internal::Vector<unsigned char const>, int, double)
+      1    0.0%    0.0%  v8::internal::StringTable::LookupKey(v8::internal::Isolate*, v8::internal::StringTableKey*)
+      1    0.0%    0.0%  v8::internal::String::ToCString(v8::internal::AllowNullsFlag, v8::internal::RobustnessFlag, int, int, int*)
+      1    0.0%    0.0%  v8::internal::StoreIC::ComputeHandler(v8::internal::LookupIterator*)
+      1    0.0%    0.0%  v8::internal::StackGuard::HandleInterrupts()
+      1    0.0%    0.0%  v8::internal::Space::AllocationStep(int, unsigned int, int)
+      1    0.0%    0.0%  v8::internal::SourcePositionTableBuilder::AddEntry(v8::internal::PositionTableEntry const&)
+      1    0.0%    0.0%  v8::internal::SimpleStringBuilder::Finalize()
+      1    0.0%    0.0%  v8::internal::ScopeInfo::HasPositionInfo() const
+      1    0.0%    0.0%  v8::internal::ScopeInfo::HasFunctionName() const
+      1    0.0%    0.0%  v8::internal::ScopeInfo::Create(v8::internal::Isolate*, v8::internal::Zone*, v8::internal::Scope*, v8::internal::MaybeHandle<v8::internal::ScopeInfo>)
+      1    0.0%    0.0%  v8::internal::ScopeInfo::ContextSlotIndex(v8::internal::Handle<v8::internal::ScopeInfo>, v8::internal::Handle<v8::internal::String>, v8::internal::VariableMode*, v8::internal::InitializationFlag*, v8::internal::MaybeAssignedFlag*)
+      1    0.0%    0.0%  v8::internal::Scope::Snapshot::Snapshot(v8::internal::Scope*)
+      1    0.0%    0.0%  v8::internal::Scope::ResolveVariablesRecursively(v8::internal::ParseInfo*)
+      1    0.0%    0.0%  v8::internal::Scope::LookupRecursive(v8::internal::ParseInfo*, v8::internal::VariableProxy*, v8::internal::Scope*)
+      1    0.0%    0.0%  v8::internal::Scope::LookupInScopeInfo(v8::internal::AstRawString const*)
+      1    0.0%    0.0%  v8::internal::Scope::GetDeclarationScope()
+      1    0.0%    0.0%  v8::internal::Scope::DeserializeScopeChain(v8::internal::Zone*, v8::internal::ScopeInfo*, v8::internal::DeclarationScope*, v8::internal::AstValueFactory*, v8::internal::Scope::DeserializationMode)
+      1    0.0%    0.0%  v8::internal::Scanner::PeekAhead()
+      1    0.0%    0.0%  v8::internal::Scanner::Next()
+      1    0.0%    0.0%  v8::internal::SafepointTable::SafepointTable(v8::internal::Code*)
+      1    0.0%    0.0%  v8::internal::SafepointTable::FindEntry(unsigned int) const
+      1    0.0%    0.0%  v8::internal::Runtime_StringCharCodeAt(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Runtime_PushBlockContext(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Runtime_KeyedLoadIC_Miss(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Runtime_InterpreterDeserializeLazy(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Runtime_CreateListFromArrayLike(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::RuntimeProfiler::MarkCandidatesForOptimization()
+      1    0.0%    0.0%  v8::internal::RelocIterator::next()
+      1    0.0%    0.0%  v8::internal::RelocInfo::set_target_address(unsigned int, v8::internal::WriteBarrierMode, v8::internal::ICacheFlushMode)
+      1    0.0%    0.0%  v8::internal::PatternRewriter::VisitVariableProxy(v8::internal::VariableProxy*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ParseUnaryExpression(bool*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ParsePostfixExpression(bool*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ParseIfStatement(v8::internal::ZoneList<v8::internal::AstRawString const*>*, bool*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ParseIdentifierNameOrPrivateName(bool*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::IsValidReferenceExpression(v8::internal::Expression*)
+      1    0.0%    0.0%  v8::internal::ParserBase<v8::internal::Parser>::ArrowFormalParametersUnexpectedToken()
+      1    0.0%    0.0%  v8::internal::PagedSpace::SlowRefillLinearAllocationArea(int)
+      1    0.0%    0.0%  v8::internal::OrderedHashSet::ConvertToKeysArray(v8::internal::Handle<v8::internal::OrderedHashSet>, v8::internal::GetKeysConversion)
+      1    0.0%    0.0%  v8::internal::OptimizingCompileDispatcher::QueueForOptimization(v8::internal::OptimizedCompilationJob*)
+      1    0.0%    0.0%  v8::internal::OptimizedFrame::Summarize(std::vector<v8::internal::FrameSummary, std::allocator<v8::internal::FrameSummary> >*) const
+      1    0.0%    0.0%  v8::internal::OptimizedFrame::StackSlotOffsetRelativeToFp(int)
+      1    0.0%    0.0%  v8::internal::OptimizedCompilationInfo::native_context() const
+      1    0.0%    0.0%  v8::internal::Object::ToUint32(unsigned int*) const
+      1    0.0%    0.0%  v8::internal::Object::SetProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::LanguageMode, v8::internal::Object::StoreFromKeyed)
+      1    0.0%    0.0%  v8::internal::MigrateDeprecated(v8::internal::Handle<v8::internal::Object>)
+      1    0.0%    0.0%  v8::internal::Map::WeakCellForMap(v8::internal::Handle<v8::internal::Map>)
+      1    0.0%    0.0%  v8::internal::Map::ReconfigureElementsKind(v8::internal::Handle<v8::internal::Map>, v8::internal::ElementsKind)
+      1    0.0%    0.0%  v8::internal::Map::EquivalentToForNormalization(v8::internal::Map const*, v8::internal::PropertyNormalizationMode) const
+      1    0.0%    0.0%  v8::internal::Map::CopyDropDescriptors(v8::internal::Handle<v8::internal::Map>)
+      1    0.0%    0.0%  v8::internal::Map::ConnectTransition(v8::internal::Handle<v8::internal::Map>, v8::internal::Handle<v8::internal::Map>, v8::internal::Handle<v8::internal::Name>, v8::internal::SimpleTransitionFlag)
+      1    0.0%    0.0%  v8::internal::LookupIterator::PrepareTransitionToDataProperty(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::Object::StoreFromKeyed)
+      1    0.0%    0.0%  v8::internal::LookupIterator::LookupCachedProperty()
+      1    0.0%    0.0%  v8::internal::Logger::CodeCreateEvent(v8::internal::CodeEventListener::LogEventsAndTags, v8::internal::AbstractCode*, v8::internal::SharedFunctionInfo*, v8::internal::Name*, int, int)
+      1    0.0%    0.0%  v8::internal::Log::MessageBuilder& v8::internal::Log::MessageBuilder::operator<< <char const*>(char const*)
+      1    0.0%    0.0%  v8::internal::LoadIC::ComputeHandler(v8::internal::LookupIterator*)
+      1    0.0%    0.0%  v8::internal::JsonStringifier::SerializeJSReceiverSlow(v8::internal::Handle<v8::internal::JSReceiver>)
+      1    0.0%    0.0%  v8::internal::JsonParser<false>::ParseJson()
+      1    0.0%    0.0%  v8::internal::JavaScriptFrameIterator::Advance()
+      1    0.0%    0.0%  v8::internal::JSReceiver::DeleteNormalizedProperty(v8::internal::Handle<v8::internal::JSReceiver>, int)
+      1    0.0%    0.0%  v8::internal::JSReceiver::DefineOwnProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDescriptor*, v8::internal::ShouldThrow)
+      1    0.0%    0.0%  v8::internal::JSObject::RawFastPropertyAtPut(v8::internal::FieldIndex, v8::internal::Object*)
+      1    0.0%    0.0%  v8::internal::JSObject::MigrateSlowToFast(v8::internal::Handle<v8::internal::JSObject>, int, char const*)
+      1    0.0%    0.0%  v8::internal::JSObject::MigrateInstance(v8::internal::Handle<v8::internal::JSObject>)
+      1    0.0%    0.0%  v8::internal::JSObject::MakePrototypesFast(v8::internal::Handle<v8::internal::Object>, v8::internal::WhereToStart, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::JSObject::DefineOwnPropertyIgnoreAttributes(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::JSObject::AccessorInfoHandling)
+      1    0.0%    0.0%  v8::internal::JSArray::WouldChangeReadOnlyLength(v8::internal::Handle<v8::internal::JSArray>, unsigned int)
+      1    0.0%    0.0%  v8::internal::InnerPointerToCodeCache::GetCacheEntry(unsigned int)
+      1    0.0%    0.0%  v8::internal::IdentityMapBase::GetEntry(v8::internal::Object*)
+      1    0.0%    0.0%  v8::internal::IC::UpdateState(v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>)
+      1    0.0%    0.0%  v8::internal::IC::PatchCache(v8::internal::Handle<v8::internal::Name>, v8::internal::MaybeObjectHandle const&)
+      1    0.0%    0.0%  v8::internal::Heap::UnregisterStrongRoots(v8::internal::Object**)
+      1    0.0%    0.0%  v8::internal::Heap::SetStackLimits()
+      1    0.0%    0.0%  v8::internal::Heap::RegisterNewArrayBuffer(v8::internal::JSArrayBuffer*)
+      1    0.0%    0.0%  v8::internal::HashTable<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::New(v8::internal::Isolate*, int, v8::internal::PretenureFlag, v8::internal::MinimumCapacity)
+      1    0.0%    0.0%  v8::internal::HandlerTable::LookupRange(int, int*, v8::internal::HandlerTable::CatchPrediction*)
+      1    0.0%    0.0%  v8::internal::HandleScope::DeleteExtensions(v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::FunctionTemplateInfo::IsTemplateFor(v8::internal::Map*)
+      1    0.0%    0.0%  v8::internal::FixedArray::Shrink(int)
+      1    0.0%    0.0%  v8::internal::FindCaller(v8::internal::Isolate*, v8::internal::Handle<v8::internal::JSFunction>)
+      1    0.0%    0.0%  v8::internal::FeedbackNexus::GetKeyedAccessStoreMode() const
+      1    0.0%    0.0%  v8::internal::FeedbackNexus::GetCompareOperationFeedback() const
+      1    0.0%    0.0%  v8::internal::FeedbackNexus::FindFirstName() const
+      1    0.0%    0.0%  v8::internal::FeedbackNexus::ExtractMaps(std::vector<v8::internal::Handle<v8::internal::Map>, std::allocator<v8::internal::Handle<v8::internal::Map> > >*) const
+      1    0.0%    0.0%  v8::internal::FastKeyAccumulator::GetKeys(v8::internal::GetKeysConversion)
+      1    0.0%    0.0%  v8::internal::Factory::NewProperSubString(v8::internal::Handle<v8::internal::String>, int, int)
+      1    0.0%    0.0%  v8::internal::Factory::NewNumberFromUint(unsigned int, v8::internal::PretenureFlag)
+      1    0.0%    0.0%  v8::internal::Factory::NewMap(v8::internal::InstanceType, int, v8::internal::ElementsKind, int)
+      1    0.0%    0.0%  v8::internal::Factory::NewHeapNumber(v8::internal::MutableMode, v8::internal::PretenureFlag)
+      1    0.0%    0.0%  v8::internal::Factory::NewForeign(unsigned int, v8::internal::PretenureFlag)
+      1    0.0%    0.0%  v8::internal::Factory::NewConsString(v8::internal::Handle<v8::internal::String>, v8::internal::Handle<v8::internal::String>, int, bool)
+      1    0.0%    0.0%  v8::internal::Factory::NewBytecodeArray(int, unsigned char const*, int, int, v8::internal::Handle<v8::internal::FixedArray>)
+      1    0.0%    0.0%  v8::internal::Factory::NewAccessorPair()
+      1    0.0%    0.0%  v8::internal::Factory::New(v8::internal::Handle<v8::internal::Map>, v8::internal::PretenureFlag) [clone .constprop.192]
+      1    0.0%    0.0%  v8::internal::Factory::LookupSingleCharacterStringFromCode(unsigned int)
+      1    0.0%    0.0%  v8::internal::ExternalOneByteStringUtf16CharacterStream::FillBuffer(unsigned int)
+      1    0.0%    0.0%  v8::internal::ExpressionClassifier<v8::internal::ParserTypes<v8::internal::Parser> >::Accumulate(v8::internal::ExpressionClassifier<v8::internal::ParserTypes<v8::internal::Parser> >*, unsigned int)
+      1    0.0%    0.0%  v8::internal::Dictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::NumberOfEnumerableProperties()
+      1    0.0%    0.0%  v8::internal::Dictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::DeleteEntry(v8::internal::Handle<v8::internal::NameDictionary>, int)
+      1    0.0%    0.0%  v8::internal::DescriptorArray::GetDetails(int)
+      1    0.0%    0.0%  v8::internal::DescriptorArray::Append(v8::internal::Descriptor*)
+      1    0.0%    0.0%  v8::internal::DeclarationScope::DeclareArguments(v8::internal::AstValueFactory*)
+      1    0.0%    0.0%  v8::internal::DeclarationScope::DeclarationScope(v8::internal::Zone*, v8::internal::ScopeType, v8::internal::Handle<v8::internal::ScopeInfo>)
+      1    0.0%    0.0%  v8::internal::DeclarationScope::Analyze(v8::internal::ParseInfo*)
+      1    0.0%    0.0%  v8::internal::CpuFeatures::FlushICache(void*, unsigned int)
+      1    0.0%    0.0%  v8::internal::Compiler::FinalizeCompilationJob(v8::internal::OptimizedCompilationJob*, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::CompareOperation::IsLiteralCompareTypeof(v8::internal::Expression**, v8::internal::Literal**)
+      1    0.0%    0.0%  v8::internal::Call::GetCallType() const
+      1    0.0%    0.0%  v8::internal::Builtin_ObjectDefineProperties(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Builtin_Impl_ObjectGetPrototypeOf(v8::internal::BuiltinArguments, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Builtin_DateNow(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Builtin_ArraySplice(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::Builtin_ArrayBufferIsView(int, v8::internal::Object**, v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::BaseNameDictionary<v8::internal::NameDictionary, v8::internal::NameDictionaryShape>::Add(v8::internal::Handle<v8::internal::NameDictionary>, v8::internal::Handle<v8::internal::Name>, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyDetails, int*)
+      1    0.0%    0.0%  v8::internal::AstValueFactory::GetString(unsigned int, bool, v8::internal::Vector<unsigned char const>)
+      1    0.0%    0.0%  v8::internal::Assembler::target_at_put(int, int)
+      1    0.0%    0.0%  v8::internal::Assembler::movw(v8::internal::Register, unsigned int, v8::internal::Condition)
+      1    0.0%    0.0%  v8::internal::Assembler::b(v8::internal::Label*, v8::internal::Condition)
+      1    0.0%    0.0%  v8::internal::Assembler::IsLdrPcImmediateOffset(int)
+      1    0.0%    0.0%  v8::internal::Assembler::CheckBuffer()
+      1    0.0%    0.0%  v8::internal::Assembler::AllocateAndInstallRequestedHeapObjects(v8::internal::Isolate*)
+      1    0.0%    0.0%  v8::internal::AllocationObserver::AllocationStep(int, unsigned int, unsigned int)
+      1    0.0%    0.0%  v8::internal::AllocWithRetry(unsigned int)
+      1    0.0%    0.0%  v8::internal::AccountingAllocator::ReturnSegment(v8::internal::Segment*)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::UpdateDescriptorForValue(v8::internal::Handle<v8::internal::Map>, int, v8::internal::PropertyConstness, v8::internal::Handle<v8::internal::Object>)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::ProbeInstantiationsCache(v8::internal::Isolate*, int, v8::internal::(anonymous namespace)::CachingMode)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::GetPropertyIfPresent(v8::internal::Handle<v8::internal::JSReceiver>, v8::internal::Handle<v8::internal::String>, v8::internal::Handle<v8::internal::Object>*) [clone .constprop.31]
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::GetOptimizedCode(v8::internal::Handle<v8::internal::JSFunction>, v8::internal::ConcurrencyMode, v8::internal::BailoutId, v8::internal::JavaScriptFrame*)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::ElementsAccessorBase<v8::internal::(anonymous namespace)::FastPackedObjectElementsAccessor, v8::internal::(anonymous namespace)::ElementsKindTraits<(v8::internal::ElementsKind)2> >::GetDetails(v8::internal::JSObject*, unsigned int)
+      1    0.0%    0.0%  v8::internal::(anonymous namespace)::ArrayBoilerplate::Create(v8::internal::Isolate*, v8::internal::Handle<v8::internal::HeapObject>, int, v8::internal::PretenureFlag) [clone .isra.36]
+      1    0.0%    0.0%  v8::base::hash_value(unsigned long long)
+      1    0.0%    0.0%  v8::base::RecursiveMutex::Lock()
+      1    0.0%    0.0%  v8::Value::IntegerValue() const
+      1    0.0%    0.0%  v8::Isolate::SuppressMicrotaskExecutionScope::SuppressMicrotaskExecutionScope(v8::Isolate*)
+      1    0.0%    0.0%  uv_timer_stop
+      1    0.0%    0.0%  std::ostreambuf_iterator<char, std::char_traits<char> > std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::_M_insert_int<long>(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const
+      1    0.0%    0.0%  std::ostream::sentry::sentry(std::ostream&)
+      1    0.0%    0.0%  std::ostream& std::ostream::_M_insert<long>(long)
+      1    0.0%    0.0%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, int)
+      1    0.0%    0.0%  std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+      1    0.0%    0.0%  std::_Hashtable<v8::internal::JSArrayBuffer*, std::pair<v8::internal::JSArrayBuffer* const, unsigned int>, std::allocator<std::pair<v8::internal::JSArrayBuffer* const, unsigned int> >, std::__detail::_Select1st, std::equal_to<v8::internal::JSArrayBuffer*>, v8::internal::LocalArrayBufferTracker::Hasher, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<true, false, true> >::_M_insert_unique_node(unsigned int, unsigned int, std::__detail::_Hash_node<std::pair<v8::internal::JSArrayBuffer* const, unsigned int>, true>*)
+      1    0.0%    0.0%  operator new[](unsigned int, std::nothrow_t const&)
+      1    0.0%    0.0%  operator new(unsigned int, std::nothrow_t const&)
+      1    0.0%    0.0%  node::i18n::(anonymous namespace)::GetVersion(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  node::fs::Unlink(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  node::fs::LStat(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  node::fs::Close(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  node::LibuvStreamWrap::Initialize(v8::Local<v8::Object>, v8::Local<v8::Value>, v8::Local<v8::Context>)::{lambda(v8::FunctionCallbackInfo<v8::Value> const&)#1}::_FUN(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.0%    0.0%  brk
+      1    0.0%    0.0%  __aeabi_uldivmod
+      1    0.0%    0.0%  __aeabi_uidivmod
+      1    0.0%    0.0%  __GI___pthread_mutex_unlock
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+   8817   39.5%  epoll_pwait
+
+   1749    7.8%  UNKNOWN
+    299   17.1%    LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1089:29
+    207   69.2%      LazyCompile: ~ontimeout timers.js:429:19
+    200   96.6%        LazyCompile: *processTimers timers.js:220:23
+      7    3.4%        LazyCompile: ~tryOnTimeout timers.js:292:22
+      7  100.0%          LazyCompile: ~listOnTimeout timers.js:226:23
+      7  100.0%            LazyCompile: ~processTimers timers.js:220:23
+     92   30.8%      LazyCompile: *ontimeout timers.js:429:19
+     92  100.0%        LazyCompile: *processTimers timers.js:220:23
+    286   16.4%    LazyCompile: ~updateAllGridBtnLEDs /home/pi/nodeMidi/FireSequencer.js:2060:30
+    273   95.5%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+    235   86.1%        LazyCompile: *emit events.js:147:44
+     38   13.9%        LazyCompile: ~emit events.js:147:44
+      8    2.8%      LazyCompile: ~seq.mode.Step /home/pi/nodeMidi/FireSequencer.js:511:26
+      8  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      4   50.0%          LazyCompile: ~emit events.js:147:44
+      4   50.0%          LazyCompile: *emit events.js:147:44
+      3    1.0%      LazyCompile: ~seq.mode.Note /home/pi/nodeMidi/FireSequencer.js:563:26
+      3  100.0%        Eval: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1:1
+      3  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:705:37
+      3  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:787:37
+    192   11.0%    LazyCompile: ~stepHighlight /home/pi/nodeMidi/FireSequencer.js:1143:23
+    105   54.7%      LazyCompile: *gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+    105  100.0%        LazyCompile: *emit events.js:147:44
+     71   67.6%          LazyCompile: ~addChunk _stream_readable.js:285:18
+     71  100.0%            LazyCompile: ~readableAddChunk _stream_readable.js:232:26
+     34   32.4%          LazyCompile: *onStreamRead internal/stream_base_commons.js:87:22
+     76   39.6%      LazyCompile: ~emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+     76  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     76  100.0%          LazyCompile: *emit events.js:147:44
+     76  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+     11    5.7%      LazyCompile: *emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+     11  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     11  100.0%          LazyCompile: *emit events.js:147:44
+     11  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+    180   10.3%    LazyCompile: ~playNote /home/pi/nodeMidi/FireSequencer.js:1059:18
+     87   48.3%      LazyCompile: *gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     87  100.0%        LazyCompile: *emit events.js:147:44
+     87  100.0%          LazyCompile: *onStreamRead internal/stream_base_commons.js:87:22
+     84   46.7%      LazyCompile: ~emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+     84  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     84  100.0%          LazyCompile: *emit events.js:147:44
+     84  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+      9    5.0%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      9  100.0%        LazyCompile: *emit events.js:147:44
+    170    9.7%    LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:2220:37
+    168   98.8%      LazyCompile: ~ontimeout timers.js:429:19
+    156   92.9%        LazyCompile: *processTimers timers.js:220:23
+     12    7.1%        LazyCompile: ~tryOnTimeout timers.js:292:22
+     12  100.0%          LazyCompile: ~listOnTimeout timers.js:226:23
+     12  100.0%            LazyCompile: ~processTimers timers.js:220:23
+      2    1.2%      LazyCompile: *ontimeout timers.js:429:19
+      2  100.0%        LazyCompile: *processTimers timers.js:220:23
+    147    8.4%    Eval: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1:1
+    147  100.0%      LazyCompile: ~Module._compile internal/modules/cjs/loader.js:705:37
+    147  100.0%        LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:787:37
+    147  100.0%          LazyCompile: ~Module.load internal/modules/cjs/loader.js:645:33
+    147  100.0%            LazyCompile: ~tryModuleLoad internal/modules/cjs/loader.js:590:23
+    137    7.8%    LazyCompile: ~midiOutCC /home/pi/nodeMidi/FireSequencer.js:1117:19
+    137  100.0%      LazyCompile: ~encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+    137  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+    137  100.0%          LazyCompile: *emit events.js:147:44
+    106    6.1%    LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+    105   99.1%      LazyCompile: *emit events.js:147:44
+     74    4.2%    LazyCompile: *updateAllGridBtnLEDs /home/pi/nodeMidi/FireSequencer.js:2060:30
+     74  100.0%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     74  100.0%        LazyCompile: *emit events.js:147:44
+     70    4.0%    LazyCompile: *FireOLED_SendMemMap /home/pi/nodeMidi/FireSequencer.js:2248:29
+     34   48.6%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     34  100.0%        LazyCompile: *emit events.js:147:44
+     29   41.4%      LazyCompile: ~displayTrackAndPatInfo /home/pi/nodeMidi/FireSequencer.js:1943:32
+     28   96.6%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     27   96.4%          LazyCompile: *emit events.js:147:44
+      1    3.6%          LazyCompile: ~emit events.js:147:44
+      1    3.4%        LazyCompile: ~soloMuteTrackSelectUpdate /home/pi/nodeMidi/FireSequencer.js:1789:35
+      1  100.0%          LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      1  100.0%            LazyCompile: *emit events.js:147:44
+      6    8.6%      LazyCompile: ~encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+      6  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      6  100.0%          LazyCompile: *emit events.js:147:44
+      1    1.4%      LazyCompile: *encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+      1  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      1  100.0%          LazyCompile: *emit events.js:147:44
+     39    2.2%    LazyCompile: *playNote /home/pi/nodeMidi/FireSequencer.js:1059:18
+     32   82.1%      LazyCompile: *gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     32  100.0%        LazyCompile: *emit events.js:147:44
+     27   84.4%          LazyCompile: *onStreamRead internal/stream_base_commons.js:87:22
+      5   15.6%          LazyCompile: ~addChunk _stream_readable.js:285:18
+      5  100.0%            LazyCompile: ~readableAddChunk _stream_readable.js:232:26
+      4   10.3%      LazyCompile: ~emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+      4  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+      4  100.0%          LazyCompile: *emit events.js:147:44
+      4  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+      2    5.1%      LazyCompile: *emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+      2  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+      2  100.0%          LazyCompile: *emit events.js:147:44
+      2  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+      1    2.6%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      1  100.0%        LazyCompile: *emit events.js:147:44
+
+   1688    7.6%  __libc_write
+    732   43.4%    LazyCompile: *updateAllGridBtnLEDs /home/pi/nodeMidi/FireSequencer.js:2060:30
+    731   99.9%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+    729   99.7%        LazyCompile: *emit events.js:147:44
+    455   27.0%    LazyCompile: *playNote /home/pi/nodeMidi/FireSequencer.js:1059:18
+    367   80.7%      LazyCompile: *gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+    367  100.0%        LazyCompile: *emit events.js:147:44
+    280   76.3%          LazyCompile: *onStreamRead internal/stream_base_commons.js:87:22
+     87   23.7%          LazyCompile: ~addChunk _stream_readable.js:285:18
+     87  100.0%            LazyCompile: ~readableAddChunk _stream_readable.js:232:26
+     49   10.8%      LazyCompile: ~emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+     49  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     49  100.0%          LazyCompile: *emit events.js:147:44
+     49  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+     30    6.6%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     30  100.0%        LazyCompile: *emit events.js:147:44
+      9    2.0%      LazyCompile: *emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+      9  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+      9  100.0%          LazyCompile: *emit events.js:147:44
+      9  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+    257   15.2%    LazyCompile: *FireOLED_SendMemMap /home/pi/nodeMidi/FireSequencer.js:2248:29
+    103   40.1%      LazyCompile: ~displayTrackAndPatInfo /home/pi/nodeMidi/FireSequencer.js:1943:32
+    102   99.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+    102  100.0%          LazyCompile: *emit events.js:147:44
+     99   38.5%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     99  100.0%        LazyCompile: *emit events.js:147:44
+     48   18.7%      LazyCompile: ~encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+     48  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     48  100.0%          LazyCompile: *emit events.js:147:44
+      6    2.3%      LazyCompile: *encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+      6  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      6  100.0%          LazyCompile: *emit events.js:147:44
+    177   10.5%    LazyCompile: *<anonymous> /home/pi/nodeMidi/FireSequencer.js:1089:29
+    103   58.2%      LazyCompile: ~ontimeout timers.js:429:19
+    103  100.0%        LazyCompile: *processTimers timers.js:220:23
+     74   41.8%      LazyCompile: *ontimeout timers.js:429:19
+     74  100.0%        LazyCompile: *processTimers timers.js:220:23
+     58    3.4%    LazyCompile: *stepHighlight /home/pi/nodeMidi/FireSequencer.js:1143:23
+     58  100.0%      LazyCompile: *gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     58  100.0%        LazyCompile: *emit events.js:147:44
+     58  100.0%          LazyCompile: *onStreamRead internal/stream_base_commons.js:87:22
+
+    997    4.5%  __clock_gettime
+    427   42.8%    LazyCompile: *processTimers timers.js:220:23
+     25    2.5%    LazyCompile: *playNote /home/pi/nodeMidi/FireSequencer.js:1059:18
+     20   80.0%      LazyCompile: *gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+     20  100.0%        LazyCompile: *emit events.js:147:44
+     14   70.0%          LazyCompile: *onStreamRead internal/stream_base_commons.js:87:22
+      6   30.0%          LazyCompile: ~addChunk _stream_readable.js:285:18
+      6  100.0%            LazyCompile: ~readableAddChunk _stream_readable.js:232:26
+      3   12.0%      LazyCompile: *emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+      3  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+      3  100.0%          LazyCompile: *emit events.js:147:44
+      3  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+      2    8.0%      LazyCompile: ~emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+      2  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+      2  100.0%          LazyCompile: *emit events.js:147:44
+      2  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+
+    521    2.3%  void node::StreamBase::JSMethod<node::LibuvStreamWrap, &(int node::StreamBase::WriteString<(node::encoding)1>(v8::FunctionCallbackInfo<v8::Value> const&))>(v8::FunctionCallbackInfo<v8::Value> const&)
+    521  100.0%    LazyCompile: ~handleWriteReq internal/stream_base_commons.js:12:24
+    521  100.0%      LazyCompile: ~writeGeneric internal/stream_base_commons.js:70:22
+    521  100.0%        LazyCompile: ~Socket._writeGeneric net.js:688:42
+    521  100.0%          LazyCompile: ~Socket._write net.js:725:35
+    521  100.0%            LazyCompile: ~doWrite _stream_writable.js:405:17
+
+    372    1.7%  v8::internal::JsonStringifier::Result v8::internal::JsonStringifier::Serialize_<true>(v8::internal::Handle<v8::internal::Object>, bool, v8::internal::Handle<v8::internal::Object>)
+    371   99.7%    LazyCompile: ~getJSON /home/pi/nodeMidi/node_modules/js-message/Message.js:37:21
+    368   99.2%      LazyCompile: ~format /home/pi/nodeMidi/node_modules/node-ipc/entities/EventParser.js:13:9
+    368  100.0%        LazyCompile: ~emit /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:72:14
+    367   99.7%          LazyCompile: ~sendTrackUpdateToSeqLoop /home/pi/nodeMidi/FireSequencer.js:1823:34
+    367  100.0%            LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+
+    367    1.6%  v8::internal::JsonStringifier::SerializeString(v8::internal::Handle<v8::internal::String>)
+    366   99.7%    LazyCompile: ~getJSON /home/pi/nodeMidi/node_modules/js-message/Message.js:37:21
+    366  100.0%      LazyCompile: ~format /home/pi/nodeMidi/node_modules/node-ipc/entities/EventParser.js:13:9
+    366  100.0%        LazyCompile: ~emit /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:72:14
+    363   99.2%          LazyCompile: ~sendTrackUpdateToSeqLoop /home/pi/nodeMidi/FireSequencer.js:1823:34
+    363  100.0%            LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+
+    301    1.3%  LazyCompile: *FireOLED_SendMemMap /home/pi/nodeMidi/FireSequencer.js:2248:29
+    138   45.8%    LazyCompile: ~displayTrackAndPatInfo /home/pi/nodeMidi/FireSequencer.js:1943:32
+    136   98.6%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+    136  100.0%        LazyCompile: *emit events.js:147:44
+      2    1.4%      LazyCompile: ~soloMuteTrackSelectUpdate /home/pi/nodeMidi/FireSequencer.js:1789:35
+      2  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      2  100.0%          LazyCompile: *emit events.js:147:44
+    128   42.5%    LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+    128  100.0%      LazyCompile: *emit events.js:147:44
+     30   10.0%    LazyCompile: ~encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+     30  100.0%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     30  100.0%        LazyCompile: *emit events.js:147:44
+
+    290    1.3%  __GI___pthread_getspecific
+    177   61.0%    LazyCompile: *FireOLED_SendMemMap /home/pi/nodeMidi/FireSequencer.js:2248:29
+     83   46.9%      LazyCompile: ~displayTrackAndPatInfo /home/pi/nodeMidi/FireSequencer.js:1943:32
+     83  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     83  100.0%          LazyCompile: *emit events.js:147:44
+     77   43.5%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     77  100.0%        LazyCompile: *emit events.js:147:44
+     12    6.8%      LazyCompile: ~encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+     12  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     12  100.0%          LazyCompile: *emit events.js:147:44
+      3    1.7%      LazyCompile: *encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+      3  100.0%        LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      3  100.0%          LazyCompile: *emit events.js:147:44
+     69   23.8%    LazyCompile: *updateAllGridBtnLEDs /home/pi/nodeMidi/FireSequencer.js:2060:30
+     69  100.0%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     68   98.6%        LazyCompile: *emit events.js:147:44
+      1    1.4%        LazyCompile: ~emit events.js:147:44
+      9    3.1%    LazyCompile: *playNote /home/pi/nodeMidi/FireSequencer.js:1059:18
+      8   88.9%      LazyCompile: *gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+      8  100.0%        LazyCompile: *emit events.js:147:44
+      7   87.5%          LazyCompile: *onStreamRead internal/stream_base_commons.js:87:22
+      1   12.5%          LazyCompile: ~addChunk _stream_readable.js:285:18
+      1  100.0%            LazyCompile: ~readableAddChunk _stream_readable.js:232:26
+      1   11.1%      LazyCompile: *emit /home/pi/nodeMidi/node_modules/event-pubsub/es5.js:61:18
+      1  100.0%        LazyCompile: ~gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+      1  100.0%          LazyCompile: *emit events.js:147:44
+      1  100.0%            LazyCompile: ~addChunk _stream_readable.js:285:18
+      5    1.7%    LazyCompile: *stepHighlight /home/pi/nodeMidi/FireSequencer.js:1143:23
+      5  100.0%      LazyCompile: *gotData /home/pi/nodeMidi/node_modules/node-ipc/dao/socketServer.js:156:17
+      5  100.0%        LazyCompile: *emit events.js:147:44
+      5  100.0%          LazyCompile: *onStreamRead internal/stream_base_commons.js:87:22
+      3    1.0%    LazyCompile: *<anonymous> /home/pi/nodeMidi/FireSequencer.js:1089:29
+      2   66.7%      LazyCompile: ~ontimeout timers.js:429:19
+      2  100.0%        LazyCompile: *processTimers timers.js:220:23
+      1   33.3%      LazyCompile: *ontimeout timers.js:429:19
+      1  100.0%        LazyCompile: *processTimers timers.js:220:23
+
+    225    1.0%  LazyCompile: *PlotStringToPixelMemMap /home/pi/nodeMidi/FireSequencer.js:2001:33
+    174   77.3%    LazyCompile: ~displayTrackAndPatInfo /home/pi/nodeMidi/FireSequencer.js:1943:32
+    173   99.4%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+    173  100.0%        LazyCompile: *emit events.js:147:44
+     43   19.1%    LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+     43  100.0%      LazyCompile: *emit events.js:147:44
+      6    2.7%    LazyCompile: ~encBankUpdate /home/pi/nodeMidi/FireSequencer.js:1863:23
+      6  100.0%      LazyCompile: ~<anonymous> /home/pi/nodeMidi/FireSequencer.js:1198:41
+      6  100.0%        LazyCompile: *emit events.js:147:44
+
