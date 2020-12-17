@@ -1,6 +1,6 @@
 /** TODO: @todo list
  *  
- *  - Crate menu for changing steps per beat
+ *  - Create menu for changing steps per beat
  *  - implement a way to trigger patterns using external midi
  *  - need to be able to set step note value by external controller
  *  - figure out somehting to use browser button for
@@ -1035,6 +1035,8 @@ ipc.serve(
       wifiControl.isEstablished = true;
       console.log("WiFi Control client has connected.");
       ipc.server.emit(wifiControl.ipcSocket, 'scanForNetworks');
+      ipc.server.emit(wifiControl.ipcSocket, 'listSavedNetworks');
+      ipc.server.emit(wifiControl.ipcSocket, 'connectToNetwork', {ssid: 'Wifi AC2.4',password: 'dodge5587856430'})
     });
     ipc.server.on('mainJSProcessConnected', function (data, socket) {
       mainProcessSocket = socket;
@@ -3567,7 +3569,7 @@ var settingsPowerControl_shutdown = new menuItem(
 
   },
   function () { // selFn
-
+    ipc.server.emit(mainProcessSocket,'systemShutdown');
   },
   function () { // genFn
 
@@ -3592,7 +3594,7 @@ var settingsPowerControl_reboot = new menuItem(
 
   },
   function () { // selFn
-
+    ipc.server.emit(mainProcessSocket,'systemReboot');
   },
   function () { // genFn
 
@@ -3617,7 +3619,7 @@ var settingsPowerControl_restartFireSeq = new menuItem(
 
   },
   function () { // selFn
-
+    ipc.server.emit(mainProcessSocket,'restartNodemidi');
   },
   function () { // genFn
 

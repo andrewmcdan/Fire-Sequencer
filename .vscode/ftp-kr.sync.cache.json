@@ -73,9 +73,9 @@
       },
       "FireSequencer.js": {
         "type": "-",
-        "size": 188073,
-        "lmtime": 1596847391391,
-        "modified": true
+        "size": 188918,
+        "lmtime": 1608170395282,
+        "modified": false
       },
       "_Project info.gdoc": {
         "type": "-",
@@ -127,6 +127,12 @@
         "lmtime": 1607863348093,
         "modified": false
       },
+      "constants.js": {
+        "type": "-",
+        "size": 1432,
+        "lmtime": 1591920325117,
+        "modified": false
+      },
       "dataObjFile": {
         "type": "-",
         "size": 29705,
@@ -171,9 +177,15 @@
       },
       "main.js": {
         "type": "-",
-        "size": 5048,
-        "lmtime": 1597113190723,
-        "modified": true
+        "size": 4713,
+        "lmtime": 1608170349434,
+        "modified": false
+      },
+      "menus.js": {
+        "type": "-",
+        "size": 2239,
+        "lmtime": 1607876931859,
+        "modified": false
       },
       "midi.js": {
         "type": "-",
@@ -334,7 +346,39 @@
         "util-deprecate": {},
         "which-pm-runs": {},
         "wide-align": {},
-        "wrappy": {}
+        "wrappy": {},
+        "pi-wifi": {
+          ".jshintrc": {
+            "type": "-",
+            "size": 512,
+            "lmtime": 0,
+            "modified": false
+          },
+          "HISTORY.md": {
+            "type": "-",
+            "size": 589,
+            "lmtime": 0,
+            "modified": false
+          },
+          "README.md": {
+            "type": "-",
+            "size": 11015,
+            "lmtime": 0,
+            "modified": false
+          },
+          "index.js": {
+            "type": "-",
+            "size": 18097,
+            "lmtime": 0,
+            "modified": false
+          },
+          "package.json": {
+            "type": "-",
+            "size": 1777,
+            "lmtime": 0,
+            "modified": false
+          }
+        }
       },
       "obf.js": {
         "type": "-",
@@ -1540,15 +1584,15 @@
       },
       "saveFile": {
         "type": "-",
-        "size": 621,
+        "size": 747,
         "lmtime": 1596829759171,
         "modified": true
       },
       "seq_loop.js": {
         "type": "-",
-        "size": 17900,
-        "lmtime": 1598112077452,
-        "modified": true
+        "size": 18154,
+        "lmtime": 1607878973455,
+        "modified": false
       },
       "test.json": {
         "type": "-",
@@ -1564,8 +1608,8 @@
       },
       "wifiControl.js": {
         "type": "-",
-        "size": 2364,
-        "lmtime": 1607863351867,
+        "size": 5112,
+        "lmtime": 1608169053589,
         "modified": false
       },
       "wifiTest.js": {

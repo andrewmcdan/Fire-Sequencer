@@ -39,6 +39,9 @@ ipc.connectTo(
         console.log("Disconnected form Fire Sequencer main process.");
       }
     );
+    ipc.of.nodeMidi.on('systemShutdown', system_shutdown);
+    ipc.of.nodeMidi.on('systemReboot', system_reboot);
+    ipc.of.nodeMidi.on('restartNodemidi', nodeMidiRestart);
   }
 );
 
@@ -69,6 +72,18 @@ var detectionInterval = setInterval(function () {
     }
   });
 }, 1000);
+
+function nodeMidiRestart(){
+  if(FireSeq_isStarted){
+    kill(child.pid);
+  }
+  let command = 'node';
+  let parameters = [path.resolve('FireSequencer.js')];
+  child = spawn(command, parameters, {
+    stdio: ['pipe', 'pipe', 'pipe', 'ipc']
+  });
+  FireSeq_isStarted = true;
+}
 
 
 
@@ -142,8 +157,10 @@ process.on('uncaughtException', exitHandler.bind(null, {
 
 // shutdown function
 function system_shutdown(callback = console.log) {
-  exec('shutdown now', function (error, stdout, stderr) {
+  exec('sudo shutdown now', function (error, stdout, stderr) {
     callback(stdout);
+    console.log(error);
+    console.log(stderr);
   });
 }
 
@@ -154,8 +171,10 @@ function system_shutdown(callback = console.log) {
 
 // Create shutdown function
 function system_reboot(callback = console.log) {
-  exec('shutdown -r now', function (error, stdout, stderr) {
+  exec('sudo shutdown -r now', function (error, stdout, stderr) {
     callback(stdout);
+    console.log(error);
+    console.log(stderr);
   });
 }
 
@@ -163,51 +182,3 @@ function system_reboot(callback = console.log) {
 // shutdown(function(output){
 //     console.log(output);
 // });
-
-var udpPort = new osc.UDPPort({
-  localAddress: "0.0.0.0",
-  localPort: 57121,
-  broadcast: true,
-  remoteAddress: "192.168.137.255",
-  remotePort: "8000"
-});
-
-
-let q = 0;
-let address_note40 = "/vkb_midi/note/40";
-
-udpPort.on("ready", function () {
-  console.log("OSC UDP: Port ready")
-  setInterval(() => {
-    setTimeout(() => {
-      udpPort.send({
-        address: address_note40
-      });
-    }, 250);
-
-    udpPort.send({
-      timeTag: osc.timeTag(0), // Schedules this bundle 60 seconds from now.
-      packets: [
-        {
-          address: "i"+address_note40,
-          args: [{
-              type: "f",
-              value: 127
-            }
-          ]
-        }
-      ]
-    });
-  }, 1000);
-
-});
-
-udpPort.on("message", function (oscMessage) {
-  console.log(oscMessage);
-});
-
-udpPort.on("error", function (err) {
-  console.log(err);
-});
-
-udpPort.open();
