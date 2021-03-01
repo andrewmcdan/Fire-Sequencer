@@ -73,8 +73,14 @@
       },
       "FireSequencer.js": {
         "type": "-",
-        "size": 188918,
-        "lmtime": 1608170395282,
+        "size": 196659,
+        "lmtime": 1614480525520,
+        "modified": false
+      },
+      "Menu Structure.txt": {
+        "type": "-",
+        "size": 1534,
+        "lmtime": 0,
         "modified": false
       },
       "_Project info.gdoc": {
@@ -166,8 +172,8 @@
       "globalSave": {
         "type": "-",
         "size": 9396,
-        "lmtime": 1593387410736,
-        "modified": true
+        "lmtime": 1614396513349,
+        "modified": false
       },
       "isolate-0x3c50778-v8.log": {
         "type": "-",
@@ -178,13 +184,7 @@
       "main.js": {
         "type": "-",
         "size": 4713,
-        "lmtime": 1608170349434,
-        "modified": false
-      },
-      "menus.js": {
-        "type": "-",
-        "size": 2239,
-        "lmtime": 1607876931859,
+        "lmtime": 1614396497402,
         "modified": false
       },
       "midi.js": {
@@ -414,37 +414,49 @@
         "0d15f579-d640-4f12-bca3-4679111154ec": {
           "type": "-",
           "size": 21119,
-          "lmtime": 1597113180690,
+          "lmtime": 1607863422616,
           "modified": false
         },
         "1bf5cc60-f9d1-41a6-a24d-4104b58cda3f": {
           "type": "-",
           "size": 21121,
-          "lmtime": 1597113180666,
+          "lmtime": 1607863422596,
           "modified": false
         },
         "1d1fc495-e297-472a-b26f-7400eedfe207": {
           "type": "-",
           "size": 21125,
-          "lmtime": 1597113180592,
+          "lmtime": 1607863422577,
           "modified": false
         },
         "5c2ef2ce-05f9-4778-a6d8-f609253c2ec5": {
           "type": "-",
           "size": 21121,
-          "lmtime": 1597113180573,
+          "lmtime": 1607863422559,
+          "modified": false
+        },
+        "818d7087-4ba1-43e9-b967-d49e7e93bc8b": {
+          "type": "-",
+          "size": 32878,
+          "lmtime": 1614396591725,
           "modified": false
         },
         "d329ad1f-c04a-4588-9de0-08d11460d2ab": {
           "type": "-",
           "size": 21123,
-          "lmtime": 1597113180551,
+          "lmtime": 1607863422541,
           "modified": false
         },
         "ef4ebf18-9bdd-4adc-9204-8abe73f85d06": {
           "type": "-",
           "size": 21111,
-          "lmtime": 1597113180512,
+          "lmtime": 1607863422521,
+          "modified": false
+        },
+        "f9aafc01-4555-4fd3-a1e9-af9c17462284": {
+          "type": "-",
+          "size": 21203,
+          "lmtime": 1614396591742,
           "modified": false
         }
       },
@@ -1584,14 +1596,14 @@
       },
       "saveFile": {
         "type": "-",
-        "size": 747,
-        "lmtime": 1596829759171,
-        "modified": true
+        "size": 866,
+        "lmtime": 1614396764331,
+        "modified": false
       },
       "seq_loop.js": {
         "type": "-",
         "size": 18154,
-        "lmtime": 1607878973455,
+        "lmtime": 1614447658143,
         "modified": false
       },
       "test.json": {
@@ -1609,7 +1621,7 @@
       "wifiControl.js": {
         "type": "-",
         "size": 5112,
-        "lmtime": 1608169053589,
+        "lmtime": 1614396506434,
         "modified": false
       },
       "wifiTest.js": {

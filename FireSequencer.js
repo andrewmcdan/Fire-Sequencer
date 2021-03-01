@@ -2,7 +2,8 @@
  *  
  *  - Create menu for changing steps per beat
  *  - implement a way to trigger patterns using external midi
- *  - need to be able to set step note value by external controller
+ *  - n̶e̶e̶d̶ t̶o̶ b̶e̶ a̶b̶l̶e̶ t̶o̶ s̶e̶t̶ s̶t̶e̶p̶ n̶o̶t̶e̶ v̶a̶l̶u̶e̶ b̶y̶ e̶x̶t̶e̶r̶n̶a̶l̶ c̶o̶n̶t̶r̶o̶l̶l̶e̶r̶
+ *  - selected eternal controller for ntoe entry needs to added to data saved in project
  *  - figure out somehting to use browser button for
  *  - figure out metronome / midi clock thing
  *  - drum mode
@@ -96,14 +97,19 @@ for (let step = 0; step < fireMidiIn.getPortCount(); step++) {
   if (settings.osType == "Windows_NT") {
     if (fireMidiIn.getPortName(step).search("FL STUDIO FIRE") != -1) {
       fireMidiIn.openPort(step);
+      midiInputDevicesHidden[step] = true;
+      midiInputDevicesNames[step]=" ";
     }
   }
   if (fireMidiIn.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
     fireMidiIn.openPort(step);
+    midiInputDevicesHidden[step] = true;
+    midiInputDevicesNames[step]=" ";
   } else if (settings.osType != "Windows_NT") {
     midiInputDevices[step] = new midi.Input();
     midiInputDevices[step].openPort(step);
     midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
+    // console.log( midiInputDevicesNames );
     midiInputDevicesEnabled[step] = true;
     if (midiInputDevicesNames[step].includes("RtMidi Output Client:RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
       midiInputDevicesHidden[step] = true;
@@ -119,23 +125,27 @@ if (!fireMidiIn.isPortOpen()) {
 
 fireMidiIn.ignoreTypes(false, false, false);
 
+
+
 // find out open Akai Fire MIDI output port and open it under "fireMidiOut"
 // Also create array of all ports and open them.
 for (let step = 0; step < fireMidiOut.getPortCount(); step++) {
   if (settings.osType == "Windows_NT") {
     if (fireMidiOut.getPortName(step).search("FL STUDIO FIRE") != -1) {
       fireMidiOut.openPort(step);
+      midiInputDevicesHidden[step] = true;
     }
   }
   if (fireMidiOut.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
     fireMidiOut.openPort(step);
+    midiInputDevicesHidden[step] = true;
   } else if (settings.osType != "Windows_NT") {
     midiOutputDevices[step] = new midi.Output();
     midiOutputDevices[step].openPort(step);
     midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
     midiOutputDevicesEnabled[step] = true;
     // console.log(midiOutputDevicesNames[step]);
-    if (midiOutputDevicesNames[step].includes("RtMidi Input Client:RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+    if (midiOutputDevicesNames[step].includes("RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
       midiOutputDevicesHidden[step] = true;
     } else {
       midiOutputDevicesHidden[step] = false;
@@ -357,7 +367,7 @@ function patternEvent(data, eventIdIndex, time = 0) {
   }
 }
 
-function trackPattern(patLength = 16, bpm = 120, beats = 4) {
+function trackPattern(patLength = 16, bpm = 120, beats = 4, defaultVals = false) {
   this.eventIdIndex = 0;
   this.patIsStepBased = true; // is pattern based on steps or can events happen at any time
   this.events = {};
@@ -374,10 +384,17 @@ function trackPattern(patLength = 16, bpm = 120, beats = 4) {
   this.color.mode = "preset"; // "preset" or "rgb"
   this.color.preset = 5;
   this.defaults = {};
-  this.defaults.noteData = 60;
-  this.defaults.noteLength = 99;
-  this.defaults.noteOffset = 0;
-  this.defaults.noteVelocity = 100;
+  if(typeof defaultVals == "object"){
+    this.defaults.noteData = defaultVals.data; 
+    this.defaults.noteLength = defaultVals.length;
+    this.defaults.noteOffset = defaultVals.offset;
+    this.defaults.noteVelocity = defaultVals.velocity;
+  }else{
+    this.defaults.noteData = 60;
+    this.defaults.noteLength = 99;
+    this.defaults.noteOffset = 0;
+    this.defaults.noteVelocity = 100;
+  }
   this.addEventByTime = function (data = this.defaults.noteData, timeOffset = this.defaults.noteOffset) {
     this.events["id_" + this.eventIdIndex] = new patternEvent(data, this.eventIdIndex, timeOffset);
     this.eventIdIndex++;
@@ -419,13 +436,13 @@ function defaultTrack(stepMode = true) { // if called with first argument as fal
   this.trackName = "Track" + (this.num < 10 ? "0" + (this.num + 1) : (this.num + 1));
   this.channel = 0;
   this.CVportNum = 0;
-  this.trackMode = 0; // 0=Noraml mode, 1=Drum trigger mode  --  In drum trigger mode, the track shall be set to output one note across all events.
+  this.trackMode = 0; // 0=Normal mode, 1=Drum trigger mode  --  In drum trigger mode, the track shall be set to output one note across all events.
   this.defaultNote = 63;
   this.addPattern = function (patLength, bpm, beats) {
     this.patterns["id_" + this.patternIdIndex] = new trackPattern(patLength, bpm, beats);
     if (stepMode) {
       for (var i = 0; i < patLength; i++) {
-        this.patterns["id_" + this.patternIdIndex].addEventByStep(60, i);
+        this.patterns["id_" + this.patternIdIndex].addEventByStep(this.defaultNote, i);
       }
     }
     return "id_" + this.patternIdIndex++;
@@ -837,6 +854,7 @@ seq.mode.Perform = function () {
 
 
 seq.state = {};
+seq.state.inputNote = null;
 seq.state.immediateTrackUpdates = true;
 seq.state.playEnabled = false;
 seq.state.playing = false;
@@ -863,7 +881,7 @@ seq.state.firstLoopIteration = true;
 seq.state.loopTimeMillis = Date.now();
 seq.state.currentBPM = 120;
 seq.state.currentStepsPerBeat = 4;
-seq.state.muteSoloBtnsLastPressed = null;
+seq.state.muteSoloBtnsLastPressed = 32;
 seq.state.gridBtnsPressedUpper = 0;
 seq.state.gridBtnsPressedLower = 0;
 seq.state.gridBtnsPressedLast = 0;
@@ -897,6 +915,7 @@ seq.settings.general.OLEDtimeout = 5; // number of seconds to wait before cleari
 seq.settings.midi = {};
 seq.settings.midi.clockInEnabled = false;
 seq.settings.midi.clockInSource = null;
+seq.settings.midiNoteInDevice = null;
 seq.settings.encoders = {};
 seq.settings.encoders.banks = 4;
 seq.settings.encoders.noteControl = false;
@@ -1065,7 +1084,7 @@ ipc.server.start();
 /**************************************************************************************
 @note playNote
 **************************************************************************************/
-function playNote(eventData, socket = null, timeoutIndex = null) {
+function playNote(eventData, socket = null, timeoutIndex = null, isNoteOffMes = false) {
   // newTimingLogEntry("playnote : " + JSON.stringify(eventData));
 
   if (settings.osType != "Windows_NT") {
@@ -1083,7 +1102,7 @@ function playNote(eventData, socket = null, timeoutIndex = null) {
       return;
     }
     // parse eventData and generate midi data
-    if (eventData.event.velocity > 0) {
+    if (eventData.event.velocity > 0 && !isNoteOffMes) {
       let newMidiMessage = [0, 0, 0];
       newMidiMessage[0] = 0x90 + seq.track[eventData.track].channel;
       newMidiMessage[1] = eventData.event.data;
@@ -1106,7 +1125,16 @@ function playNote(eventData, socket = null, timeoutIndex = null) {
           }
         }, 10000);
       }
-    } else {
+    } else if(isNoteOffMes){
+      let newMidiMessage = [0, 0, 0];
+      newMidiMessage[0] = 0x80 + seq.track[eventData.track].channel;
+      newMidiMessage[1] = eventData.event.data;
+      newMidiMessage[2] = eventData.event.velocity;
+      // send midi data to device associated with track
+      if (midiDevice != false) {
+        midiDevice.sendMessage(newMidiMessage);
+      }
+    }else{
       let newMidiMessage = [0, 0, 0];
       newMidiMessage[0] = 0x80 + seq.track[eventData.track].channel;
       newMidiMessage[1] = eventData.event.data;
@@ -1168,7 +1196,7 @@ function stepHighlight(stepNumber) {
         // patternIsViewable_16 is true if the current pattern step is greater than the lower limit and less than te upper limit od the viewale range.
         let patternIsViewable_16 = (patternStep < (16 * (viewAreaForITrack + 1))) && (patternStep >= (16 * viewAreaForITrack));
         // btn: between 0 and 63 inclusive for the button associated with the track / step we are on
-        if (oldBtn[i] >= 0 && oldBtn[i] <= 63) { // if the current step is vieeabwle within the current pattern...
+        if (oldBtn[i] >= 0 && oldBtn[i] <= 63) { // if the current step is viewable within the current pattern...
           // build a sysex message and send it to turn this btn white
           let sysEx = btnLEDSysEx;
           sysEx[7] = oldBtn[i];
@@ -1194,6 +1222,83 @@ function stepHighlight(stepNumber) {
   }
 }
 
+function handleNoteInputMessage(deltaTime, message){
+  //console.log(message);
+  if(seq.state.gridBtnsPressedLower != 0 || seq.state.gridBtnsPressedUpper != 0){
+    if((message[0] == 144 || message[0] == 128)&&bitCount(seq.state.gridBtnsPressedUpper)==1 && bitCount(seq.state.gridBtnsPressedLower)==0){
+      // one button was pressed in upper rows
+      let bitPos = getBitPosition(seq.state.gridBtnsPressedUpper);
+      // console.log("upper rows");
+      let track = seq.track[seq.state.selectedTrackRange + ((bitPos / 16) & 0xff)+2];
+      let curPat = track.patterns["id_" + track.currentPattern];
+      if (curPat.patIsStepBased) {
+        let step = (bitPos % 16) + (curPat.viewArea * 16); // step in the row
+        if (curPat.events["id_" + step] != undefined) {
+          // curPat.events["id_" + step].enabled = !curPat.events["id_" + step].enabled;
+          // console.log(curPat.events["id_"+step]);
+          curPat.events["id_"+step].data=message[1];
+          curPat.events["id_"+step].velocity=message[2];
+          curPat.events["id_" + step].enabled=true;
+        }
+      }
+      sendTrackUpdateToSeqLoop();
+      updateAllGridBtnLEDs();
+      displayTrackAndPatInfo(track, curPat);
+      let noteData = {};
+      noteData.track = seq.state.selectedTrackRange + ((bitPos / 16) & 0xff)+2;
+      noteData.lengthTime = 5;
+      noteData.event = {};
+      noteData.event.startTimePatternOffset = 0;
+      noteData.event.data = message[1];
+      noteData.event.velocity = message[2];
+      playNote(noteData, null, null, message[0] == 128);
+    }else if((message[0] == 144 || message[0] == 128)&&bitCount(seq.state.gridBtnsPressedUpper)==0&&bitCount(seq.state.gridBtnsPressedLower)==1){
+      // one button was pressed in lower rows
+      // console.log(getBitPosition(seq.state.gridBtnsPressedLower));
+      // console.log("lower rows");
+      let bitPos = getBitPosition(seq.state.gridBtnsPressedLower);
+      let track = seq.track[seq.state.selectedTrackRange + ((bitPos / 16) & 0xff)];
+      let curPat = track.patterns["id_" + track.currentPattern];
+      if (curPat.patIsStepBased) {
+        let step = (bitPos % 16) + (curPat.viewArea * 16); // step in the row
+        if (curPat.events["id_" + step] != undefined) {
+          // curPat.events["id_" + step].enabled = !curPat.events["id_" + step].enabled;
+          // console.log(curPat.events["id_"+step]);
+          curPat.events["id_"+step].data=message[1];
+          curPat.events["id_"+step].velocity=message[2];
+          curPat.events["id_" + step].enabled=true;
+        }
+      }
+      sendTrackUpdateToSeqLoop();
+      updateAllGridBtnLEDs();
+      displayTrackAndPatInfo(track, curPat);
+      let noteData = {};
+      noteData.track = seq.state.selectedTrackRange + ((bitPos / 16) & 0xff);
+      noteData.lengthTime = 5;
+      noteData.event = {};
+      noteData.event.startTimePatternOffset = 0;
+      noteData.event.data = message[1];
+      noteData.event.velocity = message[2];
+      playNote(noteData, null, null, message[0] == 128);
+    }else{
+      // zero or more than one button pressed in the grid
+    }
+  }else{
+    if (message[0] == 144 || message[0] == 128) {
+      let noteData = {};
+      noteData.track = seq.state.selectedTrack;
+      noteData.lengthTime = null;
+      noteData.event = {};
+      noteData.event.startTimePatternOffset = 0;
+      noteData.event.data = message[1];
+      noteData.event.velocity = message[2];
+      playNote(noteData, null, null, message[0] == 128);
+    }
+  }
+}
+
+
+
 /***************************************************************************************
 
 "on 'message' function"
@@ -1204,9 +1309,8 @@ function stepHighlight(stepNumber) {
   message[2] - Midi data2 (velocity or CC data)
 
 ***************************************************************************************/
-
+// @note fireMidiIn.on...
 fireMidiIn.on('message', async function (deltaTime, message) {
-
   let selTrack = seq.track[seq.state.selectedTrack];
   let curPat = selTrack.patterns["id_" + selTrack.currentPattern];
   if (settings.flushedInput) { // make sure we ignore incoming messages until the input butffers have been flushed.
@@ -1486,7 +1590,9 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             // soloMuteTrackSelectUpdate(message[1] - 36);
             resetMenus();
             let btn = message[1] - 36;
-            seq.state.muteSoloBtnsLastPressed = 1 << btn;
+            // console.log({btn});
+            seq.state.muteSoloBtnsLastPressed = 2 ** btn;
+            // console.log(seq.state.muteSoloBtnsLastPressed);
             seq.state.muteSoloBtnsTimeouts[btn].time = Date.now();
             seq.state.muteSoloBtnsTimeouts[btn].fn = soloMuteTrackSelectUpdate;
             break;
@@ -1590,6 +1696,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             // Need to display the selected pattern number when it changes
             displayTrackAndPatInfo(selTrack, selTrack.patterns["id_" + selTrack.currentPattern]);
             updateAllGridBtnLEDs();
+            sendTrackUpdateToSeqLoop();
             break;
           case 31: // @note pattern up button
             selTrack = seq.track[seq.state.selectedTrack];
@@ -1610,6 +1717,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             // Need to display the selected pattern number when it changes
             displayTrackAndPatInfo(selTrack, selTrack.patterns["id_" + selTrack.currentPattern]);
             updateAllGridBtnLEDs();
+            sendTrackUpdateToSeqLoop();
             break;
           case 26: // @note encoder bank button
             // timout to reset back to bank 0 or 1
@@ -1635,7 +1743,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
             } else if ((seq.state.gridBtnsPressedLower != 0 || seq.state.gridBtnsPressedUpper != 0) && !seq.state.altPressed && !seq.state.shiftPressed && !seq.state.menu.entered && seq.mode.current == 0) { // not shift, not alt, grid btn pressed
               // a grid btn is pressed
               enterMenuWithTimeout(stepMenu, 3000);
-            } else if (seq.mode.current == 0 && seq.state.muteSoloBtnsLastPressed > 0 && !seq.state.shiftPressed && !seq.state.altPressed && !seq.state.menu.entered) {
+            } else if (seq.mode.current == 0 && seq.state.muteSoloBtnsLastPressed < 32 && !seq.state.shiftPressed && !seq.state.altPressed && !seq.state.menu.entered) {
               // mute / solo button is pressed
               enterMenuWithTimeout(soloTrackMenu, 3000);
             } else if (seq.state.encBeingTouched != 0 && !seq.state.menu.entered) {
@@ -1755,7 +1863,7 @@ fireMidiIn.on('message', async function (deltaTime, message) {
           case 37: // track two mute/solo button
           case 36: // track one mute/solo button
             let btn = message[1] - 36;
-            seq.state.muteSoloBtnsLastPressed = 0;
+            seq.state.muteSoloBtnsLastPressed += 32;
             if (Date.now() - seq.state.muteSoloBtnsTimeouts[btn].time < 250) {
               seq.state.muteSoloBtnsTimeouts[btn].fn(btn);
             }
@@ -2846,24 +2954,20 @@ var midiInDeviceEnable = new menuItem(
   function () { // dwnFn
     if (this.currentSelectedItem < midiInputDevicesNames.length - 1) {
       this.currentSelectedItem++;
-      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < midiInputDevicesNames.length - 4) {
+      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < midiInputDevicesNames.length - 5) {
         this.currentDisplayRange++;
       }
     }
   },
   function (selection) { // selFn
-
-    midiInputDevicesEnabled[selection] = !midiInputDevicesEnabled[selection];
-
+    midiInputDevicesEnabled[selection+1] = !midiInputDevicesEnabled[selection+1];
+    // console.log("toggled");
   },
   function () { // generator fn
-
     let deviceNames = [];
     midiInputDevicesNames.forEach(function (name, i) {
       if (!midiInputDevicesHidden[i]) {
         if (name.length > 16) {
-
-
           let devText = (midiInputDevicesEnabled[i] ? "EN:" : "DIS");
           devText = devText + name.substring(0, 5);
           devText = devText + "...";
@@ -2878,8 +2982,6 @@ var midiInDeviceEnable = new menuItem(
         deviceNames.push("Hidden Midi Device");
       }
     })
-
-
     return deviceNames;
   },
   function (genReturn) {
@@ -2911,18 +3013,14 @@ var midiOutDeviceEnable = new menuItem(
     }
   },
   function (selection) { // selFn
-
-
-    midiOutputDevicesEnabled[selection] = !midiOutputDevicesEnabled[selection];
-
+    midiOutputDevicesEnabled[selection+1] = !midiOutputDevicesEnabled[selection+1];
+    // console.log("toggle 2");
   },
   function () { // generator fn
-
     let deviceNames = [];
     midiOutputDevicesNames.forEach(function (name, i) {
       if (!midiOutputDevicesHidden[i]) {
         if (name.length > 16) {
-
           let devText = (midiOutputDevicesEnabled[i] ? "EN:" : "DIS");
           devText = devText + name.substring(0, 5);
           devText = devText + "...";
@@ -2937,8 +3035,6 @@ var midiOutDeviceEnable = new menuItem(
         deviceNames.push("Hidden Midi Device");
       }
     })
-
-
     return deviceNames;
   },
   function (genReturn) {
@@ -3006,6 +3102,74 @@ var midiClockInputDeviceSelect = new menuItem(
   },
   null,
   true
+)
+var midiNoteInDevice = new menuItem(
+  function () {
+    this.currentSelectedItem = 0;
+    this.currentDisplayRange = 0;
+    return "Midi Note Input Dev";
+  },
+  function () { // upFn
+    if (this.currentSelectedItem > 0) {
+      this.currentSelectedItem--;
+      if (this.currentSelectedItem < this.currentDisplayRange) {
+        this.currentDisplayRange = this.currentSelectedItem;
+      }
+    }
+  },
+  function () { // dwnFn
+    if (this.currentSelectedItem < midiInputDevicesNames.length - 1) {
+      this.currentSelectedItem++;
+      if (this.currentDisplayRange + 1 < this.currentSelectedItem && this.currentDisplayRange < midiInputDevicesNames.length - 4) {
+        this.currentDisplayRange++;
+      }
+    }
+  },
+  function (selection) { // selFn
+    if (!midiInputDevicesHidden[selection]) {
+      this.goBackOnSel = true;
+      if (seq.settings.midiNoteInDevice == null) {
+        // console.log(midiInputDevicesNames);
+        seq.settings.midiNoteInDevice = selection;
+        midiInputDevices[seq.settings.midiNoteInDevice].on('message', handleNoteInputMessage)
+      } else {
+        midiInputDevices[seq.settings.midiNoteInDevice].removeListener('message', handleNoteInputMessage)
+        seq.settings.midiNoteInDevice = selection;
+        midiInputDevices[seq.settings.midiNoteInDevice].on('message', handleNoteInputMessage)
+      }
+    }else{
+      this.goBackOnSel = false;
+    }
+    // seq.settings.midiNoteInDevice = selection+1;
+    // console.log(selection+1);
+    // console.log(midiInputDevicesNames);
+    // console.log(midiInputDevicesNames[seq.settings.midiNoteInDevice]);
+  },
+  function () { // generator fn
+    let deviceNames = [];
+
+    midiInputDevicesNames.forEach(function (name, i) {
+      if (!midiInputDevicesHidden[i]) {
+        // console.log("Device is not hidden.");
+        if (name.length > 16) {
+          let devText = name.substring(0, 5);
+          devText = devText + "...";
+          devText = devText + name.substring(name.length - 9);
+          deviceNames.push(devText);
+        } else {
+          deviceNames.push(name);
+        }
+      } else {
+        // console.log("Device is hidden.###");
+        deviceNames.push("Hidden Midi Device");
+      }
+    })
+    return deviceNames;
+  },
+  function (genReturn) {
+    return genReturn;
+  },
+  null
 )
 
 var trackColorPreset = new menuItem(
@@ -3501,13 +3665,14 @@ encoderBankGlobalSettingsGlobalEnable.parentMenu = encoderBankGlobalSettings;
 
 var settingsMidiMenu = new subMenu(
   "Midi Settings",
-  [midiInDeviceEnable, midiOutDeviceEnable, midiClockInputDeviceSelect],
+  [midiInDeviceEnable, midiOutDeviceEnable, midiClockInputDeviceSelect,midiNoteInDevice],
   null
 );
 
 midiInDeviceEnable.parentMenu = settingsMidiMenu;
 midiOutDeviceEnable.parentMenu = settingsMidiMenu;
 midiClockInputDeviceSelect.parentMenu = settingsMidiMenu;
+midiNoteInDevice.parentMenu = settingsMidiMenu;
 
 var globalImmeiateTrackUpdatesMenu = new menuItem(
   function () {
@@ -4644,7 +4809,7 @@ var soloTrack_mode_MenuItem = new menuItem(
   function () {
     this.currentSelectedItem = 0;
     this.tempVar = {};
-    this.tempVar.track = seq.track[seq.state.selectedTrackRange + getBitPosition(seq.state.muteSoloBtnsLastPressed)]; // determine which track is associated with row the button is on.
+    this.tempVar.track = seq.track[seq.state.selectedTrackRange + getBitPosition(seq.state.muteSoloBtnsLastPressed-32)]; // determine which track is associated with row the button is on.
     return "Track Mode"
   },
   function () { // upFn
@@ -4658,7 +4823,8 @@ var soloTrack_mode_MenuItem = new menuItem(
     }
   },
   function (selection) { // selFn
-    seq.track[seq.state.selectedTrackRange + getBitPosition(seq.state.muteSoloBtnsLastPressed)].trackMode = selection;
+    seq.track[seq.state.selectedTrackRange + getBitPosition(seq.state.muteSoloBtnsLastPressed-32)].trackMode = selection;
+    // this.tempVar.track.trackMode = selection;
   },
   function () { // genFn
 
@@ -4678,7 +4844,8 @@ var soloTrack_trackNote_menuItem = new menuItem(
   function () {
     this.currentSelectedItem = 0;
     this.tempVar = {};
-    this.tempVar.track = seq.track[seq.state.selectedTrackRange + getBitPosition(seq.state.muteSoloBtnsLastPressed)]; // determine which track is associated with row the button is on.
+    this.tempVar.track = seq.track[seq.state.selectedTrackRange + getBitPosition(seq.state.muteSoloBtnsLastPressed-32)]; // determine which track is associated with row the button is on.
+    // this.tempVar = soloTrack_mode_MenuItem.tempVar;
     switch (this.tempVar.track.trackMode) {
       case 0:
         return "Default Note"
@@ -4690,6 +4857,8 @@ var soloTrack_trackNote_menuItem = new menuItem(
     if (this.tempVar.track.defaultNote < 127) {
       this.tempVar.track.defaultNote++;
     }
+    // console.log(this.tempVar.track);
+    // console.log(seq.state.muteSoloBtnsLastPressed-32);
     playNote({
       event: {
         startTimePatternOffset: 0,
