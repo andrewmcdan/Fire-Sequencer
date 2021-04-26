@@ -88,7 +88,7 @@ function nodeMidiRestart(){
 
 
 // This code spawns the seq_loop node process. In testing, we manually spawn
-// sequence looper so that we can bedug it.
+// sequence looper so that we can debug it.
 const nodeCommand = 'node';
 const seqLoop_parameters = [path.resolve('seq_loop.js')];
 const seqLoop_child = spawn(nodeCommand, seqLoop_parameters, {

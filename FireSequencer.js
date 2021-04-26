@@ -1,3 +1,5 @@
+/* cSpell:disable*/
+
 /** TODO: @todo list
  *  
  *  - Create menu for changing steps per beat
