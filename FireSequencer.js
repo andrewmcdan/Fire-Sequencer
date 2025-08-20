@@ -29,12 +29,8 @@ const bitmaps = require('./bitmaps.js');
 var fs = require('fs');
 // const lineReader = require('line-reader');
 const midi = require('midi');
-const {
-  log
-} = require('node-ipc');
-const {
-  v4: uuidv4
-} = require('uuid');
+const { log } = require('node-ipc');
+const { v4: uuidv4 } = require('uuid');
 
 var settings = {};
 var timingLog = [];

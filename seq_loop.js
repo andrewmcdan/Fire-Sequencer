@@ -1,7 +1,7 @@
 /*
 TODO:
-- set up child process for gerneator poly rythms
-  - need to be able to send the ipc socket info for the generator back to the main processs
+- set up child process for generator poly rhythms
+  - need to be able to send the ipc socket info for the generator back to the main processes
     so that changes to the generator can be sent straight to it.
   - Must be able to receive step events from the generator.
   - Upon receiving a step event, step through the events of the selected track and send it
@@ -127,7 +127,7 @@ ipc.connectTo(
       'disconnect',
       function () {
         // ipc.log('disconnected from nodeMidi'.notice);
-        // console.log("Disconnected from main processs.");
+        // console.log("Disconnected from main process.");
         seqStop(false);
         if (logDisconnect) {
           console.log("Disconnected form Fire Sequencer main process.");
