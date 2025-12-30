@@ -24,3 +24,5 @@
 /test.json
 **/node_modules/
 projects/
+package-lock.json
+.DS_Store
