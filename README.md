@@ -1,6 +1,6 @@
 # Fire Sequencer
 
-Fire Sequencer is a Node.js driven music sequencer that targets the Akai Fire controller.  It watches for a connected Fire device and, once detected, spawns the main `FireSequencer.js` process which drives the step sequencer, encoder menus and MIDI/CV output.
+Fire Sequencer is a Node.js driven music sequencer that targets the Akai Fire controller. It watches for a connected Fire device and, once detected, spawns the main `src/FireSequencer.js` process which drives the step sequencer, encoder menus and MIDI/CV output.
 
 ## Features
 
@@ -24,10 +24,24 @@ This invokes `node-gyp` to compile the required dependencies.
 Launch the watcher script which waits for the controller and starts the sequencer:
 
 ```bash
-node main.js
+npm start
 ```
 
-When an Akai Fire is connected, `FireSequencer.js` is executed automatically.  Disconnecting the controller stops the sequencer.
+When an Akai Fire is connected, `src/FireSequencer.js` is executed automatically. Disconnecting the controller stops the sequencer.
+
+If you prefer to run it directly:
+
+```bash
+node src/main.js
+```
+
+## Project Layout
+
+- `src/`: runtime JS entry points and IPC logic.
+- `assets/`: fonts, bitmaps, and display assets.
+- `data/`: saved settings, project metadata, and logs.
+- `rust/`: Rust experiments and the Neon addon.
+- `docs/PROJECT_OVERVIEW.md`: detailed walkthrough of the codebase.
 
 ## Development
 

@@ -2,7 +2,7 @@
   "name": "nodemidi",
   "version": "1.0.0",
   "description": "n",
-  "main": "FireSequencer.js",
+  "main": "src/main.js",
   "dependencies": {
     "into-stream": "^5.1.1",
     "javascript-state-machine": "^3.1.0",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node-gyp rebuild"
   },

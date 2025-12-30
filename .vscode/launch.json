@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\FireSequencer.js"
+            "program": "${workspaceFolder}\\src\\FireSequencer.js"
         }
     ]
 }

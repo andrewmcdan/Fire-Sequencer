@@ -1,28 +1,22 @@
-/.ftpconfig
-/.git
-/.gitignore
-/.vscode
-/ARIAL.TTF
-/arial16pt.h
-/ARIALBD.TTF
-/ARIALBI.TTF
-/ARIALI.TTF
-/ARIBLK.TTF
-/binding.gyp
-/dataObjFile
-/font
-/fontData16pt
-/fontData24px
-/fontData32px
-/midi.js
-/midi0.js
-/midi1.js
-/midi2.js
-/node_modules
-/package-lock.json
-/python2
-/test.json
-**/node_modules/
-projects/
-package-lock.json
+# Local config
+.ftpconfig
+.vscode/
+
+# OS/editor
 .DS_Store
+Thumbs.db
+*.swp
+
+# Node
+node_modules/
+**/node_modules/
+
+# Build artifacts
+build/
+rust/**/target/
+rust/**/native/target/
+rust/**/native/node_modules/
+
+# Runtime data
+data/projects/
+data/logs/
