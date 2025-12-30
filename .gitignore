@@ -22,3 +22,5 @@
 /package-lock.json
 /python2
 /test.json
+**/node_modules/
+projects/
