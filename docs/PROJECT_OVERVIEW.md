@@ -61,5 +61,5 @@ multi-process setup for device detection, UI, and timing.
   pattern triggers, CV gate output, etc).
 - WiFi control in `src/FireSequencer.js` auto-sends scan/list/connect on IPC
   connect and includes hardcoded credentials.
-- `package.json` lists dependencies that are unused or commented out in the
-  current code (for example `osc`, `javascript-state-machine`).
+- OSC support is commented out in `src/main.js`; add a dependency and wiring if
+  you want it enabled.

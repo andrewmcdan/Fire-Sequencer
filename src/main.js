@@ -11,6 +11,7 @@ const firePID = 67;
 var FireSeq_isStarted = false;
 var firstTest = true;
 var child;
+var childIndex = 0;
 
 usbDetect.startMonitoring();
 
@@ -45,6 +46,29 @@ ipc.connectTo(
   }
 );
 
+function attachChildLogging(proc, label) {
+  if (!proc) {
+    return;
+  }
+  const tag = label ? `[${label}] ` : '';
+  if (proc.stdout) {
+    proc.stdout.on('data', (data) => {
+      process.stdout.write(tag + data.toString());
+    });
+  }
+  if (proc.stderr) {
+    proc.stderr.on('data', (data) => {
+      process.stderr.write(tag + data.toString());
+    });
+  }
+  proc.on('exit', (code, signal) => {
+    console.log(`${tag}exited (code=${code}, signal=${signal})`);
+  });
+  proc.on('error', (err) => {
+    console.log(`${tag}spawn error: ${err.message}`);
+  });
+}
+
 var detectionInterval = setInterval(function () {
   usbDetect.find(fireVID, firePID, function (err, devices) {
     if (!err) {
@@ -56,6 +80,8 @@ var detectionInterval = setInterval(function () {
         child = spawn(command, parameters, {
           stdio: ['pipe', 'pipe', 'pipe', 'ipc']
         });
+        childIndex += 1;
+        attachChildLogging(child, `fireseq#${childIndex}`);
         FireSeq_isStarted = true;
       } else if (devices.length == 0 && FireSeq_isStarted) {
         console.log("Fire not detected. Killing sequencer.");
@@ -82,6 +108,8 @@ function nodeMidiRestart(){
   child = spawn(command, parameters, {
     stdio: ['pipe', 'pipe', 'pipe', 'ipc']
   });
+  childIndex += 1;
+  attachChildLogging(child, `fireseq#${childIndex}`);
   FireSeq_isStarted = true;
 }
 
@@ -94,6 +122,7 @@ const seqLoop_parameters = [path.resolve(__dirname, 'seq_loop.js')];
 const seqLoop_child = spawn(nodeCommand, seqLoop_parameters, {
   stdio: ['pipe', 'pipe', 'pipe', 'ipc']
 });
+attachChildLogging(seqLoop_child, 'seq_loop');
 
 
 
