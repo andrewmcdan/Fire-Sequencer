@@ -115,7 +115,7 @@ for (let step = 0; step < fireMidiIn.getPortCount(); step++) {
       midiInputDevicesNames[step]=" ";
     }
   }
-  if (fireMidiIn.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
+  if (fireMidiIn.getPortName(step).search("FL STUDIO FIRE") != -1) {
     fireMidiIn.openPort(step);
     midiInputDevicesHidden[step] = true;
     midiInputDevicesNames[step]=" ";
@@ -125,7 +125,7 @@ for (let step = 0; step < fireMidiIn.getPortCount(); step++) {
     midiInputDevicesNames[step] = midiInputDevices[step].getPortName(step);
     // console.log( midiInputDevicesNames );
     midiInputDevicesEnabled[step] = true;
-    if (midiInputDevicesNames[step].includes("RtMidi Output Client:RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiInputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+    if (midiInputDevicesNames[step].includes("RtMidi Output Client:RtMidi Output Client") || midiInputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiInputDevicesNames[step].includes("FL STUDIO FIRE")) {
       midiInputDevicesHidden[step] = true;
     } else {
       midiInputDevicesHidden[step] = false;
@@ -159,7 +159,7 @@ for (let step = 0; step < fireMidiOut.getPortCount(); step++) {
     midiOutputDevicesNames[step] = midiOutputDevices[step].getPortName(step);
     midiOutputDevicesEnabled[step] = true;
     // console.log(midiOutputDevicesNames[step]);
-    if (midiOutputDevicesNames[step].includes("RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE:FL STUDIO FIRE MIDI")) {
+    if (midiOutputDevicesNames[step].includes("RtMidi Input Client") || midiOutputDevicesNames[step].includes("Midi Through:Midi Through Port") || midiOutputDevicesNames[step].includes("FL STUDIO FIRE")) {
       midiOutputDevicesHidden[step] = true;
     } else {
       midiOutputDevicesHidden[step] = false;
