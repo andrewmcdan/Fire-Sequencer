@@ -150,7 +150,7 @@ for (let step = 0; step < fireMidiOut.getPortCount(); step++) {
       midiInputDevicesHidden[step] = true;
     }
   }
-  if (fireMidiOut.getPortName(step).search("FL STUDIO FIRE:FL STUDIO FIRE MIDI 1") != -1) {
+  if (fireMidiOut.getPortName(step).search("FL STUDIO FIRE") != -1) {
     fireMidiOut.openPort(step);
     midiInputDevicesHidden[step] = true;
   } else if (settings.osType != "Windows_NT") {
